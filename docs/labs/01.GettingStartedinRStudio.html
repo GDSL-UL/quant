@@ -768,18 +768,18 @@ Merc 240D         24.4   4 146.7  62 3.69 3.190 20.00  1  0    4    2</code></pr
 <div class="sourceCode cell-code" id="cb70"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb70-1"><a href="#cb70-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(df)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>'data.frame':   5 obs. of  12 variables:
- $ LAD21CD                                                                                 : Factor w/ 5 levels "E08000011","E08000012",..: 1 2 3 4 5
- $ District                                                                                : Factor w/ 5 levels "Knowsley","Liverpool",..: 1 2 4 3 5
- $ Population                                                                              : int  154519 486088 183248 279233 320199
- $ Households                                                                              : int  66073 207491 81011 123075 143253
- $ Working.population                                                                      : int  69495 205749 82622 124596 139500
- $ Full.time.students                                                                      : int  7050 59628 7582 12636 14642
- $ Economic.activity.status..Economically.active..excluding.full.time.students...Unemployed: int  3852 13894 4076 6143 6542
- $ Age.over.65                                                                             : int  26242 74322 37642 64763 70391
- $ Disability                                                                              : int  34990 105962 40829 61134 73088
- $ No.central.heating                                                                      : int  1020 4822 1003 1965 2125
- $ Overcrowding                                                                            : int  1892 7352 1888 2700 2355
- $ Working.from.home                                                                       : int  14880 53721 18973 34750 37299</code></pre>
+ $ LAD21CD           : Factor w/ 5 levels "E08000011","E08000012",..: 1 2 3 4 5
+ $ District          : Factor w/ 5 levels "Knowsley","Liverpool",..: 1 2 4 3 5
+ $ Population        : int  154519 486088 183248 279233 320199
+ $ Households        : int  66073 207491 81011 123075 143253
+ $ Working.population: int  69495 205749 82622 124596 139500
+ $ Full.time.students: int  7050 59628 7582 12636 14642
+ $ Unemployed        : int  3852 13894 4076 6143 6542
+ $ Age.over.65       : int  26242 74322 37642 64763 70391
+ $ Disability        : int  34990 105962 40829 61134 73088
+ $ No.central.heating: int  1020 4822 1003 1965 2125
+ $ Overcrowding      : int  1892 7352 1888 2700 2355
+ $ Working.from.home : int  14880 53721 18973 34750 37299</code></pre>
 </div>
 </div>
 <p>The&nbsp;<code>head</code>&nbsp;function does this by printing out the first six records of the data table and you may need to scroll up and down in the Console pane to see all of what is returned.</p>
@@ -792,24 +792,18 @@ Merc 240D         24.4   4 146.7  62 3.69 3.190 20.00  1  0    4    2</code></pr
 3 E08000013 St. Helens     183248      81011              82622
 4 E08000014     Sefton     279233     123075             124596
 5 E08000015     Wirral     320199     143253             139500
-  Full.time.students
-1               7050
-2              59628
-3               7582
-4              12636
-5              14642
-  Economic.activity.status..Economically.active..excluding.full.time.students...Unemployed
-1                                                                                     3852
-2                                                                                    13894
-3                                                                                     4076
-4                                                                                     6143
-5                                                                                     6542
-  Age.over.65 Disability No.central.heating Overcrowding Working.from.home
-1       26242      34990               1020         1892             14880
-2       74322     105962               4822         7352             53721
-3       37642      40829               1003         1888             18973
-4       64763      61134               1965         2700             34750
-5       70391      73088               2125         2355             37299</code></pre>
+  Full.time.students Unemployed Age.over.65 Disability No.central.heating
+1               7050       3852       26242      34990               1020
+2              59628      13894       74322     105962               4822
+3               7582       4076       37642      40829               1003
+4              12636       6143       64763      61134               1965
+5              14642       6542       70391      73088               2125
+  Overcrowding Working.from.home
+1         1892             14880
+2         7352             53721
+3         1888             18973
+4         2700             34750
+5         2355             37299</code></pre>
 </div>
 </div>
 <p>Another way to explore the data is through the&nbsp;<code>summary</code>&nbsp;function:</p>
@@ -823,34 +817,20 @@ Merc 240D         24.4   4 146.7  62 3.69 3.190 20.00  1  0    4    2</code></pr
  E08000014:1   St. Helens:1   Mean   :284657   Mean   :124181  
  E08000015:1   Wirral    :1   3rd Qu.:320199   3rd Qu.:143253  
                               Max.   :486088   Max.   :207491  
- Working.population Full.time.students
- Min.   : 69495     Min.   : 7050     
- 1st Qu.: 82622     1st Qu.: 7582     
- Median :124596     Median :12636     
- Mean   :124392     Mean   :20308     
- 3rd Qu.:139500     3rd Qu.:14642     
- Max.   :205749     Max.   :59628     
- Economic.activity.status..Economically.active..excluding.full.time.students...Unemployed
- Min.   : 3852                                                                           
- 1st Qu.: 4076                                                                           
- Median : 6143                                                                           
- Mean   : 6901                                                                           
- 3rd Qu.: 6542                                                                           
- Max.   :13894                                                                           
-  Age.over.65      Disability     No.central.heating  Overcrowding 
- Min.   :26242   Min.   : 34990   Min.   :1003       Min.   :1888  
- 1st Qu.:37642   1st Qu.: 40829   1st Qu.:1020       1st Qu.:1892  
- Median :64763   Median : 61134   Median :1965       Median :2355  
- Mean   :54672   Mean   : 63201   Mean   :2187       Mean   :3237  
- 3rd Qu.:70391   3rd Qu.: 73088   3rd Qu.:2125       3rd Qu.:2700  
- Max.   :74322   Max.   :105962   Max.   :4822       Max.   :7352  
- Working.from.home
- Min.   :14880    
- 1st Qu.:18973    
- Median :34750    
- Mean   :31925    
- 3rd Qu.:37299    
- Max.   :53721    </code></pre>
+ Working.population Full.time.students   Unemployed     Age.over.65   
+ Min.   : 69495     Min.   : 7050      Min.   : 3852   Min.   :26242  
+ 1st Qu.: 82622     1st Qu.: 7582      1st Qu.: 4076   1st Qu.:37642  
+ Median :124596     Median :12636      Median : 6143   Median :64763  
+ Mean   :124392     Mean   :20308      Mean   : 6901   Mean   :54672  
+ 3rd Qu.:139500     3rd Qu.:14642      3rd Qu.: 6542   3rd Qu.:70391  
+ Max.   :205749     Max.   :59628      Max.   :13894   Max.   :74322  
+   Disability     No.central.heating  Overcrowding  Working.from.home
+ Min.   : 34990   Min.   :1003       Min.   :1888   Min.   :14880    
+ 1st Qu.: 40829   1st Qu.:1020       1st Qu.:1892   1st Qu.:18973    
+ Median : 61134   Median :1965       Median :2355   Median :34750    
+ Mean   : 63201   Mean   :2187       Mean   :3237   Mean   :31925    
+ 3rd Qu.: 73088   3rd Qu.:2125       3rd Qu.:2700   3rd Qu.:37299    
+ Max.   :105962   Max.   :4822       Max.   :7352   Max.   :53721    </code></pre>
 </div>
 </div>
 <p>Finally in this section, we come back to the dollar sign (<code>$</code>). This is used to refer to or <em>extract</em> an individual named field or variable in an R object, like <code>df</code>.</p>
@@ -966,30 +946,18 @@ Levels: Knowsley Liverpool Sefton St. Helens Wirral</code></pre>
 3 E08000013 St. Helens     183248      81011              82622
 4 E08000014     Sefton     279233     123075             124596
 5 E08000015     Wirral     320199     143253             139500
-  Full.time.students
-1               7050
-2              59628
-3               7582
-4              12636
-5              14642
-  Economic.activity.status..Economically.active..excluding.full.time.students...Unemployed
-1                                                                                     3852
-2                                                                                    13894
-3                                                                                     4076
-4                                                                                     6143
-5                                                                                     6542
-  Age.over.65 Disability No.central.heating Overcrowding Working.from.home
-1       26242      34990               1020         1892             14880
-2       74322     105962               4822         7352             53721
-3       37642      40829               1003         1888             18973
-4       64763      61134               1965         2700             34750
-5       70391      73088               2125         2355             37299
-   Prop.WFH
-1 0.2141161
-2 0.2610997
-3 0.2296362
-4 0.2789014
-5 0.2673763</code></pre>
+  Full.time.students Unemployed Age.over.65 Disability No.central.heating
+1               7050       3852       26242      34990               1020
+2              59628      13894       74322     105962               4822
+3               7582       4076       37642      40829               1003
+4              12636       6143       64763      61134               1965
+5              14642       6542       70391      73088               2125
+  Overcrowding Working.from.home  Prop.WFH
+1         1892             14880 0.2141161
+2         7352             53721 0.2610997
+3         1888             18973 0.2296362
+4         2700             34750 0.2789014
+5         2355             37299 0.2673763</code></pre>
 </div>
 </div>
 <p>Here we ask R to add a new column named Prop.WFH which is the working from home proportion that calculated by the number of working from home people in each district divided by the total working population in that district. R will automatically do it row-by-row. We then print out the df, you may find at the very right end of the tabular, there is a new column called Prop.WFH.</p>
@@ -1078,19 +1046,11 @@ Projected CRS: OSGB36 / British National Grid</code></pre>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb113"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb113-1"><a href="#cb113-1" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(df)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code> [1] "LAD21CD"                                                                                 
- [2] "District"                                                                                
- [3] "Population"                                                                              
- [4] "Households"                                                                              
- [5] "Working.population"                                                                      
- [6] "Full.time.students"                                                                      
- [7] "Economic.activity.status..Economically.active..excluding.full.time.students...Unemployed"
- [8] "Age.over.65"                                                                             
- [9] "Disability"                                                                              
-[10] "No.central.heating"                                                                      
-[11] "Overcrowding"                                                                            
-[12] "Working.from.home"                                                                       
-[13] "Prop.WFH"                                                                                </code></pre>
+<pre><code> [1] "LAD21CD"            "District"           "Population"        
+ [4] "Households"         "Working.population" "Full.time.students"
+ [7] "Unemployed"         "Age.over.65"        "Disability"        
+[10] "No.central.heating" "Overcrowding"       "Working.from.home" 
+[13] "Prop.WFH"          </code></pre>
 </div>
 </div>
 <p>We can do the same thing for our geographical dataset to see what it includes:</p>

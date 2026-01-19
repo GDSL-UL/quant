@@ -1,0 +1,74 @@
+# Overview {.unnumbered}
+
+## Aim and Learning Objectives
+
+This sub-module aims to provide training and skills on a set of basic quantitative skills for data collection, analysis, and interpretation and to enable you to link conceptual ideas with real world examples. **This block serves as the foundation for Year 2 BA field class and, optionally, for Year 3 dissertation.**
+
+**Background**
+
+Data and research are key pillars of the global economy and society today. We need rigorous approaches to collecting and analysing both the statistics that can tell us ‘how much’ and if there are observable relationships between phenomena; and the information gives us a nuanced understanding of cultural contexts and human dynamics. Quantitative skills enable us to explore and measure socio-economic activities and processes at large scales, while qualitative skills enable understanding of social, cultural, and political contexts and diverse lived experiences. Rather than being in opposition, qualitative and quantitative research can complement one another in the investigation of today’s pressing research questions.
+
+To these ends, this block will help you develop your quantitative skills, as critical tools. This course will help you understand what quantitative statistical researchers use and develop a set of research techniques that can be used in your field classes and dissertations.
+
+**Learning objectives:**
+
+-   Understand how to explore a dataset, containing a number of observations described by a set of variables.
+-   Demonstrate an understanding in the application and interpretation of commonly used quantitative research methods.
+-   Ability to work with quantitative data to understand real-world social phenomenian and patterns.
+
+## Module Structure
+
+**Staff:** Dr Zi Ye and Dr Ron Mahabir
+
+**Where and When**
+
+**Week 1 - 5 Lecture:** **Tuesday** **(12am – 1pm)** **\@** Mathematical Sciences, Proudman Lecture Theatre
+
+**Week 1 - 6 Practical PC session: Friday (9 – 11 am)** **\@** Central Teaching Lab: PC Teaching Centre
+
+Lectures will introduce and explain the fundamentals of quantitative methods, with the opportunity to apply the method introduced in the labs later in the week.
+
+The computer practical sessions, will give you the chance to use and apply quantitative methods to real-world data. These are primarily self-directed sessions, but with support on hand if you get stuck. Support and training in R will be provided through these sessions. Weekly sessions will be driven by empirical research questions.
+
++-----------+--------------------------------------------------------------+------------------------------------+-----------+
+| Week      | Topic                                                        | Format                             | Staff     |
++===========+==============================================================+====================================+===========+
+| 1         | Introduction                                                 | Lecture                            | ZY/RM     |
+|           |                                                              |                                    |           |
+|           | Getting Started in RStudio: Knowing Merseyside               | Computer Lab Practical             |           |
++-----------+--------------------------------------------------------------+------------------------------------+-----------+
+| 2         | Exploratory Data Analysis: UK Election                       | Lecture and Computer Lab Practical | ZY        |
++-----------+--------------------------------------------------------------+------------------------------------+-----------+
+| 3         | Sampling and data manipulation: Happiness around the world   | Lecture and Computer Lab Practical | ZY        |
++-----------+--------------------------------------------------------------+------------------------------------+-----------+
+| 4         | Correlation, data reliability and the issue of scale: Health | Lecture and Computer Lab Practical | RM        |
++-----------+--------------------------------------------------------------+------------------------------------+-----------+
+| 5         | Publication-standard Research                                | Lecture and Computer Lab Practical | RM        |
++-----------+--------------------------------------------------------------+------------------------------------+-----------+
+| 6         | Online Assessment                                            | Computer Lab                       | RM/ZY     |
++-----------+--------------------------------------------------------------+------------------------------------+-----------+
+
+## Software and Data
+
+For quantitative training sessions, ensure you have installed and/or have access to **RStudio**. To run the analysis and reproduce the code in R, you need the following software installed on your machine:
+
+-   R-4.2.2 (or later)
+-   RStudio 2022.12.0-353 (or later)
+
+To install and update:
+
+-   R, download the appropriate version from [The Comprehensive R Archive Network (CRAN)](https://cran.r-project.org/).
+-   RStudio, download the appropriate version from [here](https://posit.co/download/rstudio-desktop/).
+
+**This software is already installed on University Machines. But you will need it to run the analysis on your personal devices.**
+
+**Data**
+
+Example datasets could be accessed through Canvas or (some) on [GitHub](https://github.com/GDSL-UL/stats) Repository of the module. These include:
+
+-   2021 UK Census Data.
+-   2021 Annulation Population Survey (APS) - only on Canvas.
+-   2016 Family Resource Survey (FRS) - only on Canvas.
+-   2011 Sample of Anonymised Records (SAR).
+
+*Note: The Annual Population Survey requires the completion of a quiz prior to its usage, as it is licensed.*

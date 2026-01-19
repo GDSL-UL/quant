@@ -1,0 +1,46 @@
+project:
+  type: book
+  output-dir: docs
+
+book:
+  title: "Human Geography through Merseyside - Quantitative Block: Seeing Liverpool through numbers"
+  author: "Zi Ye and Ron Mahabir"
+  date: today
+
+  page-footer:
+    left: |
+     Human Geography through Merseyside - Quantitative Block: Seeing the world through numbers by Zi Ye and Ron Mahabir.
+    right: |
+      This book was built with <a href="https://quarto.org/">Quarto</a>.
+  search: true
+  site-url:  https://gdsl-ul.github.io/quant
+  repo-url: https://github.com/GDSL-UL/quant
+  repo-actions: [edit]
+  sidebar:
+    style: docked
+    background: light
+  downloads: [pdf]
+  chapters:
+    - index.qmd
+    - general/overview.qmd
+    - general/assessment.qmd
+    - labs/01.GettingStartedinRStudio.qmd
+    #- labs/02.MultipleLinear.qmd
+    #- labs/03..qmd
+    #- labs/04..qmd
+    #- labs/05.**.qmd
+
+ 
+bibliography: references.bib
+
+format:
+  html:
+    theme: zephyr
+    css: styles.css
+  pdf:
+    documentclass: scrreprt
+
+editor: visual
+
+
+

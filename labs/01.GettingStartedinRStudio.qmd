@@ -1,0 +1,823 @@
+---
+title: "Lab: Getting Started in RStudio"
+author: "Zi Ye"
+date: "`r Sys.Date()`"
+output: html_document
+---
+
+## **Overview**
+
+This practical intend to prepare students who have limited experiences with R and RStudio. The content are adapted based on
+
+-   Brunsdon, Chris, and Lex Comber. 2018. *An Introduction to r for Spatial Analysis and Mapping (2e)*. Sage.
+
+-   Comber, Lex, and Chris Brunsdon. 2021. *Geographical Data Science and Spatial Data Analysis: An Introduction in r*. Sage.
+
+## **Getting set up with RStudio**
+
+### **Install R and RStudio (if necessary)**
+
+R is a free, open-source programming language used for statistical analysis, data visualization, and data science
+
+RStudio is a free front-end to R, designed to make using R easier
+
+All of the PCs in the University PC Teaching Centre used for this class come with R and RStudio pre-installed, as do the PCs in many other University PC Teaching Centres.
+
+However, you may wish to install R and RStudio on your own computer, or on a University PC that lacks them.
+
+**University computers**: Use the *Install University Applications* app on the computer to install the latest version of RStudio (this will also install the latest version of R)
+
+**Your own computer**: R and RStudio can be downloaded from the CRAN website and installed your own computer - see below for details. [**A key point is that you should install R before you install RStudio.**]{.underline}
+
+The simplest way to get R installed on your computer is to go the download pages on the R website - a quick search for \`download R’ should take you there, but if not you could try:
+
+-   Windows: <https://cran.r-project.org/bin/windows/base/>
+
+-   Mac: <https://cran.r-project.org/bin/macosx/>
+
+-   Linux: <http://cran.r-project.org/bin/linux/>
+
+The Windows and Mac version come with installer packages and are easy to install whilst the Linux binaries require use of a command terminal.
+
+RStudio can be downloaded from <https://www.rstudio.com/products/rstudio/download/> and the free version of RStudio Desktop is more than sufficient for this module and all the other things you will to do at degree level.
+
+If you experience any problems installing R or RStudio on your own computer, bring it to one of the class lab sessions where we will be able to provide advice.
+
+### File management
+
+Before you start installing software or downloading data, create a folder on your M-Drive (if working on a University networked machine) or locally if working on your own device – name this ‘ENVS162’ and within this create a sub-folder for each practical session. For this session, create a sub-folder called `Week1` in your `ENVS162` folder on your M-Drive. Take care to ensure you do not delete any work you do complete in the practical sessions. It is imperative that you practice good file management!
+
+### **Open RStudio**
+
+RStudio provides an interface to the different things that R can do via the 4 panes: the Console where code is entered (bottom left), a Source pane with R scripts (top left), the variables in the working Environment (top right), Files, Plots, Help etc (bottom right) - see the RStudio environment in Figure below.
+
+In the figure above of the RStudio interface, a new script has been opened, a line of code had been written and then run in the console. The code assigns a value of 100 to `x`. The file has been saved into the current working environment. You are expected to define a similar set up for each practical as you work through the code. Note that **in the script**, anything that follows a `#` is a comment and ignored by R.
+
+Users can set up their personal preferences for how they like their RStudio interface. Similar to straight R, there are very few pull-down menus in R, and therefore you will type lines of code into your script and run these in what is termed a *command line interface* (the console). Like all command line interfaces, the learning curve is steep but the interaction with the software is more detailed which allows greater flexibility and precision in the specification of commands.
+
+Beyond this there are further choices to be made. Commands can be entered in two forms: directly into the *R console* window or as a series of commands into a script window. We strongly advise that all code should be **written in a script** - (a `.R` file) and then **run from the script**. - To run code in a script, place the cursor on the line of code and then run by pressing the ‘Run’ icon at the top left of the script pane, or by pressing **Ctrl Enter** (PC) (or **Cmd Enter** on a Mac).
+
+![](images/clipboard-1359090391.png)
+
+### Ways of working
+
+The first set of consideration relate to *how* you should work in R/RStudio. The key things to remember are:
+
+-   R is a learning curve if you have never done anything like this before. It can be scary. It can be intimidating. But once you have a bit of familiarity with how things work, it is incredibly powerful.
+
+-   You will be working from practical worksheets which will have all the code you need. Your job is to try to **understand** what the code is doing and **not** to remember the code. Comments in your code really help.
+
+-   To help you do this, the very strong suggestion is use the R scripts that are provided, and that you add your own comments to help you understand what is going on when you return to them. Comments are prefaced by a hash (`#`) that is ignored by R. Then you can save your code (with comments), run it and return to it later and modify at your leisure.
+
+The module places a strong emphasis placed on learning by doing, which means that you encouraged to unpick the code that you are given, adapt it and play with it. It is not about remembering or being able to recall each function used but about understanding what is being done. If you can remember what you did previously (i.e. the operations you undertook) and understand what you did, you will be able to return to your code the next time you want to do something similar. To help you with this you should:
+
+1.  Always run your code from an R script… **always**! These are provided for each practical;
+
+2.  Annotate you scripts with comments. These are prefixed by a hash (`#`) in the code;
+
+3.  Save your R script to your folder;
+
+::: {#To summarise} **To summarise…**
+
+-   You should **always** use a script (a text file containing code) for your code which can be saved and then re-run at a later date.
+
+-   You can write your own code into a script, copy and paste code into it or use an existing script (for example as provided for each of the R/RStudio practicals in this module).
+
+-   To open a new R script go to **File \> New File \> R Script** to open a new R file, and save it with a sensible name.
+
+-   To load an existing script file go to **File \> Open File** and then navigate to your file. Or, if you have recently opened the file, go to **File \> Recent Files \>**.
+
+-   It is good practice to set the working directory at the beginning of your R session. This can be done via the menu in RStudio **Session \> Set Working Directory \> …**. This points the R session to the folder you choose and will ensure that any files you wish to read, write or save are placed in this directory.
+
+-   To run code in a script, place the cursor on the line of code and then run by pressing the ‘Run’ icon at the top left of the script pane, or by pressing **Ctrl Enter** (PC) or **Cmd Enter** (Mac). :::
+
+### Your first R code
+
+In this section you will undertake a few generic operations. You will:
+
+-   undertake **assignment**: the allocation of values to an R object.
+
+-   use assignment to create a **vector** of elements and a **matrix** of elements.
+
+-   undertake **operations** on R objects.
+
+-   apply some **functions** to R objects (functions nearly always return a value).
+
+-   access some of R in-built data to examine a data table (or `data.frame` which is like an Excel spreadsheet).
+
+-   do some basic **plotting**, including scatter plots and histograms.
+
+-   create data summaries.
+
+On the way you will also be introduced to **indexing**.
+
+First, you should **create a new R script** (see above) and save it as `week1.R` in the working directory you are using for this practical. This should be the `Week1` sub-directory you created in the `GEOG162` folder. Note that you should create a separate folder for each week’s practical.
+
+#### Assignment
+
+The command line prompt in the Console window, the `>`, is an invitation to start typing in your commands.
+
+Write the following into your script: `3+5` and run it. Recall that code is run done by either by pressing the Run icon at the top left of the script pane, or by pressing **Ctrl Enter** (PC) or **Cmd Enter** (Mac).
+
+```{r}
+3+5
+```
+
+Here the result is 8. The `[1]` that precedes the output it formally indicates, *first requested element will follow*. In this case there is just one element. The `>` indicates that R is ready for another command.
+
+Now type the following in to your script and run it:
+
+```{r}
+y <- 3+5
+y
+```
+
+Here the value of the `3+5` has been ***assigned*** to `y`. The syntax `y <- 3+5` can be read as `y` ***gets*** `3+5`. When `y` is invoked its value is returned (8).
+
+For the purposes of this module, in R the equals sign (`=`) is the same as `<-`, a left diamond bracket `<` followed by a minus sign `-`. This too is interpreted by R as ***is assigned to*** or ***gets*** when the code is read **right to left**.
+
+Now copy and paste the following into your R script and run both lines:
+
+```{r}
+x <- matrix(c(1,2,3,4,5,6,7,8), nrow = 4)
+y = matrix(1:8, nrow = 4, byrow = T)
+```
+
+You should see the `x` appear with the `y` in the Environment pane. `y` has now been overwritten with a new assignment. If you click on the icon next to them, you will get a ‘spreadsheet’ view of the data you have created.
+
+Of course you can also enter the following in the console and see what is returned:
+
+```{r}
+x
+y
+```
+
+**Note** In the code snippets above you have used `parentheses` - round brackets. Different kinds of brackets are used in different ways in R. Parentheses are used with **functions**, and contain the **arguments** that are passed to the function, separated by commas (`,`).
+
+In this case the functions are `c()` and `matrix()`. The function `c()` combines or concatenates elements into a vector, and `matrix()` creates a matrix of elements in a tabular format.
+
+In the line of code `x = matrix(c(1,2,3,4,5,6,7,8), nrow = 4)`, the arguments passed to the `matrix()` function are the vector of values `c(1,2,3,4,5,6,7,8)` and `nrow = 4`. Other kinds of brackets are used in different ways as you will see later.
+
+One final thing to note is that the matrix is `y` is has the numbers 1 to 8, but this is specified by `1:8`. Try entering `3:65`, `19:11`, and `1.5:5` to see how the colon (`:`) works in this context.
+
+#### Operations
+
+Now you can undertake *operations* on R objects and apply *functions* to them. Write the following code into your script and then run it:
+
+```{r}
+# x is a matrix
+x
+# multiplication
+x*2
+# sum of x
+sum(x)
+# mean of x
+mean(x)
+```
+
+Operations can be undertaken directly using mathematical notation like `*` for multiplication or using functions like `max` to find the maximum value in an R object.
+
+#### Functions
+
+Functions are always followed by parenthesis (round brackets) `( )`. These are different from square and curly brackets `[ ]` and `{ }`. Functions always return something, a result if you like, and have the generic form:
+
+```{r}
+#| eval: false
+# don't run this or write this into your script!
+result = function(value or R object, other parameters)
+```
+
+Do not run or enter this code in your script - it is an example!
+
+#### Data Tables
+
+Here we will load a data table in `data.frame` (like a spreadsheet) in R/RStudio. R has number of in-built datasets that we can use the code below loads one of these:
+
+```{r}
+data(mtcars)
+class(mtcars)
+```
+
+Have a look at what is loaded by listing the objects in the current R session
+
+```{r}
+ls()
+```
+
+You should see the `mtcars` object. You can examine this data in a number of ways
+
+```{r}
+# the structure of mtcars
+str(mtcars)
+```
+
+```{r}
+# the first six rows (or head) of mtcars
+head(mtcars)
+```
+
+The `mtcars` object is a `data.frame`, a kind of data table, and it has a number of attributes which are all numeric. The code below prints it all out to the console:
+
+```{r}
+mtcars
+```
+
+Data frames are ‘flat’ in that they typically have a rectangular layout like a spreadsheet, with rows typically relating to observations (individuals, areas, people, houses, etc) and columns relating to their properties or attributes (height, age, etc). The columns in data frames can be of different types: vectors of numbers, factors (classes) or text strings. In matrices all of the columns have to be off the same type. Data frames are central to what we will do in R.
+
+#### Plotting the data: ‘Hello World!’
+
+The code below creates a plot of 2 variables counts in the data: `mpg` and `disp`.
+
+```{r}
+plot(disp ~ mpg,  data = mtcars, pch=16)
+```
+
+The option `pch=16` sets the plotting character to a solid black dot. More plot characters are available - examine the help for `points()` to see these:
+
+```{r}
+?points
+```
+
+This plot can be improved greatly. We can specify more informative axis labels, change size of the text and of the plotting symbol, and so on.
+
+We can also specify the same plot by passing named variables to the `plot` function directly as well as other parameters, as in the figure. Notice how the syntax for this is different to the `plot` function above, and the different **parameters** that are passed to the `plot()` function:
+
+```{r}
+#| echo: true
+plot(x = mtcars$mpg, y = mtcars$disp,   pch = 1, col = "dodgerblue", 
+     cex = 1.5, xlab = "Miles per Gallon", ylab = "Displacement", 
+     main = "Hello World!")
+```
+
+Figure 1.3: A scatter plot.
+
+Notice how the dollar sign (`$`) is used to access variables in the `mtcars` data table compared to the first plot command, which specified `data = mtcars`.
+
+#### Data summaries and indexing
+
+We may for example require information on variables in `mtcars`. The `summary` function is very useful:
+
+```{r}
+summary(mtcars)
+```
+
+This shows different summaries of the individual attributes in `mtcars`.
+
+The main R graphics function is `plot()`. In addition to `plot()` there are functions for adding points and lines to existing graphs, for placing text at specified positions, for specifying tick marks and tick labels, for labelling axes, and so on.
+
+There are various other alternative helpful forms of graphical summary. A helpful graphical summary for the `mtcars` data frame is the scatterplot matrix, shown in Figure [1.4](https://bookdown.org/lexcomber/GEOG1400/index.html#fig:ch1fig4).
+
+```{r}
+# return the names of the mtcars variables
+names(mtcars)
+```
+
+```{r}
+# return the 3rd to 7th names
+names(mtcars)[c(3:7)]
+```
+
+```{r}
+# check what this does
+c(3:7)
+```
+
+```{r}
+# plot the 3rd to 7th variables in mtcars
+plot(mtcars[, c(3:7)], cex = 0.5, 
+     col = "red", upper.panel=panel.smooth)
+```
+
+Figure 1.4: Multiple scatterplots.
+
+The results show the correlations between the variables in the `mtcars` data frame, and the trend of their relationship is included with the `upper.panel=panel.smooth` parameter passed to `plot`.
+
+There are number of things to notice here (as well as the figure). In particular note the use of the vector `c(2:7)` to subset the columns of `mtcars`:
+
+-   In the second line, this is was used to subset the vector of column names created by `names(mtcars)`.
+
+-   In the third line, it was printed out. Notice how `3:7` printed out all the number between 3 and 7 - very useful.
+
+-   For the plot, the vector was passed to the second argument, after the comma, in the square brackets `[,]` to indicate which columns were to be plotted.
+
+The referencing in this way (or *indexing*) is **very important**: the individual rows and columns of 2 dimensional data structures like data frames, matrices, tibbles etc can be accessed by passing references to them in the square brackets.
+
+```{r}
+# 1st row
+mtcars[1,]
+# 3rd column
+mtcars[,3]
+# a selection of rows
+mtcars[c(3:5,8),]
+```
+
+Such indexing could of course have been assigned to a R object and used to do the subsetting:
+
+```{r}
+x = c(3:7)
+names(mtcars)[x]
+plot(mtcars[,x], cex = 0.5, col = "red")
+```
+
+Thus indexing allows specific rows and columns to be extracted from the data as required.
+
+**Note** You have encountered a second type of brackets, square brackets `[ ]`. These are used to reference or **index** positions in a vector or a data table.
+
+Consider the object `x` above. It contains a vector of values, `3,4,5,6,7`. Entering `x[1]` would extract the first element of `x`, in this case 3. Similarly `x[4]` would return the 4th element and `x[c(1,4)]` would return the 1st and 4th elements of `x`.
+
+However, in the examples above that index the 2-dimensional `mtcars` object, the square brackets are used to index **row** and **column** positions. The syntax for this is `[rows, columns]`. We will be using such indexing throughout this module.
+
+#### Packages
+
+The `base` installation of R includes many functions and commands. However, more often we are interested in using some particular functionality, encoded into **packages** contributed by the R developer community. Installing packages for the first time can be done at the command line in the R console using the `install.packages` command as in the example below to install the `tmap` library or via the RStudio menu via **Tools \> Install Packages**.
+
+When you install these packages it is strongly suggested you also install the *dependencies*. These are other packages that are required by the package that is being installed. This can be done by selecting check the box in the menu or including `dep=TRUE` in the command line as below (don’t run this yet!):
+
+```{r}
+#| eval: false
+# don't run this!
+install.packages("tidyverse", dep = TRUE)
+```
+
+You may have to set a **mirror** site from which the packages will be downloaded to your computer. Generally you should pick one that is nearby to you.
+
+Further descriptions of packages, their installation and their data structures will be given as needed in the practicals. There are literally 1000s of packages that have been contributed to the R project by various researchers and organisations. These can be located by name at <http://cran.r-project.org/web/packages/available_packages_by_name.html> if you know the package you wish to use. It is also possible to search the CRAN website to find packages to perform particular tasks at <http://www.r-project.org/search.html>. Additionally many packages include user guides and vignettes as well as a PDF document describing the package and listed at the top of the index page of the help files for the package.
+
+As well as `tidyverse` you should install the `sf` package and dependencies. So we have 2 packages to install:
+
+-   `sf` for spatial data and spatial objects
+
+-   `tidyverse` for lots of lovely data science things - see [https://www.tidyverse.org](https://www.tidyverse.org/)
+
+You could do this in one go and this will take a bit of time:
+
+```{r}
+#| eval: false
+install.packages(c("sf", "tidyverse"), dep = TRUE)
+```
+
+Remember: you will only have to install a package once!! So when the above code has run in your script you should comment it out. For example you might want to include something like the below in your R script.
+
+```{r}
+
+# packages only need to be loaded once
+# install.packages(c("sf", "tidyverse"), dep = TRUE)
+```
+
+Once the package has been installed on your computer then the package can be called using the `library()` function into each of your R sessions as below.
+
+```{r}
+library(tidyverse)
+library(sf)
+```
+
+## Knowing Merseyside
+
+### Merseyside districts
+
+Now we use these basic R command and newly installed packages to start our initial exploration by using some existing secondary dataset from the Census 2021.
+
+In R we normally read in tabular dataset from .csv format. In your Week 1 data folder, you can find one .csv dataset: merseyside.csv. You can open them in excel to have a look, but here we are using R instead of Excel to load and examine them.
+
+#### Loading tabular data
+
+The survey data can be loaded into RStudio using the `read.csv` function.
+
+However, you will need to tell R where to get the data from. The easiest way to do this is to use the menu if the R script file is open. Go to **Session \> Set Working Directory \> To Source File Location** to set the working directory to the location where your `week1.R` script is saved. When you do this you will see line of code print out in the Console (bottom left pane) similar to `setwd("SomeFilePath")`. You can copy this line of code to your script and paste into the line above the line calling the `read.csv` function.
+
+```{r}
+# use read.csv to load a CSV file
+# this is assignment to an object called `df`
+df = read.csv(file = "merseyside.csv", stringsAsFactors = TRUE)
+```
+
+The `stringsAsFactors = TRUE` parameter tells R to read any character or text variables as classes or categories and not as just text.
+
+You could inspect the help for the `read.csv` function to see the different parameters and their default values:
+
+```{r}
+help(read.csv)
+# or 
+?read.csv
+```
+
+Functions always return something and in this case `read.csv()` function has returned a tabular R object with 5 records and 14 fields. This has been *assigned to* `df`.
+
+Finally in this section, lets have a look at the data. This can be done in a number of ways.
+
+-   you could look at the `df` object by entering `df` in the Console. However this is not particular helpful as it simply prints out everything that is in `df` to the Console.
+
+-   you could click on the `df` object in the Environment pane and this shows the structure of the attributes in different fields.
+
+-   you could click on the little grid-like icon next `df` in the Environment pane to get a `View` of the data and remember to close the tab that opens!.
+
+-   or you could use some code as in the examples below.
+
+First, let’s have a look at the internal structure of the data using the `str` function:
+
+```{r}
+str(df)
+```
+
+The `head` function does this by printing out the first six records of the data table and you may need to scroll up and down in the Console pane to see all of what is returned.
+
+```{r}
+head(df)
+```
+
+Another way to explore the data is through the `summary` function:
+
+```{r}
+summary(df)
+```
+
+Finally in this section, we come back to the dollar sign (`$`). This is used to refer to or *extract* an individual named field or variable in an R object, like `df`.
+
+The code below prints out the Population attribute and generates a summary of its values:
+
+```{r}
+# extract an individual variable
+df$Population
+```
+
+```{r}
+# generate a summary of an individual variable
+summary(df$Population)
+```
+
+And of course we can use such operations to *assign* the result to new R objects. The code below extracts three variables from `df`, assigns them to `x`, `y` and `z`, and then uses the `data.frame` function to convert these into a new `data.frame` object called `my_df`
+
+```{r}
+# extract three variables, assigning them to temporary R objects
+x = df$District
+y = df$Working.population
+z = df$Full.time.students
+# create a data.frame from these, naming the new variables
+my_df = data.frame(district = x,worker = y,student = z)
+```
+
+You should have a look at what you have created:
+
+```{r}
+head(my_df)
+```
+
+```{r}
+summary(my_df)
+```
+
+The temporary R objects can be removed from the Environment using the `rm` function and a *combine* vector function, `c()` that you encountered in Week 19, that takes a vector of object names (hence they are in quotes) as its arguments.
+
+```{r}
+rm(list = c("x","y","z"))
+```
+
+#### Basic data manipulation
+
+Now we can do some basic data manipulation to know Merseyside more from the data perspective.
+
+What is the total population in Merseyside?
+
+```{r}
+sum(df$Population)
+```
+
+What is the total number of full-time students in Merseyside?
+
+```{r}
+sum(df$Full.time.students)
+```
+
+Which district in Merseyside has the most working population?
+
+```{r}
+max(df$Working.population)
+```
+
+Yes, using `max()` R returns use the greatest value in Working.population column. If we check back to the dataset, we know it is Liverpool. Instead, we can also ask R to tell us the answer:
+
+```{r}
+df$District[which.max(df$Working.population)]
+```
+
+Here, we request R to return the District which has the maximum value of the Working population.
+
+Then, we can calculate the total number of workers that working from home:
+
+```{r}
+sum(df$Working.from.home)
+```
+
+What is the proportion of working population actually work from home in Merseyside? Yes, we need to use a division calculation of the total number of working from home vs. all the working population. R can do it by:
+
+```{r}
+sum(df$Working.from.home) / sum(df$Working.population)
+```
+
+So the answer is 25.7% for the whole Merseyside - but which district has the highest proportion and which as the lowest? You may have your own guessing. But let R do the calculation:
+
+```{r}
+df$Prop.WFH = df$Working.from.home / df$Working.population #add a new column called Prop.WFH
+df #print out the df
+```
+
+Here we ask R to add a new column named Prop.WFH which is the working from home proportion that calculated by the number of working from home people in each district divided by the total working population in that district. R will automatically do it row-by-row. We then print out the df, you may find at the very right end of the tabular, there is a new column called Prop.WFH.
+
+You already know how to get the max of the district by the value, and we can also do that for the minimum:
+
+```{r}
+df$District[which.max(df$Prop.WFH)]
+```
+
+```{r}
+df$District[which.min(df$Prop.WFH)]
+```
+
+Have you got the right answer?
+
+#### Your first map for Merseyside
+
+Now let's try to do our first map in R and allow yourself know more about Merseyside.
+
+We will use the library sf and tmap to help us at here. Run the install codes if you haven't install them. Remember: you will only have to install a package once!!
+
+```{r}
+if (!requireNamespace("tmap")) {
+  install.packages("tmap",dep =TRUE)
+}
+
+if (!requireNamespace("sf")) {
+  install.packages("sf",dep =TRUE)
+}
+```
+
+When they have been installed, we can start using them
+
+```{r}
+library(sf)
+library(tmap)
+```
+
+You may find in Week 1 data, we have another file named merseyside_districts.gpkg. A GeoPackage (GPKG) is a file-based format designed for storing geographic data. It supports the efficient storage and exchange of spatial datasets and can be readily used across GIS software such as QGIS and ArcGIS, as well as in programming environments including R and Python.
+
+We first read it in by using the `st_read()` command in library sf.
+
+```{r}
+sf <- st_read("merseyside_districts.gpkg")
+```
+
+The fastest way to map it is the `qtm()` function.
+
+```{r}
+qtm(sf)
+```
+
+You can also add the district names on the map - which column in the sf contains district name? Use `names(sf)` to check for it.
+
+Yes, the column should be LAD25NM. Now let's ask qtm() to also show the district names.
+
+```{r}
+qtm(sf,text="LAD25NM")
+```
+
+But what if we want to make some meaningful maps, rather than just the boundaries of these five districts of Merseyside?
+
+#### Link tabular data to geographical boundaries
+
+Recall that in our df, we have 14 columns, containing different information about the districts. We can get all their names by using `names()`.
+
+```{r}
+names(df)
+```
+
+We can do the same thing for our geographical dataset to see what it includes:
+
+```{r}
+names(sf)
+```
+
+We can also show the whole sf as
+
+```{r}
+sf
+```
+
+Now we see that sf includes also the five districts, but also other geographical information. You may notice that although different column names, the first two columns of both df and sf are the district code and district name. This means what potentially we can link this two dataset together - appendix the df to sf to enrich the attributes of our geographical dataset.
+
+```{r}
+sf2 <- left_join(sf, df,by=c("LAD25NM"="District"))
+```
+
+let's check out the new sf2 by View() it:
+
+```{r}
+View(sf2)
+```
+
+In the open tab, we see all the df columns are now also attached to the sf, linking by the district names.
+
+#### Choropleth map of Merseyside districts
+
+Now, we can use those new columns we attached from df to sf2 to make some meaningful choropleth maps! Here we make use of the mapping functions in tmap to do the work for us. Remember to run `library(tmap)` if you haven't.
+
+```{r}
+tm_shape(sf2) + tm_polygons("Overcrowding") + tm_text("LAD25NM")
+```
+
+```{r}
+tm_shape(sf2) + tm_polygons("Overcrowding",style = "jenks",n=3) + tm_text("LAD25NM")
+```
+
+```{r}
+tm_shape(sf2) + tm_polygons("Overcrowding",style = "jenks",n=3) + tm_text("LAD25NM") + tm_text("LAD25NM")
+```
+
+```{r}
+tm_shape(sf2) + tm_polygons("Disability",style = "jenks",n=3,palette="Reds") + tm_text("LAD25NM")
+```
+
+```{r}
+sf2$NoCentralHeating_rate = sf2$No.central.heating / sf2$Households * 100
+tm_shape(sf2) + tm_polygons("NoCentralHeating_rate",style = "jenks",n=3,palette="Greens") + tm_text("LAD25NM")
+```
+
+### Merseyside neighbourhoods
+
+Finally you can save your R script, `week1.R` it should look something like the below:
+
+```{r, eval=FALSE}
+# Week 1 script
+
+# assignment
+3+5
+y <- 3+5
+# have a look at y
+y
+
+# make matrices
+x <- matrix(c(1,2,3,4,5,6,7,8), nrow = 4)
+y = matrix(1:8, nrow = 4, byrow = T)
+# have a look at these
+x
+y
+# x is a matrix
+x
+
+# operations
+# multiplication
+x*2
+# sum of x
+sum(x)
+# mean of x
+mean(x)
+
+# load some inbuilt data
+data(mtcars)
+# inspect the class of mtcars
+class(mtcars)
+
+# list all objects in my working environment
+ls()
+
+# the structure of mtcars
+str(mtcars)
+# the first six rows (or head) of mtcars
+head(mtcars)
+
+# print out all of mtcars
+mtcars
+
+# plot mpg against disp
+plot(disp ~ mpg,  data = mtcars, pch=16)
+
+# the help for points
+?points
+
+# an enhanced plot using a different notation
+plot(x = mtcars$mpg, y = mtcars$disp,   pch = 1, col = "dodgerblue", 
+     cex = 1.5, xlab = "Miles per Gallon", ylab = "Displacement", main = "Hello World!")
+
+# summaries fo all the variables in mtcars
+summary(mtcars)
+
+# return the names of the mtcars variables
+names(mtcars)
+# return the 3rd to 7th names
+names(mtcars)[c(3:7)]
+# check what this does
+c(3:7)
+# plot the 3rd to 7th variables in mtcars
+plot(mtcars[, c(3:7)], cex = 0.5, 
+     col = "red", upper.panel=panel.smooth)
+
+# 1st row
+mtcars[1,]
+# 3rd column
+mtcars[,3]
+# a selection of rows
+mtcars[c(3:5,8),]
+
+# assign 3:7 to x
+x = c(3:7)
+# get the 3rd to 7th names in mtcars using x
+names(mtcars)[x]
+# recreate the plot 
+plot(mtcars[,x], cex = 0.5, col = "red")
+
+# some tasks
+elasticband <- data.frame(stretch=c(46,54,48,50,44,42,52),
+                          distance=c(148,182,173,166,109,141,166))
+# have a look
+elasticband
+
+# don't run this!
+# install.packages("tidyverse", dep = TRUE)
+
+# packages only need to be loaded once
+# install the packages in one go and THEN comment out
+# install.packages(c("sf", "tidyverse"), dep = TRUE)
+
+# load a package 
+library(sf)
+
+## Answers to tasks
+# Task 1
+plot(stretch~distance, data = elasticband)
+# or
+plot(elasticband$stretch, elasticband$distance)
+
+# Task 2
+hist(mtcars$mpg)
+
+hist(mtcars$mpg, xlab='Miles per Gallon',
+     main='Histogram of MPG',
+     breaks = 15,
+     col = 'DarkRed')
+
+hist(mtcars$mpg, prob = T,
+     xlab='Miles per Gallon',
+     main='Histogram of MPG',
+     breaks = 15,
+     col = 'DarkRed',
+     border = "#FFFFBF")
+# add the probability density trend
+lines(density(mtcars$mpg, na.rm=T),col='salmon',lwd=2)
+# show the frequencies at the bottom - like a rug!
+rug(mtcars$mpg)
+
+# Task 3
+hist(log(mtcars$mpg))
+```
+
+## Summary
+
+The aim of this session has been to familiarise you with the R environment if you have not used R before. If you have but not for a while, then hopefully this has acted as a refresher. Some key things to take away are:
+
+-   R is a learning curve, and like driving the more your practice the better you become.
+
+-   Your job is to try to **understand** what the code is doing and **not** to remember the code.
+
+-   To help with this, you should add your own comments to the script to help you understand what is going on when you return to them. Comments are prefaced by a hash (`#`) that is ignored by R.
+
+-   Always set your working directory to the sub-folder containing your R script.
+
+-   Always run your code from an R script… **always**!
+
+The **reading** for this week is Harris ([2016](https://bookdown.org/lexcomber/GEOG1400/#ref-harris2016quantitative)) Chapter 12 up to page 282. You do not have to install any packages (Section 12.2), packages will be introduced in Week 20, but you should try some of the code. Go through the illustrations in Section 12.3 (The Basics of R, starting p253), entering commands **with your comments** in the script (`prep.R`) that you created above.
+
+**Optionally** you could also **briefly read** or skim Section 12.3 - the sections are mis-numbered (*A Geographical Introduction to R*, starting p261), as we will cover these in more detail in subsequent weeks and modules. Go through the Section 12.3 (*A Little More about the Workings of R*, starting on p268), again entering commands in the script that you created above. Don’t worry about regression (top of p273) we will cover this later, but pay attention to *Data Frames* (p274), Referencing rows and columns (p275) and Subsetting (p279). Stop at *Reading Data* (p282).
+
+Other good on-line *get started in R* guides include:
+
+-   The Owen guide (only up to page 28) : <https://cran.r-project.org/doc/contrib/Owen-TheRGuide.pdf>
+
+-   An Introduction to R - <https://cran.r-project.org/doc/contrib/Lam-IntroductionToR_LHL.pdf>
+
+-   R for beginners <https://cran.r-project.org/doc/contrib/Paradis-rdebuts_en.pdf>
+
+### Formative Tasks
+
+Recall that a `data.frame` is a rectangular array of columns of data. Here you will create a data frame of two columns containing numeric values. The following data gives the distance that an elastic band moves when released for each amount it is stretched over the end of a ruler:
+
+```{r}
+elasticband <- data.frame(stretch=c(46,54,48,50,44,42,52),                           
+                          distance=c(148,182,173,166,109,141,166)) 
+# have a look 
+elasticband
+```
+
+The function `data.frame()` can be used to input these (or other) data directly into `data.frame` objects.
+
+**Task 1** Plot `distance` against `stretch` from the `elasticband` data frame.
+
+**Task 2** Use the `hist()` command to plot a histogram of the `mpg` values in the `mtcars` data frame. **Hints**: a) think about how the Hello World plot was parameterised and the fact that histograms are constructed from a single variable, and b) examine the help for `hist` by entering `?hist` at the console.
+
+**Task 3** Repeat 2 after taking logarithms of `disp` cover using the `log()` function - i.e. do a histogram of \`log(mtcars\$mpg)
+
+### References
+
+Brunsdon, Chris, and Lex Comber. 2018. *An Introduction to r for Spatial Analysis and Mapping (2e)*. Sage.
+
+Comber, Lex, and Chris Brunsdon. 2021. *Geographical Data Science and Spatial Data Analysis: An Introduction in r*. Sage.
+
+Harris, Richard. 2016. *Quantitative Geography: The Basics*. Sage.

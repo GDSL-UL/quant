@@ -3,7 +3,7 @@ project:
   output-dir: docs
 
 book:
-  title: "Human Geography through Merseyside - Quantitative Block: Seeing Liverpool through numbers"
+  title: "Human Geography through Merseyside - Quantitative Block: Seeing the world through numbers"
   author: "Zi Ye and Ron Mahabir"
   date: today
 

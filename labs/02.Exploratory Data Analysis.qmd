@@ -409,7 +409,7 @@ A quick inspection of the *pc_map_2* dataset should persuade you that almost all
 
 To get a quick summary of the distribution of continuous variable, we can use the `fivenum()` command.
 
-If this is your first time run into this command, or any other command, remember, you can always also R to explain to you by using ? as help:
+If this is your first time run into this command, or any other command, remember, you can always ask R to explain to you by using ? as help:
 
 ```{r}
 ?fivenum

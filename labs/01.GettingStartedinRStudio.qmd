@@ -77,21 +77,21 @@ The module places a strong emphasis placed on learning by doing, which means tha
 
 2.  Annotate you scripts with comments. These are prefixed by a hash (`#`) in the code;
 
-3.  Save your R script to your folder;
+3.  Save your R script to your folder.
 
-::: {#To summarise} **To summarise…**
-
--   You should **always** use a script (a text file containing code) for your code which can be saved and then re-run at a later date.
+::: {style="background-color: #FFFBCC; padding: 10px; border-radius: 5px; border: 1px solid #E1C948;"}
+-   You should always use a script (a text file containing code) for your code which can be saved and then re-run at a later date.
 
 -   You can write your own code into a script, copy and paste code into it or use an existing script (for example as provided for each of the R/RStudio practicals in this module).
 
--   To open a new R script go to **File \> New File \> R Script** to open a new R file, and save it with a sensible name.
+-   To open a new R script go to File \> New File \> R Script to open a new R file, and save it with a sensible name.
 
--   To load an existing script file go to **File \> Open File** and then navigate to your file. Or, if you have recently opened the file, go to **File \> Recent Files \>**.
+-   To load an existing script file go to File \> Open File and then navigate to your file. Or, if you have recently opened the file, go to File \> Recent Files \>.
 
--   It is good practice to set the working directory at the beginning of your R session. This can be done via the menu in RStudio **Session \> Set Working Directory \> …**. This points the R session to the folder you choose and will ensure that any files you wish to read, write or save are placed in this directory.
+-   It is good practice to set the working directory at the beginning of your R session. This can be done via the menu in RStudio Session \> Set Working Directory \> …. This points the R session to the folder you choose and will ensure that any files you wish to read, write or save are placed in this directory.
 
--   To run code in a script, place the cursor on the line of code and then run by pressing the ‘Run’ icon at the top left of the script pane, or by pressing **Ctrl Enter** (PC) or **Cmd Enter** (Mac). :::
+-   To run code in a script, place the cursor on the line of code and then run by pressing the ‘Run’ icon at the top left of the script pane, or by pressing Ctrl Enter (PC) or Cmd Enter (Mac).
+:::
 
 ### Your first R code
 
@@ -113,7 +113,7 @@ In this section you will undertake a few generic operations. You will:
 
 On the way you will also be introduced to **indexing**.
 
-First, you should **create a new R script** (see above) and save it as `week1.R` in the working directory you are using for this practical. This should be the `Week1` sub-directory you created in the `GEOG162` folder. Note that you should create a separate folder for each week’s practical.
+First, you should **create a new R script** (see above) and save it as `week1.R` in the working directory you are using for this practical. This should be the `Week1` sub-directory you created in the `ENVS162` folder. Note that you should create a separate folder for each week’s practical.
 
 #### Assignment
 
@@ -234,9 +234,11 @@ The code below creates a plot of 2 variables counts in the data: `mpg` and `disp
 plot(disp ~ mpg,  data = mtcars, pch=16)
 ```
 
-The option `pch=16` sets the plotting character to a solid black dot. More plot characters are available - examine the help for `points()` to see these:
+The option `pch=16` sets the plotting character to a solid black dot. More plot characters are available - examine the help for `points()` to see these (For any command, if you are the first time use it, you can always ask R to explain to you by using ? as help)
 
 ```{r}
+#| eval: false
+
 ?points
 ```
 
@@ -250,8 +252,6 @@ plot(x = mtcars$mpg, y = mtcars$disp,   pch = 1, col = "dodgerblue",
      cex = 1.5, xlab = "Miles per Gallon", ylab = "Displacement", 
      main = "Hello World!")
 ```
-
-Figure 1.3: A scatter plot.
 
 Notice how the dollar sign (`$`) is used to access variables in the `mtcars` data table compared to the first plot command, which specified `data = mtcars`.
 
@@ -267,7 +267,7 @@ This shows different summaries of the individual attributes in `mtcars`.
 
 The main R graphics function is `plot()`. In addition to `plot()` there are functions for adding points and lines to existing graphs, for placing text at specified positions, for specifying tick marks and tick labels, for labelling axes, and so on.
 
-There are various other alternative helpful forms of graphical summary. A helpful graphical summary for the `mtcars` data frame is the scatterplot matrix, shown in Figure [1.4](https://bookdown.org/lexcomber/GEOG1400/index.html#fig:ch1fig4).
+There are various other alternative helpful forms of graphical summary. A helpful graphical summary for the `mtcars` data frame is the scatterplot matrix.
 
 ```{r}
 # return the names of the mtcars variables
@@ -289,8 +289,6 @@ c(3:7)
 plot(mtcars[, c(3:7)], cex = 0.5, 
      col = "red", upper.panel=panel.smooth)
 ```
-
-Figure 1.4: Multiple scatterplots.
 
 The results show the correlations between the variables in the `mtcars` data frame, and the trend of their relationship is included with the `upper.panel=panel.smooth` parameter passed to `plot`.
 
@@ -390,7 +388,7 @@ library(sf)
 
 Now we use these basic R command and newly installed packages to start our initial exploration by using some existing secondary dataset from the Census 2021.
 
-In R we normally read in tabular dataset from .csv format. In your Week 1 data folder, you can find one .csv dataset: merseyside.csv. You can open them in excel to have a look, but here we are using R instead of Excel to load and examine them.
+In R we normally read in tabular dataset from .csv format. In your [ENVS162 Canvas page](https://canvas.liverpool.ac.uk/courses/85565) find Week 1 -\> Practical 1 Dataset, download the four datasets to your current working folder on your M drive (ENVS162 - Week 1). You may first identify one `.csv` dataset: **merseyside.csv**. You can open them in excel to have a look, but here we are using R instead of Excel to load and examine them.
 
 #### Loading tabular data
 
@@ -414,7 +412,7 @@ help(read.csv)
 ?read.csv
 ```
 
-Functions always return something and in this case `read.csv()` function has returned a tabular R object with 5 records and 14 fields. This has been *assigned to* `df`.
+Functions always return something and in this case `read.csv()` function has returned a tabular R object with 5 records and 12 fields. This has been *assigned to* `df`.
 
 Finally in this section, lets have a look at the data. This can be done in a number of ways.
 
@@ -430,6 +428,16 @@ First, let’s have a look at the internal structure of the data using the `str`
 
 ```{r}
 str(df)
+```
+
+There is other ways to get info about the number of rows and columns:
+
+```{r}
+nrow(df)
+ncol(df)
+
+#or both row and col
+dim(df)
 ```
 
 The `head` function does this by printing out the first six records of the data table and you may need to scroll up and down in the Console pane to see all of what is returned.
@@ -752,10 +760,28 @@ First, we take a look at the `.csv` dataset, which as been read into R as `lsoa_
 View(lsoa_df)
 ```
 
-Use the quick mapping function `qtm()` to quickly inspect the geographical boundary dataset `lsoa_sf`
+or check the structure of the dataset:
+
+```{r}
+str(lsoa_df)
+```
+
+So now, you know how many LSOAs in Merseyside? Yes, there are 923 LSOAs. As we introduced in the Week 1 lecture, LSOA means Super Output Area Lower Area and is commonly used in Census statistics, representing 1,000 to 3,000 people or 400 to 1,200 households in England and Wales.
+
+```{r}
+dim(lsoa_df)
+```
+
+Use the quick mapping function `qtm()` to quickly inspect the geographical boundary dataset `lsoa_sf` .
 
 ```{r}
 qtm(lsoa_sf)
+```
+
+check how many LSOAs in the boundary dataset - there should also be 923.
+
+```{r}
+nrow(lsoa_sf)
 ```
 
 To familiarise yourself with the structures of both datasets, we can use the `names()` command
@@ -785,6 +811,8 @@ View(lsoa)
 
 We can see that some columns contain counts, such as the number of residential population, number of households, number of working population, and number of students. Other columns are expressed as percentages, including unemployment, population aged 65 and over, disability, households without central heating, overcrowded households, and people working from home.
 
+#### Making maps across LSOAs in Merseyside
+
 Using the `Unemployed` column, we can create a map of the unemployment rate across neighbourhoods in Merseyside. Instead of using the default equal-interval breaks, this time we will use a jenks classification with six categories.
 
 ```{r}
@@ -806,15 +834,17 @@ map3
 
 The above code uses `tm_layout(legend.position = c("right", "top"))` to move the legend inside the map frame, positioning it at the right-top corner.
 
-::: {#Question?}
-Change tm_fill() to tm_polygons() to see how the map is different?
+::: {style="background-color: #FFFBCC; padding: 10px; border-radius: 5px; border: 1px solid #E1C948;"}
+Replace `tm_fill()` to `tm_polygons()` to see how the map changes?
 
-Yes, the tm_polygons() is a condense version of tm_fill() + tm_border(). Here if you want show all the LSOA borders, change tm_fill() to tm_polygons().
+`tm_polygons()` is a condense version of `tm_fill() + tm_border()`. Here if you want show all the LSOA borders, use `tm_polygons()` instead of `tm_fill()`.
 :::
 
-`tmap` also supports adding or overlayomg other data, such as boundaries. Because these are additonal spatial data layers, they needs to be added with `tm_shape()` followed by the usual function.
+#### Overlapping tmap objects
 
-Remember we use the code chunk to make the district boundaries of Merseyside? This time let's change the aesthetic by using grey color as the border color and increase the line width, then we save it also as a tmap object called map_district:
+`tmap` also supports adding or overlaying other data, such as boundaries. Because these are additional spatial data layers, they needs to be added with `tm_shape()` followed by the usual function.
+
+Remember we use the code chunk to make the district boundaries of Merseyside? This time let's change the aesthetic by using grey color as the border color and increase the line width, then we save it also as a `tmap` object called map_district:
 
 ```{r}
 #| message: false
@@ -823,7 +853,7 @@ Remember we use the code chunk to make the district boundaries of Merseyside? Th
 
 map_district = tm_shape(merseyside) + 
   tm_borders(col = "grey50",lwd=1.5) + #border color as grey, line width as 1.5
-  tm_text("LAD25NM")
+  tm_text("LAD25NM",size = 0.8)
 map_district
 ```
 
@@ -855,6 +885,8 @@ tm_shape(lsoa) +
 
 
 ```
+
+#### Create new variable to make maps
 
 Similarly, we can make maps from new columns we made ourselves. For example, we can calculate the percentage of student by adding a new column to the dataframe:
 
@@ -892,34 +924,15 @@ To change the palette, R tidyverse library provide:
 RColorBrewer::display.brewer.all()
 ```
 
-If we want to make a map to show the rate of no central heating households in all the neighbourhoods in Merseyside:
+#### In a nutshell
+
+If we want to make a map to show the rate of no central heating households in all the neighbourhoods in Merseyside, we need to create a new variable `no.central.heating.perc` as the result of dividing households without central heating by total households in each LSOA. The code below combines all the cartographic elements together:
 
 ```{r}
 #| message: false
 #| warning: false
-
-lsoa$no.central.heating.perc = lsoa$No_central_heating / lsoa$Households * 100
-
-tm_shape(lsoa) + 
-  tm_fill(fill = "no.central.heating.perc",
-          fill.scale = tm_scale(values="YlOrRd",
-                                style = "jenks",
-                                n=6),
-          fill.legend = tm_legend(title = "% of no central heating households", 
-                                  title.size = 0.8)
-        ) +
-  tm_layout(main.title = "Merseyside",
-            main.title.size=1.2,
-            frame = FALSE) + 
-  map_district
-
-```
-
-The code below combines all the cartographic elements together
-
-```{r}
-#| message: false
-#| warning: false
+ 
+lsoa$no.central.heating.perc = lsoa$No_central_heating / lsoa$Households
 
 tm_shape(lsoa) + 
   tm_fill(fill = "no.central.heating.perc",
@@ -952,9 +965,13 @@ The aim of this session has been to familiarise you with the R environment if yo
 
 -   Always run your code from an R script… **always**!
 
-The **reading** for this week is Harris ([2016](https://bookdown.org/lexcomber/GEOG1400/#ref-harris2016quantitative)) Chapter 12 up to page 282. You do not have to install any packages (Section 12.2), packages will be introduced in Week 20, but you should try some of the code. Go through the illustrations in Section 12.3 (The Basics of R, starting p253), entering commands **with your comments** in the script (`prep.R`) that you created above.
+### References
 
-**Optionally** you could also **briefly read** or skim Section 12.3 - the sections are mis-numbered (*A Geographical Introduction to R*, starting p261), as we will cover these in more detail in subsequent weeks and modules. Go through the Section 12.3 (*A Little More about the Workings of R*, starting on p268), again entering commands in the script that you created above. Don’t worry about regression (top of p273) we will cover this later, but pay attention to *Data Frames* (p274), Referencing rows and columns (p275) and Subsetting (p279). Stop at *Reading Data* (p282).
+Brunsdon, Chris, and Lex Comber. 2018. *An Introduction to r for Spatial Analysis and Mapping (2e)*. Sage.
+
+Comber, Lex, and Chris Brunsdon. 2021. *Geographical Data Science and Spatial Data Analysis: An Introduction in r*. Sage.
+
+Harris, Richard. 2016. *Quantitative Geography: The Basics*. Sage.
 
 Other good on-line *get started in R* guides include:
 
@@ -966,45 +983,38 @@ Other good on-line *get started in R* guides include:
 
 ### Formative Tasks
 
-Recall that a `data.frame` is a rectangular array of columns of data. Here you will create a data frame of two columns containing numeric values. The following data gives the distance that an elastic band moves when released for each amount it is stretched over the end of a ruler:
-
-```{r}
-elasticband <- data.frame(stretch=c(46,54,48,50,44,42,52),                           
-                          distance=c(148,182,173,166,109,141,166)) 
-# have a look 
-elasticband
-```
-
-The function `data.frame()` can be used to input these (or other) data directly into `data.frame` objects.
-
-**Task 1** Plot `distance` against `stretch` from the `elasticband` data frame.
+**Task 1** Use the "merseyside_lsoa.csv" dataset. Plot `Disability` against `Age_over_65`from the data frame.
 
 ```{r}
 #| eval: false
 #| include: false
-plot(stretch~distance, data = elasticband)
+
+lsoa_df <- read.csv("merseyside_lsoa.csv")
+plot(Disability~Age_over_65, data = lsoa_df)
 # or
-plot(elasticband$stretch, elasticband$distance)
+plot(lsoa_df$Disability, lsoa_df$Age_over_65)
 ```
 
-Task 2 Get household information of Liverool and Wirral districts from the district level dataset `df`. The variables need to be included are "Households", "No_central_heating" and "Overcrowding".
+**Task 2** Get household information of Liverool and Wirral districts from the district level dataset "merseyside.csv". The variables need to be included are "Households", "No_central_heating" and "Overcrowding".
 
 ```{r}
-df
+#| eval: false
+#| include: false
+df <- read.csv("merseyside.csv")
 
 df[c(2,5),c("Households","No_central_heating","Overcrowding")]
 ```
 
-**Task 2** Use district level dataset, how many households all together in Merseyside?
+**Task 3** Use district level dataset, how many households all together in Merseyside?
 
 ```{r}
 #| eval: false
 #| include: false
-df = read.csv(file = "merseyside.csv")
+df <- read.csv("merseyside.csv")
 sum(df$Households)
 ```
 
-**Task 3** Use district level dataset, which district in Merseyside has the most ageing population (age over 65)?
+**Task 4** Use district level dataset, which district in Merseyside has the most ageing population (age over 65)?
 
 ```{r}
 #| eval: false
@@ -1014,7 +1024,7 @@ df[position,c("District","Age_over_65")]
 
 ```
 
-**Task 4** Use district level dataset, which district has the highest ageing population rate?
+**Task 5** Use district level dataset, which district has the highest ageing population rate?
 
 ```{r}
 #| eval: false
@@ -1025,10 +1035,11 @@ position = which.max(df$ageing_rate)
 df[position,c("District","ageing_rate")]
 ```
 
-**Task 4** Create a map of the spatial distribution of the proportion of ageing population (age over 65) over LSOAs of Merseyside? (use Jenks classification of 7 categories).
+**Task 6** Create a map of the spatial distribution of the proportion of ageing population (age over 65) over LSOAs of Merseyside? (use Jenks classification of 7 categories).
 
 ```{r}
 #| eval: false
+#| message: false
 #| warning: false
 #| include: false
 
@@ -1048,11 +1059,3 @@ tm_shape(lsoa) +
   tm_borders(col = "black", lwd = 1) +  # Draw the boundaries with black lines of width 1
   tm_text("LAD25NM",col = "blue",size = 0.8)
 ```
-
-### References
-
-Brunsdon, Chris, and Lex Comber. 2018. *An Introduction to r for Spatial Analysis and Mapping (2e)*. Sage.
-
-Comber, Lex, and Chris Brunsdon. 2021. *Geographical Data Science and Spatial Data Analysis: An Introduction in r*. Sage.
-
-Harris, Richard. 2016. *Quantitative Geography: The Basics*. Sage.

@@ -509,27 +509,6 @@ What is the total number of full-time students in Merseyside?
 sum(df$Students)
 ```
 
-Which district in Merseyside has the most working population?
-
-```{r}
-max(df$Working_population)
-```
-
-Yes, using `max()` R returns use the greatest value in `Working.population` column. If we check back to the dataset, we know it is Liverpool. Instead, we can also ask R to tell us the answer.
-
-First, we ask which row has the maximum `Working.population` . By using which.max(), we know it is the 2nd row.
-
-```{r}
-position = which.max(df$Working_population)
-position
-```
-
-To print out this row and only the district name and the number of working population. We can use the code below to request R to return the District which has the maximum value of the Working population.
-
-```{r}
-df[position, c("District","Working_population")]
-```
-
 Then, we can calculate the total number of workers that working from home:
 
 ```{r}
@@ -549,19 +528,9 @@ df$Prop.WFH = df$Working_from_home / df$Working_population #add a new column cal
 df #print out the df
 ```
 
-Here we ask R to add a new column named `Prop.WFH` which is the working from home proportion that calculated by the number of working from home people in each district divided by the total working population in that district. R will automatically do it row-by-row. We then print out the df, you may find at the very right end of the tabular, there is a new column called `Prop.WFH`.
+Here we ask R to add a new column named `Prop.WFH` which is the working from home proportion that calculated by the number of working from home people in each district divided by the total working population in that district. R will automatically do it row-by-row. We then print out the `df`, you may find at the very right end of the tabular, there is a new column called `Prop.WFH`.
 
-You already know how to identify the district with the maximum value, but what if we want a rank districts from highest to lowestsmall ?
-
-```{r}
-order(-df$Prop.WFH)
-```
-
-```{r}
-df[order(-df$Prop.WFH),c("District","Prop.WFH")]
-```
-
-For a very small dataframe like this, we can also using View() to open a new tab to review the data, where each column can be sorted from largest to smallest or vice versa. Try viewing it by using:
+For a very small dataframe like this, we can also using View() to open a new tab to review the data, where each column can be sorted from largest to smallest or vice versa. Try viewing it and find the newly created column `Prop.WFH`. Click on the column name, you should see it is sorted from highest to lowest, and click again, the ranking is reversed.
 
 ```{r}
 View(df)
@@ -1014,25 +983,24 @@ df <- read.csv("merseyside.csv")
 sum(df$Households)
 ```
 
-**Task 4** Use district level dataset, which district in Merseyside has the most ageing population (age over 65)?
+**Task 4** Use district level dataset, what is the overall proportion of ageing population (age over 65) in Merseyside?
 
 ```{r}
 #| eval: false
 #| include: false
-position = which.max(df$Age_over_65)
-df[position,c("District","Age_over_65")]
+
+sum(df$Age_over_65)/sum(df$Population)
 
 ```
 
-**Task 5** Use district level dataset, which district has the highest ageing population rate?
+**Task 5** Use the LSOA level dataset, what is the average proportion of ageing population (age over 65) in all the neighbourhoods of Merseyside?
 
 ```{r}
 #| eval: false
 #| include: false
 
 df$ageing_rate = df$Age_over_65 / df$Population * 100
-position = which.max(df$ageing_rate)
-df[position,c("District","ageing_rate")]
+mean(df$ageing_rate)
 ```
 
 **Task 6** Create a map of the spatial distribution of the proportion of ageing population (age over 65) over LSOAs of Merseyside? (use Jenks classification of 7 categories).

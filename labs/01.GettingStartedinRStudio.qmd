@@ -737,7 +737,7 @@ or check the structure of the dataset:
 str(lsoa_df)
 ```
 
-So now, you know how many LSOAs in Merseyside? Yes, there are 923 LSOAs. As we introduced in the Week 1 lecture, LSOA means Super Output Area Lower Area and is commonly used in Census statistics, representing 1,000 to 3,000 people or 400 to 1,200 households in England and Wales.
+So now, you know how many LSOAs in Merseyside? Yes, there are 923 LSOAs. As we introduced in the Week 1 lecture, LSOA means Super Output Area Lower Area and is commonly used in the Census statistics. Each LSOA represents 1,000 to 3,000 people or 400 to 1,200 households in England and Wales.
 
 ```{r}
 dim(lsoa_df)
@@ -986,7 +986,7 @@ df <- read.csv("merseyside.csv")
 sum(df$Households)
 ```
 
-**Task 4** Use the district level dataset, what is the overall proportion of the population (age over 65) in Merseyside?
+**Task 4** Use the district level dataset, what is the overall proportion of the ageing population (age over 65) in Merseyside?
 
 ```{r}
 #| eval: false

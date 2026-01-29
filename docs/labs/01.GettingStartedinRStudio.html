@@ -197,8 +197,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#summary" id="toc-summary" class="nav-link" data-scroll-target="#summary"><span class="header-section-number">1.4</span> Summary</a>
   <ul class="collapse">
   <li><a href="#references" id="toc-references" class="nav-link" data-scroll-target="#references"><span class="header-section-number">1.4.1</span> References</a></li>
-  <li><a href="#formative-tasks" id="toc-formative-tasks" class="nav-link" data-scroll-target="#formative-tasks"><span class="header-section-number">1.4.2</span> Formative Tasks</a></li>
   </ul></li>
+  <li><a href="#formative-tasks" id="toc-formative-tasks" class="nav-link" data-scroll-target="#formative-tasks"><span class="header-section-number">1.5</span> Formative Tasks</a></li>
   </ul>
 <div class="toc-actions"><ul><li><a href="https://github.com/GDSL-UL/quant/edit/main/labs/01.GettingStartedinRStudio.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li></ul></div></nav>
     </div>
@@ -1134,7 +1134,7 @@ Projected CRS: OSGB36 / British National Grid
 <span id="cb116-3"><a href="#cb116-3" aria-hidden="true" tabindex="-1"></a>              <span class="at">fill.scale =</span> <span class="fu">tm_scale</span>(<span class="at">values =</span> <span class="st">"Greens"</span>), <span class="co"># change palette to greens</span></span>
 <span id="cb116-4"><a href="#cb116-4" aria-hidden="true" tabindex="-1"></a>              <span class="at">fill.legend =</span> <span class="fu">tm_legend</span>(<span class="at">title =</span> <span class="st">"Number of students in Merseyside districts"</span>)</span>
 <span id="cb116-5"><a href="#cb116-5" aria-hidden="true" tabindex="-1"></a>              ) <span class="sc">+</span><span class="co"># Legend title</span></span>
-<span id="cb116-6"><a href="#cb116-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tm_text</span>(<span class="st">"LAD25NM"</span>)</span>
+<span id="cb116-6"><a href="#cb116-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tm_text</span>(<span class="st">"LAD25NM"</span>,<span class="at">size=</span><span class="fl">0.8</span>) <span class="co">#size down the label slightly</span></span>
 <span id="cb116-7"><a href="#cb116-7" aria-hidden="true" tabindex="-1"></a>map1</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
@@ -1165,7 +1165,7 @@ Projected CRS: OSGB36 / British National Grid
 <span id="cb118-4"><a href="#cb118-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tm_polygons</span>(<span class="at">fill=</span><span class="st">"NoCentralHeating_rate"</span>,</span>
 <span id="cb118-5"><a href="#cb118-5" aria-hidden="true" tabindex="-1"></a>              <span class="at">fill.scale =</span> <span class="fu">tm_scale</span>(<span class="at">values =</span> <span class="st">"Reds"</span>, <span class="at">style =</span> <span class="st">"jenks"</span>), <span class="co">#use jenks classification rather than equal</span></span>
 <span id="cb118-6"><a href="#cb118-6" aria-hidden="true" tabindex="-1"></a>              <span class="at">fill.legend =</span> <span class="fu">tm_legend</span>(<span class="at">title =</span> <span class="st">"% No Central Heating"</span>)) <span class="sc">+</span></span>
-<span id="cb118-7"><a href="#cb118-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tm_text</span>(<span class="st">"LAD25NM"</span>) <span class="sc">+</span></span>
+<span id="cb118-7"><a href="#cb118-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tm_text</span>(<span class="st">"LAD25NM"</span>,<span class="at">size=</span><span class="fl">0.8</span>) <span class="sc">+</span></span>
 <span id="cb118-8"><a href="#cb118-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tm_scalebar</span>(<span class="at">position =</span> <span class="fu">c</span>(<span class="st">"right"</span>, <span class="st">"bottom"</span>)) <span class="sc">+</span>  <span class="co"># Add a scale bar at the top-right corner</span></span>
 <span id="cb118-9"><a href="#cb118-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tm_compass</span>(<span class="at">position =</span> <span class="fu">c</span>(<span class="st">"left"</span>, <span class="st">"top"</span>))  <span class="co"># Add a compass rose at the top-right corner</span></span>
 <span id="cb118-10"><a href="#cb118-10" aria-hidden="true" tabindex="-1"></a>map2</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -1448,8 +1448,9 @@ Geodetic CRS:  WGS 84</code></pre>
 <li><p>R for beginners <a href="https://cran.r-project.org/doc/contrib/Paradis-rdebuts_en.pdf" class="uri">https://cran.r-project.org/doc/contrib/Paradis-rdebuts_en.pdf</a></p></li>
 </ul>
 </section>
-<section id="formative-tasks" class="level3" data-number="1.4.2">
-<h3 data-number="1.4.2" class="anchored" data-anchor-id="formative-tasks"><span class="header-section-number">1.4.2</span> Formative Tasks</h3>
+</section>
+<section id="formative-tasks" class="level2" data-number="1.5">
+<h2 data-number="1.5" class="anchored" data-anchor-id="formative-tasks"><span class="header-section-number">1.5</span> Formative Tasks</h2>
 <p><strong>Task 1</strong> Use the “merseyside_lsoa.csv” dataset. Plot <code>Disability</code> against <code>Age_over_65</code>from the data frame.</p>
 <p><strong>Task 2</strong> Get household information of Liverool and Wirral districts from the district level dataset “merseyside.csv”. The variables need to be included are “Households”, “No_central_heating” and “Overcrowding”.</p>
 <p><strong>Task 3</strong> Use district level dataset, how many households all together in Merseyside?</p>
@@ -1458,7 +1459,6 @@ Geodetic CRS:  WGS 84</code></pre>
 <p><strong>Task 6</strong> Create a map of the spatial distribution of the proportion of ageing population (age over 65) over LSOAs of Merseyside? (use Jenks classification of 7 categories).</p>
 
 
-</section>
 </section>
 
 </main> <!-- /main -->

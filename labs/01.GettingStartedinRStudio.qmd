@@ -679,7 +679,7 @@ map1  = tm_shape(merseyside) +
               fill.scale = tm_scale(values = "Greens"), # change palette to greens
               fill.legend = tm_legend(title = "Number of students in Merseyside districts")
               ) +# Legend title
-  tm_text("LAD25NM")
+  tm_text("LAD25NM",size=0.8) #size down the label slightly
 map1
 ```
 
@@ -708,7 +708,7 @@ map2 = tm_shape(merseyside) +
   tm_polygons(fill="NoCentralHeating_rate",
               fill.scale = tm_scale(values = "Reds", style = "jenks"), #use jenks classification rather than equal
               fill.legend = tm_legend(title = "% No Central Heating")) +
-  tm_text("LAD25NM") +
+  tm_text("LAD25NM",size=0.8) +
   tm_scalebar(position = c("right", "bottom")) +  # Add a scale bar at the top-right corner
   tm_compass(position = c("left", "top"))  # Add a compass rose at the top-right corner
 map2
@@ -950,7 +950,7 @@ Other good on-line *get started in R* guides include:
 
 -   R for beginners <https://cran.r-project.org/doc/contrib/Paradis-rdebuts_en.pdf>
 
-### Formative Tasks
+## Formative Tasks
 
 **Task 1** Use the "merseyside_lsoa.csv" dataset. Plot `Disability` against `Age_over_65`from the data frame.
 

@@ -3,6 +3,8 @@ title: "Lab: Getting Started in RStudio"
 author: "Zi Ye"
 date: "`r Sys.Date()`"
 output: html_document
+          fig_width=10
+          fig_height=8
 ---
 
 ## **Overview**
@@ -316,7 +318,6 @@ Such indexing could of course have been assigned to a R object and used to do th
 ```{r}
 x = c(3:7)
 names(mtcars)[x]
-plot(mtcars[,x], cex = 0.5, col = "red")
 ```
 
 Thus indexing allows specific rows and columns to be extracted from the data as required.
@@ -326,6 +327,16 @@ Thus indexing allows specific rows and columns to be extracted from the data as 
 Consider the object `x` above. It contains a vector of values, `3,4,5,6,7`. Entering `x[1]` would extract the first element of `x`, in this case 3. Similarly `x[4]` would return the 4th element and `x[c(1,4)]` would return the 1st and 4th elements of `x`.
 
 However, in the examples above that index the 2-dimensional `mtcars` object, the square brackets are used to index **row** and **column** positions. The syntax for this is `[rows, columns]`. We will be using such indexing throughout this module.
+
+You can ask R to return you specific rows and columns by different ways:
+
+```{r}
+mtcars[c(2,9), 3:7]
+
+mtcars[3:6, c("disp","hp","qsec")]
+
+mtcars [, c("wt","gear","cyl")]
+```
 
 #### Packages
 
@@ -367,6 +378,8 @@ Remember: you will only have to install a package once!! So when the above code 
 Once the package has been installed on your computer then the package can be called using the `library()` function into each of your R sessions as below.
 
 ```{r}
+#| message: false
+#| warning: false
 library(tidyverse)
 library(sf)
 ```
@@ -450,8 +463,8 @@ And of course we can use such operations to *assign* the result to new R objec
 ```{r}
 # extract three variables, assigning them to temporary R objects
 x = df$District
-y = df$Working.population
-z = df$Full.time.students
+y = df$Working_population
+z = df$Students
 # create a data.frame from these, naming the new variables
 my_df = data.frame(district = x,worker = y,student = z)
 ```
@@ -485,55 +498,66 @@ sum(df$Population)
 What is the total number of full-time students in Merseyside?
 
 ```{r}
-sum(df$Full.time.students)
+sum(df$Students)
 ```
 
 Which district in Merseyside has the most working population?
 
 ```{r}
-max(df$Working.population)
+max(df$Working_population)
 ```
 
-Yes, using `max()` R returns use the greatest value in Working.population column. If we check back to the dataset, we know it is Liverpool. Instead, we can also ask R to tell us the answer:
+Yes, using `max()` R returns use the greatest value in `Working.population` column. If we check back to the dataset, we know it is Liverpool. Instead, we can also ask R to tell us the answer.
+
+First, we ask which row has the maximum `Working.population` . By using which.max(), we know it is the 2nd row.
 
 ```{r}
-df$District[which.max(df$Working.population)]
+position = which.max(df$Working_population)
+position
 ```
 
-Here, we request R to return the District which has the maximum value of the Working population.
+To print out this row and only the district name and the number of working population. We can use the code below to request R to return the District which has the maximum value of the Working population.
+
+```{r}
+df[position, c("District","Working_population")]
+```
 
 Then, we can calculate the total number of workers that working from home:
 
 ```{r}
-sum(df$Working.from.home)
+sum(df$Working_from_home)
 ```
 
 What is the proportion of working population actually work from home in Merseyside? Yes, we need to use a division calculation of the total number of working from home vs. all the working population. R can do it by:
 
 ```{r}
-sum(df$Working.from.home) / sum(df$Working.population)
+sum(df$Working_from_home) / sum(df$Working_population)
 ```
 
 So the answer is 25.7% for the whole Merseyside - but which district has the highest proportion and which as the lowest? You may have your own guessing. But let R do the calculation:
 
 ```{r}
-df$Prop.WFH = df$Working.from.home / df$Working.population #add a new column called Prop.WFH
+df$Prop.WFH = df$Working_from_home / df$Working_population #add a new column called Prop.WFH
 df #print out the df
 ```
 
-Here we ask R to add a new column named Prop.WFH which is the working from home proportion that calculated by the number of working from home people in each district divided by the total working population in that district. R will automatically do it row-by-row. We then print out the df, you may find at the very right end of the tabular, there is a new column called Prop.WFH.
+Here we ask R to add a new column named `Prop.WFH` which is the working from home proportion that calculated by the number of working from home people in each district divided by the total working population in that district. R will automatically do it row-by-row. We then print out the df, you may find at the very right end of the tabular, there is a new column called `Prop.WFH`.
 
-You already know how to get the max of the district by the value, and we can also do that for the minimum:
+You already know how to identify the district with the maximum value, but what if we want a rank districts from highest to lowestsmall ?
 
 ```{r}
-df$District[which.max(df$Prop.WFH)]
+order(-df$Prop.WFH)
 ```
 
 ```{r}
-df$District[which.min(df$Prop.WFH)]
+df[order(-df$Prop.WFH),c("District","Prop.WFH")]
 ```
 
-Have you got the right answer?
+For a very small dataframe like this, we can also using View() to open a new tab to review the data, where each column can be sorted from largest to smallest or vice versa. Try viewing it by using:
+
+```{r}
+View(df)
+```
 
 #### Your first map for Merseyside
 
@@ -542,23 +566,29 @@ Now let's try to do our first map in R and allow yourself know more about Mersey
 We will use the library sf and tmap to help us at here. Run the install codes if you haven't install them. Remember: you will only have to install a package once!!
 
 ```{r}
-if (!requireNamespace("tmap")) {
-  install.packages("tmap",dep =TRUE)
-}
+#| eval: false
+install.packages("tmap",dep =TRUE)
+```
 
-if (!requireNamespace("sf")) {
-  install.packages("sf",dep =TRUE)
-}
+Check the package version of tmap, as here we need to use tmap over 4.0 version.
+
+```{r}
+
+packageVersion("tmap") # the version should over 4.0
+
 ```
 
 When they have been installed, we can start using them
 
 ```{r}
+#| message: false
+#| warning: false
+library(tidyverse)
 library(sf)
 library(tmap)
 ```
 
-You may find in Week 1 data, we have another file named merseyside_districts.gpkg. A GeoPackage (GPKG) is a file-based format designed for storing geographic data. It supports the efficient storage and exchange of spatial datasets and can be readily used across GIS software such as QGIS and ArcGIS, as well as in programming environments including R and Python.
+You may find in Week 1 data, we have another file named *merseyside_districts.gpkg*. A GeoPackage (GPKG) is a file-based format designed for storing geographic data. It supports the efficient storage and exchange of spatial datasets and can be readily used across GIS software such as QGIS and ArcGIS, as well as in programming environments including R and Python.
 
 We first read it in by using the `st_read()` command in library sf.
 
@@ -574,7 +604,7 @@ qtm(sf)
 
 You can also add the district names on the map - which column in the sf contains district name? Use `names(sf)` to check for it.
 
-Yes, the column should be LAD25NM. Now let's ask qtm() to also show the district names.
+Yes, the column should be `LAD25NM`. Now let's ask `qtm()` to also show the district names.
 
 ```{r}
 qtm(sf,text="LAD25NM")
@@ -584,19 +614,19 @@ But what if we want to make some meaningful maps, rather than just the boundarie
 
 #### Link tabular data to geographical boundaries
 
-Recall that in our df, we have 14 columns, containing different information about the districts. We can get all their names by using `names()`.
+Recall that in our `df`, we have 14 columns, containing different information about the districts. We can get all their names by using `names()`.
 
 ```{r}
 names(df)
 ```
 
-We can do the same thing for our geographical dataset to see what it includes:
+We can do the same thing for our geographical dataset `sf` to see what it includes:
 
 ```{r}
 names(sf)
 ```
 
-We can also show the whole sf as
+We can also show the whole `sf` as
 
 ```{r}
 sf
@@ -605,168 +635,307 @@ sf
 Now we see that sf includes also the five districts, but also other geographical information. You may notice that although different column names, the first two columns of both df and sf are the district code and district name. This means what potentially we can link this two dataset together - appendix the df to sf to enrich the attributes of our geographical dataset.
 
 ```{r}
-sf2 <- left_join(sf, df,by=c("LAD25NM"="District"))
+merseyside <- left_join(sf, df,by=c("LAD25NM"="District"))
 ```
 
-let's check out the new sf2 by View() it:
+let's check out the new `sf2` by `View()` it:
 
 ```{r}
-View(sf2)
+View(merseyside)
 ```
 
-In the open tab, we see all the df columns are now also attached to the sf, linking by the district names.
+In the open tab, we see all the `df` columns are now also attached to the `sf`, linking by the district names.
 
 #### Choropleth map of Merseyside districts
 
-Now, we can use those new columns we attached from df to sf2 to make some meaningful choropleth maps! Here we make use of the mapping functions in tmap to do the work for us. Remember to run `library(tmap)` if you haven't.
+Now, we can use those new columns we attached from `df` to `sf2` to make some meaningful choropleth maps! Here we make use of the mapping functions in tmap (Remember to run `library(tmap)` if you haven't) to do the work for us.
+
+`tmap` has a basic syntax (again, do not run this code - its is simply showing the syntax of `tmap`):
 
 ```{r}
-tm_shape(sf2) + tm_polygons("Overcrowding") + tm_text("LAD25NM")
+#| eval: false
+# don't run this or write this into your script!
+tm_shape(data = <data>)+
+  tm_<function>(<variable to be mapped>)
 ```
 
-```{r}
-tm_shape(sf2) + tm_polygons("Overcrowding",style = "jenks",n=3) + tm_text("LAD25NM")
-```
+For example, to map the boundaries of `merseyside`:
 
 ```{r}
-tm_shape(sf2) + tm_polygons("Overcrowding",style = "jenks",n=3) + tm_text("LAD25NM") + tm_text("LAD25NM")
+tm_shape(merseyside) + 
+  tm_borders()
 ```
 
-```{r}
-tm_shape(sf2) + tm_polygons("Disability",style = "jenks",n=3,palette="Reds") + tm_text("LAD25NM")
-```
+To add label of district:
 
 ```{r}
-sf2$NoCentralHeating_rate = sf2$No.central.heating / sf2$Households * 100
-tm_shape(sf2) + tm_polygons("NoCentralHeating_rate",style = "jenks",n=3,palette="Greens") + tm_text("LAD25NM")
+tm_shape(merseyside) + 
+  tm_borders() + 
+  tm_text("LAD25NM")
+```
+
+You might assume the quick mapping function `qtm()` can achieve the same result, but `tmap` provides far more flexibility when it comes to aesthetic customization. The easiest way to illustrate `tmap` is through some examples.
+
+Let's start with a simple choropleth map, by using `tmap` to show the distribution of a continuous variable in different elements of the spatial data (here are the data Merseyside districts are polygons).
+
+The code below maps \``Students`’ as in the Merseyside districts, and shows the district names of each polygon from '`LAD25NM`' columns. The map below indicates that Liverpool has the highest number of full-time students while Knowsley and St.Helens have the least.
+
+```{r}
+#| message: false
+#| warning: false
+
+
+tm_shape(merseyside) + 
+  tm_polygons(fill = "Students") +   # Variable to map 
+  tm_text("LAD25NM")                 # Variable to label
+```
+
+By default tmap picks a shading scheme, the class breaks and places a legend somewhere. All of these can be changed. The code below allocates the tmap plot to `map1` (Map 1), change the legend title as "Number of students in Merseyside districts", and then prints it:
+
+```{r}
+#| message: false
+#| warning: false
+
+
+map1  = tm_shape(merseyside) + 
+  tm_polygons(fill="Students",
+              fill.scale = tm_scale(values = "Greens"), # change palette to greens
+              fill.legend = tm_legend(title = "Number of students in Merseyside districts")
+              ) +# Legend title
+  tm_text("LAD25NM")
+map1
+```
+
+And of course many other elements included either by running the code snippet defining `map1` above with additional lines or by simply adding them as in the code below:
+
+```{r}
+#| message: false
+#| warning: false
+
+
+map1 + 
+  tm_scalebar(position = c("right", "bottom")) + 
+  tm_compass(position = c("left", "top"))  # Use "top", "center", or "bottom"
+```
+
+We can also create new variable to the dataset and then map it. The below code chunk first creates a new column, "`NoCentralHeating_rate`", by dividing the number of households without access to central heating by the total number of households in each district; it then uses `tmap` to make a map of the proportion of households without central heating across districts in Merseyside:
+
+```{r}
+#| message: false
+#| warning: false
+
+
+merseyside$NoCentralHeating_rate = merseyside$No_central_heating / merseyside$Households * 100
+
+map2 = tm_shape(merseyside) + 
+  tm_polygons(fill="NoCentralHeating_rate",
+              fill.scale = tm_scale(values = "Reds", style = "jenks"), #use jenks classification rather than equal
+              fill.legend = tm_legend(title = "% No Central Heating")) +
+  tm_text("LAD25NM") +
+  tm_scalebar(position = c("right", "bottom")) +  # Add a scale bar at the top-right corner
+  tm_compass(position = c("left", "top"))  # Add a compass rose at the top-right corner
+map2
 ```
 
 ### Merseyside neighbourhoods
 
-Finally you can save your R script, `week1.R` it should look something like the below:
+Now let's read in the neighbourhood-level datasets, which include a `.csv` file of local statistics and the corresponding geographical boundaries.
 
-```{r, eval=FALSE}
-# Week 1 script
+```{r}
+lsoa_df <- read.csv("merseyside_lsoa.csv")
+lsoa_sf <- st_read("LSOA_boundaries.gpkg")
+```
 
-# assignment
-3+5
-y <- 3+5
-# have a look at y
-y
+First, we take a look at the `.csv` dataset, which as been read into R as `lsoa_df`:
 
-# make matrices
-x <- matrix(c(1,2,3,4,5,6,7,8), nrow = 4)
-y = matrix(1:8, nrow = 4, byrow = T)
-# have a look at these
-x
-y
-# x is a matrix
-x
+```{r}
+View(lsoa_df)
+```
 
-# operations
-# multiplication
-x*2
-# sum of x
-sum(x)
-# mean of x
-mean(x)
+Use the quick mapping function `qtm()` to quickly inspect the geographical boundary dataset `lsoa_sf`
 
-# load some inbuilt data
-data(mtcars)
-# inspect the class of mtcars
-class(mtcars)
+```{r}
+qtm(lsoa_sf)
+```
 
-# list all objects in my working environment
-ls()
+To familiarise yourself with the structures of both datasets, we can use the `names()` command
 
-# the structure of mtcars
-str(mtcars)
-# the first six rows (or head) of mtcars
-head(mtcars)
+```{r}
+names(lsoa_df)
+names(lsoa_sf)
+```
 
-# print out all of mtcars
-mtcars
+You may find that both dataset are recorded at the LSOA level, with `LSOA21CD` as the key column. As we did with the district-level dataset, we can use `left_join()` to join these two dataset by their sharing field - `LSOA21CD`:
 
-# plot mpg against disp
-plot(disp ~ mpg,  data = mtcars, pch=16)
+```{r}
+lsoa <- left_join(lsoa_sf,lsoa_df,by="LSOA21CD")
+```
 
-# the help for points
-?points
+Now let's check the columns of new dataframe `lsoa`:
 
-# an enhanced plot using a different notation
-plot(x = mtcars$mpg, y = mtcars$disp,   pch = 1, col = "dodgerblue", 
-     cex = 1.5, xlab = "Miles per Gallon", ylab = "Displacement", main = "Hello World!")
+```{r}
+names(lsoa)
+```
 
-# summaries fo all the variables in mtcars
-summary(mtcars)
+Or open a new tab to view the newly created dataset `lsoa` by
 
-# return the names of the mtcars variables
-names(mtcars)
-# return the 3rd to 7th names
-names(mtcars)[c(3:7)]
-# check what this does
-c(3:7)
-# plot the 3rd to 7th variables in mtcars
-plot(mtcars[, c(3:7)], cex = 0.5, 
-     col = "red", upper.panel=panel.smooth)
+```{r}
+View(lsoa)
+```
 
-# 1st row
-mtcars[1,]
-# 3rd column
-mtcars[,3]
-# a selection of rows
-mtcars[c(3:5,8),]
+We can see that some columns contain counts, such as the number of residential population, number of households, number of working population, and number of students. Other columns are expressed as percentages, including unemployment, population aged 65 and over, disability, households without central heating, overcrowded households, and people working from home.
 
-# assign 3:7 to x
-x = c(3:7)
-# get the 3rd to 7th names in mtcars using x
-names(mtcars)[x]
-# recreate the plot 
-plot(mtcars[,x], cex = 0.5, col = "red")
+Using the `Unemployed` column, we can create a map of the unemployment rate across neighbourhoods in Merseyside. Instead of using the default equal-interval breaks, this time we will use a jenks classification with six categories.
 
-# some tasks
-elasticband <- data.frame(stretch=c(46,54,48,50,44,42,52),
-                          distance=c(148,182,173,166,109,141,166))
-# have a look
-elasticband
+```{r}
+#| message: false
+#| warning: false
 
-# don't run this!
-# install.packages("tidyverse", dep = TRUE)
 
-# packages only need to be loaded once
-# install the packages in one go and THEN comment out
-# install.packages(c("sf", "tidyverse"), dep = TRUE)
+map3 = tm_shape(lsoa) +
+  tm_fill(
+    fill = "Unemployed",
+    fill.scale = tm_scale(values = "GnBu", 
+                          style = "jenks", 
+                          n = 6), #use jenks classification of 6 categories
+    fill.legend = tm_legend(title = "% Unemployed")
+    ) +
+  tm_layout(legend.position = c("right", "top"))
+map3
+```
 
-# load a package 
-library(sf)
+The above code uses `tm_layout(legend.position = c("right", "top"))` to move the legend inside the map frame, positioning it at the right-top corner.
 
-## Answers to tasks
-# Task 1
-plot(stretch~distance, data = elasticband)
-# or
-plot(elasticband$stretch, elasticband$distance)
+::: {#Question?}
+Change tm_fill() to tm_polygons() to see how the map is different?
 
-# Task 2
-hist(mtcars$mpg)
+Yes, the tm_polygons() is a condense version of tm_fill() + tm_border(). Here if you want show all the LSOA borders, change tm_fill() to tm_polygons().
+:::
 
-hist(mtcars$mpg, xlab='Miles per Gallon',
-     main='Histogram of MPG',
-     breaks = 15,
-     col = 'DarkRed')
+`tmap` also supports adding or overlayomg other data, such as boundaries. Because these are additonal spatial data layers, they needs to be added with `tm_shape()` followed by the usual function.
 
-hist(mtcars$mpg, prob = T,
-     xlab='Miles per Gallon',
-     main='Histogram of MPG',
-     breaks = 15,
-     col = 'DarkRed',
-     border = "#FFFFBF")
-# add the probability density trend
-lines(density(mtcars$mpg, na.rm=T),col='salmon',lwd=2)
-# show the frequencies at the bottom - like a rug!
-rug(mtcars$mpg)
+Remember we use the code chunk to make the district boundaries of Merseyside? This time let's change the aesthetic by using grey color as the border color and increase the line width, then we save it also as a tmap object called map_district:
 
-# Task 3
-hist(log(mtcars$mpg))
+```{r}
+#| message: false
+#| warning: false
+
+
+map_district = tm_shape(merseyside) + 
+  tm_borders(col = "grey50",lwd=1.5) + #border color as grey, line width as 1.5
+  tm_text("LAD25NM")
+map_district
+```
+
+To display both `tmap` layers together, we can proceed as follows:
+
+```{r}
+#| message: false
+#| warning: false
+
+map3 + map_district
+```
+
+Now, let's move to making some more maps - this time showing the proportion of disability across neighbourhoods in Merseyside. Referring back to the columns in `lsoa`, this time we use the `Disability` variable. The code below applies a jenks classification and use a different color palette `Purples`. Also the map frame is removed by `frame = FALSE`.
+
+```{r}
+#| message: false
+#| warning: false
+
+tm_shape(lsoa) + 
+  tm_fill(fill = "Disability",
+          fill.scale = tm_scale(values="Purples", 
+                                style = "jenks",
+                                n=5),
+          fill.legend = tm_legend(title = "% Disability")
+          ) +
+  tm_layout(legend.position = c("right", "top"),
+            frame = FALSE)+
+  map_district
+
+
+```
+
+Similarly, we can make maps from new columns we made ourselves. For example, we can calculate the percentage of student by adding a new column to the dataframe:
+
+```{r}
+lsoa$student.perc = lsoa$Students / lsoa$Population * 100
+```
+
+To make a map to visualisation the spatial distribution of student percentage. The code below uses `n=6` to increase the classification categories to 6 rather than default 5.
+
+```{r}
+#| message: false
+#| warning: false
+tm_shape(lsoa) + 
+  tm_fill(fill = "student.perc",
+          fill.scale = tm_scale(values="Blues",
+                                style = "jenks",
+                                n=6),
+          fill.legend = tm_legend(title = "% of Student",
+                                  title.size = 0.8) #legend title change smaller font
+          ) +
+  tm_layout(main.title = "Merseyside",
+            frame = FALSE,
+            legend.position = c("right", "top"))+
+  map_district
+```
+
+To change the palette, R tidyverse library provide:
+
+```{r}
+#| fig-width: 8
+#| fig-height: 10
+#| out-width: "80%"
+
+
+RColorBrewer::display.brewer.all()
+```
+
+If we want to make a map to show the rate of no central heating households in all the neighbourhoods in Merseyside:
+
+```{r}
+#| message: false
+#| warning: false
+
+lsoa$no.central.heating.perc = lsoa$No_central_heating / lsoa$Households * 100
+
+tm_shape(lsoa) + 
+  tm_fill(fill = "no.central.heating.perc",
+          fill.scale = tm_scale(values="YlOrRd",
+                                style = "jenks",
+                                n=6),
+          fill.legend = tm_legend(title = "% of no central heating households", 
+                                  title.size = 0.8)
+        ) +
+  tm_layout(main.title = "Merseyside",
+            main.title.size=1.2,
+            frame = FALSE) + 
+  map_district
+
+```
+
+The code below combines all the cartographic elements together
+
+```{r}
+#| message: false
+#| warning: false
+
+tm_shape(lsoa) + 
+  tm_fill(fill = "no.central.heating.perc",
+          fill.scale = tm_scale(values="YlOrRd",
+                                style = "jenks",n=6),
+          fill.legend = tm_legend(title = "% of no central heating households", 
+                                  title.size = 0.8)
+        ) +
+  tm_layout(main.title = "Merseyside",
+            main.title.size=1.2,
+            frame = FALSE) + 
+  tm_compass(position = c("right", "top")) +
+  tm_scalebar(position = c("right", "bottom")) +
+  tm_shape(merseyside) +               # Add another spatial layer (Merseyside boundary)
+  tm_borders(col = "black", lwd = 1) +  # Draw the boundaries with black lines of width 1
+  tm_text("LAD25NM",col = "blue",size = 0.8)
 ```
 
 ## Summary
@@ -810,9 +979,75 @@ The function `data.frame()` can be used to input these (or other) data directly 
 
 **Task 1** Plot `distance` against `stretch` from the `elasticband` data frame.
 
-**Task 2** Use the `hist()` command to plot a histogram of the `mpg` values in the `mtcars` data frame. **Hints**: a) think about how the Hello World plot was parameterised and the fact that histograms are constructed from a single variable, and b) examine the help for `hist` by entering `?hist` at the console.
+```{r}
+#| eval: false
+#| include: false
+plot(stretch~distance, data = elasticband)
+# or
+plot(elasticband$stretch, elasticband$distance)
+```
 
-**Task 3** Repeat 2 after taking logarithms of `disp` cover using the `log()` function - i.e. do a histogram of \`log(mtcars\$mpg)
+Task 2 Get household information of Liverool and Wirral districts from the district level dataset `df`. The variables need to be included are "Households", "No_central_heating" and "Overcrowding".
+
+```{r}
+df
+
+df[c(2,5),c("Households","No_central_heating","Overcrowding")]
+```
+
+**Task 2** Use district level dataset, how many households all together in Merseyside?
+
+```{r}
+#| eval: false
+#| include: false
+df = read.csv(file = "merseyside.csv")
+sum(df$Households)
+```
+
+**Task 3** Use district level dataset, which district in Merseyside has the most ageing population (age over 65)?
+
+```{r}
+#| eval: false
+#| include: false
+position = which.max(df$Age_over_65)
+df[position,c("District","Age_over_65")]
+
+```
+
+**Task 4** Use district level dataset, which district has the highest ageing population rate?
+
+```{r}
+#| eval: false
+#| include: false
+
+df$ageing_rate = df$Age_over_65 / df$Population * 100
+position = which.max(df$ageing_rate)
+df[position,c("District","ageing_rate")]
+```
+
+**Task 4** Create a map of the spatial distribution of the proportion of ageing population (age over 65) over LSOAs of Merseyside? (use Jenks classification of 7 categories).
+
+```{r}
+#| eval: false
+#| warning: false
+#| include: false
+
+lsoa$ageing_rate = lsoa$Age_over_65 / lsoa$Population * 100
+
+tm_shape(lsoa) + 
+  tm_fill(fill = "ageing_rate",
+          fill.scale = tm_scale(values="PuRd",style = "jenks",n=7),
+          fill.legend = tm_legend(title = "% Age over 65", title.size = 0.8)
+        ) +
+  tm_layout(main.title = "Merseyside",
+            main.title.size=1.2,
+            frame = FALSE) + 
+  tm_compass(position = c("right", "top")) +
+  tm_scalebar(position = c("right", "bottom")) +
+  tm_shape(merseyside) +               # Add another spatial layer (Merseyside boundary)
+  tm_borders(col = "black", lwd = 1) +  # Draw the boundaries with black lines of width 1
+  tm_text("LAD25NM",col = "blue",size = 0.8)
+```
 
 ### References
 

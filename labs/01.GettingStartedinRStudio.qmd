@@ -1,5 +1,5 @@
 ---
-title: "Lab: Getting Started in RStudio: Knowing Merseyside"
+title: "Lab: Getting Started in RStudio - Knowing Merseyside"
 author: "Zi Ye"
 date: "`r Sys.Date()`"
 output: html_document
@@ -80,6 +80,8 @@ The module places a strong emphasis placed on learning by doing, which means tha
 3.  Save your R script to your folder.
 
 ::: {style="background-color: #FFFBCC; padding: 10px; border-radius: 5px; border: 1px solid #E1C948;"}
+In Summary:
+
 -   You should always use a script (a text file containing code) for your code which can be saved and then re-run at a later date.
 
 -   You can write your own code into a script, copy and paste code into it or use an existing script (for example as provided for each of the R/RStudio practicals in this module).

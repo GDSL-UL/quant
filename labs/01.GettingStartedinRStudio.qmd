@@ -857,7 +857,7 @@ tm_shape(lsoa) +
 
 ```
 
-#### Create new variable to make maps
+#### Create new variables to make maps
 
 Similarly, we can make maps from new columns we made ourselves. For example, we can calculate the percentage of student by adding a new column to the dataframe:
 

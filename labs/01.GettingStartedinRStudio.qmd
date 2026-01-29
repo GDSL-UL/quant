@@ -526,11 +526,11 @@ sum(df$Working_from_home) / sum(df$Working_population)
 So the answer is 25.7% for the whole Merseyside - but which district has the highest proportion and which as the lowest? You may have your own guessing. But let R do the calculation:
 
 ```{r}
-df$Prop.WFH = df$Working_from_home / df$Working_population #add a new column called Prop.WFH
+df$Prop.WFH = df$Working_from_home / df$Working_population * 100 #add a new column called Prop.WFH
 df #print out the df
 ```
 
-Here we ask R to add a new column named `Prop.WFH` which is the working from home proportion that calculated by the number of working from home people in each district divided by the total working population in that district. R will automatically do it row-by-row. We then print out the `df`, you may find at the very right end of the tabular, there is a new column called `Prop.WFH`.
+Here we ask R to add a new column named `Prop.WFH` which is the working from home proportion that calculated by the number of working from home people in each district divided by the total working population in that district. The `* 100` convert the rate in the percentage number. R will automatically do it row-by-row. We then print out the `df`, you may find at the very right end of the tabular, there is a new column called `Prop.WFH`.
 
 For a very small dataframe like this, we can also using View() to open a new tab to review the data, where each column can be sorted from largest to smallest or vice versa. Try viewing it and find the newly created column `Prop.WFH`. Click on the column name, you should see it is sorted from highest to lowest, and click again, the ranking is reversed.
 
@@ -885,7 +885,7 @@ tm_shape(lsoa) +
   map_district
 ```
 
-To change the palette, R tidyverse library provide:
+To change the palette, RColorBrewer provides different palette choices:
 
 ```{r}
 #| fig-width: 8

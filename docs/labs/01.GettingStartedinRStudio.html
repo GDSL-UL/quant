@@ -937,7 +937,7 @@ Volvo 142E          2.780    4   4</code></pre>
 </div>
 <p>So the answer is 25.7% for the whole Merseyside - but which district has the highest proportion and which as the lowest? You may have your own guessing. But let R do the calculation:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb93"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb93-1"><a href="#cb93-1" aria-hidden="true" tabindex="-1"></a>df<span class="sc">$</span>Prop.WFH <span class="ot">=</span> df<span class="sc">$</span>Working_from_home <span class="sc">/</span> df<span class="sc">$</span>Working_population <span class="co">#add a new column called Prop.WFH</span></span>
+<div class="sourceCode cell-code" id="cb93"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb93-1"><a href="#cb93-1" aria-hidden="true" tabindex="-1"></a>df<span class="sc">$</span>Prop.WFH <span class="ot">=</span> df<span class="sc">$</span>Working_from_home <span class="sc">/</span> df<span class="sc">$</span>Working_population <span class="sc">*</span> <span class="dv">100</span> <span class="co">#add a new column called Prop.WFH</span></span>
 <span id="cb93-2"><a href="#cb93-2" aria-hidden="true" tabindex="-1"></a>df <span class="co">#print out the df</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>    LAD21CD   District Population Households Working_population Students
@@ -952,15 +952,15 @@ Volvo 142E          2.780    4   4</code></pre>
 3       4076       37642      40829               1003         1888
 4       6143       64763      61134               1965         2700
 5       6542       70391      73088               2125         2355
-  Working_from_home  Prop.WFH
-1             14880 0.2141161
-2             53721 0.2610997
-3             18973 0.2296362
-4             34750 0.2789014
-5             37299 0.2673763</code></pre>
+  Working_from_home Prop.WFH
+1             14880 21.41161
+2             53721 26.10997
+3             18973 22.96362
+4             34750 27.89014
+5             37299 26.73763</code></pre>
 </div>
 </div>
-<p>Here we ask R to add a new column named <code>Prop.WFH</code> which is the working from home proportion that calculated by the number of working from home people in each district divided by the total working population in that district. R will automatically do it row-by-row. We then print out the <code>df</code>, you may find at the very right end of the tabular, there is a new column called <code>Prop.WFH</code>.</p>
+<p>Here we ask R to add a new column named <code>Prop.WFH</code> which is the working from home proportion that calculated by the number of working from home people in each district divided by the total working population in that district. The <code>* 100</code> convert the rate in the percentage number. R will automatically do it row-by-row. We then print out the <code>df</code>, you may find at the very right end of the tabular, there is a new column called <code>Prop.WFH</code>.</p>
 <p>For a very small dataframe like this, we can also using View() to open a new tab to review the data, where each column can be sorted from largest to smallest or vice versa. Try viewing it and find the newly created column <code>Prop.WFH</code>. Click on the column name, you should see it is sorted from highest to lowest, and click again, the ranking is reversed.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb95"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb95-1"><a href="#cb95-1" aria-hidden="true" tabindex="-1"></a><span class="fu">View</span>(df)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -1384,7 +1384,7 @@ Geodetic CRS:  WGS 84</code></pre>
 </div>
 </div>
 </div>
-<p>To change the palette, R tidyverse library provide:</p>
+<p>To change the palette, RColorBrewer provides different palette choices:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb143"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb143-1"><a href="#cb143-1" aria-hidden="true" tabindex="-1"></a>RColorBrewer<span class="sc">::</span><span class="fu">display.brewer.all</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">

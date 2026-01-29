@@ -850,7 +850,8 @@ tm_shape(lsoa) +
                                 n=5),
           fill.legend = tm_legend(title = "% Disability")
           ) +
-  tm_layout(legend.position = c("right", "top"),
+  tm_layout(main.title = "Merseyside",#add a main title
+            legend.position = c("right", "top"),
             frame = FALSE)+
   map_district
 
@@ -903,7 +904,7 @@ If we want to make a map to show the rate of no central heating households in al
 #| message: false
 #| warning: false
  
-lsoa$no.central.heating.perc = lsoa$No_central_heating / lsoa$Households
+lsoa$no.central.heating.perc = lsoa$No_central_heating / lsoa$Households * 100
 
 tm_shape(lsoa) + 
   tm_fill(fill = "no.central.heating.perc",

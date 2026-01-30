@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="author" content="Zi Ye">
-<meta name="dcterms.date" content="2026-01-29">
+<meta name="dcterms.date" content="2026-01-30">
 
 <title>1&nbsp; Lab: Getting Started in RStudio - Knowing Merseyside – Human Geography through Merseyside - Quantitative Block: Seeing the world through numbers</title>
 <style>
@@ -224,7 +224,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">January 29, 2026</p>
+      <p class="date">January 30, 2026</p>
     </div>
   </div>
   
@@ -1454,11 +1454,77 @@ Geodetic CRS:  WGS 84</code></pre>
 <section id="formative-tasks" class="level2" data-number="1.5">
 <h2 data-number="1.5" class="anchored" data-anchor-id="formative-tasks"><span class="header-section-number">1.5</span> Formative Tasks</h2>
 <p><strong>Task 1</strong> From the district level dataset “merseyside.csv”, extract household information for the Liverool and Wirral districts. The variables to be included are “Households”, “No_central_heating” and “Overcrowding”.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb145"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb145-1"><a href="#cb145-1" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"merseyside.csv"</span>)  </span>
+<span id="cb145-2"><a href="#cb145-2" aria-hidden="true" tabindex="-1"></a>df[<span class="fu">c</span>(<span class="dv">2</span>,<span class="dv">5</span>),<span class="fu">c</span>(<span class="st">"Households"</span>,<span class="st">"No_central_heating"</span>,<span class="st">"Overcrowding"</span>)]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>  Households No_central_heating Overcrowding
+2     207491               4822         7352
+5     143253               2125         2355</code></pre>
+</div>
+</div>
 <p><strong>Task 2</strong> Use the dataset “merseyside_lsoa.csv”, plot the <code>Disability</code> against <code>Age_over_65</code> from the data frame.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb147"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb147-1"><a href="#cb147-1" aria-hidden="true" tabindex="-1"></a>lsoa_df <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"merseyside_lsoa.csv"</span>) </span>
+<span id="cb147-2"><a href="#cb147-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(Disability<span class="sc">~</span>Age_over_65, <span class="at">data =</span> lsoa_df) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="01.GettingStartedinRStudio_files/figure-html/unnamed-chunk-82-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+<div class="sourceCode cell-code" id="cb148"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb148-1"><a href="#cb148-1" aria-hidden="true" tabindex="-1"></a><span class="co"># or </span></span>
+<span id="cb148-2"><a href="#cb148-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(lsoa_df<span class="sc">$</span>Disability, lsoa_df<span class="sc">$</span>Age_over_65)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="01.GettingStartedinRStudio_files/figure-html/unnamed-chunk-82-2.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
 <p><strong>Task 3</strong> Use the district level dataset, how many households in total in Merseyside?</p>
 <p><strong>Task 4</strong> Use the district level dataset, what is the overall proportion of the ageing population (age over 65) in Merseyside?</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb149"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb149-1"><a href="#cb149-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sum</span>(df<span class="sc">$</span>Age_over_65)<span class="sc">/</span><span class="fu">sum</span>(df<span class="sc">$</span>Population)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0.1920626</code></pre>
+</div>
+</div>
 <p><strong>Task 5</strong> Use the LSOA level dataset, what is the average proportion of the ageing population (age over 65) across all the neighbourhoods of Merseyside?</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb151"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb151-1"><a href="#cb151-1" aria-hidden="true" tabindex="-1"></a>df<span class="sc">$</span>ageing_rate <span class="ot">=</span> df<span class="sc">$</span>Age_over_65 <span class="sc">/</span> df<span class="sc">$</span>Population <span class="sc">*</span> <span class="dv">100</span></span>
+<span id="cb151-2"><a href="#cb151-2" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(df<span class="sc">$</span>ageing_rate)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 19.59824</code></pre>
+</div>
+</div>
 <p><strong>Task 6</strong> Create a map showing the spatial distribution of the proportion of ageing population (age over 65) over LSOAs in Merseyside? (use Jenks classification of 7 categories).</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb153"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb153-1"><a href="#cb153-1" aria-hidden="true" tabindex="-1"></a>lsoa<span class="sc">$</span>ageing_rate <span class="ot">=</span> lsoa<span class="sc">$</span>Age_over_65 <span class="sc">/</span> lsoa<span class="sc">$</span>Population <span class="sc">*</span> <span class="dv">100</span></span>
+<span id="cb153-2"><a href="#cb153-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb153-3"><a href="#cb153-3" aria-hidden="true" tabindex="-1"></a><span class="fu">tm_shape</span>(lsoa) <span class="sc">+</span> </span>
+<span id="cb153-4"><a href="#cb153-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tm_fill</span>(<span class="at">fill =</span> <span class="st">"ageing_rate"</span>,</span>
+<span id="cb153-5"><a href="#cb153-5" aria-hidden="true" tabindex="-1"></a>          <span class="at">fill.scale =</span> <span class="fu">tm_scale</span>(<span class="at">values=</span><span class="st">"PuRd"</span>,<span class="at">style =</span> <span class="st">"jenks"</span>,<span class="at">n=</span><span class="dv">7</span>),</span>
+<span id="cb153-6"><a href="#cb153-6" aria-hidden="true" tabindex="-1"></a>          <span class="at">fill.legend =</span> <span class="fu">tm_legend</span>(<span class="at">title =</span> <span class="st">"% Age over 65"</span>, <span class="at">title.size =</span> <span class="fl">0.8</span>)</span>
+<span id="cb153-7"><a href="#cb153-7" aria-hidden="true" tabindex="-1"></a>        ) <span class="sc">+</span></span>
+<span id="cb153-8"><a href="#cb153-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tm_layout</span>(<span class="at">main.title =</span> <span class="st">"Merseyside"</span>,</span>
+<span id="cb153-9"><a href="#cb153-9" aria-hidden="true" tabindex="-1"></a>            <span class="at">main.title.size=</span><span class="fl">1.2</span>,</span>
+<span id="cb153-10"><a href="#cb153-10" aria-hidden="true" tabindex="-1"></a>            <span class="at">frame =</span> <span class="cn">FALSE</span>) <span class="sc">+</span> </span>
+<span id="cb153-11"><a href="#cb153-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tm_compass</span>(<span class="at">position =</span> <span class="fu">c</span>(<span class="st">"right"</span>, <span class="st">"top"</span>)) <span class="sc">+</span></span>
+<span id="cb153-12"><a href="#cb153-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tm_scalebar</span>(<span class="at">position =</span> <span class="fu">c</span>(<span class="st">"right"</span>, <span class="st">"bottom"</span>)) <span class="sc">+</span></span>
+<span id="cb153-13"><a href="#cb153-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tm_shape</span>(merseyside) <span class="sc">+</span>               <span class="co"># Add another spatial layer (Merseyside boundary)</span></span>
+<span id="cb153-14"><a href="#cb153-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tm_borders</span>(<span class="at">col =</span> <span class="st">"black"</span>, <span class="at">lwd =</span> <span class="dv">1</span>) <span class="sc">+</span>  <span class="co"># Draw the boundaries with black lines of width 1</span></span>
+<span id="cb153-15"><a href="#cb153-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tm_text</span>(<span class="st">"LAD25NM"</span>,<span class="at">col =</span> <span class="st">"blue"</span>,<span class="at">size =</span> <span class="fl">0.8</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="01.GettingStartedinRStudio_files/figure-html/unnamed-chunk-86-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
 
 
 </section>

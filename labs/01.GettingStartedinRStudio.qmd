@@ -958,8 +958,7 @@ Other good on-line *get started in R* guides include:
 **Task 1** From the district level dataset "merseyside.csv", extract household information for the Liverool and Wirral districts. The variables to be included are "Households", "No_central_heating" and "Overcrowding".
 
 ```{r}
-#| eval: false 
-#| include: false 
+#| echo: true
 
 df <- read.csv("merseyside.csv")  
 df[c(2,5),c("Households","No_central_heating","Overcrowding")]
@@ -968,8 +967,7 @@ df[c(2,5),c("Households","No_central_heating","Overcrowding")]
 **Task 2** Use the dataset "merseyside_lsoa.csv", plot the `Disability` against `Age_over_65` from the data frame.
 
 ```{r}
-#| eval: false 
-#| include: false  
+#| echo: true
 lsoa_df <- read.csv("merseyside_lsoa.csv") 
 plot(Disability~Age_over_65, data = lsoa_df) 
 
@@ -989,8 +987,7 @@ sum(df$Households)
 **Task 4** Use the district level dataset, what is the overall proportion of the ageing population (age over 65) in Merseyside?
 
 ```{r}
-#| eval: false
-#| include: false
+#| echo: true
 
 sum(df$Age_over_65)/sum(df$Population)
 
@@ -999,8 +996,7 @@ sum(df$Age_over_65)/sum(df$Population)
 **Task 5** Use the LSOA level dataset, what is the average proportion of the ageing population (age over 65) across all the neighbourhoods of Merseyside?
 
 ```{r}
-#| eval: false
-#| include: false
+#| echo: true
 
 df$ageing_rate = df$Age_over_65 / df$Population * 100
 mean(df$ageing_rate)
@@ -1009,10 +1005,9 @@ mean(df$ageing_rate)
 **Task 6** Create a map showing the spatial distribution of the proportion of ageing population (age over 65) over LSOAs in Merseyside? (use Jenks classification of 7 categories).
 
 ```{r}
-#| eval: false
+#| echo: true
 #| message: false
 #| warning: false
-#| include: false
 
 lsoa$ageing_rate = lsoa$Age_over_65 / lsoa$Population * 100
 

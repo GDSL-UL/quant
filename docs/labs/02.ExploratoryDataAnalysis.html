@@ -9,7 +9,7 @@
 <meta name="author" content="Zi Ye">
 <meta name="dcterms.date" content="2026-02-04">
 
-<title>2&nbsp; 02.Exploratory Data Analysis - UK Election – Human Geography through Merseyside - Quantitative Block: Seeing the world through numbers</title>
+<title>2&nbsp; Lab: Exploratory Data Analysis - UK Election – Human Geography through Merseyside - Quantitative Block: Seeing the world through numbers</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -117,7 +117,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../labs/02.ExploratoryDataAnalysis.html"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">02.Exploratory Data Analysis - UK Election</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../labs/02.ExploratoryDataAnalysis.html"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Lab: Exploratory Data Analysis - UK Election</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -173,7 +173,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../labs/02.ExploratoryDataAnalysis.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">02.Exploratory Data Analysis - UK Election</span></span></a>
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Lab: Exploratory Data Analysis - UK Election</span></span></a>
   </div>
 </li>
     </ul>
@@ -186,30 +186,23 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#overview" id="toc-overview" class="nav-link active" data-scroll-target="#overview"><span class="header-section-number">3</span> <strong>Overview</strong></a></li>
-  <li><a href="#clear-the-decks" id="toc-clear-the-decks" class="nav-link" data-scroll-target="#clear-the-decks"><span class="header-section-number">4</span> Clear the decks</a></li>
-  <li><a href="#install-packages" id="toc-install-packages" class="nav-link" data-scroll-target="#install-packages"><span class="header-section-number">5</span> Install packages</a></li>
-  <li><a href="#open-libraries" id="toc-open-libraries" class="nav-link" data-scroll-target="#open-libraries"><span class="header-section-number">6</span> Open libraries</a></li>
-  <li><a href="#parliamentary-constituency-data" id="toc-parliamentary-constituency-data" class="nav-link" data-scroll-target="#parliamentary-constituency-data"><span class="header-section-number">7</span> Parliamentary Constituency Data</a>
+  <li><a href="#overview" id="toc-overview" class="nav-link active" data-scroll-target="#overview"><span class="header-section-number">2.1</span> <strong>Overview</strong></a></li>
+  <li><a href="#clear-the-decks" id="toc-clear-the-decks" class="nav-link" data-scroll-target="#clear-the-decks"><span class="header-section-number">2.2</span> Clear the decks</a></li>
+  <li><a href="#open-libraries" id="toc-open-libraries" class="nav-link" data-scroll-target="#open-libraries"><span class="header-section-number">2.3</span> Open libraries</a></li>
+  <li><a href="#parliamentary-constituency-data" id="toc-parliamentary-constituency-data" class="nav-link" data-scroll-target="#parliamentary-constituency-data"><span class="header-section-number">2.4</span> Parliamentary Constituency Data</a>
   <ul class="collapse">
-  <li><a href="#load-the-dataset" id="toc-load-the-dataset" class="nav-link" data-scroll-target="#load-the-dataset"><span class="header-section-number">7.1</span> Load the dataset</a></li>
-  <li><a href="#familiar-with-the-dataset-and-variable-types" id="toc-familiar-with-the-dataset-and-variable-types" class="nav-link" data-scroll-target="#familiar-with-the-dataset-and-variable-types"><span class="header-section-number">7.2</span> Familiar with the dataset and variable types</a></li>
-  <li><a href="#exploratory-data-analysis-eda" id="toc-exploratory-data-analysis-eda" class="nav-link" data-scroll-target="#exploratory-data-analysis-eda"><span class="header-section-number">7.3</span> Exploratory Data Analysis (EDA)</a>
+  <li><a href="#load-the-dataset" id="toc-load-the-dataset" class="nav-link" data-scroll-target="#load-the-dataset"><span class="header-section-number">2.4.1</span> Load the dataset</a></li>
+  <li><a href="#familiar-with-the-dataset-and-variable-types" id="toc-familiar-with-the-dataset-and-variable-types" class="nav-link" data-scroll-target="#familiar-with-the-dataset-and-variable-types"><span class="header-section-number">2.4.2</span> Familiar with the dataset and variable types</a></li>
+  <li><a href="#exploratory-data-analysis-eda" id="toc-exploratory-data-analysis-eda" class="nav-link" data-scroll-target="#exploratory-data-analysis-eda"><span class="header-section-number">2.4.3</span> Exploratory Data Analysis (EDA)</a></li>
+  </ul></li>
+  <li><a href="#make-your-own-map-for-the-election-result" id="toc-make-your-own-map-for-the-election-result" class="nav-link" data-scroll-target="#make-your-own-map-for-the-election-result"><span class="header-section-number">2.5</span> Make your own map for the election result</a>
   <ul class="collapse">
-  <li><a href="#numeric-variable" id="toc-numeric-variable" class="nav-link" data-scroll-target="#numeric-variable"><span class="header-section-number">7.3.1</span> Numeric variable</a></li>
-  <li><a href="#categorical-variable" id="toc-categorical-variable" class="nav-link" data-scroll-target="#categorical-variable"><span class="header-section-number">7.3.2</span> Categorical variable</a></li>
-  <li><a href="#categorical-to-categorical-cross-tabulation" id="toc-categorical-to-categorical-cross-tabulation" class="nav-link" data-scroll-target="#categorical-to-categorical-cross-tabulation"><span class="header-section-number">7.3.3</span> Categorical to categorical: cross-tabulation</a></li>
-  <li><a href="#continuous-to-categorical-compare-between-groups" id="toc-continuous-to-categorical-compare-between-groups" class="nav-link" data-scroll-target="#continuous-to-categorical-compare-between-groups"><span class="header-section-number">7.3.4</span> Continuous to categorical: compare between groups</a></li>
+  <li><a href="#read-in-parliamentary-constituency-boundaries" id="toc-read-in-parliamentary-constituency-boundaries" class="nav-link" data-scroll-target="#read-in-parliamentary-constituency-boundaries"><span class="header-section-number">2.5.1</span> Read in Parliamentary Constituency Boundaries</a></li>
+  <li><a href="#inspect-the-spatial-dataset" id="toc-inspect-the-spatial-dataset" class="nav-link" data-scroll-target="#inspect-the-spatial-dataset"><span class="header-section-number">2.5.2</span> Inspect the spatial dataset</a></li>
+  <li><a href="#link-boundaries-to-pc_data" id="toc-link-boundaries-to-pc_data" class="nav-link" data-scroll-target="#link-boundaries-to-pc_data"><span class="header-section-number">2.5.3</span> Link boundaries to pc_data</a></li>
+  <li><a href="#map-the-election-result" id="toc-map-the-election-result" class="nav-link" data-scroll-target="#map-the-election-result"><span class="header-section-number">2.5.4</span> Map the election result</a></li>
   </ul></li>
-  </ul></li>
-  <li><a href="#mapping-the-election-results" id="toc-mapping-the-election-results" class="nav-link" data-scroll-target="#mapping-the-election-results"><span class="header-section-number">8</span> Mapping the election results</a>
-  <ul class="collapse">
-  <li><a href="#read-in-parliamentary-constituency-boundaries" id="toc-read-in-parliamentary-constituency-boundaries" class="nav-link" data-scroll-target="#read-in-parliamentary-constituency-boundaries"><span class="header-section-number">8.1</span> Read in Parliamentary Constituency Boundaries</a></li>
-  <li><a href="#inspect-the-spatial-dataset" id="toc-inspect-the-spatial-dataset" class="nav-link" data-scroll-target="#inspect-the-spatial-dataset"><span class="header-section-number">8.2</span> Inspect the spatial dataset</a></li>
-  <li><a href="#link-boundaries-to-pc_data" id="toc-link-boundaries-to-pc_data" class="nav-link" data-scroll-target="#link-boundaries-to-pc_data"><span class="header-section-number">8.3</span> Link boundaries to pc_data</a></li>
-  </ul></li>
-  <li><a href="#map-the-election-results" id="toc-map-the-election-results" class="nav-link" data-scroll-target="#map-the-election-results"><span class="header-section-number">9</span> Map the election results</a></li>
-  <li><a href="#formative-tasks" id="toc-formative-tasks" class="nav-link" data-scroll-target="#formative-tasks"><span class="header-section-number">10</span> Formative tasks</a></li>
+  <li><a href="#formative-tasks" id="toc-formative-tasks" class="nav-link" data-scroll-target="#formative-tasks"><span class="header-section-number">2.6</span> Formative tasks</a></li>
   </ul>
 <div class="toc-actions"><ul><li><a href="https://github.com/GDSL-UL/quant/edit/main/labs/02.ExploratoryDataAnalysis.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li></ul></div></nav>
     </div>
@@ -218,7 +211,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">02.Exploratory Data Analysis - UK Election</span></h1>
+<h1 class="title"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Lab: Exploratory Data Analysis - UK Election</span></h1>
 </div>
 
 
@@ -247,8 +240,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<section id="overview" class="level1" data-number="3">
-<h1 data-number="3"><span class="header-section-number">3</span> <strong>Overview</strong></h1>
+<section id="overview" class="level2" data-number="2.1">
+<h2 data-number="2.1" class="anchored" data-anchor-id="overview"><span class="header-section-number">2.1</span> <strong>Overview</strong></h2>
 <p>This week’s practical session will draw upon the UK 2024 constituency election dataset. We will revisit some libraries and functions we have used last week, but also learn to do our first exploratory data analysis by foundmental R coding. We will do:</p>
 <ul>
 <li><p>Loading and examining tabular data (like spreadsheets) and geographical data into R (same as Week 1)</p></li>
@@ -258,8 +251,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </ul>
 <p>You may wish to recap this week’s lecture: <a href="https://canvas.liverpool.ac.uk/courses/85565/files/folder/Stats%20Block/Week%202?preview=13571700">Lecture 02.pptx</a></p>
 </section>
-<section id="clear-the-decks" class="level1" data-number="4">
-<h1 data-number="4"><span class="header-section-number">4</span> Clear the decks</h1>
+<section id="clear-the-decks" class="level2" data-number="2.2">
+<h2 data-number="2.2" class="anchored" data-anchor-id="clear-the-decks"><span class="header-section-number">2.2</span> Clear the decks</h2>
 <ul>
 <li><p>For this Week 2 session, create a sub-folder called&nbsp;<code>Week2</code>&nbsp;in your&nbsp;<code>ENVS162</code> folder on your M-Drive.</p></li>
 <li><p>Open RStudio</p></li>
@@ -271,14 +264,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 <p>This command will clear RStudio’s memory, removing any data objects that you have previously created.</p>
 </section>
-<section id="install-packages" class="level1" data-number="5">
-<h1 data-number="5"><span class="header-section-number">5</span> Install packages</h1>
-<p>The <code>scales</code> package provides the command <code>percentage( )</code> which we can easily convert a number to its percentage format, and also specify how many digits we wish to keep.</p>
-<p>If you are using a University PC Teaching Centre computer the <code>scales</code> package should come pre-installed.</p>
-<p>However, if you are using your own computer you will need to install this package (once only) by running the following line of code in the <em>Console</em> window in RStudio:</p>
-</section>
-<section id="open-libraries" class="level1" data-number="6">
-<h1 data-number="6"><span class="header-section-number">6</span> Open libraries</h1>
+<section id="open-libraries" class="level2" data-number="2.3">
+<h2 data-number="2.3" class="anchored" data-anchor-id="open-libraries"><span class="header-section-number">2.3</span> Open libraries</h2>
 <p>In Week 1 we have installed essential R package <code>tidyverse</code>, <code>sf</code>, and <code>tmap</code>. Remember if any package has been installed, then we don’t need to re-install them. Instead, we use library() command to import and use them.</p>
 <p>As ever, when you start a new session in RStudio, you need to load the packages you wish to use into memory. In addition to the&nbsp;<code>tidyverse</code>,&nbsp;<code>gdslStats</code>&nbsp;and&nbsp;<code>sf</code>&nbsp;packages we used last week.</p>
 <div class="cell">
@@ -288,10 +275,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 <p>If R returns <u>Error: there is no package called ‘***’</u>. Then it means that the package ‘***’ has not been installed in the PC you current use. Therefore you need to install them first. Switch back to Week 1 instruction - Getting set up with RStudio - Your first R code - Package part to refresh yourself how to do this.</p>
 </section>
-<section id="parliamentary-constituency-data" class="level1" data-number="7">
-<h1 data-number="7"><span class="header-section-number">7</span> Parliamentary Constituency Data</h1>
-<section id="load-the-dataset" class="level2" data-number="7.1">
-<h2 data-number="7.1" class="anchored" data-anchor-id="load-the-dataset"><span class="header-section-number">7.1</span> Load the dataset</h2>
+<section id="parliamentary-constituency-data" class="level2" data-number="2.4">
+<h2 data-number="2.4" class="anchored" data-anchor-id="parliamentary-constituency-data"><span class="header-section-number">2.4</span> Parliamentary Constituency Data</h2>
+<section id="load-the-dataset" class="level3" data-number="2.4.1">
+<h3 data-number="2.4.1" class="anchored" data-anchor-id="load-the-dataset"><span class="header-section-number">2.4.1</span> Load the dataset</h3>
 <p>In 2024 the UK held a general election. Download the file <strong><em>uk_constituencies_2024.csv</em></strong> from our <a href="https://canvas.liverpool.ac.uk/courses/85565">Canvas module page Week 2</a>. Read in the dataset exactly in the same way as we did in Week 1 - insert the below code line and run it:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>pc_data <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"uk_constituencies_2024.csv"</span>,<span class="at">stringsAsFactors =</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -310,8 +297,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p><em>Source</em>: Income data from Annual Survey of Hours and Earnings (ASHE), collecgted by the Office for National Statistics. https://www.nomisweb.co.uk/datasets/asher</p></li>
 </ul>
 </section>
-<section id="familiar-with-the-dataset-and-variable-types" class="level2" data-number="7.2">
-<h2 data-number="7.2" class="anchored" data-anchor-id="familiar-with-the-dataset-and-variable-types"><span class="header-section-number">7.2</span> Familiar with the dataset and variable types</h2>
+<section id="familiar-with-the-dataset-and-variable-types" class="level3" data-number="2.4.2">
+<h3 data-number="2.4.2" class="anchored" data-anchor-id="familiar-with-the-dataset-and-variable-types"><span class="header-section-number">2.4.2</span> Familiar with the dataset and variable types</h3>
 <p>In the <em>pc_data</em> dataset each row represents a different UK Parliamentary Constituency. Use the <code>View()</code> command to familiarise yourself with the variables contained in the dataset.</p>
 <p>Use the <code>nrow( )</code> or <code>dim()</code> command to find out how many Parliamentary Constituencies (and therefore MPs) there are in the UK.</p>
 <p>Whenever we try to understand the variables in one dataset, the first question to ask ourselves is: “are they <em>continuous</em> or <em>categorical</em> ?”</p>
@@ -326,10 +313,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li><p><strong>2024 election results</strong> ranging from the winning MP and party through to the size of the electorate and vote turnout, and the share of votes received by each party</p></li>
 </ul>
 </section>
-<section id="exploratory-data-analysis-eda" class="level2" data-number="7.3">
-<h2 data-number="7.3" class="anchored" data-anchor-id="exploratory-data-analysis-eda"><span class="header-section-number">7.3</span> Exploratory Data Analysis (EDA)</h2>
-<section id="numeric-variable" class="level3" data-number="7.3.1">
-<h3 data-number="7.3.1" class="anchored" data-anchor-id="numeric-variable"><span class="header-section-number">7.3.1</span> Numeric variable</h3>
+<section id="exploratory-data-analysis-eda" class="level3" data-number="2.4.3">
+<h3 data-number="2.4.3" class="anchored" data-anchor-id="exploratory-data-analysis-eda"><span class="header-section-number">2.4.3</span> Exploratory Data Analysis (EDA)</h3>
+<section id="numeric-variable" class="level4" data-number="2.4.3.1">
+<h4 data-number="2.4.3.1" class="anchored" data-anchor-id="numeric-variable"><span class="header-section-number">2.4.3.1</span> Numeric variable</h4>
 <p>You can use the <em>pc_data</em> dataset to extract some headline results from the 2024 General Election. Starting with the simplest case, the distribution of a single numeric variable whether continuous or count based can be examined numerically using the <code>summary</code> function.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co">#valid votes in constituency</span></span>
@@ -356,7 +343,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="02.ExploratoryDataAnalysis_files/figure-html/unnamed-chunk-10-1.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="02.ExploratoryDataAnalysis_files/figure-html/unnamed-chunk-9-1.png" class="img-fluid figure-img" width="672"></p>
 </figure>
 </div>
 </div>
@@ -369,7 +356,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="02.ExploratoryDataAnalysis_files/figure-html/unnamed-chunk-11-1.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="02.ExploratoryDataAnalysis_files/figure-html/unnamed-chunk-10-1.png" class="img-fluid figure-img" width="672"></p>
 </figure>
 </div>
 </div>
@@ -401,7 +388,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="02.ExploratoryDataAnalysis_files/figure-html/unnamed-chunk-13-1.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="02.ExploratoryDataAnalysis_files/figure-html/unnamed-chunk-12-1.png" class="img-fluid figure-img" width="672"></p>
 </figure>
 </div>
 </div>
@@ -413,7 +400,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="02.ExploratoryDataAnalysis_files/figure-html/unnamed-chunk-14-1.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="02.ExploratoryDataAnalysis_files/figure-html/unnamed-chunk-13-1.png" class="img-fluid figure-img" width="672"></p>
 </figure>
 </div>
 </div>
@@ -423,7 +410,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="02.ExploratoryDataAnalysis_files/figure-html/unnamed-chunk-15-1.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="02.ExploratoryDataAnalysis_files/figure-html/unnamed-chunk-14-1.png" class="img-fluid figure-img" width="672"></p>
 </figure>
 </div>
 </div>
@@ -437,7 +424,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="02.ExploratoryDataAnalysis_files/figure-html/unnamed-chunk-16-1.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="02.ExploratoryDataAnalysis_files/figure-html/unnamed-chunk-15-1.png" class="img-fluid figure-img" width="672"></p>
 </figure>
 </div>
 </div>
@@ -447,7 +434,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="02.ExploratoryDataAnalysis_files/figure-html/unnamed-chunk-17-1.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="02.ExploratoryDataAnalysis_files/figure-html/unnamed-chunk-16-1.png" class="img-fluid figure-img" width="672"></p>
 </figure>
 </div>
 </div>
@@ -467,8 +454,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>In summary, numeric variable distributions, of counts and continuous data, should be investigated as an initial step in any data analysis. There are a number of metrics and graphical functions (tools) for doing this including&nbsp;<code>summary()</code>,&nbsp;<code>hist()</code>&nbsp;<code>plot(density())</code> and&nbsp;<code>boxplot()</code>.</p>
 </div>
 </section>
-<section id="categorical-variable" class="level3" data-number="7.3.2">
-<h3 data-number="7.3.2" class="anchored" data-anchor-id="categorical-variable"><span class="header-section-number">7.3.2</span> Categorical variable</h3>
+<section id="categorical-variable" class="level4" data-number="2.4.3.2">
+<h4 data-number="2.4.3.2" class="anchored" data-anchor-id="categorical-variable"><span class="header-section-number">2.4.3.2</span> Categorical variable</h4>
 <p>Some of the character variables could be considered as&nbsp;<strong>categorical</strong>, representing a grouping or classification of some kind, as described above. In these cases we are interested in the count or frequency of each class in the classification, which we can examine numerically or graphically.</p>
 <p>The simplest way to examine classes is to put them into a table of counts. The&nbsp;<code>table</code>&nbsp;function is very useful and in the code below it is applied to one of the categorical variables in the survey data:</p>
 <p>So firstly we use the <code>table()</code> command to find the number of MPs elected to each Party. [Hint: use the <em>first_party</em> variable].</p>
@@ -592,7 +579,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="02.ExploratoryDataAnalysis_files/figure-html/unnamed-chunk-23-1.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="02.ExploratoryDataAnalysis_files/figure-html/unnamed-chunk-22-1.png" class="img-fluid figure-img" width="672"></p>
 </figure>
 </div>
 </div>
@@ -604,7 +591,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="02.ExploratoryDataAnalysis_files/figure-html/unnamed-chunk-24-1.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="02.ExploratoryDataAnalysis_files/figure-html/unnamed-chunk-23-1.png" class="img-fluid figure-img" width="672"></p>
 </figure>
 </div>
 </div>
@@ -624,8 +611,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 <p>Then, using <code>barplot()</code>, we plot the top 8 rows of <code>tab_sorted</code>, with <code>las = 2</code> used to rotate the axis labels so they are displayed vertically and remain readable.</p>
 </section>
-<section id="categorical-to-categorical-cross-tabulation" class="level3" data-number="7.3.3">
-<h3 data-number="7.3.3" class="anchored" data-anchor-id="categorical-to-categorical-cross-tabulation"><span class="header-section-number">7.3.3</span> Categorical to categorical: cross-tabulation</h3>
+<section id="categorical-to-categorical-cross-tabulation" class="level4" data-number="2.4.3.3">
+<h4 data-number="2.4.3.3" class="anchored" data-anchor-id="categorical-to-categorical-cross-tabulation"><span class="header-section-number">2.4.3.3</span> Categorical to categorical: cross-tabulation</h4>
 <p>In EDA, it is also important to understand the relationship between variables. Now it is the time to do the variable interactions. Let’s first start with interact one categorical variable to another categorical variable. In many situations, it can be called cross-tabulation.</p>
 <p>The relationship between two sets of classes or categories can be explored using correspondence tables created by the&nbsp;<code>table</code>&nbsp;function. Here we can cross tabulate the two categorical variables that we have already familiar with: <code>first_party</code> and <code>crime_rate</code>:</p>
 <p>If we want to examine how the distribution of crime-rate categories varies for each first party. The question can be: for each political party, how are its wins distributed across different crime-rate levels?</p>
@@ -680,14 +667,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 <p>What insights now you can learn from these cross-tabulation? We will examine methods for determining whether the cross-tabulated counts and their differences are significant (i.e.&nbsp;would not be expected by chance) in later weeks.</p>
 </section>
-<section id="continuous-to-categorical-compare-between-groups" class="level3" data-number="7.3.4">
-<h3 data-number="7.3.4" class="anchored" data-anchor-id="continuous-to-categorical-compare-between-groups"><span class="header-section-number">7.3.4</span> Continuous to categorical: compare between groups</h3>
+<section id="continuous-to-categorical-compare-between-groups" class="level4" data-number="2.4.3.4">
+<h4 data-number="2.4.3.4" class="anchored" data-anchor-id="continuous-to-categorical-compare-between-groups"><span class="header-section-number">2.4.3.4</span> Continuous to categorical: compare between groups</h4>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb34"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="fu">boxplot</span>(median_house_price <span class="sc">~</span> first_party, <span class="at">data =</span> pc_data, <span class="at">las =</span> <span class="dv">2</span>, <span class="at">xlab=</span><span class="st">""</span>,<span class="at">ylab=</span><span class="st">""</span>,<span class="at">main=</span><span class="st">"Compare constituency median house price vs. first party"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="02.ExploratoryDataAnalysis_files/figure-html/unnamed-chunk-28-1.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="02.ExploratoryDataAnalysis_files/figure-html/unnamed-chunk-27-1.png" class="img-fluid figure-img" width="672"></p>
 </figure>
 </div>
 </div>
@@ -697,7 +684,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="02.ExploratoryDataAnalysis_files/figure-html/unnamed-chunk-29-1.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="02.ExploratoryDataAnalysis_files/figure-html/unnamed-chunk-28-1.png" class="img-fluid figure-img" width="672"></p>
 </figure>
 </div>
 </div>
@@ -714,11 +701,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 </section>
 </section>
-<section id="mapping-the-election-results" class="level1" data-number="8">
-<h1 data-number="8"><span class="header-section-number">8</span> Mapping the election results</h1>
+<section id="make-your-own-map-for-the-election-result" class="level2" data-number="2.5">
+<h2 data-number="2.5" class="anchored" data-anchor-id="make-your-own-map-for-the-election-result"><span class="header-section-number">2.5</span> Make your own map for the election result</h2>
 <p>Having established how many MPs and votes each party got, it is time to look at the geography of the election outcome. To do this we need to link a set of digital boundaries for Parliamentary Constituencies with our pc_data dataset.</p>
-<section id="read-in-parliamentary-constituency-boundaries" class="level2" data-number="8.1">
-<h2 data-number="8.1" class="anchored" data-anchor-id="read-in-parliamentary-constituency-boundaries"><span class="header-section-number">8.1</span> Read in Parliamentary Constituency Boundaries</h2>
+<section id="read-in-parliamentary-constituency-boundaries" class="level3" data-number="2.5.1">
+<h3 data-number="2.5.1" class="anchored" data-anchor-id="read-in-parliamentary-constituency-boundaries"><span class="header-section-number">2.5.1</span> Read in Parliamentary Constituency Boundaries</h3>
 <p>Digital boundaries for the Parliamentary Constituencies used in the 2024 General Election can be found in the files <em>uk_constituencies_2024.geojson</em>. Both of these boundary datasets were sourced from https://automaticknowledge.org/wpc-hex/, and them simplified to make them quicker to plot.</p>
 <p>Download the two digital boundary files from the Week 3 folder in CANVAS and save them to the same folder as your Week 3 Quarto document.</p>
 <div class="cell">
@@ -735,8 +722,8 @@ Projected CRS: OSGB36 / British National Grid</code></pre>
 </div>
 </div>
 </section>
-<section id="inspect-the-spatial-dataset" class="level2" data-number="8.2">
-<h2 data-number="8.2" class="anchored" data-anchor-id="inspect-the-spatial-dataset"><span class="header-section-number">8.2</span> Inspect the spatial dataset</h2>
+<section id="inspect-the-spatial-dataset" class="level3" data-number="2.5.2">
+<h3 data-number="2.5.2" class="anchored" data-anchor-id="inspect-the-spatial-dataset"><span class="header-section-number">2.5.2</span> Inspect the spatial dataset</h3>
 <p>Use the <code>names()</code> or <code>str()</code> to know the contents, or as above use <code>View()</code> to open and check. Check by yourself the number of rows and columns of the map data:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb40"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(pc_map)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -771,14 +758,14 @@ Projected CRS: OSGB36 / British National Grid</code></pre>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="02.ExploratoryDataAnalysis_files/figure-html/unnamed-chunk-35-1.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="02.ExploratoryDataAnalysis_files/figure-html/unnamed-chunk-34-1.png" class="img-fluid figure-img" width="672"></p>
 </figure>
 </div>
 </div>
 </div>
 </section>
-<section id="link-boundaries-to-pc_data" class="level2" data-number="8.3">
-<h2 data-number="8.3" class="anchored" data-anchor-id="link-boundaries-to-pc_data"><span class="header-section-number">8.3</span> Link boundaries to pc_data</h2>
+<section id="link-boundaries-to-pc_data" class="level3" data-number="2.5.3">
+<h3 data-number="2.5.3" class="anchored" data-anchor-id="link-boundaries-to-pc_data"><span class="header-section-number">2.5.3</span> Link boundaries to pc_data</h3>
 <p>In order to map the election results contained in the <code>pc_data</code> dataset, we need to join it to a set of digital boundaries using the <code>left_join( )</code> command - you should have already familiar with this from Week 1.</p>
 <p>In your inspection of the <code>pc_data</code> and <code>pc_map</code> datasets, you may have noticed that they all have two variables in common. The first is a unique identifier for each Parliamentary Constituency: <code>gss_code</code>. The second is the name of the constituency: <code>pc_name</code>.</p>
 <p>We can use these two variables to first link the <code>pc_data</code> dataset to the standard map:</p>
@@ -787,10 +774,9 @@ Projected CRS: OSGB36 / British National Grid</code></pre>
 </div>
 <p>As ever, having created a new dataset, use the&nbsp;<code>dim( )</code>,&nbsp;<code>str( )</code>,&nbsp;<code>names( )</code>&nbsp;and&nbsp;<code>View( )</code>&nbsp;commands to check its contents are as you would expect.</p>
 </section>
-</section>
-<section id="map-the-election-results" class="level1" data-number="9">
-<h1 data-number="9"><span class="header-section-number">9</span> Map the election results</h1>
-<p>Having joined the&nbsp;<em>pc_data</em>&nbsp;dataset with a set of digital boundaries, it becomes a simple matter to map the election results using the mapping skills covered in Week 1:</p>
+<section id="map-the-election-result" class="level3" data-number="2.5.4">
+<h3 data-number="2.5.4" class="anchored" data-anchor-id="map-the-election-result"><span class="header-section-number">2.5.4</span> Map the election result</h3>
+<p>Having joined the&nbsp;<code>pc_data</code>&nbsp;dataset with a set of digital boundaries, it becomes a simple matter to map the election results using the mapping skills covered in Week 1:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb45"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb45-1"><a href="#cb45-1" aria-hidden="true" tabindex="-1"></a><span class="fu">tm_shape</span>(pc_map_new) <span class="sc">+</span> <span class="co">#map a spatial data</span></span>
 <span id="cb45-2"><a href="#cb45-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tm_polygons</span>(<span class="at">fill =</span> <span class="st">"first_party"</span>, </span>
@@ -813,7 +799,7 @@ Multiple palettes called "set3" found: "brewer.set3", "hcl.set3". The first one,
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="02.ExploratoryDataAnalysis_files/figure-html/unnamed-chunk-37-1.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="02.ExploratoryDataAnalysis_files/figure-html/unnamed-chunk-36-1.png" class="img-fluid figure-img" width="672"></p>
 </figure>
 </div>
 </div>
@@ -834,8 +820,9 @@ Multiple palettes called "set3" found: "brewer.set3", "hcl.set3". The first one,
 </div>
 <p>Now what pattern you can observe from the interactive map you just made?</p>
 </section>
-<section id="formative-tasks" class="level1" data-number="10">
-<h1 data-number="10"><span class="header-section-number">10</span> Formative tasks</h1>
+</section>
+<section id="formative-tasks" class="level2" data-number="2.6">
+<h2 data-number="2.6" class="anchored" data-anchor-id="formative-tasks"><span class="header-section-number">2.6</span> Formative tasks</h2>
 <p><strong>Task 1</strong> How many columns and rows in the UK constituency boundary dataset?</p>
 <div class="cell">
 <div class="cell-output cell-output-stdout">
@@ -870,14 +857,42 @@ Projected CRS: OSGB36 / British National Grid</code></pre>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="02.ExploratoryDataAnalysis_files/figure-html/unnamed-chunk-42-1.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="02.ExploratoryDataAnalysis_files/figure-html/unnamed-chunk-41-1.png" class="img-fluid figure-img" width="672"></p>
 </figure>
 </div>
 </div>
 </div>
 <p><strong>Task 4</strong> Write codes to create boxplots for <code>pct_in_migration</code>, <code>pct_UK_born</code> and <code>pct_owned</code> (owning upright household):</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb57"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb57-1"><a href="#cb57-1" aria-hidden="true" tabindex="-1"></a><span class="fu">boxplot</span>(pc_data<span class="sc">$</span>pct_in_migration,<span class="at">horizontal=</span><span class="cn">TRUE</span>, <span class="at">main =</span> <span class="st">"In migration"</span>, <span class="at">xlab=</span><span class="st">'Percentage'</span>, <span class="at">col =</span> <span class="st">"gold"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="02.ExploratoryDataAnalysis_files/figure-html/unnamed-chunk-42-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="02.ExploratoryDataAnalysis_files/figure-html/unnamed-chunk-42-2.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="02.ExploratoryDataAnalysis_files/figure-html/unnamed-chunk-42-3.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p><strong>Task 4</strong> Write codes to summary the counts of MPs in each gender (this is in the <code>mp_gender</code>variable), presenting the table with percentage and showing the barplot.</p>
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code>  mp_gender   n  pct
+1    Female 263 40.5
+2      Male 387 59.5</code></pre>
+</div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
@@ -885,41 +900,9 @@ Projected CRS: OSGB36 / British National Grid</code></pre>
 </figure>
 </div>
 </div>
-<div class="sourceCode cell-code" id="cb58"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb58-1"><a href="#cb58-1" aria-hidden="true" tabindex="-1"></a><span class="fu">boxplot</span>(pc_data<span class="sc">$</span>pct_UK_born ,<span class="at">horizontal=</span><span class="cn">TRUE</span>, <span class="at">main =</span> <span class="st">"UK born"</span>, <span class="at">xlab=</span><span class="st">'Percentage'</span>, <span class="at">col =</span> <span class="st">"pink"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="02.ExploratoryDataAnalysis_files/figure-html/unnamed-chunk-43-2.png" class="img-fluid figure-img" width="672"></p>
-</figure>
-</div>
-</div>
-<div class="sourceCode cell-code" id="cb59"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb59-1"><a href="#cb59-1" aria-hidden="true" tabindex="-1"></a><span class="fu">boxplot</span>(pc_data<span class="sc">$</span>pct_owned,<span class="at">horizontal=</span><span class="cn">TRUE</span>, <span class="at">main =</span> <span class="st">"Owning house upright"</span>, <span class="at">xlab=</span><span class="st">'Percentage'</span>, <span class="at">col =</span> <span class="st">"lightblue"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="02.ExploratoryDataAnalysis_files/figure-html/unnamed-chunk-43-3.png" class="img-fluid figure-img" width="672"></p>
-</figure>
-</div>
-</div>
-</div>
-<p><strong>Task 4</strong> Write codes to summary the counts of MPs in each gender (this is in the <code>mp_gender</code>variable), presenting the table with percentage and showing the barplot.</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb60"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb60-1"><a href="#cb60-1" aria-hidden="true" tabindex="-1"></a>tab <span class="ot">=</span> pc_data <span class="sc">%&gt;%</span> </span>
-<span id="cb60-2"><a href="#cb60-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">count</span>(mp_gender) <span class="sc">%&gt;%</span> </span>
-<span id="cb60-3"><a href="#cb60-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">pct =</span> <span class="fu">round</span>(n<span class="sc">/</span><span class="fu">sum</span>(n)<span class="sc">*</span><span class="dv">100</span>,<span class="dv">1</span>))</span>
-<span id="cb60-4"><a href="#cb60-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb60-5"><a href="#cb60-5" aria-hidden="true" tabindex="-1"></a><span class="fu">barplot</span>(tab<span class="sc">$</span>n)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="02.ExploratoryDataAnalysis_files/figure-html/unnamed-chunk-44-1.png" class="img-fluid figure-img" width="672"></p>
-</figure>
-</div>
-</div>
 </div>
 <p><strong>Task 5</strong> Cross tabulation <code>region_name</code> to <code>mp_gender</code> by using the newly created <code>pc_map_new</code> dataset, which joined by the constituency boundary and election dataset.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb61"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb61-1"><a href="#cb61-1" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(pc_map_new<span class="sc">$</span>region_name, pc_map_new<span class="sc">$</span>mp_gender)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>                          
                            Female Male
@@ -939,11 +922,10 @@ Projected CRS: OSGB36 / British National Grid</code></pre>
 </div>
 <p><strong>Task 6</strong> Compare between <code>crime_rate</code> with the <code>pct_social_rented</code> in constituency election dataset. What pattern you can learn from your boxplot?</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb63"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb63-1"><a href="#cb63-1" aria-hidden="true" tabindex="-1"></a><span class="fu">boxplot</span>(pct_social_rented <span class="sc">~</span> crime_rate , <span class="at">data =</span> pc_data)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="02.ExploratoryDataAnalysis_files/figure-html/unnamed-chunk-46-1.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="02.ExploratoryDataAnalysis_files/figure-html/unnamed-chunk-45-1.png" class="img-fluid figure-img" width="672"></p>
 </figure>
 </div>
 </div>

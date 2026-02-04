@@ -1,5 +1,5 @@
 ---
-title: "02.Exploratory Data Analysis - UK Election"
+title: "Lab: Exploratory Data Analysis - UK Election"
 author: "Zi Ye"
 date: "`r Sys.Date()`"
 output: html_document
@@ -7,7 +7,7 @@ output: html_document
           fig_height=8
 ---
 
-# **Overview**
+## **Overview**
 
 This week's practical session will draw upon the UK 2024 constituency election dataset. We will revisit some libraries and functions we have used last week, but also learn to do our first exploratory data analysis by foundmental R coding. We will do:
 
@@ -21,7 +21,7 @@ This week's practical session will draw upon the UK 2024 constituency election d
 
 You may wish to recap this week's lecture: [Lecture 02.pptx](https://canvas.liverpool.ac.uk/courses/85565/files/folder/Stats%20Block/Week%202?preview=13571700)
 
-# Clear the decks
+## Clear the decks
 
 -   For this Week 2 session, create a sub-folder called `Week2` in your `ENVS162` folder on your M-Drive.
 
@@ -37,21 +37,7 @@ rm(list = ls())
 
 This command will clear RStudio’s memory, removing any data objects that you have previously created.
 
-# Install packages
-
-The `scales` package provides the command `percentage( )` which we can easily convert a number to its percentage format, and also specify how many digits we wish to keep.
-
-If you are using a University PC Teaching Centre computer the `scales` package should come pre-installed.
-
-However, if you are using your own computer you will need to install this package (once only) by running the following line of code in the *Console* window in RStudio:
-
-```{r}
-#| eval: false
-#| include: false
-install.packages("scales")
-```
-
-# Open libraries
+## Open libraries
 
 In Week 1 we have installed essential R package `tidyverse`, `sf`, and `tmap`. Remember if any package has been installed, then we don't need to re-install them. Instead, we use library() command to import and use them.
 
@@ -67,9 +53,9 @@ library(tmap)
 
 If R returns [Error: there is no package called '\*\*\*']{.underline}. Then it means that the package '\*\*\* ' has not been installed in the PC you current use. Therefore you need to install them first. Switch back to Week 1 instruction - Getting set up with RStudio - Your first R code - Package part to refresh yourself how to do this.
 
-# Parliamentary Constituency Data
+## Parliamentary Constituency Data
 
-## Load the dataset
+### Load the dataset
 
 In 2024 the UK held a general election. Download the file ***uk_constituencies_2024.csv*** from our [Canvas module page Week 2](https://canvas.liverpool.ac.uk/courses/85565). Read in the dataset exactly in the same way as we did in Week 1 - insert the below code line and run it:
 
@@ -99,7 +85,7 @@ The *pc_data* dataset should appear in your RStudio Environment Pane on the uppe
 
     *Source*: Income data from Annual Survey of Hours and Earnings (ASHE), collecgted by the Office for National Statistics. https://www.nomisweb.co.uk/datasets/asher
 
-## Familiar with the dataset and variable types
+### Familiar with the dataset and variable types
 
 In the *pc_data* dataset each row represents a different UK Parliamentary Constituency. Use the `View()` command to familiarise yourself with the variables contained in the dataset.
 
@@ -147,9 +133,9 @@ The *pc_data* dataset contains three basic sets of information about each Parlia
 
 -   **2024 election results** ranging from the winning MP and party through to the size of the electorate and vote turnout, and the share of votes received by each party
 
-## Exploratory Data Analysis (EDA)
+### Exploratory Data Analysis (EDA)
 
-### Numeric variable
+#### Numeric variable
 
 You can use the *pc_data* dataset to extract some headline results from the 2024 General Election. Starting with the simplest case, the distribution of a single numeric variable whether continuous or count based can be examined numerically using the `summary` function.
 
@@ -256,7 +242,7 @@ Now, you should be able to compare how the two kinds of distribution are shown i
 In summary, numeric variable distributions, of counts and continuous data, should be investigated as an initial step in any data analysis. There are a number of metrics and graphical functions (tools) for doing this including `summary()`, `hist()` `plot(density())` and `boxplot()`.
 :::
 
-### Categorical variable
+#### Categorical variable
 
 Some of the character variables could be considered as **categorical**, representing a grouping or classification of some kind, as described above. In these cases we are interested in the count or frequency of each class in the classification, which we can examine numerically or graphically.
 
@@ -351,7 +337,7 @@ tab_sorted
 
 Then, using `barplot()`, we plot the top 8 rows of `tab_sorted`, with `las = 2` used to rotate the axis labels so they are displayed vertically and remain readable.
 
-### Categorical to categorical: cross-tabulation
+#### Categorical to categorical: cross-tabulation
 
 In EDA, it is also important to understand the relationship between variables. Now it is the time to do the variable interactions. Let's first start with interact one categorical variable to another categorical variable. In many situations, it can be called cross-tabulation.
 
@@ -371,7 +357,7 @@ table(pc_data$crime_rate, pc_data$first_party)
 
 What insights now you can learn from these cross-tabulation? We will examine methods for determining whether the cross-tabulated counts and their differences are significant (i.e. would not be expected by chance) in later weeks.
 
-### Continuous to categorical: compare between groups
+#### Continuous to categorical: compare between groups
 
 ```{r}
 boxplot(median_house_price ~ first_party, data = pc_data, las = 2, xlab="",ylab="",main="Compare constituency median house price vs. first party")
@@ -387,11 +373,11 @@ We can do this numerically as well, but it is a bit more convoluted using the `
 with(pc_data, aggregate(pct_White_British, by=list(mp_gender) , FUN=summary))
 ```
 
-# Mapping the election results
+## Make your own map for the election result
 
 Having established how many MPs and votes each party got, it is time to look at the geography of the election outcome. To do this we need to link a set of digital boundaries for Parliamentary Constituencies with our pc_data dataset.
 
-## Read in Parliamentary Constituency Boundaries
+### Read in Parliamentary Constituency Boundaries
 
 Digital boundaries for the Parliamentary Constituencies used in the 2024 General Election can be found in the files *uk_constituencies_2024.geojson*. Both of these boundary datasets were sourced from https://automaticknowledge.org/wpc-hex/, and them simplified to make them quicker to plot.
 
@@ -401,7 +387,7 @@ Download the two digital boundary files from the Week 3 folder in CANVAS and sav
 pc_map <- st_read("uk_constituencies_2024.gpkg") #read the boundaries as a spatial dataset by using the st_read() command from library(sf)
 ```
 
-## Inspect the spatial dataset
+### Inspect the spatial dataset
 
 Use the `names()` or `str()` to know the contents, or as above use `View()` to open and check. Check by yourself the number of rows and columns of the map data:
 
@@ -432,7 +418,7 @@ tm_shape(pc_map) + #map a spatial data
   
 ```
 
-## Link boundaries to pc_data 
+### Link boundaries to pc_data 
 
 In order to map the election results contained in the `pc_data` dataset, we need to join it to a set of digital boundaries using the `left_join( )` command - you should have already familiar with this from Week 1.
 
@@ -446,9 +432,9 @@ pc_map_new <- left_join(pc_map, pc_data, by = c("gss_code", "pc_name")) #left jo
 
 As ever, having created a new dataset, use the `dim( )`, `str( )`, `names( )` and `View( )` commands to check its contents are as you would expect.
 
-# Map the election results
+### Map the election result
 
-Having joined the *pc_data* dataset with a set of digital boundaries, it becomes a simple matter to map the election results using the mapping skills covered in Week 1:
+Having joined the `pc_data` dataset with a set of digital boundaries, it becomes a simple matter to map the election results using the mapping skills covered in Week 1:
 
 ```{r}
 tm_shape(pc_map_new) + #map a spatial data
@@ -475,7 +461,7 @@ tmap_mode("plot")
 
 Now what pattern you can observe from the interactive map you just made?
 
-# Formative tasks
+## Formative tasks
 
 **Task 1** How many columns and rows in the UK constituency boundary dataset?
 
@@ -518,6 +504,8 @@ abline(v = mean_val+sdev, col = "tan", lwd = 3, lty = 2)
 **Task 4** Write codes to create boxplots for `pct_in_migration`, `pct_UK_born` and `pct_owned` (owning upright household):
 
 ```{r}
+#| echo: false
+
 boxplot(pc_data$pct_in_migration,horizontal=TRUE, main = "In migration", xlab='Percentage', col = "gold")
 boxplot(pc_data$pct_UK_born ,horizontal=TRUE, main = "UK born", xlab='Percentage', col = "pink")
 boxplot(pc_data$pct_owned,horizontal=TRUE, main = "Owning house upright", xlab='Percentage', col = "lightblue")
@@ -526,21 +514,31 @@ boxplot(pc_data$pct_owned,horizontal=TRUE, main = "Owning house upright", xlab='
 **Task 4** Write codes to summary the counts of MPs in each gender (this is in the `mp_gender`variable), presenting the table with percentage and showing the barplot.
 
 ```{r}
-tab = pc_data %>% 
+#| echo: false
+
+
+pc_data %>% 
   count(mp_gender) %>% 
   mutate(pct = round(n/sum(n)*100,1))
 
-barplot(tab$n)
+tab = table(pc_data$mp_gender)
+
+barplot(tab,main = "MP gender in constituency")
 ```
 
 **Task 5** Cross tabulation `region_name` to `mp_gender` by using the newly created `pc_map_new` dataset, which joined by the constituency boundary and election dataset.
 
 ```{r}
+#| echo: false
+
 table(pc_map_new$region_name, pc_map_new$mp_gender)
 ```
 
 **Task 6** Compare between `crime_rate` with the `pct_social_rented` in constituency election dataset. What pattern you can learn from your boxplot?
 
 ```{r}
+#| echo: false
+
+
 boxplot(pct_social_rented ~ crime_rate , data = pc_data)
 ```

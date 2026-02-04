@@ -451,11 +451,11 @@ tm_shape(pc_map) + #map a spatial data
 or we can make a colorful map by using different color for different regions:
 
 ```{r}
-#make a map of constituency and color each polygon based on "region_name"
+#make a map of constituency and color each polygon based on "region_name", using different color from palette "Set3" for each "region_name"
 
 tm_shape(pc_map) + #map a spatial data
-  tm_polygons("region_name")  #map it as polygons, use different colors by region
-  
+  tm_polygons("region_name",
+              palette="Set3")  
 ```
 
 ### Link boundaries to pc_data
@@ -483,11 +483,11 @@ Having joined the `pc_data` dataset with a set of digital boundaries, it becom
 #| message: false
 #| warning: false
 
-#make a map for the pc_map_new, fill the colors for each polygon based on "first_party", using colors from palette "Set3"
+#make a map for the pc_map_new, fill the colors for each polygon based on "first_party", using colors from palette "Paired"
 
 tm_shape(pc_map_new) + #map a spatial data
   tm_polygons(fill = "first_party", 
-              palette="Set3")  #map it as polygons, use different colors by first_party
+              fill.scale = tm_scale(values="Paired"))  #map it as polygons, use different colors by first_party
 ```
 
 This time, let's change the mode of tmap by using `tmap_mode()` from default "plot" to "view" for an interactive map:

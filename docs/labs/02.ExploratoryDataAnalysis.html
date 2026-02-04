@@ -790,10 +790,26 @@ Projected CRS: OSGB36 / British National Grid</code></pre>
 </div>
 <p>or we can make a colorful map by using different color for different regions:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb47"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb47-1"><a href="#cb47-1" aria-hidden="true" tabindex="-1"></a><span class="co">#make a map of constituency and color each polygon based on "region_name"</span></span>
+<div class="sourceCode cell-code" id="cb47"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb47-1"><a href="#cb47-1" aria-hidden="true" tabindex="-1"></a><span class="co">#make a map of constituency and color each polygon based on "region_name", using different color from palette "Set3" for each "region_name"</span></span>
 <span id="cb47-2"><a href="#cb47-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb47-3"><a href="#cb47-3" aria-hidden="true" tabindex="-1"></a><span class="fu">tm_shape</span>(pc_map) <span class="sc">+</span> <span class="co">#map a spatial data</span></span>
-<span id="cb47-4"><a href="#cb47-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tm_polygons</span>(<span class="st">"region_name"</span>)  <span class="co">#map it as polygons, use different colors by region</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb47-4"><a href="#cb47-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tm_polygons</span>(<span class="st">"region_name"</span>,</span>
+<span id="cb47-5"><a href="#cb47-5" aria-hidden="true" tabindex="-1"></a>              <span class="at">palette=</span><span class="st">"Set3"</span>)  </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code></code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>── tmap v3 code detected ───────────────────────────────────────────────────────</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>[v3-&gt;v4] `tm_tm_polygons()`: migrate the argument(s) related to the scale of
+the visual variable `fill` namely 'palette' (rename to 'values') to fill.scale
+= tm_scale(&lt;HERE&gt;).
+[cols4all] color palettes: use palettes from the R package cols4all. Run
+`cols4all::c4a_gui()` to explore them. The old palette name "Set3" is named
+"brewer.set3"
+Multiple palettes called "set3" found: "brewer.set3", "hcl.set3". The first one, "brewer.set3", is returned.</code></pre>
+</div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
@@ -809,9 +825,9 @@ Projected CRS: OSGB36 / British National Grid</code></pre>
 <p>In your inspection of the <code>pc_data</code> and <code>pc_map</code> datasets, you may have noticed that they all have two variables in common. The first is a unique identifier for each Parliamentary Constituency: <code>gss_code</code>. The second is the name of the constituency: <code>pc_name</code>.</p>
 <p>We can use these two variables to first link the <code>pc_data</code> dataset to the standard map:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb48"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb48-1"><a href="#cb48-1" aria-hidden="true" tabindex="-1"></a><span class="co">#left join pc_data to pc_map, joining when gss_code from pc_map equals to pc_name in pc_data</span></span>
-<span id="cb48-2"><a href="#cb48-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb48-3"><a href="#cb48-3" aria-hidden="true" tabindex="-1"></a>pc_map_new <span class="ot">&lt;-</span> <span class="fu">left_join</span>(pc_map, pc_data, <span class="at">by =</span> <span class="fu">c</span>(<span class="st">"gss_code"</span>, <span class="st">"pc_name"</span>)) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb51"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb51-1"><a href="#cb51-1" aria-hidden="true" tabindex="-1"></a><span class="co">#left join pc_data to pc_map, joining when gss_code from pc_map equals to pc_name in pc_data</span></span>
+<span id="cb51-2"><a href="#cb51-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb51-3"><a href="#cb51-3" aria-hidden="true" tabindex="-1"></a>pc_map_new <span class="ot">&lt;-</span> <span class="fu">left_join</span>(pc_map, pc_data, <span class="at">by =</span> <span class="fu">c</span>(<span class="st">"gss_code"</span>, <span class="st">"pc_name"</span>)) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>As ever, having created a new dataset, use the&nbsp;<code>dim( )</code>,&nbsp;<code>str( )</code>,&nbsp;<code>names( )</code>&nbsp;and&nbsp;<code>View( )</code>&nbsp;commands to check its contents are as you would expect.</p>
 </section>
@@ -819,11 +835,11 @@ Projected CRS: OSGB36 / British National Grid</code></pre>
 <h3 data-number="2.5.4" class="anchored" data-anchor-id="map-the-election-result"><span class="header-section-number">2.5.4</span> Map the election result</h3>
 <p>Having joined the&nbsp;<code>pc_data</code>&nbsp;dataset with a set of digital boundaries, it becomes a simple matter to map the election results using the mapping skills covered in Week 1:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb49"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb49-1"><a href="#cb49-1" aria-hidden="true" tabindex="-1"></a><span class="co">#make a map for the pc_map_new, fill the colors for each polygon based on "first_party", using colors from palette "Set3"</span></span>
-<span id="cb49-2"><a href="#cb49-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb49-3"><a href="#cb49-3" aria-hidden="true" tabindex="-1"></a><span class="fu">tm_shape</span>(pc_map_new) <span class="sc">+</span> <span class="co">#map a spatial data</span></span>
-<span id="cb49-4"><a href="#cb49-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tm_polygons</span>(<span class="at">fill =</span> <span class="st">"first_party"</span>, </span>
-<span id="cb49-5"><a href="#cb49-5" aria-hidden="true" tabindex="-1"></a>              <span class="at">palette=</span><span class="st">"Set3"</span>)  <span class="co">#map it as polygons, use different colors by first_party</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb52"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb52-1"><a href="#cb52-1" aria-hidden="true" tabindex="-1"></a><span class="co">#make a map for the pc_map_new, fill the colors for each polygon based on "first_party", using colors from palette "Paired"</span></span>
+<span id="cb52-2"><a href="#cb52-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb52-3"><a href="#cb52-3" aria-hidden="true" tabindex="-1"></a><span class="fu">tm_shape</span>(pc_map_new) <span class="sc">+</span> <span class="co">#map a spatial data</span></span>
+<span id="cb52-4"><a href="#cb52-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tm_polygons</span>(<span class="at">fill =</span> <span class="st">"first_party"</span>, </span>
+<span id="cb52-5"><a href="#cb52-5" aria-hidden="true" tabindex="-1"></a>              <span class="at">fill.scale =</span> <span class="fu">tm_scale</span>(<span class="at">values=</span><span class="st">"Paired"</span>))  <span class="co">#map it as polygons, use different colors by first_party</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
@@ -834,17 +850,17 @@ Projected CRS: OSGB36 / British National Grid</code></pre>
 </div>
 <p>This time, let’s change the mode of tmap by using <code>tmap_mode()</code> from default “plot” to “view” for an interactive map:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb50"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb50-1"><a href="#cb50-1" aria-hidden="true" tabindex="-1"></a><span class="co"># make the map interactive</span></span>
-<span id="cb50-2"><a href="#cb50-2" aria-hidden="true" tabindex="-1"></a><span class="fu">tmap_mode</span>(<span class="st">"view"</span>)</span>
-<span id="cb50-3"><a href="#cb50-3" aria-hidden="true" tabindex="-1"></a><span class="fu">tm_shape</span>(pc_map_new) <span class="sc">+</span> </span>
-<span id="cb50-4"><a href="#cb50-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tm_polygons</span>(<span class="st">"first_party"</span>)  </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb53"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb53-1"><a href="#cb53-1" aria-hidden="true" tabindex="-1"></a><span class="co"># make the map interactive</span></span>
+<span id="cb53-2"><a href="#cb53-2" aria-hidden="true" tabindex="-1"></a><span class="fu">tmap_mode</span>(<span class="st">"view"</span>)</span>
+<span id="cb53-3"><a href="#cb53-3" aria-hidden="true" tabindex="-1"></a><span class="fu">tm_shape</span>(pc_map_new) <span class="sc">+</span> </span>
+<span id="cb53-4"><a href="#cb53-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tm_polygons</span>(<span class="st">"first_party"</span>)  </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>This time, in your right-bottom pane, the map should be plotted in Viewer tab as an interactive map. You can zoom in/out to explore your map, for a better view, you can click the <img src="images/clipboard-3717496441.png" class="img-fluid"> to open a webpage.</p>
 <p>You may need to switch <code>tmap_mode()</code> back to “plot” for a static map making:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb51"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb51-1"><a href="#cb51-1" aria-hidden="true" tabindex="-1"></a><span class="co">#switch back to plot static mode for later use</span></span>
-<span id="cb51-2"><a href="#cb51-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb51-3"><a href="#cb51-3" aria-hidden="true" tabindex="-1"></a><span class="fu">tmap_mode</span>(<span class="st">"plot"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb54"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb54-1"><a href="#cb54-1" aria-hidden="true" tabindex="-1"></a><span class="co">#switch back to plot static mode for later use</span></span>
+<span id="cb54-2"><a href="#cb54-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb54-3"><a href="#cb54-3" aria-hidden="true" tabindex="-1"></a><span class="fu">tmap_mode</span>(<span class="st">"plot"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>ℹ tmap mode set to "plot".</code></pre>
 </div>

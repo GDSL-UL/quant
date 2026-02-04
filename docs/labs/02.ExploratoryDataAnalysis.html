@@ -300,11 +300,24 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="familiar-with-the-dataset-and-variable-types" class="level3" data-number="2.4.2">
 <h3 data-number="2.4.2" class="anchored" data-anchor-id="familiar-with-the-dataset-and-variable-types"><span class="header-section-number">2.4.2</span> Familiar with the dataset and variable types</h3>
 <p>In the <em>pc_data</em> dataset each row represents a different UK Parliamentary Constituency. Use the <code>View()</code> command to familiarise yourself with the variables contained in the dataset.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">View</span>(pc_data)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
 <p>Use the <code>nrow( )</code> or <code>dim()</code> command to find out how many Parliamentary Constituencies (and therefore MPs) there are in the UK.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">nrow</span>(pc_data)</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="fu">dim</span>(pc_data)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
 <p>Whenever we try to understand the variables in one dataset, the first question to ask ourselves is: “are they <em>continuous</em> or <em>categorical</em> ?”</p>
 <p>Continuous variables are numeric measures of some quantity, such as a count or percentage or a precise value. E.g. number of valid votes; % of persons unemployed etc.</p>
 <p>In contrast, categorical variables simply group observations into categories or ranges. E.g. name of the winning party; age group etc.</p>
 <p>Explore the structure of the data table using the&nbsp;<code>str</code>&nbsp;function and have examined it by <code>head</code>&nbsp;functions.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(pc_data)</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(pc_data)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
 <p>We can see that we have numeric data in integers (<code>int</code>) form (these are counts or whole numbers) and continuous (<code>num</code>) form, and the character variables (text) have been converted to <code>factors</code>. For each of these data types we can generate numeric and visual summaries and we can also see how they interact with each other.</p>
 <p>The <em>pc_data</em> dataset contains three basic sets of information about each Parliamentary Constituency:</p>
 <ul>
@@ -319,16 +332,16 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h4 data-number="2.4.3.1" class="anchored" data-anchor-id="numeric-variable"><span class="header-section-number">2.4.3.1</span> Numeric variable</h4>
 <p>You can use the <em>pc_data</em> dataset to extract some headline results from the 2024 General Election. Starting with the simplest case, the distribution of a single numeric variable whether continuous or count based can be examined numerically using the <code>summary</code> function.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co">#valid votes in constituency</span></span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(pc_data<span class="sc">$</span>valid_votes)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co">#valid votes in constituency</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(pc_data<span class="sc">$</span>valid_votes)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
   13528   40397   44628   44322   48607   57744 </code></pre>
 </div>
 </div>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># percentage of White British in constituency</span></span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(pc_data<span class="sc">$</span>pct_White_British)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># percentage of White British in constituency</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(pc_data<span class="sc">$</span>pct_White_British)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
   8.937  71.534  86.208  78.006  92.843  98.664 </code></pre>
@@ -336,10 +349,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 <p>A visual approach is more intuitive. The code below plots histograms of the two variables, using the <code>hist</code> function. The logic under-pinning a histogram is that a continuous variable (in this case <em>valid_votes</em> and <em>pct_White_British</em>) is temporarily regrouped into categories, using an equal-interval approach. The number of observations (in this case, constituencies) that fall into each equal-interval category then determine the height of each column in the histogram.The comments after each line shall inform you what the <code>main</code> and <code>xlab</code> in the function mean:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># histograms</span></span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(pc_data<span class="sc">$</span>valid_votes, </span>
-<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>     <span class="at">main =</span> <span class="st">"Valid votes in constituency"</span>, <span class="co">#change chart title</span></span>
-<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>     <span class="at">xlab =</span> <span class="st">"Votes"</span>)     <span class="co">#change x axis label              </span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co"># histograms</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(pc_data<span class="sc">$</span>valid_votes, </span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>     <span class="at">main =</span> <span class="st">"Valid votes in constituency"</span>, <span class="co">#change chart title</span></span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>     <span class="at">xlab =</span> <span class="st">"Votes"</span>)     <span class="co">#change x axis label              </span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
@@ -349,10 +362,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(pc_data<span class="sc">$</span>pct_White_British, </span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>     <span class="at">main =</span> <span class="st">"Histogram of % White British in constituency"</span>, </span>
-<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>     <span class="at">xlab =</span> <span class="st">"Percentage"</span>, </span>
-<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>     <span class="at">col =</span> <span class="st">"dodgerblue"</span>)   <span class="co">#change bar color to dodgerblue</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(pc_data<span class="sc">$</span>pct_White_British, </span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>     <span class="at">main =</span> <span class="st">"Histogram of % White British in constituency"</span>, </span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>     <span class="at">xlab =</span> <span class="st">"Percentage"</span>, </span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>     <span class="at">col =</span> <span class="st">"dodgerblue"</span>)   <span class="co">#change bar color to dodgerblue</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
@@ -365,7 +378,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>We can examine the how these distributions relate to central tendencies (mean, median) and spread, using standard deviations for means and the IQR (Inter-Quartile Range) for medians.</p>
 <p>From the numeric summary above, the mean of&nbsp;<code>pc_data$valid_votes</code> is 44,322. We can determine the spread around this value by calculating the standard deviation for our sample , as is returned by the&nbsp;<code>sd</code>&nbsp;function in R:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sd</span>(pc_data<span class="sc">$</span>valid_votes)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sd</span>(pc_data<span class="sc">$</span>valid_votes)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 5697.665</code></pre>
 </div>
@@ -373,18 +386,18 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>For a normal distribution, about 68% of observations lie within 1 standard deviation of the mean, and about 95% lie within 2 standard deviations of the mean. So this suggest that 68% of the valid votes are within 5,698 votes of the mean of 44,322 votes, i.e.&nbsp;38,624 (44322-5698) and 50020 (44322+5698).</p>
 <p>We can augment the histogram of the <code>valid_votes</code> variable with this information, requesting R to increase the intervals to 50, and using the <code>abline</code> function to add lines to create the figure below:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co"># histogram</span></span>
-<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(pc_data<span class="sc">$</span>valid_votes, <span class="at">col=</span><span class="st">"forestgreen"</span>, <span class="at">main=</span><span class="st">"Valid votes (with mean and std dev)"</span>, </span>
-<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>     <span class="at">breaks =</span> <span class="dv">50</span>, <span class="at">xlab=</span><span class="st">"Votes"</span>)</span>
-<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a><span class="co"># calculate and add the mean</span></span>
-<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>mean_val <span class="ot">=</span> <span class="fu">mean</span>(pc_data<span class="sc">$</span>valid_votes)</span>
-<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(<span class="at">v =</span> mean_val, <span class="at">col =</span> <span class="st">"orange"</span>, <span class="at">lwd =</span> <span class="dv">3</span>)</span>
-<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a><span class="co"># calculate and add the standard deviation lines around the mean</span></span>
-<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a>sdev <span class="ot">=</span> <span class="fu">sd</span>(pc_data<span class="sc">$</span>valid_votes)</span>
-<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a><span class="co"># minus 1 sd</span></span>
-<span id="cb12-10"><a href="#cb12-10" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(<span class="at">v =</span> mean_val<span class="sc">-</span>sdev, <span class="at">col =</span> <span class="st">"red"</span>, <span class="at">lwd =</span> <span class="dv">3</span>, <span class="at">lty =</span> <span class="dv">2</span>)</span>
-<span id="cb12-11"><a href="#cb12-11" aria-hidden="true" tabindex="-1"></a><span class="co"># plus 1 sd</span></span>
-<span id="cb12-12"><a href="#cb12-12" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(<span class="at">v =</span> mean_val<span class="sc">+</span>sdev, <span class="at">col =</span> <span class="st">"red"</span>, <span class="at">lwd =</span> <span class="dv">3</span>, <span class="at">lty =</span> <span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="co"># histogram</span></span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(pc_data<span class="sc">$</span>valid_votes, <span class="at">col=</span><span class="st">"forestgreen"</span>, <span class="at">main=</span><span class="st">"Valid votes (with mean and std dev)"</span>, </span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>     <span class="at">breaks =</span> <span class="dv">50</span>, <span class="at">xlab=</span><span class="st">"Votes"</span>)</span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a><span class="co"># calculate and add the mean</span></span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a>mean_val <span class="ot">=</span> <span class="fu">mean</span>(pc_data<span class="sc">$</span>valid_votes)</span>
+<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(<span class="at">v =</span> mean_val, <span class="at">col =</span> <span class="st">"orange"</span>, <span class="at">lwd =</span> <span class="dv">3</span>)</span>
+<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a><span class="co"># calculate and add the standard deviation lines around the mean</span></span>
+<span id="cb15-8"><a href="#cb15-8" aria-hidden="true" tabindex="-1"></a>sdev <span class="ot">=</span> <span class="fu">sd</span>(pc_data<span class="sc">$</span>valid_votes)</span>
+<span id="cb15-9"><a href="#cb15-9" aria-hidden="true" tabindex="-1"></a><span class="co"># minus 1 sd</span></span>
+<span id="cb15-10"><a href="#cb15-10" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(<span class="at">v =</span> mean_val<span class="sc">-</span>sdev, <span class="at">col =</span> <span class="st">"red"</span>, <span class="at">lwd =</span> <span class="dv">3</span>, <span class="at">lty =</span> <span class="dv">2</span>)</span>
+<span id="cb15-11"><a href="#cb15-11" aria-hidden="true" tabindex="-1"></a><span class="co"># plus 1 sd</span></span>
+<span id="cb15-12"><a href="#cb15-12" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(<span class="at">v =</span> mean_val<span class="sc">+</span>sdev, <span class="at">col =</span> <span class="st">"red"</span>, <span class="at">lwd =</span> <span class="dv">3</span>, <span class="at">lty =</span> <span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
@@ -396,7 +409,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>This histogram show the variable <code>valid_votes</code> with the orange solid line as the mean, and dashed red line as the standard deviation. Note that in the call to <code>abline</code> above, note the specification of different line types (lty) and line widths (<code>lwd</code>). Later on, you could explore these as described here.</p>
 <p>We can also use density curve to present the variable distribution:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(<span class="fu">density</span>(pc_data<span class="sc">$</span>valid_votes), <span class="at">main =</span> <span class="st">"Valid votes"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(<span class="fu">density</span>(pc_data<span class="sc">$</span>valid_votes), </span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>     <span class="at">main =</span> <span class="st">"Valid votes"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
@@ -406,7 +420,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(<span class="fu">density</span>(pc_data<span class="sc">$</span>pct_White_British), <span class="at">main =</span> <span class="st">"% of White British in Constituency"</span>, <span class="at">col=</span><span class="st">"salmon"</span>, <span class="at">lwd=</span><span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(<span class="fu">density</span>(pc_data<span class="sc">$</span>pct_White_British), </span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>     <span class="at">main =</span> <span class="st">"% of White British in Constituency"</span>, </span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>     <span class="at">col=</span><span class="st">"salmon"</span>, </span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a>     <span class="at">lwd=</span><span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
@@ -420,7 +437,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p><img src="images/clipboard-2399852177.png" class="img-fluid" width="901"></p>
 <p>Now let’s check out the boxplots of these two variables:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="fu">boxplot</span>(pc_data<span class="sc">$</span>valid_votes,<span class="at">horizontal=</span><span class="cn">TRUE</span>, <span class="at">main =</span> <span class="st">"Valid votes"</span>, <span class="at">xlab=</span><span class="st">'Votes'</span>, <span class="at">col =</span> <span class="st">"gold"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="fu">boxplot</span>(pc_data<span class="sc">$</span>valid_votes,</span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>        <span class="at">horizontal=</span><span class="cn">TRUE</span>, </span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>        <span class="at">main =</span> <span class="st">"Valid votes"</span>, </span>
+<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a>        <span class="at">xlab=</span><span class="st">'Votes'</span>, </span>
+<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a>        <span class="at">col =</span> <span class="st">"gold"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
@@ -430,7 +451,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="fu">boxplot</span>(pc_data<span class="sc">$</span>pct_White_British,<span class="at">horizontal=</span><span class="cn">TRUE</span>, <span class="at">main =</span> <span class="st">"% of White British"</span>, <span class="at">xlab=</span><span class="st">'Percentage'</span>, <span class="at">col =</span> <span class="st">"hotpink"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="fu">boxplot</span>(pc_data<span class="sc">$</span>pct_White_British,</span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>        <span class="at">horizontal=</span><span class="cn">TRUE</span>, </span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>        <span class="at">main =</span> <span class="st">"% of White British"</span>, </span>
+<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a>        <span class="at">xlab=</span><span class="st">'Percentage'</span>, </span>
+<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a>        <span class="at">col =</span> <span class="st">"hotpink"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
@@ -460,6 +485,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>The simplest way to examine classes is to put them into a table of counts. The&nbsp;<code>table</code>&nbsp;function is very useful and in the code below it is applied to one of the categorical variables in the survey data:</p>
 <p>So firstly we use the <code>table()</code> command to find the number of MPs elected to each Party. [Hint: use the <em>first_party</em> variable].</p>
 <div class="cell">
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(pc_data<span class="sc">$</span>first_party)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
        Alliance    Conservative             DUP           Green     Independent 
@@ -472,7 +498,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 <p>These can be made a bit more tabular in format with the&nbsp;<code>data.frame</code>&nbsp;function, which takes the&nbsp;<code>table</code>&nbsp;operation as its input:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="fu">data.frame</span>(<span class="fu">table</span>(pc_data<span class="sc">$</span>first_party))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="fu">data.frame</span>(<span class="fu">table</span>(pc_data<span class="sc">$</span>first_party))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>              Var1 Freq
 1         Alliance    1
@@ -494,9 +520,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 <p>However, if we not only care about the count of MPs but also the proportion? Then we can make a good use of our tidyverse library to run the following code line.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>pc_data <span class="sc">%&gt;%</span></span>
-<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">count</span>(first_party) <span class="sc">%&gt;%</span></span>
-<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">pct =</span> <span class="fu">round</span>(n <span class="sc">/</span> <span class="fu">sum</span>(n) <span class="sc">*</span> <span class="dv">100</span>,<span class="dv">1</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>pc_data <span class="sc">%&gt;%</span></span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">count</span>(first_party) <span class="sc">%&gt;%</span></span>
+<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">pct =</span> <span class="fu">round</span>(n <span class="sc">/</span> <span class="fu">sum</span>(n) <span class="sc">*</span> <span class="dv">100</span>,<span class="dv">1</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>       first_party   n  pct
 1         Alliance   1  0.2
@@ -523,11 +549,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>Therefore, when you run the code, you will see a table showing as three column: first part name, a new column automatically named as <code>n</code> by R after the <code>count()</code> function, and count of the party MPs, and a new column called <code>pct</code> and with values calculated by <code>n / sum(n) * 100</code>. We use <code>round()</code> function to keep only 1 digits for the <code>pct</code>.</p>
 <p>We can also improve the code to make a better table presentation. You may find the comment text after each code line would be useful to understand what R has done to the <em>pc_data</em>.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>pc_data <span class="sc">%&gt;%</span></span>
-<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">count</span>(first_party) <span class="sc">%&gt;%</span></span>
-<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">pct =</span> <span class="fu">round</span>(n <span class="sc">/</span> <span class="fu">sum</span>(n) <span class="sc">*</span> <span class="dv">100</span>,<span class="dv">1</span>)) <span class="sc">%&gt;%</span> </span>
-<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(n)) <span class="sc">%&gt;%</span>   <span class="co">#sort the table by number of MPs from more to less</span></span>
-<span id="cb22-5"><a href="#cb22-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">setNames</span>(<span class="fu">c</span>(<span class="st">"First Party"</span>, <span class="st">"Number of MPs"</span>, <span class="st">"% of MPs"</span>))  <span class="co">#rename table column names</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Calculate the frequency and percentage of different categories for "first_party"</span></span>
+<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a>pc_data <span class="sc">%&gt;%</span></span>
+<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">count</span>(first_party) <span class="sc">%&gt;%</span></span>
+<span id="cb26-4"><a href="#cb26-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">pct =</span> <span class="fu">round</span>(n <span class="sc">/</span> <span class="fu">sum</span>(n) <span class="sc">*</span> <span class="dv">100</span>,<span class="dv">1</span>)) <span class="sc">%&gt;%</span> </span>
+<span id="cb26-5"><a href="#cb26-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(n)) <span class="sc">%&gt;%</span>   <span class="co">#sort the table by number of MPs from more to less</span></span>
+<span id="cb26-6"><a href="#cb26-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">setNames</span>(<span class="fu">c</span>(<span class="st">"First Party"</span>, <span class="st">"Number of MPs"</span>, <span class="st">"% of MPs"</span>))  <span class="co">#rename table column names</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>       First Party Number of MPs % of MPs
 1           Labour           411     63.2
@@ -556,11 +583,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </ol>
 <p>Similarly, we can use the categorical variable <code>crime_rate</code> in the <code>pc_data</code> dataset to understand the crime status of all the constituencies:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>pc_data <span class="sc">%&gt;%</span></span>
-<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">count</span>(crime_rate) <span class="sc">%&gt;%</span> </span>
-<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">pct =</span> <span class="fu">round</span>(n <span class="sc">/</span> <span class="fu">sum</span>(n)<span class="sc">*</span><span class="dv">100</span>, <span class="dv">1</span>))  <span class="sc">%&gt;%</span> </span>
-<span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(n)) <span class="sc">%&gt;%</span></span>
-<span id="cb24-5"><a href="#cb24-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">setNames</span>(<span class="fu">c</span>(<span class="st">"Crime rate"</span>, <span class="st">"Number of Constituency"</span>, <span class="st">"% of Constituency"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Calculate the frequency and percentage of different categories for "crime_rate"</span></span>
+<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a>pc_data <span class="sc">%&gt;%</span></span>
+<span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">count</span>(crime_rate) <span class="sc">%&gt;%</span> </span>
+<span id="cb28-4"><a href="#cb28-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">pct =</span> <span class="fu">round</span>(n <span class="sc">/</span> <span class="fu">sum</span>(n)<span class="sc">*</span><span class="dv">100</span>, <span class="dv">1</span>))  <span class="sc">%&gt;%</span> </span>
+<span id="cb28-5"><a href="#cb28-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(n)) <span class="sc">%&gt;%</span></span>
+<span id="cb28-6"><a href="#cb28-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">setNames</span>(<span class="fu">c</span>(<span class="st">"Crime rate"</span>, <span class="st">"Number of Constituency"</span>, <span class="st">"% of Constituency"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>   Crime rate Number of Constituency % of Constituency
 1 Much higher                    118              18.2
@@ -574,8 +602,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>What you have learnt from the result table? It seems that there is a quite equally distribution across the five categories of crime rate, although there are 11.5% of the constituency are missing their crime rates.</p>
 <p>Categorical data can be visualised using bar plots of the tabularised data. The code below does this by creating a table, changing the names of the table and passing that to the&nbsp;<code>barplot</code>&nbsp;function:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>tab <span class="ot">=</span> <span class="fu">table</span>(pc_data<span class="sc">$</span>first_party)</span>
-<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a><span class="fu">barplot</span>(tab)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="co">#calculate the frequency of first party and save the result in table 'tab', present tab as a barplot</span></span>
+<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a>tab <span class="ot">=</span> <span class="fu">table</span>(pc_data<span class="sc">$</span>first_party)</span>
+<span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a><span class="fu">barplot</span>(tab)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
@@ -586,8 +615,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 <p>It is very simple to get the barplot from the result of table(). But it may need some improvement. As you may noticed, there are many bars have rarely no values, and too crowd x axis labels makes some bar label can’t able to show. Therefore, we probably don’t need to show all the parties, but only the top 8 in terms of their winning constituencies.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>tab_sorted <span class="ot">&lt;-</span> <span class="fu">sort</span>(tab,<span class="at">decreasing =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a><span class="fu">barplot</span>(<span class="fu">head</span>(tab_sorted,<span class="dv">8</span>),<span class="at">las =</span> <span class="dv">2</span>, <span class="at">main =</span> <span class="st">"Top 8 of first party"</span>) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="co">#sorted tab by the frequency from highest to lowest, present the top 8 of the sorted tab </span></span>
+<span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a>tab_sorted <span class="ot">&lt;-</span> <span class="fu">sort</span>(tab,<span class="at">decreasing =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb31-3"><a href="#cb31-3" aria-hidden="true" tabindex="-1"></a><span class="fu">barplot</span>(<span class="fu">head</span>(tab_sorted,<span class="dv">8</span>),<span class="at">las =</span> <span class="dv">2</span>, <span class="at">main =</span> <span class="st">"Top 8 of first party"</span>) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
@@ -598,7 +628,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 <p>In this code chunk, we first use sort() to reorder the tab ranking the parties based on the counts from highest to lowest. You may ask R to show how tab_sorted looks like:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a>tab_sorted</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="co">#show tab_sorted</span></span>
+<span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a>tab_sorted</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
          Labour    Conservative        Lib Dems             SNP       Sinn Fein 
@@ -617,7 +648,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>The relationship between two sets of classes or categories can be explored using correspondence tables created by the&nbsp;<code>table</code>&nbsp;function. Here we can cross tabulate the two categorical variables that we have already familiar with: <code>first_party</code> and <code>crime_rate</code>:</p>
 <p>If we want to examine how the distribution of crime-rate categories varies for each first party. The question can be: for each political party, how are its wins distributed across different crime-rate levels?</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(pc_data<span class="sc">$</span>first_party, pc_data<span class="sc">$</span>crime_rate)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb34"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="co"># cross-tabulation first_party vs.crime_rate</span></span>
+<span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb34-3"><a href="#cb34-3" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(pc_data<span class="sc">$</span>first_party, pc_data<span class="sc">$</span>crime_rate)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>                 
                   Average Higher Lower Much higher Much lower
@@ -640,7 +673,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 <p>Conversely, we can also examine how the distribution of first parties varies across different crime-rate categories.The question this time is: for each crime-rate category, how are different parties distributed?</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(pc_data<span class="sc">$</span>crime_rate, pc_data<span class="sc">$</span>first_party)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb36"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="co"># cross-tabulation crime_rate vs first_party</span></span>
+<span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-3"><a href="#cb36-3" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(pc_data<span class="sc">$</span>crime_rate, pc_data<span class="sc">$</span>first_party)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>             
               Alliance Conservative DUP Green Independent Labour Lib Dems
@@ -669,8 +704,19 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="continuous-to-categorical-compare-between-groups" class="level4" data-number="2.4.3.4">
 <h4 data-number="2.4.3.4" class="anchored" data-anchor-id="continuous-to-categorical-compare-between-groups"><span class="header-section-number">2.4.3.4</span> Continuous to categorical: compare between groups</h4>
+<p>We may also be interested in the exploring differences and similarities in the continuous variables associated with for each categorical class. This can be done using multiple boxplots.</p>
+<p>If we want to make boxplots of each party by the value median house price of the constituencies who vote for this party as their first party:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb34"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="fu">boxplot</span>(median_house_price <span class="sc">~</span> first_party, <span class="at">data =</span> pc_data, <span class="at">las =</span> <span class="dv">2</span>, <span class="at">xlab=</span><span class="st">""</span>,<span class="at">ylab=</span><span class="st">""</span>,<span class="at">main=</span><span class="st">"Compare constituency median house price vs. first party"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb38"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a><span class="co">#create boxplots by median_house_price for each first_party</span></span>
+<span id="cb38-2"><a href="#cb38-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb38-3"><a href="#cb38-3" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mar =</span> <span class="fu">c</span>(<span class="dv">10</span>, <span class="dv">4</span>, <span class="dv">4</span>, <span class="dv">2</span>))  <span class="co"># increase the margin of the chart for each side: bottom, left, top, right</span></span>
+<span id="cb38-4"><a href="#cb38-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb38-5"><a href="#cb38-5" aria-hidden="true" tabindex="-1"></a><span class="fu">boxplot</span>(median_house_price <span class="sc">~</span> first_party, </span>
+<span id="cb38-6"><a href="#cb38-6" aria-hidden="true" tabindex="-1"></a>        <span class="at">data =</span> pc_data, </span>
+<span id="cb38-7"><a href="#cb38-7" aria-hidden="true" tabindex="-1"></a>        <span class="at">las =</span> <span class="dv">2</span>, <span class="co">#vertical present item label</span></span>
+<span id="cb38-8"><a href="#cb38-8" aria-hidden="true" tabindex="-1"></a>        <span class="at">xlab=</span><span class="st">""</span>, <span class="co">#no x axis label</span></span>
+<span id="cb38-9"><a href="#cb38-9" aria-hidden="true" tabindex="-1"></a>        <span class="at">ylab=</span><span class="st">""</span>, <span class="co">#no y axis label,</span></span>
+<span id="cb38-10"><a href="#cb38-10" aria-hidden="true" tabindex="-1"></a>        <span class="at">main=</span><span class="st">"Compare constituency median house price vs. first party"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
@@ -679,8 +725,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 </div>
+<p>If we want to explore the % of White British in the constituencies and compare the distribution between different MP genders. The code below shows that, compared with constituencies represented by male MPs, those with female MPs generally have a lower proportion of White British population. This distribution also exhibits clear skewness towards lower percentages of White British residents.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb35"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="fu">boxplot</span>(pct_White_British <span class="sc">~</span> mp_gender, <span class="at">data =</span> pc_data,<span class="at">col=</span><span class="fu">c</span>(<span class="st">"red"</span>, <span class="st">"yellow3"</span>), <span class="at">horizontal =</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb39"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a><span class="fu">boxplot</span>(pct_White_British <span class="sc">~</span> mp_gender, </span>
+<span id="cb39-2"><a href="#cb39-2" aria-hidden="true" tabindex="-1"></a>        <span class="at">data =</span> pc_data,<span class="at">col=</span><span class="fu">c</span>(<span class="st">"red"</span>, <span class="st">"yellow3"</span>), <span class="co">#specify bar colors</span></span>
+<span id="cb39-3"><a href="#cb39-3" aria-hidden="true" tabindex="-1"></a>        <span class="at">horizontal =</span> <span class="cn">TRUE</span>) <span class="co">#horizonal the boxplot</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
@@ -691,7 +740,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 <p>We can do this numerically as well, but it is a bit more convoluted using the&nbsp;<code>with</code>&nbsp;and&nbsp;<code>aggregate</code>&nbsp;functions:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb36"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="fu">with</span>(pc_data, <span class="fu">aggregate</span>(pct_White_British, <span class="at">by=</span><span class="fu">list</span>(mp_gender) , <span class="at">FUN=</span>summary))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb40"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a><span class="fu">with</span>(pc_data, <span class="fu">aggregate</span>(pct_White_British, <span class="at">by=</span><span class="fu">list</span>(mp_gender) , <span class="at">FUN=</span>summary))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>  Group.1    x.Min. x.1st Qu.  x.Median    x.Mean x.3rd Qu.    x.Max.
 1  Female 15.587153 65.775762 84.276710 75.207471 92.374361 98.663686
@@ -709,7 +758,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>Digital boundaries for the Parliamentary Constituencies used in the 2024 General Election can be found in the files <em>uk_constituencies_2024.geojson</em>. Both of these boundary datasets were sourced from https://automaticknowledge.org/wpc-hex/, and them simplified to make them quicker to plot.</p>
 <p>Download the two digital boundary files from the Week 3 folder in CANVAS and save them to the same folder as your Week 3 Quarto document.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb38"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a>pc_map <span class="ot">&lt;-</span> <span class="fu">st_read</span>(<span class="st">"uk_constituencies_2024.gpkg"</span>) <span class="co">#read the boundaries as a spatial dataset by using the st_read() command from library(sf)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb42"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a>pc_map <span class="ot">&lt;-</span> <span class="fu">st_read</span>(<span class="st">"uk_constituencies_2024.gpkg"</span>) <span class="co">#read the boundaries as a spatial dataset by using the st_read() command from library(sf)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Reading layer `uk_constituencies_2024' from data source 
   `C:\Users\ziye\Documents\GitHub\quant\labs\uk_constituencies_2024.gpkg' 
@@ -726,35 +775,23 @@ Projected CRS: OSGB36 / British National Grid</code></pre>
 <h3 data-number="2.5.2" class="anchored" data-anchor-id="inspect-the-spatial-dataset"><span class="header-section-number">2.5.2</span> Inspect the spatial dataset</h3>
 <p>Use the <code>names()</code> or <code>str()</code> to know the contents, or as above use <code>View()</code> to open and check. Check by yourself the number of rows and columns of the map data:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb40"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(pc_map)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>Classes 'sf' and 'data.frame':  650 obs. of  10 variables:
- $ gss_code   : chr  "E14001063" "E14001064" "E14001065" "E14001066" ...
- $ country    : chr  "England" "England" "England" "England" ...
- $ region_code: chr  "SE" "WM" "NW" "EM" ...
- $ region_name: chr  "South East" "West Midlands" "North West" "East Midlands" ...
- $ pc_code    : chr  "AHT" "ABH" "ASW" "ABV" ...
- $ pc_name    : chr  "Aldershot" "Aldridge-Brownhills" "Altrincham and Sale West" "Amber Valley" ...
- $ alt_name   : chr  NA NA NA NA ...
- $ type       : chr  "borough" "borough" "borough" "county" ...
- $ sq_km      : num  57.1 53.3 51 125 835 ...
- $ geom       :sfc_MULTIPOLYGON of length 650; first list element: List of 1
-  ..$ :List of 1
-  .. ..$ : num [1:41, 1:2] 485407 486150 486324 487606 487978 ...
-  ..- attr(*, "class")= chr [1:3] "XY" "MULTIPOLYGON" "sfg"
- - attr(*, "sf_column")= chr "geom"
- - attr(*, "agr")= Factor w/ 3 levels "constant","aggregate",..: NA NA NA NA NA NA NA NA NA
-  ..- attr(*, "names")= chr [1:9] "gss_code" "country" "region_code" "region_name" ...</code></pre>
-</div>
+<div class="sourceCode cell-code" id="cb44"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(pc_map)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb42"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a><span class="fu">View</span>(pc_map)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb45"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb45-1"><a href="#cb45-1" aria-hidden="true" tabindex="-1"></a><span class="fu">View</span>(pc_map)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>The <em>pc_map</em> dataset contains the standard set of Parliamentary Constituency boundaries:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb46"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb46-1"><a href="#cb46-1" aria-hidden="true" tabindex="-1"></a><span class="co">#make a map of constituency </span></span>
+<span id="cb46-2"><a href="#cb46-2" aria-hidden="true" tabindex="-1"></a><span class="fu">tm_shape</span>(pc_map) <span class="sc">+</span> <span class="co">#map a spatial data</span></span>
+<span id="cb46-3"><a href="#cb46-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tm_polygons</span>() <span class="co">#map it as polygons</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
 <p>or we can make a colorful map by using different color for different regions:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb43"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a><span class="fu">tm_shape</span>(pc_map) <span class="sc">+</span> <span class="co">#map a spatial data</span></span>
-<span id="cb43-2"><a href="#cb43-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tm_polygons</span>(<span class="st">"region_name"</span>)  <span class="co">#map it as polygons, use different colors by region</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb47"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb47-1"><a href="#cb47-1" aria-hidden="true" tabindex="-1"></a><span class="co">#make a map of constituency and color each polygon based on "region_name"</span></span>
+<span id="cb47-2"><a href="#cb47-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb47-3"><a href="#cb47-3" aria-hidden="true" tabindex="-1"></a><span class="fu">tm_shape</span>(pc_map) <span class="sc">+</span> <span class="co">#map a spatial data</span></span>
+<span id="cb47-4"><a href="#cb47-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tm_polygons</span>(<span class="st">"region_name"</span>)  <span class="co">#map it as polygons, use different colors by region</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
@@ -770,7 +807,9 @@ Projected CRS: OSGB36 / British National Grid</code></pre>
 <p>In your inspection of the <code>pc_data</code> and <code>pc_map</code> datasets, you may have noticed that they all have two variables in common. The first is a unique identifier for each Parliamentary Constituency: <code>gss_code</code>. The second is the name of the constituency: <code>pc_name</code>.</p>
 <p>We can use these two variables to first link the <code>pc_data</code> dataset to the standard map:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb44"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a>pc_map_new <span class="ot">&lt;-</span> <span class="fu">left_join</span>(pc_map, pc_data, <span class="at">by =</span> <span class="fu">c</span>(<span class="st">"gss_code"</span>, <span class="st">"pc_name"</span>)) <span class="co">#left join pc_data to pc_map, joining when gss_code from pc_map equals to pc_name in pc_data</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb48"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb48-1"><a href="#cb48-1" aria-hidden="true" tabindex="-1"></a><span class="co">#left join pc_data to pc_map, joining when gss_code from pc_map equals to pc_name in pc_data</span></span>
+<span id="cb48-2"><a href="#cb48-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb48-3"><a href="#cb48-3" aria-hidden="true" tabindex="-1"></a>pc_map_new <span class="ot">&lt;-</span> <span class="fu">left_join</span>(pc_map, pc_data, <span class="at">by =</span> <span class="fu">c</span>(<span class="st">"gss_code"</span>, <span class="st">"pc_name"</span>)) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>As ever, having created a new dataset, use the&nbsp;<code>dim( )</code>,&nbsp;<code>str( )</code>,&nbsp;<code>names( )</code>&nbsp;and&nbsp;<code>View( )</code>&nbsp;commands to check its contents are as you would expect.</p>
 </section>
@@ -778,9 +817,11 @@ Projected CRS: OSGB36 / British National Grid</code></pre>
 <h3 data-number="2.5.4" class="anchored" data-anchor-id="map-the-election-result"><span class="header-section-number">2.5.4</span> Map the election result</h3>
 <p>Having joined the&nbsp;<code>pc_data</code>&nbsp;dataset with a set of digital boundaries, it becomes a simple matter to map the election results using the mapping skills covered in Week 1:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb45"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb45-1"><a href="#cb45-1" aria-hidden="true" tabindex="-1"></a><span class="fu">tm_shape</span>(pc_map_new) <span class="sc">+</span> <span class="co">#map a spatial data</span></span>
-<span id="cb45-2"><a href="#cb45-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tm_polygons</span>(<span class="at">fill =</span> <span class="st">"first_party"</span>, </span>
-<span id="cb45-3"><a href="#cb45-3" aria-hidden="true" tabindex="-1"></a>              <span class="at">palette=</span><span class="st">"Set3"</span>)  <span class="co">#map it as polygons, use different colors by first_party</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb49"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb49-1"><a href="#cb49-1" aria-hidden="true" tabindex="-1"></a><span class="co">#make a map for the pc_map_new, fill the colors for each polygon based on "first_party", using colors from palette "Set3"</span></span>
+<span id="cb49-2"><a href="#cb49-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb49-3"><a href="#cb49-3" aria-hidden="true" tabindex="-1"></a><span class="fu">tm_shape</span>(pc_map_new) <span class="sc">+</span> <span class="co">#map a spatial data</span></span>
+<span id="cb49-4"><a href="#cb49-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tm_polygons</span>(<span class="at">fill =</span> <span class="st">"first_party"</span>, </span>
+<span id="cb49-5"><a href="#cb49-5" aria-hidden="true" tabindex="-1"></a>              <span class="at">palette=</span><span class="st">"Set3"</span>)  <span class="co">#map it as polygons, use different colors by first_party</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
 <pre><code></code></pre>
 </div>
@@ -806,14 +847,17 @@ Multiple palettes called "set3" found: "brewer.set3", "hcl.set3". The first one,
 </div>
 <p>This time, let’s change the mode of tmap by using <code>tmap_mode()</code> from default “plot” to “view” for an interactive map:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb49"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb49-1"><a href="#cb49-1" aria-hidden="true" tabindex="-1"></a><span class="fu">tmap_mode</span>(<span class="st">"view"</span>)</span>
-<span id="cb49-2"><a href="#cb49-2" aria-hidden="true" tabindex="-1"></a><span class="fu">tm_shape</span>(pc_map_new) <span class="sc">+</span> </span>
-<span id="cb49-3"><a href="#cb49-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tm_polygons</span>(<span class="st">"first_party"</span>)  </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb53"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb53-1"><a href="#cb53-1" aria-hidden="true" tabindex="-1"></a><span class="co"># make the map interactive</span></span>
+<span id="cb53-2"><a href="#cb53-2" aria-hidden="true" tabindex="-1"></a><span class="fu">tmap_mode</span>(<span class="st">"view"</span>)</span>
+<span id="cb53-3"><a href="#cb53-3" aria-hidden="true" tabindex="-1"></a><span class="fu">tm_shape</span>(pc_map_new) <span class="sc">+</span> </span>
+<span id="cb53-4"><a href="#cb53-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tm_polygons</span>(<span class="st">"first_party"</span>)  </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>This time, in your right-bottom pane, the map should be plotted in Viewer tab as an interactive map. You can zoom in/out to explore your map, for a better view, you can click the <img src="images/clipboard-3717496441.png" class="img-fluid"> to open a webpage.</p>
 <p>You may need to switch <code>tmap_mode()</code> back to “plot” for a static map making:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb50"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb50-1"><a href="#cb50-1" aria-hidden="true" tabindex="-1"></a><span class="fu">tmap_mode</span>(<span class="st">"plot"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb54"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb54-1"><a href="#cb54-1" aria-hidden="true" tabindex="-1"></a><span class="co">#switch back to plot static mode for later use</span></span>
+<span id="cb54-2"><a href="#cb54-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb54-3"><a href="#cb54-3" aria-hidden="true" tabindex="-1"></a><span class="fu">tmap_mode</span>(<span class="st">"plot"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>ℹ tmap mode set to "plot".</code></pre>
 </div>

@@ -91,7 +91,6 @@ In the *pc_data* dataset each row represents a different UK Parliamentary Consti
 
 ```{r}
 #| eval: false
-#| include: false
 
 View(pc_data)
 ```
@@ -100,7 +99,6 @@ Use the `nrow( )` or `dim()` command to find out how many Parliamentary Constitu
 
 ```{r}
 #| eval: false
-#| include: false
 
 nrow(pc_data)
 
@@ -117,7 +115,7 @@ Explore the structure of the data table using the `str` function and have exam
 
 ```{r}
 #| eval: false
-#| include: false
+
 str(pc_data)
 
 head(pc_data)
@@ -201,11 +199,15 @@ This histogram show the variable `valid_votes` with the orange solid line as the
 We can also use density curve to present the variable distribution:
 
 ```{r}
-plot(density(pc_data$valid_votes), main = "Valid votes")
+plot(density(pc_data$valid_votes), 
+     main = "Valid votes")
 ```
 
 ```{r}
-plot(density(pc_data$pct_White_British), main = "% of White British in Constituency", col="salmon", lwd=2)
+plot(density(pc_data$pct_White_British), 
+     main = "% of White British in Constituency", 
+     col="salmon", 
+     lwd=2)
 ```
 
 Boxplots show the same information but here we can see a bit more of the nature of the distribution.
@@ -217,11 +219,19 @@ Recap Week 2 lecture, the dark line shows the median, the box represents the int
 Now let's check out the boxplots of these two variables:
 
 ```{r}
-boxplot(pc_data$valid_votes,horizontal=TRUE, main = "Valid votes", xlab='Votes', col = "gold")
+boxplot(pc_data$valid_votes,
+        horizontal=TRUE, 
+        main = "Valid votes", 
+        xlab='Votes', 
+        col = "gold")
 ```
 
 ```{r}
-boxplot(pc_data$pct_White_British,horizontal=TRUE, main = "% of White British", xlab='Percentage', col = "hotpink")
+boxplot(pc_data$pct_White_British,
+        horizontal=TRUE, 
+        main = "% of White British", 
+        xlab='Percentage', 
+        col = "hotpink")
 ```
 
 1.  Is the median line in the centre of the box? If the median line is not in the middle of the box, it means the data are skewed, with greater spread on one side of the median.
@@ -251,8 +261,6 @@ The simplest way to examine classes is to put them into a table of counts. The 
 So firstly we use the `table()` command to find the number of MPs elected to each Party. \[Hint: use the *first_party* variable\].
 
 ```{r}
-#| echo: false
-
 
 table(pc_data$first_party)
 ```
@@ -284,6 +292,7 @@ Therefore, when you run the code, you will see a table showing as three column: 
 We can also improve the code to make a better table presentation. You may find the comment text after each code line would be useful to understand what R has done to the *pc_data*.
 
 ```{r}
+#Calculate the frequency and percentage of different categories for "first_party"
 pc_data %>%
   count(first_party) %>%
   mutate(pct = round(n / sum(n) * 100,1)) %>% 
@@ -305,6 +314,7 @@ In this code chuck, we requested four command to the dataframe pc_data, and link
 Similarly, we can use the categorical variable `crime_rate` in the `pc_data` dataset to understand the crime status of all the constituencies:
 
 ```{r}
+#Calculate the frequency and percentage of different categories for "crime_rate"
 pc_data %>%
   count(crime_rate) %>% 
   mutate(pct = round(n / sum(n)*100, 1))  %>% 
@@ -317,7 +327,7 @@ What you have learnt from the result table? It seems that there is a quite equal
 Categorical data can be visualised using bar plots of the tabularised data. The code below does this by creating a table, changing the names of the table and passing that to the `barplot` function:
 
 ```{r}
-
+#calculate the frequency of first party and save the result in table 'tab', present tab as a barplot
 tab = table(pc_data$first_party)
 barplot(tab)
 ```
@@ -325,6 +335,7 @@ barplot(tab)
 It is very simple to get the barplot from the result of table(). But it may need some improvement. As you may noticed, there are many bars have rarely no values, and too crowd x axis labels makes some bar label can't able to show. Therefore, we probably don't need to show all the parties, but only the top 8 in terms of their winning constituencies.
 
 ```{r}
+#sorted tab by the frequency from highest to lowest, present the top 8 of the sorted tab 
 tab_sorted <- sort(tab,decreasing = TRUE)
 barplot(head(tab_sorted,8),las = 2, main = "Top 8 of first party") 
 ```
@@ -332,6 +343,7 @@ barplot(head(tab_sorted,8),las = 2, main = "Top 8 of first party")
 In this code chunk, we first use sort() to reorder the tab ranking the parties based on the counts from highest to lowest. You may ask R to show how tab_sorted looks like:
 
 ```{r}
+#show tab_sorted
 tab_sorted
 ```
 
@@ -346,12 +358,16 @@ The relationship between two sets of classes or categories can be explored using
 If we want to examine how the distribution of crime-rate categories varies for each first party. The question can be: for each political party, how are its wins distributed across different crime-rate levels?
 
 ```{r}
+# cross-tabulation first_party vs.crime_rate
+
 table(pc_data$first_party, pc_data$crime_rate)
 ```
 
 Conversely, we can also examine how the distribution of first parties varies across different crime-rate categories.The question this time is: for each crime-rate category, how are different parties distributed?
 
 ```{r}
+# cross-tabulation crime_rate vs first_party
+
 table(pc_data$crime_rate, pc_data$first_party)
 ```
 
@@ -359,12 +375,29 @@ What insights now you can learn from these cross-tabulation? We will examine met
 
 #### Continuous to categorical: compare between groups
 
-```{r}
-boxplot(median_house_price ~ first_party, data = pc_data, las = 2, xlab="",ylab="",main="Compare constituency median house price vs. first party")
-```
+We may also be interested in the exploring differences and similarities in the continuous variables associated with for each categorical class. This can be done using multiple boxplots.
+
+If we want to make boxplots of each party by the value median house price of the constituencies who vote for this party as their first party:
 
 ```{r}
-boxplot(pct_White_British ~ mp_gender, data = pc_data,col=c("red", "yellow3"), horizontal = TRUE)
+#create boxplots by median_house_price for each first_party
+
+par(mar = c(10, 4, 4, 2))  # increase the margin of the chart for each side: bottom, left, top, right
+
+boxplot(median_house_price ~ first_party, 
+        data = pc_data, 
+        las = 2, #vertical present item label
+        xlab="", #no x axis label
+        ylab="", #no y axis label,
+        main="Compare constituency median house price vs. first party")
+```
+
+If we want to explore the % of White British in the constituencies and compare the distribution between different MP genders. The code below shows that, compared with constituencies represented by male MPs, those with female MPs generally have a lower proportion of White British population. This distribution also exhibits clear skewness towards lower percentages of White British residents.
+
+```{r}
+boxplot(pct_White_British ~ mp_gender, 
+        data = pc_data,col=c("red", "yellow3"), #specify bar colors
+        horizontal = TRUE) #horizonal the boxplot
 ```
 
 We can do this numerically as well, but it is a bit more convoluted using the `with` and `aggregate` functions:
@@ -392,10 +425,15 @@ pc_map <- st_read("uk_constituencies_2024.gpkg") #read the boundaries as a spati
 Use the `names()` or `str()` to know the contents, or as above use `View()` to open and check. Check by yourself the number of rows and columns of the map data:
 
 ```{r}
+#| eval: false
+
 str(pc_map)
 ```
 
 ```{r}
+#| eval: false
+
+
 View(pc_map)
 ```
 
@@ -403,9 +441,7 @@ The *pc_map* dataset contains the standard set of Parliamentary Constituency bou
 
 ```{r}
 #| eval: false
-#| include: false
-
-
+#make a map of constituency 
 tm_shape(pc_map) + #map a spatial data
   tm_polygons() #map it as polygons
 ```
@@ -413,12 +449,14 @@ tm_shape(pc_map) + #map a spatial data
 or we can make a colorful map by using different color for different regions:
 
 ```{r}
+#make a map of constituency and color each polygon based on "region_name"
+
 tm_shape(pc_map) + #map a spatial data
   tm_polygons("region_name")  #map it as polygons, use different colors by region
   
 ```
 
-### Link boundaries to pc_data 
+### Link boundaries to pc_data
 
 In order to map the election results contained in the `pc_data` dataset, we need to join it to a set of digital boundaries using the `left_join( )` command - you should have already familiar with this from Week 1.
 
@@ -427,7 +465,10 @@ In your inspection of the `pc_data` and `pc_map` datasets, you may have noticed 
 We can use these two variables to first link the `pc_data` dataset to the standard map:
 
 ```{r}
-pc_map_new <- left_join(pc_map, pc_data, by = c("gss_code", "pc_name")) #left join pc_data to pc_map, joining when gss_code from pc_map equals to pc_name in pc_data
+#left join pc_data to pc_map, joining when gss_code from pc_map equals to pc_name in pc_data
+
+pc_map_new <- left_join(pc_map, pc_data, by = c("gss_code", "pc_name")) 
+
 ```
 
 As ever, having created a new dataset, use the `dim( )`, `str( )`, `names( )` and `View( )` commands to check its contents are as you would expect.
@@ -437,6 +478,8 @@ As ever, having created a new dataset, use the `dim( )`, `str( )`, `names( )`
 Having joined the `pc_data` dataset with a set of digital boundaries, it becomes a simple matter to map the election results using the mapping skills covered in Week 1:
 
 ```{r}
+#make a map for the pc_map_new, fill the colors for each polygon based on "first_party", using colors from palette "Set3"
+
 tm_shape(pc_map_new) + #map a spatial data
   tm_polygons(fill = "first_party", 
               palette="Set3")  #map it as polygons, use different colors by first_party
@@ -446,6 +489,8 @@ This time, let's change the mode of tmap by using `tmap_mode()` from default "pl
 
 ```{r}
 #| eval: false
+
+# make the map interactive
 tmap_mode("view")
 tm_shape(pc_map_new) + 
   tm_polygons("first_party")  
@@ -456,6 +501,8 @@ This time, in your right-bottom pane, the map should be plotted in Viewer tab as
 You may need to switch `tmap_mode()` back to "plot" for a static map making:
 
 ```{r}
+#switch back to plot static mode for later use
+
 tmap_mode("plot")
 ```
 

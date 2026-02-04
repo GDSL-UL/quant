@@ -978,8 +978,8 @@ plot(lsoa_df$Disability, lsoa_df$Age_over_65)
 **Task 3** Use the district level dataset, how many households in total in Merseyside?
 
 ```{r}
-#| eval: false
-#| include: false
+#| echo: true
+
 df <- read.csv("merseyside.csv")
 sum(df$Households)
 ```

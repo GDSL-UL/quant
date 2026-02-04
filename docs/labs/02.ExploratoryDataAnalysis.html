@@ -328,8 +328,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="exploratory-data-analysis-eda" class="level3" data-number="2.4.3">
 <h3 data-number="2.4.3" class="anchored" data-anchor-id="exploratory-data-analysis-eda"><span class="header-section-number">2.4.3</span> Exploratory Data Analysis (EDA)</h3>
-<section id="numeric-variable" class="level4" data-number="2.4.3.1">
-<h4 data-number="2.4.3.1" class="anchored" data-anchor-id="numeric-variable"><span class="header-section-number">2.4.3.1</span> Numeric variable</h4>
+<section id="numeric-variables" class="level4" data-number="2.4.3.1">
+<h4 data-number="2.4.3.1" class="anchored" data-anchor-id="numeric-variables"><span class="header-section-number">2.4.3.1</span> Numeric variables</h4>
 <p>You can use the <code>pc_data</code> dataset to extract some headline results from the 2024 General Election. Starting with the simplest case, the distribution of a single numeric variable whether continuous or count based can be examined numerically using the <code>summary</code> function.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co">#valid votes in constituency</span></span>
@@ -479,8 +479,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>In summary, numeric variable distributions, of counts and continuous data, should be investigated as an initial step in any data analysis. There are a number of metrics and graphical functions (tools) for doing this including&nbsp;<code>summary()</code>,&nbsp;<code>hist()</code>&nbsp;<code>plot(density())</code> and&nbsp;<code>boxplot()</code>.</p>
 </div>
 </section>
-<section id="categorical-variable" class="level4" data-number="2.4.3.2">
-<h4 data-number="2.4.3.2" class="anchored" data-anchor-id="categorical-variable"><span class="header-section-number">2.4.3.2</span> Categorical variable</h4>
+<section id="categorical-variables" class="level4" data-number="2.4.3.2">
+<h4 data-number="2.4.3.2" class="anchored" data-anchor-id="categorical-variables"><span class="header-section-number">2.4.3.2</span> Categorical variables</h4>
 <p>Some of the character variables could be considered as&nbsp;<strong>categorical</strong>, representing a grouping or classification of some kind, as described above. In these cases we are interested in the count or frequency of each class in the classification, which we can examine numerically or graphically.</p>
 <p>The simplest way to examine classes is to put them into a table of counts. The&nbsp;<code>table</code>&nbsp;function is very useful and in the code below it is applied to one of the categorical variables in the survey data:</p>
 <p>So firstly we use the <code>table()</code> command to find the number of MPs elected to each Party. [Hint: use the <em>first_party</em> variable].</p>
@@ -855,54 +855,25 @@ Projected CRS: OSGB36 / British National Grid</code></pre>
 <section id="formative-tasks" class="level2" data-number="2.6">
 <h2 data-number="2.6" class="anchored" data-anchor-id="formative-tasks"><span class="header-section-number">2.6</span> Formative tasks</h2>
 <p><strong>Task 1</strong> How many columns and rows in the UK constituency boundary dataset?</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb53"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb53-1"><a href="#cb53-1" aria-hidden="true" tabindex="-1"></a>pc_map <span class="ot">&lt;-</span> <span class="fu">st_read</span>(<span class="st">"uk_constituencies_2024.gpkg"</span>)</span>
-<span id="cb53-2"><a href="#cb53-2" aria-hidden="true" tabindex="-1"></a><span class="fu">dim</span>(pc_map)</span>
-<span id="cb53-3"><a href="#cb53-3" aria-hidden="true" tabindex="-1"></a><span class="fu">ncol</span>(pc_map)</span>
-<span id="cb53-4"><a href="#cb53-4" aria-hidden="true" tabindex="-1"></a><span class="fu">nrow</span>(pc_map)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
 <p><strong>Task 2</strong> Using the UK constituency boundary dataset, descriptive summary the area of all the constituencies:</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb54"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb54-1"><a href="#cb54-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(pc_map<span class="sc">$</span>sq_km)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
 <p><strong>Task 3</strong> Write some code to plot a histogram of the&nbsp;<code>pct_invalid_votes</code> variable in the constituency election dataset, with lines showing the mean and the standard deviation around the mean. Try add breaks into the function and change breaks from 10, 20 to 50 and see how the histogram changed.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb55"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb55-1"><a href="#cb55-1" aria-hidden="true" tabindex="-1"></a>pc_data <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"uk_constituencies_2024.csv"</span>,<span class="at">stringsAsFactors =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb55-2"><a href="#cb55-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb55-3"><a href="#cb55-3" aria-hidden="true" tabindex="-1"></a><span class="co"># histogram</span></span>
-<span id="cb55-4"><a href="#cb55-4" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(pc_data<span class="sc">$</span>pct_invalid_votes, <span class="at">col =</span> <span class="st">"thistle"</span>, <span class="at">main =</span> <span class="st">"Invalid votes in constituency"</span>, <span class="at">xlab =</span> <span class="st">"Percentage"</span>, <span class="at">breaks =</span> <span class="dv">50</span>)</span>
-<span id="cb55-5"><a href="#cb55-5" aria-hidden="true" tabindex="-1"></a><span class="co"># calculate and add the mean</span></span>
-<span id="cb55-6"><a href="#cb55-6" aria-hidden="true" tabindex="-1"></a>mean_val <span class="ot">=</span> <span class="fu">mean</span>(pc_data<span class="sc">$</span>pct_invalid_votes, <span class="at">na.rm =</span> T)</span>
-<span id="cb55-7"><a href="#cb55-7" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(<span class="at">v =</span> mean_val, <span class="at">col =</span> <span class="st">"purple"</span>, <span class="at">lwd =</span> <span class="dv">3</span>)</span>
-<span id="cb55-8"><a href="#cb55-8" aria-hidden="true" tabindex="-1"></a><span class="co"># calculate and add the standard deviation lines around the mean</span></span>
-<span id="cb55-9"><a href="#cb55-9" aria-hidden="true" tabindex="-1"></a>sdev <span class="ot">=</span> <span class="fu">sd</span>(pc_data<span class="sc">$</span>pct_invalid_votes, <span class="at">na.rm =</span> T)</span>
-<span id="cb55-10"><a href="#cb55-10" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(<span class="at">v =</span> mean_val<span class="sc">-</span>sdev, <span class="at">col =</span> <span class="st">"tan"</span>, <span class="at">lwd =</span> <span class="dv">3</span>, <span class="at">lty =</span> <span class="dv">2</span>)</span>
-<span id="cb55-11"><a href="#cb55-11" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(<span class="at">v =</span> mean_val<span class="sc">+</span>sdev, <span class="at">col =</span> <span class="st">"tan"</span>, <span class="at">lwd =</span> <span class="dv">3</span>, <span class="at">lty =</span> <span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb53"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb53-1"><a href="#cb53-1" aria-hidden="true" tabindex="-1"></a>pc_data <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"uk_constituencies_2024.csv"</span>,<span class="at">stringsAsFactors =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb53-2"><a href="#cb53-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb53-3"><a href="#cb53-3" aria-hidden="true" tabindex="-1"></a><span class="co"># histogram</span></span>
+<span id="cb53-4"><a href="#cb53-4" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(pc_data<span class="sc">$</span>pct_invalid_votes, <span class="at">col =</span> <span class="st">"thistle"</span>, <span class="at">main =</span> <span class="st">"Invalid votes in constituency"</span>, <span class="at">xlab =</span> <span class="st">"Percentage"</span>, <span class="at">breaks =</span> <span class="dv">50</span>)</span>
+<span id="cb53-5"><a href="#cb53-5" aria-hidden="true" tabindex="-1"></a><span class="co"># calculate and add the mean</span></span>
+<span id="cb53-6"><a href="#cb53-6" aria-hidden="true" tabindex="-1"></a>mean_val <span class="ot">=</span> <span class="fu">mean</span>(pc_data<span class="sc">$</span>pct_invalid_votes, <span class="at">na.rm =</span> T)</span>
+<span id="cb53-7"><a href="#cb53-7" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(<span class="at">v =</span> mean_val, <span class="at">col =</span> <span class="st">"purple"</span>, <span class="at">lwd =</span> <span class="dv">3</span>)</span>
+<span id="cb53-8"><a href="#cb53-8" aria-hidden="true" tabindex="-1"></a><span class="co"># calculate and add the standard deviation lines around the mean</span></span>
+<span id="cb53-9"><a href="#cb53-9" aria-hidden="true" tabindex="-1"></a>sdev <span class="ot">=</span> <span class="fu">sd</span>(pc_data<span class="sc">$</span>pct_invalid_votes, <span class="at">na.rm =</span> T)</span>
+<span id="cb53-10"><a href="#cb53-10" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(<span class="at">v =</span> mean_val<span class="sc">-</span>sdev, <span class="at">col =</span> <span class="st">"tan"</span>, <span class="at">lwd =</span> <span class="dv">3</span>, <span class="at">lty =</span> <span class="dv">2</span>)</span>
+<span id="cb53-11"><a href="#cb53-11" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(<span class="at">v =</span> mean_val<span class="sc">+</span>sdev, <span class="at">col =</span> <span class="st">"tan"</span>, <span class="at">lwd =</span> <span class="dv">3</span>, <span class="at">lty =</span> <span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p><strong>Task 4</strong> Write codes to create boxplots for <code>pct_in_migration</code>, <code>pct_UK_born</code> and <code>pct_owned</code> (owning upright household):</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb56"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb56-1"><a href="#cb56-1" aria-hidden="true" tabindex="-1"></a><span class="fu">boxplot</span>(pc_data<span class="sc">$</span>pct_in_migration,<span class="at">horizontal=</span><span class="cn">TRUE</span>, <span class="at">main =</span> <span class="st">"In migration"</span>, <span class="at">xlab=</span><span class="st">'Percentage'</span>, <span class="at">col =</span> <span class="st">"gold"</span>)</span>
-<span id="cb56-2"><a href="#cb56-2" aria-hidden="true" tabindex="-1"></a><span class="fu">boxplot</span>(pc_data<span class="sc">$</span>pct_UK_born ,<span class="at">horizontal=</span><span class="cn">TRUE</span>, <span class="at">main =</span> <span class="st">"UK born"</span>, <span class="at">xlab=</span><span class="st">'Percentage'</span>, <span class="at">col =</span> <span class="st">"pink"</span>)</span>
-<span id="cb56-3"><a href="#cb56-3" aria-hidden="true" tabindex="-1"></a><span class="fu">boxplot</span>(pc_data<span class="sc">$</span>pct_owned,<span class="at">horizontal=</span><span class="cn">TRUE</span>, <span class="at">main =</span> <span class="st">"Owning house upright"</span>, <span class="at">xlab=</span><span class="st">'Percentage'</span>, <span class="at">col =</span> <span class="st">"lightblue"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
 <p><strong>Task 4</strong> Write codes to summary the counts of MPs in each gender (this is in the <code>mp_gender</code>variable), presenting the table with percentage and showing the barplot.</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb57"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb57-1"><a href="#cb57-1" aria-hidden="true" tabindex="-1"></a>pc_data <span class="sc">%&gt;%</span> </span>
-<span id="cb57-2"><a href="#cb57-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">count</span>(mp_gender) <span class="sc">%&gt;%</span> </span>
-<span id="cb57-3"><a href="#cb57-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">pct =</span> <span class="fu">round</span>(n<span class="sc">/</span><span class="fu">sum</span>(n)<span class="sc">*</span><span class="dv">100</span>,<span class="dv">1</span>))</span>
-<span id="cb57-4"><a href="#cb57-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb57-5"><a href="#cb57-5" aria-hidden="true" tabindex="-1"></a>tab <span class="ot">=</span> <span class="fu">table</span>(pc_data<span class="sc">$</span>mp_gender)</span>
-<span id="cb57-6"><a href="#cb57-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb57-7"><a href="#cb57-7" aria-hidden="true" tabindex="-1"></a><span class="fu">barplot</span>(tab,<span class="at">main =</span> <span class="st">"MP gender in constituency"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
 <p><strong>Task 5</strong> Cross tabulation <code>region_name</code> to <code>mp_gender</code> by using the newly created <code>pc_map_new</code> dataset, which joined by the constituency boundary and election dataset.</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb58"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb58-1"><a href="#cb58-1" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(pc_map_new<span class="sc">$</span>region_name, pc_map_new<span class="sc">$</span>mp_gender)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
 <p><strong>Task 6</strong> Compare between <code>crime_rate</code> with the <code>pct_social_rented</code> in constituency election dataset. What pattern you can learn from your boxplot?</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb59"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb59-1"><a href="#cb59-1" aria-hidden="true" tabindex="-1"></a><span class="fu">boxplot</span>(pct_social_rented <span class="sc">~</span> crime_rate , <span class="at">data =</span> pc_data)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
 
 
 </section>

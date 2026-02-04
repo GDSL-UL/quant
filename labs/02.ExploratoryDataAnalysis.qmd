@@ -133,7 +133,7 @@ The `pc_data` dataset contains three basic sets of information about each Parlia
 
 ### Exploratory Data Analysis (EDA)
 
-#### Numeric variable
+#### Numeric variables
 
 You can use the `pc_data` dataset to extract some headline results from the 2024 General Election. Starting with the simplest case, the distribution of a single numeric variable whether continuous or count based can be examined numerically using the `summary` function.
 
@@ -252,7 +252,7 @@ Now, you should be able to compare how the two kinds of distribution are shown i
 In summary, numeric variable distributions, of counts and continuous data, should be investigated as an initial step in any data analysis. There are a number of metrics and graphical functions (tools) for doing this including `summary()`, `hist()` `plot(density())` and `boxplot()`.
 :::
 
-#### Categorical variable
+#### Categorical variables
 
 Some of the character variables could be considered as **categorical**, representing a grouping or classification of some kind, as described above. In these cases we are interested in the count or frequency of each class in the classification, which we can examine numerically or graphically.
 
@@ -519,7 +519,7 @@ Now what pattern you can observe from the interactive map you just made?
 
 ```{r}
 #| eval: false
-#| echo: true
+#| echo: false
 #| message: false
 #| warning: false
 
@@ -533,7 +533,7 @@ nrow(pc_map)
 
 ```{r}
 #| eval: false
-#| echo: true
+#| echo: false
 
 
 summary(pc_map$sq_km)
@@ -562,7 +562,7 @@ abline(v = mean_val+sdev, col = "tan", lwd = 3, lty = 2)
 
 ```{r}
 #| eval: false
-#| echo: true
+#| echo: false
 
 
 boxplot(pc_data$pct_in_migration,horizontal=TRUE, main = "In migration", xlab='Percentage', col = "gold")
@@ -574,7 +574,7 @@ boxplot(pc_data$pct_owned,horizontal=TRUE, main = "Owning house upright", xlab='
 
 ```{r}
 #| eval: false
-#| echo: true
+#| echo: false
 
 pc_data %>% 
   count(mp_gender) %>% 
@@ -589,7 +589,7 @@ barplot(tab,main = "MP gender in constituency")
 
 ```{r}
 #| eval: false
-#| echo: true
+#| echo: false
 
 table(pc_map_new$region_name, pc_map_new$mp_gender)
 ```
@@ -598,7 +598,7 @@ table(pc_map_new$region_name, pc_map_new$mp_gender)
 
 ```{r}
 #| eval: false
-#| echo: true
+#| echo: false
 
 boxplot(pct_social_rented ~ crime_rate , data = pc_data)
 ```

@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="author" content="Zi Ye">
-<meta name="dcterms.date" content="2026-01-30">
+<meta name="dcterms.date" content="2026-02-04">
 
 <title>1&nbsp; Lab: Getting Started in RStudio - Knowing Merseyside – Human Geography through Merseyside - Quantitative Block: Seeing the world through numbers</title>
 <style>
@@ -66,6 +66,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../">
+<link href="../labs/02.ExploratoryDataAnalysis.html" rel="next">
 <link href="../general/assessment.html" rel="prev">
 <script src="../site_libs/quarto-html/quarto.js"></script>
 <script src="../site_libs/quarto-html/popper.min.js"></script>
@@ -170,6 +171,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
  <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Lab: Getting Started in RStudio - Knowing Merseyside</span></span></a>
   </div>
 </li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../labs/02.ExploratoryDataAnalysis.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">02.Exploratory Data Analysis - UK Election</span></span></a>
+  </div>
+</li>
     </ul>
     </div>
 </nav>
@@ -224,7 +231,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">January 30, 2026</p>
+      <p class="date">February 4, 2026</p>
     </div>
   </div>
   
@@ -1456,11 +1463,11 @@ Geodetic CRS:  WGS 84</code></pre>
 <p><strong>Task 1</strong> From the district level dataset “merseyside.csv”, extract household information for the Liverool and Wirral districts. The variables to be included are “Households”, “No_central_heating” and “Overcrowding”.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb145"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb145-1"><a href="#cb145-1" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"merseyside.csv"</span>)  </span>
-<span id="cb145-2"><a href="#cb145-2" aria-hidden="true" tabindex="-1"></a>df[<span class="fu">c</span>(<span class="dv">2</span>,<span class="dv">5</span>),<span class="fu">c</span>(<span class="st">"Households"</span>,<span class="st">"No_central_heating"</span>,<span class="st">"Overcrowding"</span>)]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb145-2"><a href="#cb145-2" aria-hidden="true" tabindex="-1"></a>df[<span class="fu">c</span>(<span class="dv">2</span>,<span class="dv">5</span>),<span class="fu">c</span>(<span class="st">"District"</span>,<span class="st">"Households"</span>,<span class="st">"No_central_heating"</span>,<span class="st">"Overcrowding"</span>)]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>  Households No_central_heating Overcrowding
-2     207491               4822         7352
-5     143253               2125         2355</code></pre>
+<pre><code>   District Households No_central_heating Overcrowding
+2 Liverpool     207491               4822         7352
+5    Wirral     143253               2125         2355</code></pre>
 </div>
 </div>
 <p><strong>Task 2</strong> Use the dataset “merseyside_lsoa.csv”, plot the <code>Disability</code> against <code>Age_over_65</code> from the data frame.</p>
@@ -1954,6 +1961,9 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       </a>          
   </div>
   <div class="nav-page nav-page-next">
+      <a href="../labs/02.ExploratoryDataAnalysis.html" class="pagination-link" aria-label="02.Exploratory Data Analysis - UK Election">
+        <span class="nav-page-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">02.Exploratory Data Analysis - UK Election</span></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
   </div>
 </nav>
 </div> <!-- /content -->

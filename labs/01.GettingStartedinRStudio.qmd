@@ -961,7 +961,7 @@ Other good on-line *get started in R* guides include:
 #| echo: true
 
 df <- read.csv("merseyside.csv")  
-df[c(2,5),c("Households","No_central_heating","Overcrowding")]
+df[c(2,5),c("District","Households","No_central_heating","Overcrowding")]
 ```
 
 **Task 2** Use the dataset "merseyside_lsoa.csv", plot the `Disability` against `Age_over_65` from the data frame.

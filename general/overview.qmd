@@ -30,23 +30,23 @@ Lectures will introduce and explain the fundamentals of quantitative methods, wi
 
 The computer practical sessions, will give you the chance to use and apply quantitative methods to real-world data. These are primarily self-directed sessions, but with support on hand if you get stuck. Support and training in R will be provided through these sessions. Weekly sessions will be driven by empirical research questions.
 
-+----------+--------------------------------------------------------------+------------------------------------+----------+
-| Week     | Topic                                                        | Format                             | Staff    |
-+==========+==============================================================+====================================+==========+
-| 1        | Introduction                                                 | Lecture                            | ZY/RM    |
-|          |                                                              |                                    |          |
-|          | Getting Started in RStudio: Knowing Merseyside               | Computer Lab Practical             |          |
-+----------+--------------------------------------------------------------+------------------------------------+----------+
-| 2        | Exploratory Data Analysis: UK Election                       | Lecture and Computer Lab Practical | ZY       |
-+----------+--------------------------------------------------------------+------------------------------------+----------+
-| 3        | Sampling and data manipulation: Happiness around the world   | Lecture and Computer Lab Practical | ZY       |
-+----------+--------------------------------------------------------------+------------------------------------+----------+
-| 4        | Correlation, data reliability and the issue of scale: Health | Lecture and Computer Lab Practical | RM       |
-+----------+--------------------------------------------------------------+------------------------------------+----------+
-| 5        | How robust are my findings                                   | Lecture and Computer Lab Practical | RM       |
-+----------+--------------------------------------------------------------+------------------------------------+----------+
-| 6        | Online Assessment                                            | Computer Lab                       | RM/ZY    |
-+----------+--------------------------------------------------------------+------------------------------------+----------+
++------+--------------------------------------------------------------+------------------------------------+-------+
+| Week | Topic                                                        | Format                             | Staff |
++======+==============================================================+====================================+=======+
+| 1    | Introduction                                                 | Lecture                            | ZY/RM |
+|      |                                                              |                                    |       |
+|      | Getting Started in RStudio: Knowing Merseyside               | Computer Lab Practical             |       |
++------+--------------------------------------------------------------+------------------------------------+-------+
+| 2    | Exploratory Data Analysis: UK Election                       | Lecture and Computer Lab Practical | ZY    |
++------+--------------------------------------------------------------+------------------------------------+-------+
+| 3    | Sampling and data manipulation: Happiness around the world   | Lecture and Computer Lab Practical | ZY    |
++------+--------------------------------------------------------------+------------------------------------+-------+
+| 4    | Correlation, data reliability and the issue of scale: Health | Lecture and Computer Lab Practical | RM    |
++------+--------------------------------------------------------------+------------------------------------+-------+
+| 5    | How robust are my findings                                   | Lecture and Computer Lab Practical | RM    |
++------+--------------------------------------------------------------+------------------------------------+-------+
+| 6    | Online Assessment                                            | Computer Lab                       | RM/ZY |
++------+--------------------------------------------------------------+------------------------------------+-------+
 
 ## Software and Data
 

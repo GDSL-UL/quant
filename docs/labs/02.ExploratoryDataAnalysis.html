@@ -279,13 +279,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h2 data-number="2.4" class="anchored" data-anchor-id="parliamentary-constituency-data"><span class="header-section-number">2.4</span> Parliamentary Constituency Data</h2>
 <section id="load-the-dataset" class="level3" data-number="2.4.1">
 <h3 data-number="2.4.1" class="anchored" data-anchor-id="load-the-dataset"><span class="header-section-number">2.4.1</span> Load the dataset</h3>
-<p>In 2024 the UK held a general election. Download the file <strong><em>uk_constituencies_2024.csv</em></strong> from our <a href="https://canvas.liverpool.ac.uk/courses/85565">Canvas module page Week 2</a>. Read in the dataset exactly in the same way as we did in Week 1 - insert the below code line and run it:</p>
+<p>In 2024 the UK held a general election. Download the file <strong><em>uk_constituencies_2024.csv</em></strong> from our <a href="https://canvas.liverpool.ac.uk/courses/85565">Canvas module page Week 2</a>. Save the dataset in your M drive - ENVS162 - Week 2 folder, alongside the Week 2. R script. Read in the dataset exactly in the same way as we did in Week 1 - insert the below code line and run it:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>pc_data <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"uk_constituencies_2024.csv"</span>,<span class="at">stringsAsFactors =</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>The datasheet captures a range of information relating to this election, and to the nature of each parliamentary constituency. By using <code>read.csv()</code> command, we use R to store the dataset in a dataframe called <em>pc_data</em> (short for Parliamentary Constituency data).</p>
-<p>The <em>pc_data</em> dataset should appear in your RStudio Environment Pane on the upper right part, indicating that it has now been loaded into memory, and is available for analysis.</p>
-<p><strong>For your information only</strong>, the <em>pc_data</em> dataset has been assembled by combining information from the following sources.</p>
+<p>The datasheet captures a range of information relating to this election, and to the nature of each parliamentary constituency. By using <code>read.csv()</code> command, we use R to store the dataset in a dataframe called <code>pc_data</code> (short for Parliamentary Constituency data).</p>
+<p>The <code>pc_data</code> dataset should appear in your RStudio Environment Pane on the upper right part, indicating that it has now been loaded into memory, and is available for analysis.</p>
+<p><strong>For your information only</strong>, the <code>pc_data</code> dataset has been assembled by combining information from the following sources.</p>
 <ul>
 <li><p><em>HoC-GE2024-results-by-constituency.xlsx</em></p>
 <p><em>Source</em>: Cracknell et al (2024) General election 2024 results, <em>Research Briefing</em>, House of Commons Library. https://commonslibrary.parliament.uk/research-briefings/cbp-10009/</p></li>
@@ -299,7 +299,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="familiar-with-the-dataset-and-variable-types" class="level3" data-number="2.4.2">
 <h3 data-number="2.4.2" class="anchored" data-anchor-id="familiar-with-the-dataset-and-variable-types"><span class="header-section-number">2.4.2</span> Familiar with the dataset and variable types</h3>
-<p>In the <em>pc_data</em> dataset each row represents a different UK Parliamentary Constituency. Use the <code>View()</code> command to familiarise yourself with the variables contained in the dataset.</p>
+<p>In the <code>pc_data</code> dataset each row represents a different UK Parliamentary Constituency. Use the <code>View()</code> command to familiarise yourself with the variables contained in the dataset.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">View</span>(pc_data)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
@@ -319,7 +319,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(pc_data)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>We can see that we have numeric data in integers (<code>int</code>) form (these are counts or whole numbers) and continuous (<code>num</code>) form, and the character variables (text) have been converted to <code>factors</code>. For each of these data types we can generate numeric and visual summaries and we can also see how they interact with each other.</p>
-<p>The <em>pc_data</em> dataset contains three basic sets of information about each Parliamentary Constituency:</p>
+<p>The <code>pc_data</code> dataset contains three basic sets of information about each Parliamentary Constituency:</p>
 <ul>
 <li><p><strong>constituency identifiers</strong> - <em>gss_code</em> and <em>pc_name</em></p></li>
 <li><p><strong>population information</strong> for each constituency, ranging from the total population and number of households through to the % in various categories to information about local house prices, salaries and crime rates</p></li>
@@ -330,7 +330,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h3 data-number="2.4.3" class="anchored" data-anchor-id="exploratory-data-analysis-eda"><span class="header-section-number">2.4.3</span> Exploratory Data Analysis (EDA)</h3>
 <section id="numeric-variable" class="level4" data-number="2.4.3.1">
 <h4 data-number="2.4.3.1" class="anchored" data-anchor-id="numeric-variable"><span class="header-section-number">2.4.3.1</span> Numeric variable</h4>
-<p>You can use the <em>pc_data</em> dataset to extract some headline results from the 2024 General Election. Starting with the simplest case, the distribution of a single numeric variable whether continuous or count based can be examined numerically using the <code>summary</code> function.</p>
+<p>You can use the <code>pc_data</code> dataset to extract some headline results from the 2024 General Election. Starting with the simplest case, the distribution of a single numeric variable whether continuous or count based can be examined numerically using the <code>summary</code> function.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co">#valid votes in constituency</span></span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(pc_data<span class="sc">$</span>valid_votes)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -347,7 +347,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   8.937  71.534  86.208  78.006  92.843  98.664 </code></pre>
 </div>
 </div>
-<p>A visual approach is more intuitive. The code below plots histograms of the two variables, using the <code>hist</code> function. The logic under-pinning a histogram is that a continuous variable (in this case <em>valid_votes</em> and <em>pct_White_British</em>) is temporarily regrouped into categories, using an equal-interval approach. The number of observations (in this case, constituencies) that fall into each equal-interval category then determine the height of each column in the histogram.The comments after each line shall inform you what the <code>main</code> and <code>xlab</code> in the function mean:</p>
+<p>A visual approach is more intuitive. The code below plots histograms of the two variables, using the <code>hist</code> function. The logic under-pinning a histogram is that a continuous variable (in this case <code>valid_votes</code> and <code>pct_White_British</code>) is temporarily regrouped into categories, using an equal-interval approach. The number of observations (in this case, constituencies) that fall into each equal-interval category then determine the height of each column in the histogram.The comments after each line shall inform you what the <code>main</code> and <code>xlab</code> in the function mean:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co"># histograms</span></span>
 <span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(pc_data<span class="sc">$</span>valid_votes, </span>
@@ -755,10 +755,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>Having established how many MPs and votes each party got, it is time to look at the geography of the election outcome. To do this we need to link a set of digital boundaries for Parliamentary Constituencies with our pc_data dataset.</p>
 <section id="read-in-parliamentary-constituency-boundaries" class="level3" data-number="2.5.1">
 <h3 data-number="2.5.1" class="anchored" data-anchor-id="read-in-parliamentary-constituency-boundaries"><span class="header-section-number">2.5.1</span> Read in Parliamentary Constituency Boundaries</h3>
-<p>Digital boundaries for the Parliamentary Constituencies used in the 2024 General Election can be found in the files <em>uk_constituencies_2024.geojson</em>. Both of these boundary datasets were sourced from https://automaticknowledge.org/wpc-hex/, and them simplified to make them quicker to plot.</p>
-<p>Download the two digital boundary files from the Week 3 folder in CANVAS and save them to the same folder as your Week 3 Quarto document.</p>
+<p>Digital boundaries for the Parliamentary Constituencies used in the 2024 General Election can be found in the files <strong><em>uk_constituencies_2024.gpkg</em></strong> from the Cavans module page. Download and save it in the Week 2 folder as well.</p>
+<p>As Week 1, we use <code>st_read()</code> function from <code>library(sf)</code> to read in this geographical boundary dataset.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb42"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a>pc_map <span class="ot">&lt;-</span> <span class="fu">st_read</span>(<span class="st">"uk_constituencies_2024.gpkg"</span>) <span class="co">#read the boundaries as a spatial dataset by using the st_read() command from library(sf)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb42"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a><span class="co">#read the boundaries as a spatial dataset</span></span>
+<span id="cb42-2"><a href="#cb42-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb42-3"><a href="#cb42-3" aria-hidden="true" tabindex="-1"></a>pc_map <span class="ot">&lt;-</span> <span class="fu">st_read</span>(<span class="st">"uk_constituencies_2024.gpkg"</span>)  </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Reading layer `uk_constituencies_2024' from data source 
   `C:\Users\ziye\Documents\GitHub\quant\labs\uk_constituencies_2024.gpkg' 
@@ -822,21 +824,6 @@ Projected CRS: OSGB36 / British National Grid</code></pre>
 <span id="cb49-3"><a href="#cb49-3" aria-hidden="true" tabindex="-1"></a><span class="fu">tm_shape</span>(pc_map_new) <span class="sc">+</span> <span class="co">#map a spatial data</span></span>
 <span id="cb49-4"><a href="#cb49-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tm_polygons</span>(<span class="at">fill =</span> <span class="st">"first_party"</span>, </span>
 <span id="cb49-5"><a href="#cb49-5" aria-hidden="true" tabindex="-1"></a>              <span class="at">palette=</span><span class="st">"Set3"</span>)  <span class="co">#map it as polygons, use different colors by first_party</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stderr">
-<pre><code></code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>── tmap v3 code detected ───────────────────────────────────────────────────────</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>[v3-&gt;v4] `tm_tm_polygons()`: migrate the argument(s) related to the scale of
-the visual variable `fill` namely 'palette' (rename to 'values') to fill.scale
-= tm_scale(&lt;HERE&gt;).
-[cols4all] color palettes: use palettes from the R package cols4all. Run
-`cols4all::c4a_gui()` to explore them. The old palette name "Set3" is named
-"brewer.set3"
-Multiple palettes called "set3" found: "brewer.set3", "hcl.set3". The first one, "brewer.set3", is returned.</code></pre>
-</div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
@@ -847,17 +834,17 @@ Multiple palettes called "set3" found: "brewer.set3", "hcl.set3". The first one,
 </div>
 <p>This time, let’s change the mode of tmap by using <code>tmap_mode()</code> from default “plot” to “view” for an interactive map:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb53"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb53-1"><a href="#cb53-1" aria-hidden="true" tabindex="-1"></a><span class="co"># make the map interactive</span></span>
-<span id="cb53-2"><a href="#cb53-2" aria-hidden="true" tabindex="-1"></a><span class="fu">tmap_mode</span>(<span class="st">"view"</span>)</span>
-<span id="cb53-3"><a href="#cb53-3" aria-hidden="true" tabindex="-1"></a><span class="fu">tm_shape</span>(pc_map_new) <span class="sc">+</span> </span>
-<span id="cb53-4"><a href="#cb53-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tm_polygons</span>(<span class="st">"first_party"</span>)  </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb50"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb50-1"><a href="#cb50-1" aria-hidden="true" tabindex="-1"></a><span class="co"># make the map interactive</span></span>
+<span id="cb50-2"><a href="#cb50-2" aria-hidden="true" tabindex="-1"></a><span class="fu">tmap_mode</span>(<span class="st">"view"</span>)</span>
+<span id="cb50-3"><a href="#cb50-3" aria-hidden="true" tabindex="-1"></a><span class="fu">tm_shape</span>(pc_map_new) <span class="sc">+</span> </span>
+<span id="cb50-4"><a href="#cb50-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tm_polygons</span>(<span class="st">"first_party"</span>)  </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>This time, in your right-bottom pane, the map should be plotted in Viewer tab as an interactive map. You can zoom in/out to explore your map, for a better view, you can click the <img src="images/clipboard-3717496441.png" class="img-fluid"> to open a webpage.</p>
 <p>You may need to switch <code>tmap_mode()</code> back to “plot” for a static map making:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb54"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb54-1"><a href="#cb54-1" aria-hidden="true" tabindex="-1"></a><span class="co">#switch back to plot static mode for later use</span></span>
-<span id="cb54-2"><a href="#cb54-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb54-3"><a href="#cb54-3" aria-hidden="true" tabindex="-1"></a><span class="fu">tmap_mode</span>(<span class="st">"plot"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb51"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb51-1"><a href="#cb51-1" aria-hidden="true" tabindex="-1"></a><span class="co">#switch back to plot static mode for later use</span></span>
+<span id="cb51-2"><a href="#cb51-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb51-3"><a href="#cb51-3" aria-hidden="true" tabindex="-1"></a><span class="fu">tmap_mode</span>(<span class="st">"plot"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>ℹ tmap mode set to "plot".</code></pre>
 </div>
@@ -869,110 +856,52 @@ Multiple palettes called "set3" found: "brewer.set3", "hcl.set3". The first one,
 <h2 data-number="2.6" class="anchored" data-anchor-id="formative-tasks"><span class="header-section-number">2.6</span> Formative tasks</h2>
 <p><strong>Task 1</strong> How many columns and rows in the UK constituency boundary dataset?</p>
 <div class="cell">
-<div class="cell-output cell-output-stdout">
-<pre><code>Reading layer `uk_constituencies_2024' from data source 
-  `C:\Users\ziye\Documents\GitHub\quant\labs\uk_constituencies_2024.gpkg' 
-  using driver `GPKG'
-Simple feature collection with 650 features and 9 fields
-Geometry type: MULTIPOLYGON
-Dimension:     XY
-Bounding box:  xmin: 191.9359 ymin: 7423.9 xmax: 655599.6 ymax: 1218591
-Projected CRS: OSGB36 / British National Grid</code></pre>
-</div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] 650  10</code></pre>
-</div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] 10</code></pre>
-</div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] 650</code></pre>
-</div>
+<div class="sourceCode cell-code" id="cb53"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb53-1"><a href="#cb53-1" aria-hidden="true" tabindex="-1"></a>pc_map <span class="ot">&lt;-</span> <span class="fu">st_read</span>(<span class="st">"uk_constituencies_2024.gpkg"</span>)</span>
+<span id="cb53-2"><a href="#cb53-2" aria-hidden="true" tabindex="-1"></a><span class="fu">dim</span>(pc_map)</span>
+<span id="cb53-3"><a href="#cb53-3" aria-hidden="true" tabindex="-1"></a><span class="fu">ncol</span>(pc_map)</span>
+<span id="cb53-4"><a href="#cb53-4" aria-hidden="true" tabindex="-1"></a><span class="fu">nrow</span>(pc_map)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p><strong>Task 2</strong> Using the UK constituency boundary dataset, descriptive summary the area of all the constituencies:</p>
 <div class="cell">
-<div class="cell-output cell-output-stdout">
-<pre><code>    Min.  1st Qu.   Median     Mean  3rd Qu.     Max. 
-    6.80    33.65   106.45   375.01   351.98 11634.40 </code></pre>
-</div>
+<div class="sourceCode cell-code" id="cb54"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb54-1"><a href="#cb54-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(pc_map<span class="sc">$</span>sq_km)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p><strong>Task 3</strong> Write some code to plot a histogram of the&nbsp;<code>pct_invalid_votes</code> variable in the constituency election dataset, with lines showing the mean and the standard deviation around the mean. Try add breaks into the function and change breaks from 10, 20 to 50 and see how the histogram changed.</p>
 <div class="cell">
-<div class="cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="02.ExploratoryDataAnalysis_files/figure-html/unnamed-chunk-41-1.png" class="img-fluid figure-img" width="672"></p>
-</figure>
-</div>
-</div>
+<div class="sourceCode cell-code" id="cb55"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb55-1"><a href="#cb55-1" aria-hidden="true" tabindex="-1"></a>pc_data <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"uk_constituencies_2024.csv"</span>,<span class="at">stringsAsFactors =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb55-2"><a href="#cb55-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb55-3"><a href="#cb55-3" aria-hidden="true" tabindex="-1"></a><span class="co"># histogram</span></span>
+<span id="cb55-4"><a href="#cb55-4" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(pc_data<span class="sc">$</span>pct_invalid_votes, <span class="at">col =</span> <span class="st">"thistle"</span>, <span class="at">main =</span> <span class="st">"Invalid votes in constituency"</span>, <span class="at">xlab =</span> <span class="st">"Percentage"</span>, <span class="at">breaks =</span> <span class="dv">50</span>)</span>
+<span id="cb55-5"><a href="#cb55-5" aria-hidden="true" tabindex="-1"></a><span class="co"># calculate and add the mean</span></span>
+<span id="cb55-6"><a href="#cb55-6" aria-hidden="true" tabindex="-1"></a>mean_val <span class="ot">=</span> <span class="fu">mean</span>(pc_data<span class="sc">$</span>pct_invalid_votes, <span class="at">na.rm =</span> T)</span>
+<span id="cb55-7"><a href="#cb55-7" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(<span class="at">v =</span> mean_val, <span class="at">col =</span> <span class="st">"purple"</span>, <span class="at">lwd =</span> <span class="dv">3</span>)</span>
+<span id="cb55-8"><a href="#cb55-8" aria-hidden="true" tabindex="-1"></a><span class="co"># calculate and add the standard deviation lines around the mean</span></span>
+<span id="cb55-9"><a href="#cb55-9" aria-hidden="true" tabindex="-1"></a>sdev <span class="ot">=</span> <span class="fu">sd</span>(pc_data<span class="sc">$</span>pct_invalid_votes, <span class="at">na.rm =</span> T)</span>
+<span id="cb55-10"><a href="#cb55-10" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(<span class="at">v =</span> mean_val<span class="sc">-</span>sdev, <span class="at">col =</span> <span class="st">"tan"</span>, <span class="at">lwd =</span> <span class="dv">3</span>, <span class="at">lty =</span> <span class="dv">2</span>)</span>
+<span id="cb55-11"><a href="#cb55-11" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(<span class="at">v =</span> mean_val<span class="sc">+</span>sdev, <span class="at">col =</span> <span class="st">"tan"</span>, <span class="at">lwd =</span> <span class="dv">3</span>, <span class="at">lty =</span> <span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p><strong>Task 4</strong> Write codes to create boxplots for <code>pct_in_migration</code>, <code>pct_UK_born</code> and <code>pct_owned</code> (owning upright household):</p>
 <div class="cell">
-<div class="cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="02.ExploratoryDataAnalysis_files/figure-html/unnamed-chunk-42-1.png" class="img-fluid figure-img" width="672"></p>
-</figure>
-</div>
-</div>
-<div class="cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="02.ExploratoryDataAnalysis_files/figure-html/unnamed-chunk-42-2.png" class="img-fluid figure-img" width="672"></p>
-</figure>
-</div>
-</div>
-<div class="cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="02.ExploratoryDataAnalysis_files/figure-html/unnamed-chunk-42-3.png" class="img-fluid figure-img" width="672"></p>
-</figure>
-</div>
-</div>
+<div class="sourceCode cell-code" id="cb56"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb56-1"><a href="#cb56-1" aria-hidden="true" tabindex="-1"></a><span class="fu">boxplot</span>(pc_data<span class="sc">$</span>pct_in_migration,<span class="at">horizontal=</span><span class="cn">TRUE</span>, <span class="at">main =</span> <span class="st">"In migration"</span>, <span class="at">xlab=</span><span class="st">'Percentage'</span>, <span class="at">col =</span> <span class="st">"gold"</span>)</span>
+<span id="cb56-2"><a href="#cb56-2" aria-hidden="true" tabindex="-1"></a><span class="fu">boxplot</span>(pc_data<span class="sc">$</span>pct_UK_born ,<span class="at">horizontal=</span><span class="cn">TRUE</span>, <span class="at">main =</span> <span class="st">"UK born"</span>, <span class="at">xlab=</span><span class="st">'Percentage'</span>, <span class="at">col =</span> <span class="st">"pink"</span>)</span>
+<span id="cb56-3"><a href="#cb56-3" aria-hidden="true" tabindex="-1"></a><span class="fu">boxplot</span>(pc_data<span class="sc">$</span>pct_owned,<span class="at">horizontal=</span><span class="cn">TRUE</span>, <span class="at">main =</span> <span class="st">"Owning house upright"</span>, <span class="at">xlab=</span><span class="st">'Percentage'</span>, <span class="at">col =</span> <span class="st">"lightblue"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p><strong>Task 4</strong> Write codes to summary the counts of MPs in each gender (this is in the <code>mp_gender</code>variable), presenting the table with percentage and showing the barplot.</p>
 <div class="cell">
-<div class="cell-output cell-output-stdout">
-<pre><code>  mp_gender   n  pct
-1    Female 263 40.5
-2      Male 387 59.5</code></pre>
-</div>
-<div class="cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="02.ExploratoryDataAnalysis_files/figure-html/unnamed-chunk-43-1.png" class="img-fluid figure-img" width="672"></p>
-</figure>
-</div>
-</div>
+<div class="sourceCode cell-code" id="cb57"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb57-1"><a href="#cb57-1" aria-hidden="true" tabindex="-1"></a>pc_data <span class="sc">%&gt;%</span> </span>
+<span id="cb57-2"><a href="#cb57-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">count</span>(mp_gender) <span class="sc">%&gt;%</span> </span>
+<span id="cb57-3"><a href="#cb57-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">pct =</span> <span class="fu">round</span>(n<span class="sc">/</span><span class="fu">sum</span>(n)<span class="sc">*</span><span class="dv">100</span>,<span class="dv">1</span>))</span>
+<span id="cb57-4"><a href="#cb57-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb57-5"><a href="#cb57-5" aria-hidden="true" tabindex="-1"></a>tab <span class="ot">=</span> <span class="fu">table</span>(pc_data<span class="sc">$</span>mp_gender)</span>
+<span id="cb57-6"><a href="#cb57-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb57-7"><a href="#cb57-7" aria-hidden="true" tabindex="-1"></a><span class="fu">barplot</span>(tab,<span class="at">main =</span> <span class="st">"MP gender in constituency"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p><strong>Task 5</strong> Cross tabulation <code>region_name</code> to <code>mp_gender</code> by using the newly created <code>pc_map_new</code> dataset, which joined by the constituency boundary and election dataset.</p>
 <div class="cell">
-<div class="cell-output cell-output-stdout">
-<pre><code>                          
-                           Female Male
-  East Midlands                20   27
-  East of England              16   45
-  Greater London               38   37
-  North East                   12   15
-  North West                   31   42
-  Northern Ireland              5   13
-  Scotland                     20   37
-  South East                   39   52
-  South West                   19   39
-  Wales                        15   17
-  West Midlands                25   32
-  Yorkshire and the Humber     23   31</code></pre>
-</div>
+<div class="sourceCode cell-code" id="cb58"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb58-1"><a href="#cb58-1" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(pc_map_new<span class="sc">$</span>region_name, pc_map_new<span class="sc">$</span>mp_gender)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p><strong>Task 6</strong> Compare between <code>crime_rate</code> with the <code>pct_social_rented</code> in constituency election dataset. What pattern you can learn from your boxplot?</p>
 <div class="cell">
-<div class="cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="02.ExploratoryDataAnalysis_files/figure-html/unnamed-chunk-45-1.png" class="img-fluid figure-img" width="672"></p>
-</figure>
-</div>
-</div>
+<div class="sourceCode cell-code" id="cb59"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb59-1"><a href="#cb59-1" aria-hidden="true" tabindex="-1"></a><span class="fu">boxplot</span>(pct_social_rented <span class="sc">~</span> crime_rate , <span class="at">data =</span> pc_data)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 
 

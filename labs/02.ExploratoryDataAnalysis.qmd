@@ -57,17 +57,17 @@ If R returns [Error: there is no package called '\*\*\*']{.underline}. Then it m
 
 ### Load the dataset
 
-In 2024 the UK held a general election. Download the file ***uk_constituencies_2024.csv*** from our [Canvas module page Week 2](https://canvas.liverpool.ac.uk/courses/85565). Read in the dataset exactly in the same way as we did in Week 1 - insert the below code line and run it:
+In 2024 the UK held a general election. Download the file ***uk_constituencies_2024.csv*** from our [Canvas module page Week 2](https://canvas.liverpool.ac.uk/courses/85565). Save the dataset in your M drive - ENVS162 - Week 2 folder, alongside the Week 2. R script. Read in the dataset exactly in the same way as we did in Week 1 - insert the below code line and run it:
 
 ```{r}
 pc_data <- read.csv("uk_constituencies_2024.csv",stringsAsFactors = TRUE)
 ```
 
-The datasheet captures a range of information relating to this election, and to the nature of each parliamentary constituency. By using `read.csv()` command, we use R to store the dataset in a dataframe called *pc_data* (short for Parliamentary Constituency data).
+The datasheet captures a range of information relating to this election, and to the nature of each parliamentary constituency. By using `read.csv()` command, we use R to store the dataset in a dataframe called `pc_data` (short for Parliamentary Constituency data).
 
-The *pc_data* dataset should appear in your RStudio Environment Pane on the upper right part, indicating that it has now been loaded into memory, and is available for analysis.
+The `pc_data` dataset should appear in your RStudio Environment Pane on the upper right part, indicating that it has now been loaded into memory, and is available for analysis.
 
-**For your information only**, the *pc_data* dataset has been assembled by combining information from the following sources.
+**For your information only**, the `pc_data` dataset has been assembled by combining information from the following sources.
 
 -   *HoC-GE2024-results-by-constituency.xlsx*
 
@@ -87,7 +87,7 @@ The *pc_data* dataset should appear in your RStudio Environment Pane on the uppe
 
 ### Familiar with the dataset and variable types
 
-In the *pc_data* dataset each row represents a different UK Parliamentary Constituency. Use the `View()` command to familiarise yourself with the variables contained in the dataset.
+In the `pc_data` dataset each row represents a different UK Parliamentary Constituency. Use the `View()` command to familiarise yourself with the variables contained in the dataset.
 
 ```{r}
 #| eval: false
@@ -123,7 +123,7 @@ head(pc_data)
 
 We can see that we have numeric data in integers (`int`) form (these are counts or whole numbers) and continuous (`num`) form, and the character variables (text) have been converted to `factors`. For each of these data types we can generate numeric and visual summaries and we can also see how they interact with each other.
 
-The *pc_data* dataset contains three basic sets of information about each Parliamentary Constituency:
+The `pc_data` dataset contains three basic sets of information about each Parliamentary Constituency:
 
 -   **constituency identifiers** - *gss_code* and *pc_name*
 
@@ -135,7 +135,7 @@ The *pc_data* dataset contains three basic sets of information about each Parlia
 
 #### Numeric variable
 
-You can use the *pc_data* dataset to extract some headline results from the 2024 General Election. Starting with the simplest case, the distribution of a single numeric variable whether continuous or count based can be examined numerically using the `summary` function.
+You can use the `pc_data` dataset to extract some headline results from the 2024 General Election. Starting with the simplest case, the distribution of a single numeric variable whether continuous or count based can be examined numerically using the `summary` function.
 
 ```{r}
 #valid votes in constituency
@@ -148,7 +148,7 @@ summary(pc_data$valid_votes)
 summary(pc_data$pct_White_British)
 ```
 
-A visual approach is more intuitive. The code below plots histograms of the two variables, using the `hist` function. The logic under-pinning a histogram is that a continuous variable (in this case *valid_votes* and *pct_White_British*) is temporarily regrouped into categories, using an equal-interval approach. The number of observations (in this case, constituencies) that fall into each equal-interval category then determine the height of each column in the histogram.The comments after each line shall inform you what the `main` and `xlab` in the function mean:
+A visual approach is more intuitive. The code below plots histograms of the two variables, using the `hist` function. The logic under-pinning a histogram is that a continuous variable (in this case `valid_votes` and `pct_White_British`) is temporarily regrouped into categories, using an equal-interval approach. The number of observations (in this case, constituencies) that fall into each equal-interval category then determine the height of each column in the histogram.The comments after each line shall inform you what the `main` and `xlab` in the function mean:
 
 ```{r}
 # histograms
@@ -412,12 +412,14 @@ Having established how many MPs and votes each party got, it is time to look at 
 
 ### Read in Parliamentary Constituency Boundaries
 
-Digital boundaries for the Parliamentary Constituencies used in the 2024 General Election can be found in the files *uk_constituencies_2024.geojson*. Both of these boundary datasets were sourced from https://automaticknowledge.org/wpc-hex/, and them simplified to make them quicker to plot.
+Digital boundaries for the Parliamentary Constituencies used in the 2024 General Election can be found in the files ***uk_constituencies_2024.gpkg*** from the Cavans module page. Download and save it in the Week 2 folder as well.
 
-Download the two digital boundary files from the Week 3 folder in CANVAS and save them to the same folder as your Week 3 Quarto document.
+As Week 1, we use `st_read()` function from `library(sf)` to read in this geographical boundary dataset.
 
 ```{r}
-pc_map <- st_read("uk_constituencies_2024.gpkg") #read the boundaries as a spatial dataset by using the st_read() command from library(sf)
+#read the boundaries as a spatial dataset
+
+pc_map <- st_read("uk_constituencies_2024.gpkg")  
 ```
 
 ### Inspect the spatial dataset
@@ -478,6 +480,9 @@ As ever, having created a new dataset, use the `dim( )`, `str( )`, `names( )`
 Having joined the `pc_data` dataset with a set of digital boundaries, it becomes a simple matter to map the election results using the mapping skills covered in Week 1:
 
 ```{r}
+#| message: false
+#| warning: false
+
 #make a map for the pc_map_new, fill the colors for each polygon based on "first_party", using colors from palette "Set3"
 
 tm_shape(pc_map_new) + #map a spatial data
@@ -513,7 +518,10 @@ Now what pattern you can observe from the interactive map you just made?
 **Task 1** How many columns and rows in the UK constituency boundary dataset?
 
 ```{r}
-#| echo: false
+#| eval: false
+#| echo: true
+#| message: false
+#| warning: false
 
 pc_map <- st_read("uk_constituencies_2024.gpkg")
 dim(pc_map)
@@ -524,7 +532,9 @@ nrow(pc_map)
 **Task 2** Using the UK constituency boundary dataset, descriptive summary the area of all the constituencies:
 
 ```{r}
-#| echo: false
+#| eval: false
+#| echo: true
+
 
 summary(pc_map$sq_km)
 ```
@@ -532,8 +542,8 @@ summary(pc_map$sq_km)
 **Task 3** Write some code to plot a histogram of the `pct_invalid_votes` variable in the constituency election dataset, with lines showing the mean and the standard deviation around the mean. Try add breaks into the function and change breaks from 10, 20 to 50 and see how the histogram changed.
 
 ```{r}
-#| echo: false
-
+#| eval: false
+#| echo: true
 
 pc_data <- read.csv("uk_constituencies_2024.csv",stringsAsFactors = TRUE)
 
@@ -551,7 +561,9 @@ abline(v = mean_val+sdev, col = "tan", lwd = 3, lty = 2)
 **Task 4** Write codes to create boxplots for `pct_in_migration`, `pct_UK_born` and `pct_owned` (owning upright household):
 
 ```{r}
-#| echo: false
+#| eval: false
+#| echo: true
+
 
 boxplot(pc_data$pct_in_migration,horizontal=TRUE, main = "In migration", xlab='Percentage', col = "gold")
 boxplot(pc_data$pct_UK_born ,horizontal=TRUE, main = "UK born", xlab='Percentage', col = "pink")
@@ -561,8 +573,8 @@ boxplot(pc_data$pct_owned,horizontal=TRUE, main = "Owning house upright", xlab='
 **Task 4** Write codes to summary the counts of MPs in each gender (this is in the `mp_gender`variable), presenting the table with percentage and showing the barplot.
 
 ```{r}
-#| echo: false
-
+#| eval: false
+#| echo: true
 
 pc_data %>% 
   count(mp_gender) %>% 
@@ -576,7 +588,8 @@ barplot(tab,main = "MP gender in constituency")
 **Task 5** Cross tabulation `region_name` to `mp_gender` by using the newly created `pc_map_new` dataset, which joined by the constituency boundary and election dataset.
 
 ```{r}
-#| echo: false
+#| eval: false
+#| echo: true
 
 table(pc_map_new$region_name, pc_map_new$mp_gender)
 ```
@@ -584,8 +597,8 @@ table(pc_map_new$region_name, pc_map_new$mp_gender)
 **Task 6** Compare between `crime_rate` with the `pct_social_rented` in constituency election dataset. What pattern you can learn from your boxplot?
 
 ```{r}
-#| echo: false
-
+#| eval: false
+#| echo: true
 
 boxplot(pct_social_rented ~ crime_rate , data = pc_data)
 ```

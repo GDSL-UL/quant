@@ -543,7 +543,7 @@ summary(pc_map$sq_km)
 
 ```{r}
 #| eval: false
-#| echo: true
+#| echo: false
 
 pc_data <- read.csv("uk_constituencies_2024.csv",stringsAsFactors = TRUE)
 

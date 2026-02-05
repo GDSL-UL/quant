@@ -570,7 +570,7 @@ boxplot(pc_data$pct_UK_born ,horizontal=TRUE, main = "UK born", xlab='Percentage
 boxplot(pc_data$pct_owned,horizontal=TRUE, main = "Owning house upright", xlab='Percentage', col = "lightblue")
 ```
 
-**Task 4** Write codes to summary the counts of MPs in each gender (this is in the `mp_gender`variable), presenting the table with percentage and showing the barplot.
+**Task 5** Write codes to summary the counts of MPs in each gender (this is in the `mp_gender`variable), presenting the table with percentage and showing the barplot.
 
 ```{r}
 #| eval: false
@@ -585,7 +585,7 @@ tab = table(pc_data$mp_gender)
 barplot(tab,main = "MP gender in constituency")
 ```
 
-**Task 5** Cross tabulation `region_name` to `mp_gender` by using the newly created `pc_map_new` dataset, which joined by the constituency boundary and election dataset.
+**Task 6** Cross tabulation `region_name` to `mp_gender` by using the newly created `pc_map_new` dataset, which joined by the constituency boundary and election dataset.
 
 ```{r}
 #| eval: false
@@ -594,7 +594,7 @@ barplot(tab,main = "MP gender in constituency")
 table(pc_map_new$region_name, pc_map_new$mp_gender)
 ```
 
-**Task 6** Compare between `crime_rate` with the `pct_social_rented` in constituency election dataset. What pattern you can learn from your boxplot?
+**Task 7** Compare between `crime_rate` with the `pct_social_rented` in constituency election dataset. What pattern you can learn from your boxplot?
 
 ```{r}
 #| eval: false

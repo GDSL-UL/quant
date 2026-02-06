@@ -515,35 +515,38 @@ Now what pattern you can observe from the interactive map you just made?
 
 ## Formative tasks
 
-**Task 1** How many columns and rows in the UK constituency boundary dataset?
+**Task 1** Write code to get how many columns and rows in the UK constituency boundary dataset `pc_map`?
 
 ```{r}
-#| eval: false
-#| echo: false
+#| eval: true
+#| echo: true
 #| message: false
 #| warning: false
 
 pc_map <- st_read("uk_constituencies_2024.gpkg")
-dim(pc_map)
+
 ncol(pc_map)
 nrow(pc_map)
+
+#both col and row
+dim(pc_map)
 ```
 
-**Task 2** Using the UK constituency boundary dataset, descriptive summary the area of all the constituencies:
+**Task 2** Using the UK constituency boundary dataset `pc_map`, write code to get descriptive summary the area (variable: `sq_km`) of all the constituencies.
 
 ```{r}
-#| eval: false
-#| echo: false
+#| eval: true
+#| echo: true
 
 
 summary(pc_map$sq_km)
 ```
 
-**Task 3** Write some code to plot a histogram of the `pct_invalid_votes` variable in the constituency election dataset, with lines showing the mean and the standard deviation around the mean. Try add breaks into the function and change breaks from 10, 20 to 50 and see how the histogram changed.
+**Task 3** Write some codes to plot a histogram of the `pct_invalid_votes` variable in the constituency election dataset, with lines showing the mean and the standard deviation around the mean. Try add breaks into the function and change breaks from 10, 20 to 50 and see how the histogram changed.
 
 ```{r}
-#| eval: false
-#| echo: false
+#| eval: true
+#| echo: true
 
 pc_data <- read.csv("uk_constituencies_2024.csv",stringsAsFactors = TRUE)
 
@@ -561,20 +564,32 @@ abline(v = mean_val+sdev, col = "tan", lwd = 3, lty = 2)
 **Task 4** Write codes to create boxplots for `pct_in_migration`, `pct_UK_born` and `pct_owned` (owning upright household):
 
 ```{r}
-#| eval: false
-#| echo: false
+#| eval: true
+#| echo: true
 
 
 boxplot(pc_data$pct_in_migration,horizontal=TRUE, main = "In migration", xlab='Percentage', col = "gold")
 boxplot(pc_data$pct_UK_born ,horizontal=TRUE, main = "UK born", xlab='Percentage', col = "pink")
 boxplot(pc_data$pct_owned,horizontal=TRUE, main = "Owning house upright", xlab='Percentage', col = "lightblue")
+
+
+#to compare them together
+boxplot(pc_data[,c("pct_in_migration",
+                   "pct_UK_born",
+                   "pct_owned"
+                   )],
+        horizontal=TRUE, 
+        main = "Owning house upright", 
+        xlab='Percentage', 
+        col = c("gold","pink","lightblue")
+        )
 ```
 
 **Task 5** Write codes to summary the counts of MPs in each gender (this is in the `mp_gender`variable), presenting the table with percentage and showing the barplot.
 
 ```{r}
-#| eval: false
-#| echo: false
+#| eval: true
+#| echo: true
 
 pc_data %>% 
   count(mp_gender) %>% 
@@ -588,8 +603,8 @@ barplot(tab,main = "MP gender in constituency")
 **Task 6** Cross tabulation `region_name` to `mp_gender` by using the newly created `pc_map_new` dataset, which joined by the constituency boundary and election dataset.
 
 ```{r}
-#| eval: false
-#| echo: false
+#| eval: true
+#| echo: true
 
 table(pc_map_new$region_name, pc_map_new$mp_gender)
 ```
@@ -597,8 +612,8 @@ table(pc_map_new$region_name, pc_map_new$mp_gender)
 **Task 7** Compare between `crime_rate` with the `pct_social_rented` in constituency election dataset. What pattern you can learn from your boxplot?
 
 ```{r}
-#| eval: false
-#| echo: false
+#| eval: true
+#| echo: true
 
 boxplot(pct_social_rented ~ crime_rate , data = pc_data)
 ```

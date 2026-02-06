@@ -870,13 +870,158 @@ Multiple palettes called "set3" found: "brewer.set3", "hcl.set3". The first one,
 </section>
 <section id="formative-tasks" class="level2" data-number="2.6">
 <h2 data-number="2.6" class="anchored" data-anchor-id="formative-tasks"><span class="header-section-number">2.6</span> Formative tasks</h2>
-<p><strong>Task 1</strong> How many columns and rows in the UK constituency boundary dataset?</p>
-<p><strong>Task 2</strong> Using the UK constituency boundary dataset, descriptive summary the area of all the constituencies:</p>
-<p><strong>Task 3</strong> Write some code to plot a histogram of the&nbsp;<code>pct_invalid_votes</code> variable in the constituency election dataset, with lines showing the mean and the standard deviation around the mean. Try add breaks into the function and change breaks from 10, 20 to 50 and see how the histogram changed.</p>
+<p><strong>Task 1</strong> Write code to get how many columns and rows in the UK constituency boundary dataset <code>pc_map</code>?</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb56"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb56-1"><a href="#cb56-1" aria-hidden="true" tabindex="-1"></a>pc_map <span class="ot">&lt;-</span> <span class="fu">st_read</span>(<span class="st">"uk_constituencies_2024.gpkg"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Reading layer `uk_constituencies_2024' from data source 
+  `C:\Users\ziye\Documents\GitHub\quant\labs\uk_constituencies_2024.gpkg' 
+  using driver `GPKG'
+Simple feature collection with 650 features and 9 fields
+Geometry type: MULTIPOLYGON
+Dimension:     XY
+Bounding box:  xmin: 191.9359 ymin: 7423.9 xmax: 655599.6 ymax: 1218591
+Projected CRS: OSGB36 / British National Grid</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb58"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb58-1"><a href="#cb58-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ncol</span>(pc_map)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 10</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb60"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb60-1"><a href="#cb60-1" aria-hidden="true" tabindex="-1"></a><span class="fu">nrow</span>(pc_map)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 650</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb62"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb62-1"><a href="#cb62-1" aria-hidden="true" tabindex="-1"></a><span class="co">#both col and row</span></span>
+<span id="cb62-2"><a href="#cb62-2" aria-hidden="true" tabindex="-1"></a><span class="fu">dim</span>(pc_map)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 650  10</code></pre>
+</div>
+</div>
+<p><strong>Task 2</strong> Using the UK constituency boundary dataset <code>pc_map</code>, write code to get descriptive summary the area (variable: <code>sq_km</code>) of all the constituencies.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb64"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb64-1"><a href="#cb64-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(pc_map<span class="sc">$</span>sq_km)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>    Min.  1st Qu.   Median     Mean  3rd Qu.     Max. 
+    6.80    33.65   106.45   375.01   351.98 11634.40 </code></pre>
+</div>
+</div>
+<p><strong>Task 3</strong> Write some codes to plot a histogram of the&nbsp;<code>pct_invalid_votes</code> variable in the constituency election dataset, with lines showing the mean and the standard deviation around the mean. Try add breaks into the function and change breaks from 10, 20 to 50 and see how the histogram changed.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb66"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb66-1"><a href="#cb66-1" aria-hidden="true" tabindex="-1"></a>pc_data <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"uk_constituencies_2024.csv"</span>,<span class="at">stringsAsFactors =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb66-2"><a href="#cb66-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb66-3"><a href="#cb66-3" aria-hidden="true" tabindex="-1"></a><span class="co"># histogram</span></span>
+<span id="cb66-4"><a href="#cb66-4" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(pc_data<span class="sc">$</span>pct_invalid_votes, <span class="at">col =</span> <span class="st">"thistle"</span>, <span class="at">main =</span> <span class="st">"Invalid votes in constituency"</span>, <span class="at">xlab =</span> <span class="st">"Percentage"</span>, <span class="at">breaks =</span> <span class="dv">50</span>)</span>
+<span id="cb66-5"><a href="#cb66-5" aria-hidden="true" tabindex="-1"></a><span class="co"># calculate and add the mean</span></span>
+<span id="cb66-6"><a href="#cb66-6" aria-hidden="true" tabindex="-1"></a>mean_val <span class="ot">=</span> <span class="fu">mean</span>(pc_data<span class="sc">$</span>pct_invalid_votes, <span class="at">na.rm =</span> T)</span>
+<span id="cb66-7"><a href="#cb66-7" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(<span class="at">v =</span> mean_val, <span class="at">col =</span> <span class="st">"purple"</span>, <span class="at">lwd =</span> <span class="dv">3</span>)</span>
+<span id="cb66-8"><a href="#cb66-8" aria-hidden="true" tabindex="-1"></a><span class="co"># calculate and add the standard deviation lines around the mean</span></span>
+<span id="cb66-9"><a href="#cb66-9" aria-hidden="true" tabindex="-1"></a>sdev <span class="ot">=</span> <span class="fu">sd</span>(pc_data<span class="sc">$</span>pct_invalid_votes, <span class="at">na.rm =</span> T)</span>
+<span id="cb66-10"><a href="#cb66-10" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(<span class="at">v =</span> mean_val<span class="sc">-</span>sdev, <span class="at">col =</span> <span class="st">"tan"</span>, <span class="at">lwd =</span> <span class="dv">3</span>, <span class="at">lty =</span> <span class="dv">2</span>)</span>
+<span id="cb66-11"><a href="#cb66-11" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(<span class="at">v =</span> mean_val<span class="sc">+</span>sdev, <span class="at">col =</span> <span class="st">"tan"</span>, <span class="at">lwd =</span> <span class="dv">3</span>, <span class="at">lty =</span> <span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="02.ExploratoryDataAnalysis_files/figure-html/unnamed-chunk-41-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
 <p><strong>Task 4</strong> Write codes to create boxplots for <code>pct_in_migration</code>, <code>pct_UK_born</code> and <code>pct_owned</code> (owning upright household):</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb67"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb67-1"><a href="#cb67-1" aria-hidden="true" tabindex="-1"></a><span class="fu">boxplot</span>(pc_data<span class="sc">$</span>pct_in_migration,<span class="at">horizontal=</span><span class="cn">TRUE</span>, <span class="at">main =</span> <span class="st">"In migration"</span>, <span class="at">xlab=</span><span class="st">'Percentage'</span>, <span class="at">col =</span> <span class="st">"gold"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="02.ExploratoryDataAnalysis_files/figure-html/unnamed-chunk-42-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+<div class="sourceCode cell-code" id="cb68"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb68-1"><a href="#cb68-1" aria-hidden="true" tabindex="-1"></a><span class="fu">boxplot</span>(pc_data<span class="sc">$</span>pct_UK_born ,<span class="at">horizontal=</span><span class="cn">TRUE</span>, <span class="at">main =</span> <span class="st">"UK born"</span>, <span class="at">xlab=</span><span class="st">'Percentage'</span>, <span class="at">col =</span> <span class="st">"pink"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="02.ExploratoryDataAnalysis_files/figure-html/unnamed-chunk-42-2.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+<div class="sourceCode cell-code" id="cb69"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb69-1"><a href="#cb69-1" aria-hidden="true" tabindex="-1"></a><span class="fu">boxplot</span>(pc_data<span class="sc">$</span>pct_owned,<span class="at">horizontal=</span><span class="cn">TRUE</span>, <span class="at">main =</span> <span class="st">"Owning house upright"</span>, <span class="at">xlab=</span><span class="st">'Percentage'</span>, <span class="at">col =</span> <span class="st">"lightblue"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="02.ExploratoryDataAnalysis_files/figure-html/unnamed-chunk-42-3.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+<div class="sourceCode cell-code" id="cb70"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb70-1"><a href="#cb70-1" aria-hidden="true" tabindex="-1"></a><span class="co">#to compare them together</span></span>
+<span id="cb70-2"><a href="#cb70-2" aria-hidden="true" tabindex="-1"></a><span class="fu">boxplot</span>(pc_data[,<span class="fu">c</span>(<span class="st">"pct_in_migration"</span>,</span>
+<span id="cb70-3"><a href="#cb70-3" aria-hidden="true" tabindex="-1"></a>                   <span class="st">"pct_UK_born"</span>,</span>
+<span id="cb70-4"><a href="#cb70-4" aria-hidden="true" tabindex="-1"></a>                   <span class="st">"pct_owned"</span></span>
+<span id="cb70-5"><a href="#cb70-5" aria-hidden="true" tabindex="-1"></a>                   )],</span>
+<span id="cb70-6"><a href="#cb70-6" aria-hidden="true" tabindex="-1"></a>        <span class="at">horizontal=</span><span class="cn">TRUE</span>, </span>
+<span id="cb70-7"><a href="#cb70-7" aria-hidden="true" tabindex="-1"></a>        <span class="at">main =</span> <span class="st">"Owning house upright"</span>, </span>
+<span id="cb70-8"><a href="#cb70-8" aria-hidden="true" tabindex="-1"></a>        <span class="at">xlab=</span><span class="st">'Percentage'</span>, </span>
+<span id="cb70-9"><a href="#cb70-9" aria-hidden="true" tabindex="-1"></a>        <span class="at">col =</span> <span class="fu">c</span>(<span class="st">"gold"</span>,<span class="st">"pink"</span>,<span class="st">"lightblue"</span>)</span>
+<span id="cb70-10"><a href="#cb70-10" aria-hidden="true" tabindex="-1"></a>        )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="02.ExploratoryDataAnalysis_files/figure-html/unnamed-chunk-42-4.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
 <p><strong>Task 5</strong> Write codes to summary the counts of MPs in each gender (this is in the <code>mp_gender</code>variable), presenting the table with percentage and showing the barplot.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb71"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb71-1"><a href="#cb71-1" aria-hidden="true" tabindex="-1"></a>pc_data <span class="sc">%&gt;%</span> </span>
+<span id="cb71-2"><a href="#cb71-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">count</span>(mp_gender) <span class="sc">%&gt;%</span> </span>
+<span id="cb71-3"><a href="#cb71-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">pct =</span> <span class="fu">round</span>(n<span class="sc">/</span><span class="fu">sum</span>(n)<span class="sc">*</span><span class="dv">100</span>,<span class="dv">1</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>  mp_gender   n  pct
+1    Female 263 40.5
+2      Male 387 59.5</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb73"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb73-1"><a href="#cb73-1" aria-hidden="true" tabindex="-1"></a>tab <span class="ot">=</span> <span class="fu">table</span>(pc_data<span class="sc">$</span>mp_gender)</span>
+<span id="cb73-2"><a href="#cb73-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb73-3"><a href="#cb73-3" aria-hidden="true" tabindex="-1"></a><span class="fu">barplot</span>(tab,<span class="at">main =</span> <span class="st">"MP gender in constituency"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="02.ExploratoryDataAnalysis_files/figure-html/unnamed-chunk-43-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
 <p><strong>Task 6</strong> Cross tabulation <code>region_name</code> to <code>mp_gender</code> by using the newly created <code>pc_map_new</code> dataset, which joined by the constituency boundary and election dataset.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb74"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb74-1"><a href="#cb74-1" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(pc_map_new<span class="sc">$</span>region_name, pc_map_new<span class="sc">$</span>mp_gender)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>                          
+                           Female Male
+  East Midlands                20   27
+  East of England              16   45
+  Greater London               38   37
+  North East                   12   15
+  North West                   31   42
+  Northern Ireland              5   13
+  Scotland                     20   37
+  South East                   39   52
+  South West                   19   39
+  Wales                        15   17
+  West Midlands                25   32
+  Yorkshire and the Humber     23   31</code></pre>
+</div>
+</div>
 <p><strong>Task 7</strong> Compare between <code>crime_rate</code> with the <code>pct_social_rented</code> in constituency election dataset. What pattern you can learn from your boxplot?</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb76"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb76-1"><a href="#cb76-1" aria-hidden="true" tabindex="-1"></a><span class="fu">boxplot</span>(pct_social_rented <span class="sc">~</span> crime_rate , <span class="at">data =</span> pc_data)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="02.ExploratoryDataAnalysis_files/figure-html/unnamed-chunk-45-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
 
 
 </section>

@@ -41,7 +41,7 @@ This command will clear RStudio’s memory, removing any data objects that you h
 
 In Week 1 we have installed essential R package `tidyverse`, `sf`, and `tmap`. Remember if any package has been installed, then we don't need to re-install them. Instead, we use library() command to import and use them.
 
-As ever, when you start a new session in RStudio, you need to load the packages you wish to use into memory. In addition to the `tidyverse`, `gdslStats` and `sf` packages we used last week.
+As ever, when you start a new session in RStudio, you need to load the packages you wish to use into memory. In addition to the `tidyverse`, `tmap` and `sf` packages we used last week.
 
 ```{r}
 #| message: false

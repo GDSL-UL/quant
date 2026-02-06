@@ -27,9 +27,9 @@ You may wish to recap this week's lecture: [Lecture 02.pptx](https://canvas.live
 
 -   Open RStudio
 
--   Open a new R Script for your Week 2 work, rename it as Week2.R and save it in your newly creately Week 2 folder, under M drive -\> ENVS162 folder. This is exactly the step we did in Week 1, and we will do this every week to Week 5.
+-   Open a new R Script for your Week 2 work, rename it as Week2.R and save it in your newly created Week 2 folder, under M drive -\> ENVS162 folder. This is exactly the step we did in Week 1, and we will do this every week to Week 5.
 
--   Check whether there is any previous left dataframe in your RStudio in the upper-right side Environment pane. You can always use the ![](images/clipboard-4263234033.png) to clear all the dataframes in your environment and make it all clean. For the same aim, you can run the below code:
+-   Check whether there is any previous left dataframes in your RStudio in the upper-right side Environment pane. You can always use the ![](images/clipboard-4263234033.png) to clear all the dataframes in your environment and make it all clean. For the same aim, you can run the below code:
 
 ```{r}
 rm(list = ls())

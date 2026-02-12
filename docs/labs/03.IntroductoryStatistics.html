@@ -361,12 +361,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co"># sample mean value</span></span>
 <span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(sample_10<span class="sc">$</span>hh_income_net)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 31356</code></pre>
+<pre><code>[1] 34663.2</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="co"># sample standard deviation</span></span>
 <span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="fu">sd</span>(sample_10<span class="sc">$</span>hh_income_net)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 16518</code></pre>
+<pre><code>[1] 16597.94</code></pre>
 </div>
 </div>
 <p>You will get a different values for these to the ones your friends get (and the ones created below), because you will have each extracted a different&nbsp;<strong>sample</strong>&nbsp;from the population - this is&nbsp;<strong>random</strong>&nbsp;sampling!</p>
@@ -377,12 +377,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="co"># sample SE</span></span>
 <span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a><span class="fu">sd</span>(sample_10<span class="sc">$</span>hh_income_net)<span class="sc">/</span><span class="fu">sqrt</span>(<span class="fu">length</span>(sample_10<span class="sc">$</span>hh_income_net))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 5223.451</code></pre>
+<pre><code>[1] 5248.728</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="co"># or</span></span>
 <span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a><span class="fu">sd</span>(sample_10<span class="sc">$</span>hh_income_net)<span class="sc">/</span><span class="fu">sqrt</span>(<span class="fu">nrow</span>(sample_10))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 5223.451</code></pre>
+<pre><code>[1] 5248.728</code></pre>
 </div>
 </div>
 <div style="background-color: #FFFBCC; padding: 10px; border-radius: 5px; border: 1px solid #E1C948;">
@@ -1045,7 +1045,7 @@ Geodetic CRS:  WGS 84</code></pre>
 <p><strong>Task 2</strong> Use the <code>health</code> variable from the UK Family Resource Survey, what is the sample mean proportion of <strong>Very Good</strong> health in the whole sample? The standard error and CI? How to interpret the results?</p>
 <p><strong>Task 3</strong> Use the <code>health</code> variable from the World Value Survey, compare your the sample mean proportion of <strong>Very good</strong> health with your findings in Task 2.</p>
 <p><strong>Task 4</strong> Use the <code>trust_strangers</code> variable from the World Value Survey, compare between different regions (variable use <code>sub_region_name</code>). Which region more likely to trust strangers completely?</p>
-<p><strong>Task 5</strong> Use the <code>immigrant_impact</code> variable from the World Value Survey, create a new dataframe to include the sample mean proportion of in each country/place who holds <strong>Very bad</strong> attitude of immigrant impact. Which 5 country/place has the lowest mean proportion in this sample?</p>
+<p><strong>Task 5</strong> Use the <code>immigrant_impact</code> variable from the World Value Survey, create a new dataframe to include the sample mean proportion of in each country/place (variable needed: <code>english_short_name</code>) who holds <strong>Very bad</strong> attitude of immigrant impact. Identify the five countries/places with the lowest mean proportion in the sample.</p>
 
 
 </section>

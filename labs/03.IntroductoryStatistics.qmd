@@ -893,7 +893,7 @@ which.max(result$`Trust completely`)
 result[which.max(result$`Trust completely`),]
 ```
 
-**Task 5** Use the `immigrant_impact` variable from the World Value Survey, create a new dataframe to include the sample mean proportion of in each country/place who holds **Very bad** attitude of immigrant impact. Which 5 country/place has the lowest mean proportion in this sample?
+**Task 5** Use the `immigrant_impact` variable from the World Value Survey, create a new dataframe to include the sample mean proportion of in each country/place (variable needed: `english_short_name`) who holds **Very bad** attitude of immigrant impact. Identify the five countries/places with the lowest mean proportion in the sample.
 
 ```{r}
 #| eval: false

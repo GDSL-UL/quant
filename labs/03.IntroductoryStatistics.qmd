@@ -230,9 +230,17 @@ So…as sample size increases, the sample estimate of a population mean becomes 
 
 ### Confidence Intervals
 
-The idea of a **confidence interval**, CI, is a natural extension of the standard error. It allows us to define a level of confidence in our population parameter estimate gleaned from a sample. We can use the `qnorm` function. `qnorm(p)` gives the value on the normal distribution such that the cumulative probability up to that value equals p. It is used at here to calculate the errors around the sample mean under an assumption of a normal distribution of the population (hence the *norm* bit of `qnorm`):
+The idea of a **confidence interval**, CI, is a natural extension of the standard error. It allows us to define a level of confidence in our population parameter estimate gleaned from a sample:
+
+![](images/clipboard-3668784640.png){width="305"}
+
+We can use the `qnorm` function. `qnorm(p)` gives the value on the normal distribution such that the cumulative probability up to that value equals `p`. It is used at here to calculate the errors around the sample mean under an assumption of a normal distribution of the population (hence the *norm* bit of `qnorm`):
 
 ```{r}
+#| eval: false
+#| echo: true
+
+
 # you have already created the sample with
 # sample_10  <- slice_sample(df, n=10)
 m <- mean(sample_10$hh_income_net)
@@ -248,6 +256,11 @@ upper.bound <- m+error
 ```
 
 ```{r}
+
+#| eval: false
+#| echo: true
+
+
 # upper and lower bound
 upper.bound
 
@@ -259,6 +272,9 @@ This is the 95% confidence interval, for the rest 2.5% in the lower tail and 2.5
 Let's change the above code to a sample size of 1000:
 
 ```{r}
+#| eval: false
+#| echo: true
+
 
 # change sample size from 10 to 1000 this time
 sample_1k  <- slice_sample(df, n=1000)
@@ -418,6 +434,9 @@ To do this, we use the full sample size **n**. Recall that for a proportion, CI 
 The critical value is again the `qnorm(0.975)` as we did for the numerical variable, if you `qnorm(0.975)` then you may find it is 1.96. The below R code help use to calculate the CI windows of sample mean, when sample size is n.
 
 ```{r}
+#| eval: false
+#| echo: true
+
 
 #CI windows
 p_hat = mean(df$happiness == "Very happy")

@@ -441,6 +441,7 @@ The critical value is again the `qnorm(0.975)` as we did for the numerical varia
 #CI windows
 p_hat = mean(df$happiness == "Very happy")
 p_hat
+n <- nrow(df)
 SE_p <- sqrt(p_hat * (1 - p_hat) / n)
 error_p <- qnorm(0.975) * SE_p
 lower.bound <- p_hat - error_p
@@ -450,7 +451,7 @@ upper.bound
 
 ```
 
-Therefore, the confidence interval can be interpreted as follows: in the current UK *Family Resources Survey*, the sample proportion of respondents reporting being *Very happy* is 58.6%. The 95% confidence interval indicates that we are 95% confident that the true population proportion lies between 55.6% and 61.7%.
+Therefore, the confidence interval can be interpreted as follows: in the current UK *Family Resources Survey*, the sample proportion of respondents reporting being *Very happy* is 58.6%. The 95% confidence interval indicates that we are 95% confident that the true population proportion lies between 58.0% and 59.2%.
 
 ## Compare to World Value Survey
 

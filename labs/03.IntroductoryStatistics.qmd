@@ -435,9 +435,7 @@ To do this, we use the full sample size **n**. Recall that for a proportion, CI 
 The critical value is again the `qnorm(0.975)` as we did for the numerical variable, if you `qnorm(0.975)` then you may find it is 1.96. The below R code help use to calculate the CI windows of sample mean, when sample size is n.
 
 ```{r}
-#| echo: true
-#| results: hide
-#| output: false
+
 
 
 #CI windows
@@ -452,7 +450,7 @@ upper.bound
 
 ```
 
-Therefore, the confidence interval can be interpreted as follows: in the current UK *Family Resources Survey*, the sample proportion of respondents reporting being *Very happy* is 58.6%. The 95% confidence interval indicates that we are 95% confident that the true population proportion lies between 58.0% and 59.2%.
+Therefore, the confidence interval can be interpreted as follows: in the current UK *Family Resources Survey*, the sample proportion of respondents reporting being *Very happy* is 58.6%. The 95% confidence interval indicates that we are 95% confident that the true population proportion lies between 55.6% and 61.7%.
 
 ## Compare to World Value Survey
 
@@ -518,11 +516,11 @@ To estimate the Standard Error, we use the same coding, but this time, the sampl
 #Standard Error for the proportion of Very happy
 k = nrow(dat)
 k
-SE_p2 <- sqrt(p_hat2 * (1 - p_hat2) / n)
+SE_p2 <- sqrt(p_hat2 * (1 - p_hat2) / k)
 SE_p2
 ```
 
-The estimated proportion of respondents who are *Very happy* typically varies by about 0.0011 (or 0.11 percentage points) from sample to sample due to random sampling variation.
+The estimated proportion of respondents who are *Very happy* typically varies by about 0.0012 (or 0.12 percentage points) from sample to sample due to random sampling variation.
 
 And the Confidence Intervals:
 

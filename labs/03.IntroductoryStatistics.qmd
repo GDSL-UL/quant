@@ -236,6 +236,7 @@ The idea of a **confidence interval**, CI, is a natural extension of the standa
 # you have already created the sample with
 # sample_10  <- slice_sample(df, n=10)
 m <- mean(sample_10$hh_income_net)
+m
 std <- sd(sample_10$hh_income_net)
 n <- length(sample_10$hh_income_net)
 
@@ -253,7 +254,31 @@ upper.bound
 lower.bound
 ```
 
-This is the 95% confidence interval, for the rest 2.5% in the lower tail and 2.5% in the upper tain. This is why you may find in the code, we use `qnorm(0.975)` as that refers to the cutoff points in two directions). Again, you may find your values subtly different due to random sample. But in my case, ***we are 95% confident that the mean household net income is between 13,315 pound and 23,002 pound***.
+This is the 95% confidence interval, for the rest 2.5% in the lower tail and 2.5% in the upper tail. This is why you may find in the code, we use `qnorm(0.975)` as that refers to the cutoff points in two directions). Again, you may find your values subtly different due to random sample. But in my case, **the mean household net income is 42,110 pound, and** **we are 95% confident that the mean household net income is between 22,842 pound and 61,376 pound**. This can be a really fuzzy estimates, and it is because we only use 10 respondents from the survey and by using such as small sample size, the CI window would be very fuzzy.
+
+Let's change the above code to a sample size of 1000:
+
+```{r}
+
+# change sample size from 10 to 1000 this time
+sample_1k  <- slice_sample(df, n=1000)
+m <- mean(sample_1k$hh_income_net)
+m
+std <- sd(sample_1k$hh_income_net)
+n <- length(sample_1k$hh_income_net)
+
+error <- qnorm(0.975)*std/sqrt(n)
+
+lower.bound <- m-error
+upper.bound <- m+error
+
+lower.bound
+upper.bound
+```
+
+Now you see that the sample mean has changed to 36,680, which indicates that **the mean household net income is 36,680 pound, and** **we are 95% confident that the mean household net income is between 33,934 pound and 39,427 pound**. Therefore, with this sample size as 1000 sample, the CI window is much narrow and the result is more solid.
+
+You may try out if we use all the respondents as the sample, what is the result? In this case, we don't need to `slice_sample()`, and the n should be `n = nrow(df)`.
 
 ## Sampling of categorical variable
 

@@ -223,6 +223,9 @@ head(mtcars)
 The `mtcars` object is a `data.frame`, a kind of data table, and it has a number of attributes which are all numeric. The code below prints it all out to the console:
 
 ```{r}
+#| eval: false
+#| echo: true
+
 mtcars
 ```
 
@@ -409,6 +412,10 @@ The `stringsAsFactors = TRUE` parameter tells R to read any character or text va
 You could inspect the help for the `read.csv` function to see the different parameters and their default values:
 
 ```{r}
+#| eval: false
+#| echo: true
+
+
 help(read.csv)
 # or 
 ?read.csv

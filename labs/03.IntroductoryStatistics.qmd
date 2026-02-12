@@ -532,6 +532,10 @@ You may think, okay, but it is very hard to draw conclusions based on the counts
 To know the function, we can first ask R's help:
 
 ```{r}
+#| eval: false
+#| echo: true
+
+
 ?prop.table
 ```
 
@@ -717,7 +721,6 @@ map
 tmap_save(map,"Week3 map.png")
 ```
 
-
 ```{r}
 #| echo: false
 #| message: false
@@ -742,7 +745,7 @@ map
 
 Check in your folder and you shall find the map made by yourself.
 
-### Formative Tasks
+## Formative Tasks
 
 **Task 1** Use the `income_gross` variable from the UK Family Resource Survey, compare how increase sample size from 5000 to 20000 would affect the sample mean, standard error and CI of the `income_gross`. How to interpret the results?
 

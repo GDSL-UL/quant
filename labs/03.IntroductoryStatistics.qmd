@@ -237,8 +237,9 @@ The idea of a **confidence interval**, CI, is a natural extension of the standa
 We can use the `qnorm` function. `qnorm(p)` gives the value on the normal distribution such that the cumulative probability up to that value equals `p`. It is used at here to calculate the errors around the sample mean under an assumption of a normal distribution of the population (hence the *norm* bit of `qnorm`):
 
 ```{r}
-#| eval: false
 #| echo: true
+#| results: hide
+#| output: false
 
 
 # you have already created the sample with
@@ -256,14 +257,13 @@ upper.bound <- m+error
 ```
 
 ```{r}
-
-#| eval: false
 #| echo: true
+#| results: hide
+#| output: false
 
 
 # upper and lower bound
 upper.bound
-
 lower.bound
 ```
 
@@ -272,8 +272,9 @@ This is the 95% confidence interval, for the rest 2.5% in the lower tail and 2.5
 Let's change the above code to a sample size of 1000:
 
 ```{r}
-#| eval: false
 #| echo: true
+#| results: hide
+#| output: false
 
 
 # change sample size from 10 to 1000 this time
@@ -434,8 +435,9 @@ To do this, we use the full sample size **n**. Recall that for a proportion, CI 
 The critical value is again the `qnorm(0.975)` as we did for the numerical variable, if you `qnorm(0.975)` then you may find it is 1.96. The below R code help use to calculate the CI windows of sample mean, when sample size is n.
 
 ```{r}
-#| eval: false
 #| echo: true
+#| results: hide
+#| output: false
 
 
 #CI windows

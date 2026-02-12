@@ -1,0 +1,2000 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.6.42">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Zi Ye">
+<meta name="dcterms.date" content="2026-02-12">
+
+<title>1&nbsp; Lab: Getting Started in RStudio - Knowing Merseyside – Human Geography through Merseyside - Quantitative Block: Seeing the world through numbers</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<link href="../labs/02.ExploratoryDataAnalysis.html" rel="next">
+<link href="../general/assessment.html" rel="prev">
+<script src="../site_libs/quarto-html/quarto.js"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-2f5df379a58b258e96c21c0638c20c03.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap-2a7818e10ffe1156910bef59d6201c79.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+
+<link rel="stylesheet" href="../styles.css">
+</head>
+
+<body class="nav-sidebar docked">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../labs/01.GettingStartedinRStudio.html"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Lab: Getting Started in RStudio - Knowing Merseyside</span></a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation docked overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="../">Human Geography through Merseyside - Quantitative Block: Seeing the world through numbers</a> 
+        <div class="sidebar-tools-main">
+    <a href="https://github.com/GDSL-UL/quant" title="Source Code" class="quarto-navigation-tool px-1" aria-label="Source Code"><i class="bi bi-github"></i></a>
+    <a href="../Human-Geography-through-Merseyside---Quantitative-Block--Seeing-the-world-through-numbers.pdf" title="Download PDF" class="quarto-navigation-tool px-1" aria-label="Download PDF"><i class="bi bi-file-pdf"></i></a>
+</div>
+    </div>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Welcome</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../general/overview.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Overview</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../general/assessment.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Assessment</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../labs/01.GettingStartedinRStudio.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Lab: Getting Started in RStudio - Knowing Merseyside</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../labs/02.ExploratoryDataAnalysis.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Lab: Exploratory Data Analysis - UK Election</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../labs/03.IntroductoryStatistics.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Lab: Introductory Statistics - Happiness around the world</span></span></a>
+  </div>
+</li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#overview" id="toc-overview" class="nav-link active" data-scroll-target="#overview"><span class="header-section-number">1.1</span> <strong>Overview</strong></a></li>
+  <li><a href="#getting-set-up-with-rstudio" id="toc-getting-set-up-with-rstudio" class="nav-link" data-scroll-target="#getting-set-up-with-rstudio"><span class="header-section-number">1.2</span> <strong>Getting set up with RStudio</strong></a>
+  <ul class="collapse">
+  <li><a href="#install-r-and-rstudio-if-necessary" id="toc-install-r-and-rstudio-if-necessary" class="nav-link" data-scroll-target="#install-r-and-rstudio-if-necessary"><span class="header-section-number">1.2.1</span> <strong>Install R and RStudio (if necessary)</strong></a></li>
+  <li><a href="#file-management" id="toc-file-management" class="nav-link" data-scroll-target="#file-management"><span class="header-section-number">1.2.2</span> File management</a></li>
+  <li><a href="#open-rstudio" id="toc-open-rstudio" class="nav-link" data-scroll-target="#open-rstudio"><span class="header-section-number">1.2.3</span> <strong>Open RStudio</strong></a></li>
+  <li><a href="#ways-of-working" id="toc-ways-of-working" class="nav-link" data-scroll-target="#ways-of-working"><span class="header-section-number">1.2.4</span> Ways of working</a></li>
+  <li><a href="#your-first-r-code" id="toc-your-first-r-code" class="nav-link" data-scroll-target="#your-first-r-code"><span class="header-section-number">1.2.5</span> Your first R code</a></li>
+  </ul></li>
+  <li><a href="#knowing-merseyside" id="toc-knowing-merseyside" class="nav-link" data-scroll-target="#knowing-merseyside"><span class="header-section-number">1.3</span> Knowing Merseyside</a>
+  <ul class="collapse">
+  <li><a href="#merseyside-districts" id="toc-merseyside-districts" class="nav-link" data-scroll-target="#merseyside-districts"><span class="header-section-number">1.3.1</span> Merseyside districts</a></li>
+  <li><a href="#merseyside-neighbourhoods" id="toc-merseyside-neighbourhoods" class="nav-link" data-scroll-target="#merseyside-neighbourhoods"><span class="header-section-number">1.3.2</span> Merseyside neighbourhoods</a></li>
+  </ul></li>
+  <li><a href="#summary" id="toc-summary" class="nav-link" data-scroll-target="#summary"><span class="header-section-number">1.4</span> Summary</a>
+  <ul class="collapse">
+  <li><a href="#references" id="toc-references" class="nav-link" data-scroll-target="#references"><span class="header-section-number">1.4.1</span> References</a></li>
+  </ul></li>
+  <li><a href="#formative-tasks" id="toc-formative-tasks" class="nav-link" data-scroll-target="#formative-tasks"><span class="header-section-number">1.5</span> Formative Tasks</a></li>
+  </ul>
+<div class="toc-actions"><ul><li><a href="https://github.com/GDSL-UL/quant/edit/main/labs/01.GettingStartedinRStudio.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li></ul></div></nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Lab: Getting Started in RStudio - Knowing Merseyside</span></h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>Zi Ye </p>
+          </div>
+  </div>
+    
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">February 12, 2026</p>
+    </div>
+  </div>
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<section id="overview" class="level2" data-number="1.1">
+<h2 data-number="1.1" class="anchored" data-anchor-id="overview"><span class="header-section-number">1.1</span> <strong>Overview</strong></h2>
+<p>This practical intend to prepare students who have limited experiences with R and RStudio. The content are adapted based on</p>
+<ul>
+<li><p>Brunsdon, Chris, and Lex Comber. 2018. <em>An Introduction to r for Spatial Analysis and Mapping (2e)</em>. Sage.</p></li>
+<li><p>Comber, Lex, and Chris Brunsdon. 2021. <em>Geographical Data Science and Spatial Data Analysis: An Introduction in r</em>. Sage.</p></li>
+</ul>
+</section>
+<section id="getting-set-up-with-rstudio" class="level2" data-number="1.2">
+<h2 data-number="1.2" class="anchored" data-anchor-id="getting-set-up-with-rstudio"><span class="header-section-number">1.2</span> <strong>Getting set up with RStudio</strong></h2>
+<section id="install-r-and-rstudio-if-necessary" class="level3" data-number="1.2.1">
+<h3 data-number="1.2.1" class="anchored" data-anchor-id="install-r-and-rstudio-if-necessary"><span class="header-section-number">1.2.1</span> <strong>Install R and RStudio (if necessary)</strong></h3>
+<p>R is a free, open-source programming language used for statistical analysis, data visualization, and data science</p>
+<p>RStudio is a free front-end to R, designed to make using R easier</p>
+<p>All of the PCs in the University PC Teaching Centre used for this class come with R and RStudio pre-installed, as do the PCs in many other University PC Teaching Centres.</p>
+<p>However, you may wish to install R and RStudio on your own computer, or on a University PC that lacks them.</p>
+<p><strong>University computers</strong>: Use the <em>Install University Applications</em> app on the computer to install the latest version of RStudio (this will also install the latest version of R)</p>
+<p><strong>Your own computer</strong>: R and RStudio can be downloaded from the CRAN website and installed your own computer - see below for details. <u><strong>A key point is that you should install R before you install RStudio.</strong></u></p>
+<p>The simplest way to get R installed on your computer is to go the download pages on the R website - a quick search for `download R’ should take you there, but if not you could try:</p>
+<ul>
+<li><p>Windows: <a href="https://cran.r-project.org/bin/windows/base/" class="uri">https://cran.r-project.org/bin/windows/base/</a></p></li>
+<li><p>Mac: <a href="https://cran.r-project.org/bin/macosx/" class="uri">https://cran.r-project.org/bin/macosx/</a></p></li>
+<li><p>Linux: <a href="http://cran.r-project.org/bin/linux/" class="uri">http://cran.r-project.org/bin/linux/</a></p></li>
+</ul>
+<p>The Windows and Mac version come with installer packages and are easy to install whilst the Linux binaries require use of a command terminal.</p>
+<p>RStudio can be downloaded from <a href="https://www.rstudio.com/products/rstudio/download/" class="uri">https://www.rstudio.com/products/rstudio/download/</a> and the free version of RStudio Desktop is more than sufficient for this module and all the other things you will to do at degree level.</p>
+<p>If you experience any problems installing R or RStudio on your own computer, bring it to one of the class lab sessions where we will be able to provide advice.</p>
+</section>
+<section id="file-management" class="level3" data-number="1.2.2">
+<h3 data-number="1.2.2" class="anchored" data-anchor-id="file-management"><span class="header-section-number">1.2.2</span> File management</h3>
+<p>Before you start installing software or downloading data, create a folder on your M-Drive (if working on a University networked machine) or locally if working on your own device – name this ‘ENVS162’ and within this create a sub-folder for each practical session. For this session, create a sub-folder called&nbsp;<code>Week1</code>&nbsp;in your&nbsp;<code>ENVS162</code> folder on your M-Drive. Take care to ensure you do not delete any work you do complete in the practical sessions. It is imperative that you practice good file management!</p>
+</section>
+<section id="open-rstudio" class="level3" data-number="1.2.3">
+<h3 data-number="1.2.3" class="anchored" data-anchor-id="open-rstudio"><span class="header-section-number">1.2.3</span> <strong>Open RStudio</strong></h3>
+<p>RStudio provides an interface to the different things that R can do via the 4 panes: the Console where code is entered (bottom left), a Source pane with R scripts (top left), the variables in the working Environment (top right), Files, Plots, Help etc (bottom right) - see the RStudio environment in Figure below.</p>
+<p>In the figure above of the RStudio interface, a new script has been opened, a line of code had been written and then run in the console. The code assigns a value of 100 to <code>x</code>. The file has been saved into the current working environment. You are expected to define a similar set up for each practical as you work through the code. Note that <strong>in the script</strong>, anything that follows a <code>#</code> is a comment and ignored by R.</p>
+<p>Users can set up their personal preferences for how they like their RStudio interface. Similar to straight R, there are very few pull-down menus in R, and therefore you will type lines of code into your script and run these in what is termed a <em>command line interface</em> (the console). Like all command line interfaces, the learning curve is steep but the interaction with the software is more detailed which allows greater flexibility and precision in the specification of commands.</p>
+<p>Beyond this there are further choices to be made. Commands can be entered in two forms: directly into the <em>R console</em> window or as a series of commands into a script window. We strongly advise that all code should be <strong>written in a script</strong> - (a <code>.R</code> file) and then <strong>run from the script</strong>. - To run code in a script, place the cursor on the line of code and then run by pressing the ‘Run’ icon at the top left of the script pane, or by pressing <strong>Ctrl Enter</strong> (PC) (or <strong>Cmd Enter</strong> on a Mac).</p>
+<p><img src="images/clipboard-1359090391.png" class="img-fluid"></p>
+</section>
+<section id="ways-of-working" class="level3" data-number="1.2.4">
+<h3 data-number="1.2.4" class="anchored" data-anchor-id="ways-of-working"><span class="header-section-number">1.2.4</span> Ways of working</h3>
+<p>The first set of consideration relate to <em>how</em> you should work in R/RStudio. The key things to remember are:</p>
+<ul>
+<li><p>R is a learning curve if you have never done anything like this before. It can be scary. It can be intimidating. But once you have a bit of familiarity with how things work, it is incredibly powerful.</p></li>
+<li><p>You will be working from practical worksheets which will have all the code you need. Your job is to try to <strong>understand</strong> what the code is doing and <strong>not</strong> to remember the code. Comments in your code really help.</p></li>
+<li><p>To help you do this, the very strong suggestion is use the R scripts that are provided, and that you add your own comments to help you understand what is going on when you return to them. Comments are prefaced by a hash (<code>#</code>) that is ignored by R. Then you can save your code (with comments), run it and return to it later and modify at your leisure.</p></li>
+</ul>
+<p>The module places a strong emphasis placed on learning by doing, which means that you encouraged to unpick the code that you are given, adapt it and play with it. It is not about remembering or being able to recall each function used but about understanding what is being done. If you can remember what you did previously (i.e.&nbsp;the operations you undertook) and understand what you did, you will be able to return to your code the next time you want to do something similar. To help you with this you should:</p>
+<ol type="1">
+<li><p>Always run your code from an R script… <strong>always</strong>! These are provided for each practical;</p></li>
+<li><p>Annotate you scripts with comments. These are prefixed by a hash (<code>#</code>) in the code;</p></li>
+<li><p>Save your R script to your folder.</p></li>
+</ol>
+<div style="background-color: #FFFBCC; padding: 10px; border-radius: 5px; border: 1px solid #E1C948;">
+<p>In Summary:</p>
+<ul>
+<li><p>You should always use a script (a text file containing code) for your code which can be saved and then re-run at a later date.</p></li>
+<li><p>You can write your own code into a script, copy and paste code into it or use an existing script (for example as provided for each of the R/RStudio practicals in this module).</p></li>
+<li><p>To open a new R script go to File &gt; New File &gt; R Script to open a new R file, and save it with a sensible name.</p></li>
+<li><p>To load an existing script file go to File &gt; Open File and then navigate to your file. Or, if you have recently opened the file, go to File &gt; Recent Files &gt;.</p></li>
+<li><p>It is good practice to set the working directory at the beginning of your R session. This can be done via the menu in RStudio Session &gt; Set Working Directory &gt; …. This points the R session to the folder you choose and will ensure that any files you wish to read, write or save are placed in this directory.</p></li>
+<li><p>To run code in a script, place the cursor on the line of code and then run by pressing the ‘Run’ icon at the top left of the script pane, or by pressing Ctrl Enter (PC) or Cmd Enter (Mac).</p></li>
+</ul>
+</div>
+</section>
+<section id="your-first-r-code" class="level3" data-number="1.2.5">
+<h3 data-number="1.2.5" class="anchored" data-anchor-id="your-first-r-code"><span class="header-section-number">1.2.5</span> Your first R code</h3>
+<p>In this section you will undertake a few generic operations. You will:</p>
+<ul>
+<li><p>undertake <strong>assignment</strong>: the allocation of values to an R object.</p></li>
+<li><p>use assignment to create a <strong>vector</strong> of elements and a <strong>matrix</strong> of elements.</p></li>
+<li><p>undertake <strong>operations</strong> on R objects.</p></li>
+<li><p>apply some <strong>functions</strong> to R objects (functions nearly always return a value).</p></li>
+<li><p>access some of R in-built data to examine a data table (or <code>data.frame</code> which is like an Excel spreadsheet).</p></li>
+<li><p>do some basic <strong>plotting</strong>, including scatter plots and histograms.</p></li>
+<li><p>create data summaries.</p></li>
+</ul>
+<p>On the way you will also be introduced to <strong>indexing</strong>.</p>
+<p>First, you should <strong>create a new R script</strong> (see above) and save it as <code>week1.R</code> in the working directory you are using for this practical. This should be the <code>Week1</code> sub-directory you created in the <code>ENVS162</code> folder. Note that you should create a separate folder for each week’s practical.</p>
+<section id="assignment" class="level4" data-number="1.2.5.1">
+<h4 data-number="1.2.5.1" class="anchored" data-anchor-id="assignment"><span class="header-section-number">1.2.5.1</span> Assignment</h4>
+<p>The command line prompt in the Console window, the <code>&gt;</code>, is an invitation to start typing in your commands.</p>
+<p>Write the following into your script: <code>3+5</code> and run it. Recall that code is run done by either by pressing the Run icon at the top left of the script pane, or by pressing <strong>Ctrl Enter</strong> (PC) or <strong>Cmd Enter</strong> (Mac).</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="dv">3</span><span class="sc">+</span><span class="dv">5</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 8</code></pre>
+</div>
+</div>
+<p>Here the result is 8. The <code>[1]</code> that precedes the output it formally indicates, <em>first requested element will follow</em>. In this case there is just one element. The <code>&gt;</code> indicates that R is ready for another command.</p>
+<p>Now type the following in to your script and run it:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>y <span class="ot">&lt;-</span> <span class="dv">3</span><span class="sc">+</span><span class="dv">5</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>y</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 8</code></pre>
+</div>
+</div>
+<p>Here the value of the <code>3+5</code> has been <strong><em>assigned</em></strong> to <code>y</code>. The syntax <code>y &lt;- 3+5</code> can be read as <code>y</code> <strong><em>gets</em></strong> <code>3+5</code>. When <code>y</code> is invoked its value is returned (8).</p>
+<p>For the purposes of this module, in R the equals sign (<code>=</code>) is the same as <code>&lt;-</code>, a left diamond bracket <code>&lt;</code> followed by a minus sign <code>-</code>. This too is interpreted by R as <strong><em>is assigned to</em></strong> or <strong><em>gets</em></strong> when the code is read <strong>right to left</strong>.</p>
+<p>Now copy and paste the following into your R script and run both lines:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">4</span>,<span class="dv">5</span>,<span class="dv">6</span>,<span class="dv">7</span>,<span class="dv">8</span>), <span class="at">nrow =</span> <span class="dv">4</span>)</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>y <span class="ot">=</span> <span class="fu">matrix</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">8</span>, <span class="at">nrow =</span> <span class="dv">4</span>, <span class="at">byrow =</span> T)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>You should see the <code>x</code> appear with the <code>y</code> in the Environment pane. <code>y</code> has now been overwritten with a new assignment. If you click on the icon next to them, you will get a ‘spreadsheet’ view of the data you have created.</p>
+<p>Of course you can also enter the following in the console and see what is returned:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>x</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>     [,1] [,2]
+[1,]    1    5
+[2,]    2    6
+[3,]    3    7
+[4,]    4    8</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>y</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>     [,1] [,2]
+[1,]    1    2
+[2,]    3    4
+[3,]    5    6
+[4,]    7    8</code></pre>
+</div>
+</div>
+<p><strong>Note</strong> In the code snippets above you have used <code>parentheses</code> - round brackets. Different kinds of brackets are used in different ways in R. Parentheses are used with <strong>functions</strong>, and contain the <strong>arguments</strong> that are passed to the function, separated by commas (<code>,</code>).</p>
+<p>In this case the functions are <code>c()</code> and <code>matrix()</code>. The function <code>c()</code> combines or concatenates elements into a vector, and <code>matrix()</code> creates a matrix of elements in a tabular format.</p>
+<p>In the line of code <code>x = matrix(c(1,2,3,4,5,6,7,8), nrow = 4)</code>, the arguments passed to the <code>matrix()</code> function are the vector of values <code>c(1,2,3,4,5,6,7,8)</code> and <code>nrow = 4</code>. Other kinds of brackets are used in different ways as you will see later.</p>
+<p>One final thing to note is that the matrix is <code>y</code> is has the numbers 1 to 8, but this is specified by <code>1:8</code>. Try entering <code>3:65</code>, <code>19:11</code>, and <code>1.5:5</code> to see how the colon (<code>:</code>) works in this context.</p>
+</section>
+<section id="operations" class="level4" data-number="1.2.5.2">
+<h4 data-number="1.2.5.2" class="anchored" data-anchor-id="operations"><span class="header-section-number">1.2.5.2</span> Operations</h4>
+<p>Now you can undertake <em>operations</em> on R objects and apply <em>functions</em> to them. Write the following code into your script and then run it:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co"># x is a matrix</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>x</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>     [,1] [,2]
+[1,]    1    5
+[2,]    2    6
+[3,]    3    7
+[4,]    4    8</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co"># multiplication</span></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>x<span class="sc">*</span><span class="dv">2</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>     [,1] [,2]
+[1,]    2   10
+[2,]    4   12
+[3,]    6   14
+[4,]    8   16</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="co"># sum of x</span></span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="fu">sum</span>(x)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 36</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="co"># mean of x</span></span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(x)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 4.5</code></pre>
+</div>
+</div>
+<p>Operations can be undertaken directly using mathematical notation like <code>*</code> for multiplication or using functions like <code>max</code> to find the maximum value in an R object.</p>
+</section>
+<section id="functions" class="level4" data-number="1.2.5.3">
+<h4 data-number="1.2.5.3" class="anchored" data-anchor-id="functions"><span class="header-section-number">1.2.5.3</span> Functions</h4>
+<p>Functions are always followed by parenthesis (round brackets) <code>( )</code>. These are different from square and curly brackets <code>[ ]</code> and <code>{ }</code>. Functions always return something, a result if you like, and have the generic form:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="co"># don't run this or write this into your script!</span></span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>result <span class="ot">=</span> <span class="cf">function</span>(value or R object, other parameters)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Do not run or enter this code in your script - it is an example!</p>
+</section>
+<section id="data-tables" class="level4" data-number="1.2.5.4">
+<h4 data-number="1.2.5.4" class="anchored" data-anchor-id="data-tables"><span class="header-section-number">1.2.5.4</span> Data Tables</h4>
+<p>Here we will load a data table in <code>data.frame</code> (like a spreadsheet) in R/RStudio. R has number of in-built datasets that we can use the code below loads one of these:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(mtcars)</span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(mtcars)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "data.frame"</code></pre>
+</div>
+</div>
+<p>Have a look at what is loaded by listing the objects in the current R session</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ls</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "mtcars" "x"      "y"     </code></pre>
+</div>
+</div>
+<p>You should see the <code>mtcars</code> object. You can examine this data in a number of ways</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="co"># the structure of mtcars</span></span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(mtcars)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>'data.frame':   32 obs. of  11 variables:
+ $ mpg : num  21 21 22.8 21.4 18.7 18.1 14.3 24.4 22.8 19.2 ...
+ $ cyl : num  6 6 4 6 8 6 8 4 4 6 ...
+ $ disp: num  160 160 108 258 360 ...
+ $ hp  : num  110 110 93 110 175 105 245 62 95 123 ...
+ $ drat: num  3.9 3.9 3.85 3.08 3.15 2.76 3.21 3.69 3.92 3.92 ...
+ $ wt  : num  2.62 2.88 2.32 3.21 3.44 ...
+ $ qsec: num  16.5 17 18.6 19.4 17 ...
+ $ vs  : num  0 0 1 1 0 1 0 1 1 1 ...
+ $ am  : num  1 1 1 0 0 0 0 0 0 0 ...
+ $ gear: num  4 4 4 3 3 3 3 4 4 4 ...
+ $ carb: num  4 4 1 1 2 1 4 2 2 4 ...</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="co"># the first six rows (or head) of mtcars</span></span>
+<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(mtcars)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>                   mpg cyl disp  hp drat    wt  qsec vs am gear carb
+Mazda RX4         21.0   6  160 110 3.90 2.620 16.46  0  1    4    4
+Mazda RX4 Wag     21.0   6  160 110 3.90 2.875 17.02  0  1    4    4
+Datsun 710        22.8   4  108  93 3.85 2.320 18.61  1  1    4    1
+Hornet 4 Drive    21.4   6  258 110 3.08 3.215 19.44  1  0    3    1
+Hornet Sportabout 18.7   8  360 175 3.15 3.440 17.02  0  0    3    2
+Valiant           18.1   6  225 105 2.76 3.460 20.22  1  0    3    1</code></pre>
+</div>
+</div>
+<p>The <code>mtcars</code> object is a <code>data.frame</code>, a kind of data table, and it has a number of attributes which are all numeric. The code below prints it all out to the console:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>mtcars</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>                     mpg cyl  disp  hp drat    wt  qsec vs am gear carb
+Mazda RX4           21.0   6 160.0 110 3.90 2.620 16.46  0  1    4    4
+Mazda RX4 Wag       21.0   6 160.0 110 3.90 2.875 17.02  0  1    4    4
+Datsun 710          22.8   4 108.0  93 3.85 2.320 18.61  1  1    4    1
+Hornet 4 Drive      21.4   6 258.0 110 3.08 3.215 19.44  1  0    3    1
+Hornet Sportabout   18.7   8 360.0 175 3.15 3.440 17.02  0  0    3    2
+Valiant             18.1   6 225.0 105 2.76 3.460 20.22  1  0    3    1
+Duster 360          14.3   8 360.0 245 3.21 3.570 15.84  0  0    3    4
+Merc 240D           24.4   4 146.7  62 3.69 3.190 20.00  1  0    4    2
+Merc 230            22.8   4 140.8  95 3.92 3.150 22.90  1  0    4    2
+Merc 280            19.2   6 167.6 123 3.92 3.440 18.30  1  0    4    4
+Merc 280C           17.8   6 167.6 123 3.92 3.440 18.90  1  0    4    4
+Merc 450SE          16.4   8 275.8 180 3.07 4.070 17.40  0  0    3    3
+Merc 450SL          17.3   8 275.8 180 3.07 3.730 17.60  0  0    3    3
+Merc 450SLC         15.2   8 275.8 180 3.07 3.780 18.00  0  0    3    3
+Cadillac Fleetwood  10.4   8 472.0 205 2.93 5.250 17.98  0  0    3    4
+Lincoln Continental 10.4   8 460.0 215 3.00 5.424 17.82  0  0    3    4
+Chrysler Imperial   14.7   8 440.0 230 3.23 5.345 17.42  0  0    3    4
+Fiat 128            32.4   4  78.7  66 4.08 2.200 19.47  1  1    4    1
+Honda Civic         30.4   4  75.7  52 4.93 1.615 18.52  1  1    4    2
+Toyota Corolla      33.9   4  71.1  65 4.22 1.835 19.90  1  1    4    1
+Toyota Corona       21.5   4 120.1  97 3.70 2.465 20.01  1  0    3    1
+Dodge Challenger    15.5   8 318.0 150 2.76 3.520 16.87  0  0    3    2
+AMC Javelin         15.2   8 304.0 150 3.15 3.435 17.30  0  0    3    2
+Camaro Z28          13.3   8 350.0 245 3.73 3.840 15.41  0  0    3    4
+Pontiac Firebird    19.2   8 400.0 175 3.08 3.845 17.05  0  0    3    2
+Fiat X1-9           27.3   4  79.0  66 4.08 1.935 18.90  1  1    4    1
+Porsche 914-2       26.0   4 120.3  91 4.43 2.140 16.70  0  1    5    2
+Lotus Europa        30.4   4  95.1 113 3.77 1.513 16.90  1  1    5    2
+Ford Pantera L      15.8   8 351.0 264 4.22 3.170 14.50  0  1    5    4
+Ferrari Dino        19.7   6 145.0 175 3.62 2.770 15.50  0  1    5    6
+Maserati Bora       15.0   8 301.0 335 3.54 3.570 14.60  0  1    5    8
+Volvo 142E          21.4   4 121.0 109 4.11 2.780 18.60  1  1    4    2</code></pre>
+</div>
+</div>
+<p>Data frames are ‘flat’ in that they typically have a rectangular layout like a spreadsheet, with rows typically relating to observations (individuals, areas, people, houses, etc) and columns relating to their properties or attributes (height, age, etc). The columns in data frames can be of different types: vectors of numbers, factors (classes) or text strings. In matrices all of the columns have to be off the same type. Data frames are central to what we will do in R.</p>
+</section>
+<section id="plotting-the-data-hello-world" class="level4" data-number="1.2.5.5">
+<h4 data-number="1.2.5.5" class="anchored" data-anchor-id="plotting-the-data-hello-world"><span class="header-section-number">1.2.5.5</span> Plotting the data: ‘Hello World!’</h4>
+<p>The code below creates a plot of 2 variables counts in the data: <code>mpg</code> and <code>disp</code>.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(disp <span class="sc">~</span> mpg,  <span class="at">data =</span> mtcars, <span class="at">pch=</span><span class="dv">16</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="01.GettingStartedinRStudio_files/figure-html/unnamed-chunk-12-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>The option <code>pch=16</code> sets the plotting character to a solid black dot. More plot characters are available - examine the help for <code>points()</code> to see these (For any command, if you are the first time use it, you can always ask R to explain to you by using ? as help)</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a>?points</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>This plot can be improved greatly. We can specify more informative axis labels, change size of the text and of the plotting symbol, and so on.</p>
+<p>We can also specify the same plot by passing named variables to the <code>plot</code> function directly as well as other parameters, as in the figure. Notice how the syntax for this is different to the <code>plot</code> function above, and the different <strong>parameters</strong> that are passed to the <code>plot()</code> function:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(<span class="at">x =</span> mtcars<span class="sc">$</span>mpg, <span class="at">y =</span> mtcars<span class="sc">$</span>disp,   <span class="at">pch =</span> <span class="dv">1</span>, <span class="at">col =</span> <span class="st">"dodgerblue"</span>, </span>
+<span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a>     <span class="at">cex =</span> <span class="fl">1.5</span>, <span class="at">xlab =</span> <span class="st">"Miles per Gallon"</span>, <span class="at">ylab =</span> <span class="st">"Displacement"</span>, </span>
+<span id="cb31-3"><a href="#cb31-3" aria-hidden="true" tabindex="-1"></a>     <span class="at">main =</span> <span class="st">"Hello World!"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="01.GettingStartedinRStudio_files/figure-html/unnamed-chunk-14-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Notice how the dollar sign (<code>$</code>) is used to access variables in the <code>mtcars</code> data table compared to the first plot command, which specified <code>data = mtcars</code>.</p>
+</section>
+<section id="data-summaries-and-indexing" class="level4" data-number="1.2.5.6">
+<h4 data-number="1.2.5.6" class="anchored" data-anchor-id="data-summaries-and-indexing"><span class="header-section-number">1.2.5.6</span> Data summaries and indexing</h4>
+<p>We may for example require information on variables in <code>mtcars</code>. The <code>summary</code> function is very useful:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(mtcars)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>      mpg             cyl             disp             hp       
+ Min.   :10.40   Min.   :4.000   Min.   : 71.1   Min.   : 52.0  
+ 1st Qu.:15.43   1st Qu.:4.000   1st Qu.:120.8   1st Qu.: 96.5  
+ Median :19.20   Median :6.000   Median :196.3   Median :123.0  
+ Mean   :20.09   Mean   :6.188   Mean   :230.7   Mean   :146.7  
+ 3rd Qu.:22.80   3rd Qu.:8.000   3rd Qu.:326.0   3rd Qu.:180.0  
+ Max.   :33.90   Max.   :8.000   Max.   :472.0   Max.   :335.0  
+      drat             wt             qsec             vs        
+ Min.   :2.760   Min.   :1.513   Min.   :14.50   Min.   :0.0000  
+ 1st Qu.:3.080   1st Qu.:2.581   1st Qu.:16.89   1st Qu.:0.0000  
+ Median :3.695   Median :3.325   Median :17.71   Median :0.0000  
+ Mean   :3.597   Mean   :3.217   Mean   :17.85   Mean   :0.4375  
+ 3rd Qu.:3.920   3rd Qu.:3.610   3rd Qu.:18.90   3rd Qu.:1.0000  
+ Max.   :4.930   Max.   :5.424   Max.   :22.90   Max.   :1.0000  
+       am              gear            carb      
+ Min.   :0.0000   Min.   :3.000   Min.   :1.000  
+ 1st Qu.:0.0000   1st Qu.:3.000   1st Qu.:2.000  
+ Median :0.0000   Median :4.000   Median :2.000  
+ Mean   :0.4062   Mean   :3.688   Mean   :2.812  
+ 3rd Qu.:1.0000   3rd Qu.:4.000   3rd Qu.:4.000  
+ Max.   :1.0000   Max.   :5.000   Max.   :8.000  </code></pre>
+</div>
+</div>
+<p>This shows different summaries of the individual attributes in <code>mtcars</code>.</p>
+<p>The main R graphics function is <code>plot()</code>. In addition to <code>plot()</code> there are functions for adding points and lines to existing graphs, for placing text at specified positions, for specifying tick marks and tick labels, for labelling axes, and so on.</p>
+<p>There are various other alternative helpful forms of graphical summary. A helpful graphical summary for the <code>mtcars</code> data frame is the scatterplot matrix.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb34"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="co"># return the names of the mtcars variables</span></span>
+<span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(mtcars)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code> [1] "mpg"  "cyl"  "disp" "hp"   "drat" "wt"   "qsec" "vs"   "am"   "gear"
+[11] "carb"</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb36"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="co"># return the 3rd to 7th names</span></span>
+<span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(mtcars)[<span class="fu">c</span>(<span class="dv">3</span><span class="sc">:</span><span class="dv">7</span>)]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "disp" "hp"   "drat" "wt"   "qsec"</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb38"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a><span class="co"># check what this does</span></span>
+<span id="cb38-2"><a href="#cb38-2" aria-hidden="true" tabindex="-1"></a><span class="fu">c</span>(<span class="dv">3</span><span class="sc">:</span><span class="dv">7</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 3 4 5 6 7</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb40"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a><span class="co"># plot the 3rd to 7th variables in mtcars</span></span>
+<span id="cb40-2"><a href="#cb40-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(mtcars[, <span class="fu">c</span>(<span class="dv">3</span><span class="sc">:</span><span class="dv">7</span>)], <span class="at">cex =</span> <span class="fl">0.5</span>, </span>
+<span id="cb40-3"><a href="#cb40-3" aria-hidden="true" tabindex="-1"></a>     <span class="at">col =</span> <span class="st">"red"</span>, <span class="at">upper.panel=</span>panel.smooth)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="01.GettingStartedinRStudio_files/figure-html/unnamed-chunk-19-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>The results show the correlations between the variables in the <code>mtcars</code> data frame, and the trend of their relationship is included with the <code>upper.panel=panel.smooth</code> parameter passed to <code>plot</code>.</p>
+<p>There are number of things to notice here (as well as the figure). In particular note the use of the vector <code>c(2:7)</code> to subset the columns of <code>mtcars</code>:</p>
+<ul>
+<li><p>In the second line, this is was used to subset the vector of column names created by <code>names(mtcars)</code>.</p></li>
+<li><p>In the third line, it was printed out. Notice how <code>3:7</code> printed out all the number between 3 and 7 - very useful.</p></li>
+<li><p>For the plot, the vector was passed to the second argument, after the comma, in the square brackets <code>[,]</code> to indicate which columns were to be plotted.</p></li>
+</ul>
+<p>The referencing in this way (or <em>indexing</em>) is <strong>very important</strong>: the individual rows and columns of 2 dimensional data structures like data frames, matrices, tibbles etc can be accessed by passing references to them in the square brackets.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb41"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 1st row</span></span>
+<span id="cb41-2"><a href="#cb41-2" aria-hidden="true" tabindex="-1"></a>mtcars[<span class="dv">1</span>,]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>          mpg cyl disp  hp drat   wt  qsec vs am gear carb
+Mazda RX4  21   6  160 110  3.9 2.62 16.46  0  1    4    4</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb43"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 3rd column</span></span>
+<span id="cb43-2"><a href="#cb43-2" aria-hidden="true" tabindex="-1"></a>mtcars[,<span class="dv">3</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code> [1] 160.0 160.0 108.0 258.0 360.0 225.0 360.0 146.7 140.8 167.6 167.6 275.8
+[13] 275.8 275.8 472.0 460.0 440.0  78.7  75.7  71.1 120.1 318.0 304.0 350.0
+[25] 400.0  79.0 120.3  95.1 351.0 145.0 301.0 121.0</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb45"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb45-1"><a href="#cb45-1" aria-hidden="true" tabindex="-1"></a><span class="co"># a selection of rows</span></span>
+<span id="cb45-2"><a href="#cb45-2" aria-hidden="true" tabindex="-1"></a>mtcars[<span class="fu">c</span>(<span class="dv">3</span><span class="sc">:</span><span class="dv">5</span>,<span class="dv">8</span>),]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>                   mpg cyl  disp  hp drat    wt  qsec vs am gear carb
+Datsun 710        22.8   4 108.0  93 3.85 2.320 18.61  1  1    4    1
+Hornet 4 Drive    21.4   6 258.0 110 3.08 3.215 19.44  1  0    3    1
+Hornet Sportabout 18.7   8 360.0 175 3.15 3.440 17.02  0  0    3    2
+Merc 240D         24.4   4 146.7  62 3.69 3.190 20.00  1  0    4    2</code></pre>
+</div>
+</div>
+<p>Such indexing could of course have been assigned to a R object and used to do the subsetting:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb47"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb47-1"><a href="#cb47-1" aria-hidden="true" tabindex="-1"></a>x <span class="ot">=</span> <span class="fu">c</span>(<span class="dv">3</span><span class="sc">:</span><span class="dv">7</span>)</span>
+<span id="cb47-2"><a href="#cb47-2" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(mtcars)[x]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "disp" "hp"   "drat" "wt"   "qsec"</code></pre>
+</div>
+</div>
+<p>Thus indexing allows specific rows and columns to be extracted from the data as required.</p>
+<p><strong>Note</strong> You have encountered a second type of brackets, square brackets <code>[ ]</code>. These are used to reference or <strong>index</strong> positions in a vector or a data table.</p>
+<p>Consider the object <code>x</code> above. It contains a vector of values, <code>3,4,5,6,7</code>. Entering <code>x[1]</code> would extract the first element of <code>x</code>, in this case 3. Similarly <code>x[4]</code> would return the 4th element and <code>x[c(1,4)]</code> would return the 1st and 4th elements of <code>x</code>.</p>
+<p>However, in the examples above that index the 2-dimensional <code>mtcars</code> object, the square brackets are used to index <strong>row</strong> and <strong>column</strong> positions. The syntax for this is <code>[rows, columns]</code>. We will be using such indexing throughout this module.</p>
+<p>You can ask R to return you specific rows and columns by different ways:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb49"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb49-1"><a href="#cb49-1" aria-hidden="true" tabindex="-1"></a>mtcars[<span class="fu">c</span>(<span class="dv">2</span>,<span class="dv">9</span>), <span class="dv">3</span><span class="sc">:</span><span class="dv">7</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>               disp  hp drat    wt  qsec
+Mazda RX4 Wag 160.0 110 3.90 2.875 17.02
+Merc 230      140.8  95 3.92 3.150 22.90</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb51"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb51-1"><a href="#cb51-1" aria-hidden="true" tabindex="-1"></a>mtcars[<span class="dv">3</span><span class="sc">:</span><span class="dv">6</span>, <span class="fu">c</span>(<span class="st">"disp"</span>,<span class="st">"hp"</span>,<span class="st">"qsec"</span>)]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>                  disp  hp  qsec
+Datsun 710         108  93 18.61
+Hornet 4 Drive     258 110 19.44
+Hornet Sportabout  360 175 17.02
+Valiant            225 105 20.22</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb53"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb53-1"><a href="#cb53-1" aria-hidden="true" tabindex="-1"></a>mtcars [, <span class="fu">c</span>(<span class="st">"wt"</span>,<span class="st">"gear"</span>,<span class="st">"cyl"</span>)]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>                       wt gear cyl
+Mazda RX4           2.620    4   6
+Mazda RX4 Wag       2.875    4   6
+Datsun 710          2.320    4   4
+Hornet 4 Drive      3.215    3   6
+Hornet Sportabout   3.440    3   8
+Valiant             3.460    3   6
+Duster 360          3.570    3   8
+Merc 240D           3.190    4   4
+Merc 230            3.150    4   4
+Merc 280            3.440    4   6
+Merc 280C           3.440    4   6
+Merc 450SE          4.070    3   8
+Merc 450SL          3.730    3   8
+Merc 450SLC         3.780    3   8
+Cadillac Fleetwood  5.250    3   8
+Lincoln Continental 5.424    3   8
+Chrysler Imperial   5.345    3   8
+Fiat 128            2.200    4   4
+Honda Civic         1.615    4   4
+Toyota Corolla      1.835    4   4
+Toyota Corona       2.465    3   4
+Dodge Challenger    3.520    3   8
+AMC Javelin         3.435    3   8
+Camaro Z28          3.840    3   8
+Pontiac Firebird    3.845    3   8
+Fiat X1-9           1.935    4   4
+Porsche 914-2       2.140    5   4
+Lotus Europa        1.513    5   4
+Ford Pantera L      3.170    5   8
+Ferrari Dino        2.770    5   6
+Maserati Bora       3.570    5   8
+Volvo 142E          2.780    4   4</code></pre>
+</div>
+</div>
+</section>
+<section id="packages" class="level4" data-number="1.2.5.7">
+<h4 data-number="1.2.5.7" class="anchored" data-anchor-id="packages"><span class="header-section-number">1.2.5.7</span> Packages</h4>
+<p>The <code>base</code> installation of R includes many functions and commands. However, more often we are interested in using some particular functionality, encoded into <strong>packages</strong> contributed by the R developer community. Installing packages for the first time can be done at the command line in the R console using the <code>install.packages</code> command as in the example below to install the <code>tmap</code> library or via the RStudio menu via <strong>Tools &gt; Install Packages</strong>.</p>
+<p>When you install these packages it is strongly suggested you also install the <em>dependencies</em>. These are other packages that are required by the package that is being installed. This can be done by selecting check the box in the menu or including <code>dep=TRUE</code> in the command line as below (don’t run this yet!):</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb55"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb55-1"><a href="#cb55-1" aria-hidden="true" tabindex="-1"></a><span class="co"># don't run this!</span></span>
+<span id="cb55-2"><a href="#cb55-2" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">"tidyverse"</span>, <span class="at">dep =</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>You may have to set a <strong>mirror</strong> site from which the packages will be downloaded to your computer. Generally you should pick one that is nearby to you.</p>
+<p>Further descriptions of packages, their installation and their data structures will be given as needed in the practicals. There are literally 1000s of packages that have been contributed to the R project by various researchers and organisations. These can be located by name at <a href="http://cran.r-project.org/web/packages/available_packages_by_name.html" class="uri">http://cran.r-project.org/web/packages/available_packages_by_name.html</a> if you know the package you wish to use. It is also possible to search the CRAN website to find packages to perform particular tasks at <a href="http://www.r-project.org/search.html" class="uri">http://www.r-project.org/search.html</a>. Additionally many packages include user guides and vignettes as well as a PDF document describing the package and listed at the top of the index page of the help files for the package.</p>
+<p>As well as <code>tidyverse</code> you should install the <code>sf</code> package and dependencies. So we have 2 packages to install:</p>
+<ul>
+<li><p><code>sf</code> for spatial data and spatial objects</p></li>
+<li><p><code>tidyverse</code> for lots of lovely data science things - see <a href="https://www.tidyverse.org/">https://www.tidyverse.org</a></p></li>
+</ul>
+<p>You could do this in one go and this will take a bit of time:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb56"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb56-1"><a href="#cb56-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="fu">c</span>(<span class="st">"sf"</span>, <span class="st">"tidyverse"</span>), <span class="at">dep =</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Remember: you will only have to install a package once!! So when the above code has run in your script you should comment it out. For example you might want to include something like the below in your R script.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb57"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb57-1"><a href="#cb57-1" aria-hidden="true" tabindex="-1"></a><span class="co"># packages only need to be loaded once</span></span>
+<span id="cb57-2"><a href="#cb57-2" aria-hidden="true" tabindex="-1"></a><span class="co"># install.packages(c("sf", "tidyverse"), dep = TRUE)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Once the package has been installed on your computer then the package can be called using the <code>library()</code> function into each of your R sessions as below.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb58"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb58-1"><a href="#cb58-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb58-2"><a href="#cb58-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(sf)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+</section>
+</section>
+<section id="knowing-merseyside" class="level2" data-number="1.3">
+<h2 data-number="1.3" class="anchored" data-anchor-id="knowing-merseyside"><span class="header-section-number">1.3</span> Knowing Merseyside</h2>
+<section id="merseyside-districts" class="level3" data-number="1.3.1">
+<h3 data-number="1.3.1" class="anchored" data-anchor-id="merseyside-districts"><span class="header-section-number">1.3.1</span> Merseyside districts</h3>
+<p>Now we use these basic R command and newly installed packages to start our initial exploration by using some existing secondary dataset from the Census 2021.</p>
+<p>In R we normally read in tabular dataset from .csv format. In your <a href="https://canvas.liverpool.ac.uk/courses/85565">ENVS162 Canvas page</a> find Week 1 -&gt; Practical 1 Dataset, download the four datasets to your current working folder on your M drive (ENVS162 - Week 1). You may first identify one <code>.csv</code> dataset: <strong>merseyside.csv</strong>. You can open them in excel to have a look, but here we are using R instead of Excel to load and examine them.</p>
+<section id="loading-tabular-data" class="level4" data-number="1.3.1.1">
+<h4 data-number="1.3.1.1" class="anchored" data-anchor-id="loading-tabular-data"><span class="header-section-number">1.3.1.1</span> Loading tabular data</h4>
+<p>The survey data can be loaded into RStudio using the <code>read.csv</code> function.</p>
+<p>However, you will need to tell R where to get the data from. The easiest way to do this is to use the menu if the R script file is open. Go to <strong>Session &gt; Set Working Directory &gt; To Source File Location</strong> to set the working directory to the location where your <code>week1.R</code> script is saved. When you do this you will see line of code print out in the Console (bottom left pane) similar to <code>setwd("SomeFilePath")</code>. You can copy this line of code to your script and paste into the line above the line calling the <code>read.csv</code> function.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb59"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb59-1"><a href="#cb59-1" aria-hidden="true" tabindex="-1"></a><span class="co"># use read.csv to load a CSV file</span></span>
+<span id="cb59-2"><a href="#cb59-2" aria-hidden="true" tabindex="-1"></a><span class="co"># this is assignment to an object called `df`</span></span>
+<span id="cb59-3"><a href="#cb59-3" aria-hidden="true" tabindex="-1"></a>df <span class="ot">=</span> <span class="fu">read.csv</span>(<span class="at">file =</span> <span class="st">"merseyside.csv"</span>, <span class="at">stringsAsFactors =</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>The <code>stringsAsFactors = TRUE</code> parameter tells R to read any character or text variables as classes or categories and not as just text.</p>
+<p>You could inspect the help for the <code>read.csv</code> function to see the different parameters and their default values:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb60"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb60-1"><a href="#cb60-1" aria-hidden="true" tabindex="-1"></a><span class="fu">help</span>(read.csv)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>starting httpd help server ... done</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb62"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb62-1"><a href="#cb62-1" aria-hidden="true" tabindex="-1"></a><span class="co"># or </span></span>
+<span id="cb62-2"><a href="#cb62-2" aria-hidden="true" tabindex="-1"></a>?read.csv</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Functions always return something and in this case <code>read.csv()</code> function has returned a tabular R object with 5 records and 12 fields. This has been <em>assigned to</em> <code>df</code>.</p>
+<p>Finally in this section, lets have a look at the data. This can be done in a number of ways.</p>
+<ul>
+<li><p>you could look at the <code>df</code> object by entering <code>df</code> in the Console. However this is not particular helpful as it simply prints out everything that is in <code>df</code> to the Console.</p></li>
+<li><p>you could click on the <code>df</code> object in the Environment pane and this shows the structure of the attributes in different fields.</p></li>
+<li><p>you could click on the little grid-like icon next <code>df</code> in the Environment pane to get a <code>View</code> of the data and remember to close the tab that opens!.</p></li>
+<li><p>or you could use some code as in the examples below.</p></li>
+</ul>
+<p>First, let’s have a look at the internal structure of the data using the <code>str</code> function:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb63"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb63-1"><a href="#cb63-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(df)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>'data.frame':   5 obs. of  12 variables:
+ $ LAD21CD           : Factor w/ 5 levels "E08000011","E08000012",..: 1 2 3 4 5
+ $ District          : Factor w/ 5 levels "Knowsley","Liverpool",..: 1 2 4 3 5
+ $ Population        : int  154519 486089 183248 279234 320196
+ $ Households        : int  66073 207491 81011 123075 143253
+ $ Working_population: int  69495 205749 82622 124596 139500
+ $ Students          : int  7050 59628 7582 12636 14642
+ $ Unemployed        : int  3852 13894 4076 6143 6542
+ $ Age_over_65       : int  26242 74322 37642 64763 70391
+ $ Disability        : int  34990 105962 40829 61134 73088
+ $ No_central_heating: int  1020 4822 1003 1965 2125
+ $ Overcrowding      : int  1892 7352 1888 2700 2355
+ $ Working_from_home : int  14880 53721 18973 34750 37299</code></pre>
+</div>
+</div>
+<p>There is other ways to get info about the number of rows and columns:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb65"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb65-1"><a href="#cb65-1" aria-hidden="true" tabindex="-1"></a><span class="fu">nrow</span>(df)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 5</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb67"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb67-1"><a href="#cb67-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ncol</span>(df)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 12</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb69"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb69-1"><a href="#cb69-1" aria-hidden="true" tabindex="-1"></a><span class="co">#or both row and col</span></span>
+<span id="cb69-2"><a href="#cb69-2" aria-hidden="true" tabindex="-1"></a><span class="fu">dim</span>(df)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1]  5 12</code></pre>
+</div>
+</div>
+<p>The&nbsp;<code>head</code>&nbsp;function does this by printing out the first six records of the data table and you may need to scroll up and down in the Console pane to see all of what is returned.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb71"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb71-1"><a href="#cb71-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(df)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>    LAD21CD   District Population Households Working_population Students
+1 E08000011   Knowsley     154519      66073              69495     7050
+2 E08000012  Liverpool     486089     207491             205749    59628
+3 E08000013 St. Helens     183248      81011              82622     7582
+4 E08000014     Sefton     279234     123075             124596    12636
+5 E08000015     Wirral     320196     143253             139500    14642
+  Unemployed Age_over_65 Disability No_central_heating Overcrowding
+1       3852       26242      34990               1020         1892
+2      13894       74322     105962               4822         7352
+3       4076       37642      40829               1003         1888
+4       6143       64763      61134               1965         2700
+5       6542       70391      73088               2125         2355
+  Working_from_home
+1             14880
+2             53721
+3             18973
+4             34750
+5             37299</code></pre>
+</div>
+</div>
+<p>Another way to explore the data is through the&nbsp;<code>summary</code>&nbsp;function:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb73"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb73-1"><a href="#cb73-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(df)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>      LAD21CD        District   Population       Households    
+ E08000011:1   Knowsley  :1   Min.   :154519   Min.   : 66073  
+ E08000012:1   Liverpool :1   1st Qu.:183248   1st Qu.: 81011  
+ E08000013:1   Sefton    :1   Median :279234   Median :123075  
+ E08000014:1   St. Helens:1   Mean   :284657   Mean   :124181  
+ E08000015:1   Wirral    :1   3rd Qu.:320196   3rd Qu.:143253  
+                              Max.   :486089   Max.   :207491  
+ Working_population    Students       Unemployed     Age_over_65   
+ Min.   : 69495     Min.   : 7050   Min.   : 3852   Min.   :26242  
+ 1st Qu.: 82622     1st Qu.: 7582   1st Qu.: 4076   1st Qu.:37642  
+ Median :124596     Median :12636   Median : 6143   Median :64763  
+ Mean   :124392     Mean   :20308   Mean   : 6901   Mean   :54672  
+ 3rd Qu.:139500     3rd Qu.:14642   3rd Qu.: 6542   3rd Qu.:70391  
+ Max.   :205749     Max.   :59628   Max.   :13894   Max.   :74322  
+   Disability     No_central_heating  Overcrowding  Working_from_home
+ Min.   : 34990   Min.   :1003       Min.   :1888   Min.   :14880    
+ 1st Qu.: 40829   1st Qu.:1020       1st Qu.:1892   1st Qu.:18973    
+ Median : 61134   Median :1965       Median :2355   Median :34750    
+ Mean   : 63201   Mean   :2187       Mean   :3237   Mean   :31925    
+ 3rd Qu.: 73088   3rd Qu.:2125       3rd Qu.:2700   3rd Qu.:37299    
+ Max.   :105962   Max.   :4822       Max.   :7352   Max.   :53721    </code></pre>
+</div>
+</div>
+<p>Finally in this section, we come back to the dollar sign (<code>$</code>). This is used to refer to or <em>extract</em> an individual named field or variable in an R object, like <code>df</code>.</p>
+<p>The code below prints out the Population attribute and generates a summary of its values:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb75"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb75-1"><a href="#cb75-1" aria-hidden="true" tabindex="-1"></a><span class="co"># extract an individual variable</span></span>
+<span id="cb75-2"><a href="#cb75-2" aria-hidden="true" tabindex="-1"></a>df<span class="sc">$</span>Population</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 154519 486089 183248 279234 320196</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb77"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb77-1"><a href="#cb77-1" aria-hidden="true" tabindex="-1"></a><span class="co"># generate a summary of an individual variable</span></span>
+<span id="cb77-2"><a href="#cb77-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(df<span class="sc">$</span>Population)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+ 154519  183248  279234  284657  320196  486089 </code></pre>
+</div>
+</div>
+<p>And of course we can use such operations to&nbsp;<em>assign</em>&nbsp;the result to new R objects. The code below extracts three variables from&nbsp;<code>df</code>, assigns them to&nbsp;<code>x</code>,&nbsp;<code>y</code>&nbsp;and&nbsp;<code>z</code>, and then uses the&nbsp;<code>data.frame</code>&nbsp;function to convert these into a new&nbsp;<code>data.frame</code>&nbsp;object called&nbsp;<code>my_df</code></p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb79"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb79-1"><a href="#cb79-1" aria-hidden="true" tabindex="-1"></a><span class="co"># extract three variables, assigning them to temporary R objects</span></span>
+<span id="cb79-2"><a href="#cb79-2" aria-hidden="true" tabindex="-1"></a>x <span class="ot">=</span> df<span class="sc">$</span>District</span>
+<span id="cb79-3"><a href="#cb79-3" aria-hidden="true" tabindex="-1"></a>y <span class="ot">=</span> df<span class="sc">$</span>Working_population</span>
+<span id="cb79-4"><a href="#cb79-4" aria-hidden="true" tabindex="-1"></a>z <span class="ot">=</span> df<span class="sc">$</span>Students</span>
+<span id="cb79-5"><a href="#cb79-5" aria-hidden="true" tabindex="-1"></a><span class="co"># create a data.frame from these, naming the new variables</span></span>
+<span id="cb79-6"><a href="#cb79-6" aria-hidden="true" tabindex="-1"></a>my_df <span class="ot">=</span> <span class="fu">data.frame</span>(<span class="at">district =</span> x,<span class="at">worker =</span> y,<span class="at">student =</span> z)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>You should have a look at what you have created:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb80"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb80-1"><a href="#cb80-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(my_df)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>    district worker student
+1   Knowsley  69495    7050
+2  Liverpool 205749   59628
+3 St. Helens  82622    7582
+4     Sefton 124596   12636
+5     Wirral 139500   14642</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb82"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb82-1"><a href="#cb82-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(my_df)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>       district     worker          student     
+ Knowsley  :1   Min.   : 69495   Min.   : 7050  
+ Liverpool :1   1st Qu.: 82622   1st Qu.: 7582  
+ Sefton    :1   Median :124596   Median :12636  
+ St. Helens:1   Mean   :124392   Mean   :20308  
+ Wirral    :1   3rd Qu.:139500   3rd Qu.:14642  
+                Max.   :205749   Max.   :59628  </code></pre>
+</div>
+</div>
+<p>The temporary R objects can be removed from the Environment using the&nbsp;<code>rm</code>&nbsp;function and a&nbsp;<em>combine</em>&nbsp;vector function,&nbsp;<code>c()</code>&nbsp;that you encountered in Week 19, that takes a vector of object names (hence they are in quotes) as its arguments.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb84"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb84-1"><a href="#cb84-1" aria-hidden="true" tabindex="-1"></a><span class="fu">rm</span>(<span class="at">list =</span> <span class="fu">c</span>(<span class="st">"x"</span>,<span class="st">"y"</span>,<span class="st">"z"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="basic-data-manipulation" class="level4" data-number="1.3.1.2">
+<h4 data-number="1.3.1.2" class="anchored" data-anchor-id="basic-data-manipulation"><span class="header-section-number">1.3.1.2</span> Basic data manipulation</h4>
+<p>Now we can do some basic data manipulation to know Merseyside more from the data perspective.</p>
+<p>What is the total population in Merseyside?</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb85"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb85-1"><a href="#cb85-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sum</span>(df<span class="sc">$</span>Population)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 1423286</code></pre>
+</div>
+</div>
+<p>What is the total number of full-time students in Merseyside?</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb87"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb87-1"><a href="#cb87-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sum</span>(df<span class="sc">$</span>Students)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 101538</code></pre>
+</div>
+</div>
+<p>Then, we can calculate the total number of workers that working from home:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb89"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb89-1"><a href="#cb89-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sum</span>(df<span class="sc">$</span>Working_from_home)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 159623</code></pre>
+</div>
+</div>
+<p>What is the proportion of working population actually work from home in Merseyside? Yes, we need to use a division calculation of the total number of working from home vs.&nbsp;all the working population. R can do it by:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb91"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb91-1"><a href="#cb91-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sum</span>(df<span class="sc">$</span>Working_from_home) <span class="sc">/</span> <span class="fu">sum</span>(df<span class="sc">$</span>Working_population)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0.2566443</code></pre>
+</div>
+</div>
+<p>So the answer is 25.7% for the whole Merseyside - but which district has the highest proportion and which as the lowest? You may have your own guessing. But let R do the calculation:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb93"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb93-1"><a href="#cb93-1" aria-hidden="true" tabindex="-1"></a>df<span class="sc">$</span>Prop.WFH <span class="ot">=</span> df<span class="sc">$</span>Working_from_home <span class="sc">/</span> df<span class="sc">$</span>Working_population <span class="sc">*</span> <span class="dv">100</span> <span class="co">#add a new column called Prop.WFH</span></span>
+<span id="cb93-2"><a href="#cb93-2" aria-hidden="true" tabindex="-1"></a>df <span class="co">#print out the df</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>    LAD21CD   District Population Households Working_population Students
+1 E08000011   Knowsley     154519      66073              69495     7050
+2 E08000012  Liverpool     486089     207491             205749    59628
+3 E08000013 St. Helens     183248      81011              82622     7582
+4 E08000014     Sefton     279234     123075             124596    12636
+5 E08000015     Wirral     320196     143253             139500    14642
+  Unemployed Age_over_65 Disability No_central_heating Overcrowding
+1       3852       26242      34990               1020         1892
+2      13894       74322     105962               4822         7352
+3       4076       37642      40829               1003         1888
+4       6143       64763      61134               1965         2700
+5       6542       70391      73088               2125         2355
+  Working_from_home Prop.WFH
+1             14880 21.41161
+2             53721 26.10997
+3             18973 22.96362
+4             34750 27.89014
+5             37299 26.73763</code></pre>
+</div>
+</div>
+<p>Here we ask R to add a new column named <code>Prop.WFH</code> which is the working from home proportion that calculated by the number of working from home people in each district divided by the total working population in that district. The <code>* 100</code> convert the rate in the percentage number. R will automatically do it row-by-row. We then print out the <code>df</code>, you may find at the very right end of the tabular, there is a new column called <code>Prop.WFH</code>.</p>
+<p>For a very small dataframe like this, we can also using View() to open a new tab to review the data, where each column can be sorted from largest to smallest or vice versa. Try viewing it and find the newly created column <code>Prop.WFH</code>. Click on the column name, you should see it is sorted from highest to lowest, and click again, the ranking is reversed.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb95"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb95-1"><a href="#cb95-1" aria-hidden="true" tabindex="-1"></a><span class="fu">View</span>(df)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="your-first-map-for-merseyside" class="level4" data-number="1.3.1.3">
+<h4 data-number="1.3.1.3" class="anchored" data-anchor-id="your-first-map-for-merseyside"><span class="header-section-number">1.3.1.3</span> Your first map for Merseyside</h4>
+<p>Now let’s try to do our first map in R and allow yourself know more about Merseyside.</p>
+<p>We will use the library sf and tmap to help us at here. Run the install codes if you haven’t install them. Remember: you will only have to install a package once!!</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb96"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb96-1"><a href="#cb96-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">"tmap"</span>,<span class="at">dep =</span><span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Check the package version of tmap, as here we need to use tmap over 4.0 version.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb97"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb97-1"><a href="#cb97-1" aria-hidden="true" tabindex="-1"></a><span class="fu">packageVersion</span>(<span class="st">"tmap"</span>) <span class="co"># the version should over 4.0</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] '4.1'</code></pre>
+</div>
+</div>
+<p>When they have been installed, we can start using them</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb99"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb99-1"><a href="#cb99-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb99-2"><a href="#cb99-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(sf)</span>
+<span id="cb99-3"><a href="#cb99-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tmap)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>You may find in Week 1 data, we have another file named <em>merseyside_districts.gpkg</em>. A GeoPackage (GPKG) is a file-based format designed for storing geographic data. It supports the efficient storage and exchange of spatial datasets and can be readily used across GIS software such as QGIS and ArcGIS, as well as in programming environments including R and Python.</p>
+<p>We first read it in by using the <code>st_read()</code> command in library sf.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb100"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb100-1"><a href="#cb100-1" aria-hidden="true" tabindex="-1"></a>sf <span class="ot">&lt;-</span> <span class="fu">st_read</span>(<span class="st">"merseyside_districts.gpkg"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Reading layer `lad_may_2025_uk_bgc_v2_4306843991635065087__lad_may_2025_uk_bgc_v2' from data source `C:\Users\ziye\Documents\GitHub\quant\labs\merseyside_districts.gpkg' 
+  using driver `GPKG'
+Simple feature collection with 5 features and 8 fields
+Geometry type: MULTIPOLYGON
+Dimension:     XY
+Bounding box:  xmin: 318351.7 ymin: 377515.4 xmax: 361796.3 ymax: 422866.5
+Projected CRS: OSGB36 / British National Grid</code></pre>
+</div>
+</div>
+<p>The fastest way to map it is the <code>qtm()</code> function.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb102"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb102-1"><a href="#cb102-1" aria-hidden="true" tabindex="-1"></a><span class="fu">qtm</span>(sf)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="01.GettingStartedinRStudio_files/figure-html/unnamed-chunk-49-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>You can also add the district names on the map - which column in the sf contains district name? Use <code>names(sf)</code> to check for it.</p>
+<p>Yes, the column should be <code>LAD25NM</code>. Now let’s ask <code>qtm()</code> to also show the district names.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb103"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb103-1"><a href="#cb103-1" aria-hidden="true" tabindex="-1"></a><span class="fu">qtm</span>(sf,<span class="at">text=</span><span class="st">"LAD25NM"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="01.GettingStartedinRStudio_files/figure-html/unnamed-chunk-50-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>But what if we want to make some meaningful maps, rather than just the boundaries of these five districts of Merseyside?</p>
+</section>
+<section id="link-tabular-data-to-geographical-boundaries" class="level4" data-number="1.3.1.4">
+<h4 data-number="1.3.1.4" class="anchored" data-anchor-id="link-tabular-data-to-geographical-boundaries"><span class="header-section-number">1.3.1.4</span> Link tabular data to geographical boundaries</h4>
+<p>Recall that in our <code>df</code>, we have 14 columns, containing different information about the districts. We can get all their names by using <code>names()</code>.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb104"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb104-1"><a href="#cb104-1" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(df)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code> [1] "LAD21CD"            "District"           "Population"        
+ [4] "Households"         "Working_population" "Students"          
+ [7] "Unemployed"         "Age_over_65"        "Disability"        
+[10] "No_central_heating" "Overcrowding"       "Working_from_home" 
+[13] "Prop.WFH"          </code></pre>
+</div>
+</div>
+<p>We can do the same thing for our geographical dataset <code>sf</code> to see what it includes:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb106"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb106-1"><a href="#cb106-1" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(sf)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "LAD25CD"  "LAD25NM"  "LAD25NMW" "BNG_E"    "BNG_N"    "LONG"     "LAT"     
+[8] "GlobalID" "geom"    </code></pre>
+</div>
+</div>
+<p>We can also show the whole <code>sf</code> as</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb108"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb108-1"><a href="#cb108-1" aria-hidden="true" tabindex="-1"></a>sf</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Simple feature collection with 5 features and 8 fields
+Geometry type: MULTIPOLYGON
+Dimension:     XY
+Bounding box:  xmin: 318351.7 ymin: 377515.4 xmax: 361796.3 ymax: 422866.5
+Projected CRS: OSGB36 / British National Grid
+    LAD25CD    LAD25NM LAD25NMW  BNG_E  BNG_N      LONG      LAT
+1 E08000011   Knowsley          344762 393778 -2.832979 53.43789
+2 E08000012  Liverpool          339359 390556 -2.913680 53.40833
+3 E08000013 St. Helens          353413 395992 -2.703093 53.45862
+4 E08000014     Sefton          334282 398835 -2.991771 53.48213
+5 E08000015     Wirral          329109 386965 -3.067034 53.37478
+                                GlobalID                           geom
+1 {B4196BFE-EE90-4C31-ABD5-C7E743AE2F9B} MULTIPOLYGON (((341447.1 40...
+2 {4FB47E7A-EF4E-4B9E-BF75-D4FC059CDE61} MULTIPOLYGON (((338860.9 39...
+3 {943F0C6B-EB30-4C00-A42B-F6B3AEC3EFEE} MULTIPOLYGON (((349111.4 40...
+4 {C6FD073B-CBEB-4E78-934A-A8FD11A20F0A} MULTIPOLYGON (((336374.5 42...
+5 {88E9328B-371C-469C-91F1-3479C77D6950} MULTIPOLYGON (((331364.9 39...</code></pre>
+</div>
+</div>
+<p>Now we see that sf includes also the five districts, but also other geographical information. You may notice that although different column names, the first two columns of both df and sf are the district code and district name. This means what potentially we can link this two dataset together - appendix the df to sf to enrich the attributes of our geographical dataset.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb110"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb110-1"><a href="#cb110-1" aria-hidden="true" tabindex="-1"></a>merseyside <span class="ot">&lt;-</span> <span class="fu">left_join</span>(sf, df,<span class="at">by=</span><span class="fu">c</span>(<span class="st">"LAD25NM"</span><span class="ot">=</span><span class="st">"District"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>let’s check out the new <code>sf2</code> by <code>View()</code> it:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb111"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb111-1"><a href="#cb111-1" aria-hidden="true" tabindex="-1"></a><span class="fu">View</span>(merseyside)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>In the open tab, we see all the <code>df</code> columns are now also attached to the <code>sf</code>, linking by the district names.</p>
+</section>
+<section id="choropleth-map-of-merseyside-districts" class="level4" data-number="1.3.1.5">
+<h4 data-number="1.3.1.5" class="anchored" data-anchor-id="choropleth-map-of-merseyside-districts"><span class="header-section-number">1.3.1.5</span> Choropleth map of Merseyside districts</h4>
+<p>Now, we can use those new columns we attached from <code>df</code> to <code>sf2</code> to make some meaningful choropleth maps! Here we make use of the mapping functions in tmap (Remember to run <code>library(tmap)</code> if you haven’t) to do the work for us.</p>
+<p><code>tmap</code> has a basic syntax (again, do not run this code - its is simply showing the syntax of <code>tmap</code>):</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb112"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb112-1"><a href="#cb112-1" aria-hidden="true" tabindex="-1"></a><span class="co"># don't run this or write this into your script!</span></span>
+<span id="cb112-2"><a href="#cb112-2" aria-hidden="true" tabindex="-1"></a><span class="fu">tm_shape</span>(<span class="at">data =</span> <span class="sc">&lt;</span>data<span class="sc">&gt;</span>)<span class="sc">+</span></span>
+<span id="cb112-3"><a href="#cb112-3" aria-hidden="true" tabindex="-1"></a>  tm_<span class="sc">&lt;</span><span class="cf">function</span><span class="sc">&gt;</span>(<span class="sc">&lt;</span>variable to be mapped<span class="sc">&gt;</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>For example, to map the boundaries of <code>merseyside</code>:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb113"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb113-1"><a href="#cb113-1" aria-hidden="true" tabindex="-1"></a><span class="fu">tm_shape</span>(merseyside) <span class="sc">+</span> </span>
+<span id="cb113-2"><a href="#cb113-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tm_borders</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="01.GettingStartedinRStudio_files/figure-html/unnamed-chunk-57-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>To add label of district:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb114"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb114-1"><a href="#cb114-1" aria-hidden="true" tabindex="-1"></a><span class="fu">tm_shape</span>(merseyside) <span class="sc">+</span> </span>
+<span id="cb114-2"><a href="#cb114-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tm_borders</span>() <span class="sc">+</span> </span>
+<span id="cb114-3"><a href="#cb114-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tm_text</span>(<span class="st">"LAD25NM"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="01.GettingStartedinRStudio_files/figure-html/unnamed-chunk-58-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>You might assume the quick mapping function <code>qtm()</code> can achieve the same result, but <code>tmap</code> provides far more flexibility when it comes to aesthetic customization. The easiest way to illustrate <code>tmap</code> is through some examples.</p>
+<p>Let’s start with a simple choropleth map, by using <code>tmap</code> to show the distribution of a continuous variable in different elements of the spatial data (here are the data Merseyside districts are polygons).</p>
+<p>The code below maps `<code>Students</code>’ as in the Merseyside districts, and shows the district names of each polygon from ‘<code>LAD25NM</code>’ columns. The map below indicates that Liverpool has the highest number of full-time students while Knowsley and St.Helens have the least.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb115"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb115-1"><a href="#cb115-1" aria-hidden="true" tabindex="-1"></a><span class="fu">tm_shape</span>(merseyside) <span class="sc">+</span> </span>
+<span id="cb115-2"><a href="#cb115-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tm_polygons</span>(<span class="at">fill =</span> <span class="st">"Students"</span>) <span class="sc">+</span>   <span class="co"># Variable to map </span></span>
+<span id="cb115-3"><a href="#cb115-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tm_text</span>(<span class="st">"LAD25NM"</span>)                 <span class="co"># Variable to label</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="01.GettingStartedinRStudio_files/figure-html/unnamed-chunk-59-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>By default tmap picks a shading scheme, the class breaks and places a legend somewhere. All of these can be changed. The code below allocates the tmap plot to <code>map1</code> (Map 1), change the legend title as “Number of students in Merseyside districts”, and then prints it:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb116"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb116-1"><a href="#cb116-1" aria-hidden="true" tabindex="-1"></a>map1  <span class="ot">=</span> <span class="fu">tm_shape</span>(merseyside) <span class="sc">+</span> </span>
+<span id="cb116-2"><a href="#cb116-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tm_polygons</span>(<span class="at">fill=</span><span class="st">"Students"</span>,</span>
+<span id="cb116-3"><a href="#cb116-3" aria-hidden="true" tabindex="-1"></a>              <span class="at">fill.scale =</span> <span class="fu">tm_scale</span>(<span class="at">values =</span> <span class="st">"Greens"</span>), <span class="co"># change palette to greens</span></span>
+<span id="cb116-4"><a href="#cb116-4" aria-hidden="true" tabindex="-1"></a>              <span class="at">fill.legend =</span> <span class="fu">tm_legend</span>(<span class="at">title =</span> <span class="st">"Number of students in Merseyside districts"</span>)</span>
+<span id="cb116-5"><a href="#cb116-5" aria-hidden="true" tabindex="-1"></a>              ) <span class="sc">+</span><span class="co"># Legend title</span></span>
+<span id="cb116-6"><a href="#cb116-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tm_text</span>(<span class="st">"LAD25NM"</span>,<span class="at">size=</span><span class="fl">0.8</span>) <span class="co">#size down the label slightly</span></span>
+<span id="cb116-7"><a href="#cb116-7" aria-hidden="true" tabindex="-1"></a>map1</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="01.GettingStartedinRStudio_files/figure-html/unnamed-chunk-60-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>And of course many other elements included either by running the code snippet defining <code>map1</code> above with additional lines or by simply adding them as in the code below:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb117"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb117-1"><a href="#cb117-1" aria-hidden="true" tabindex="-1"></a>map1 <span class="sc">+</span> </span>
+<span id="cb117-2"><a href="#cb117-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tm_scalebar</span>(<span class="at">position =</span> <span class="fu">c</span>(<span class="st">"right"</span>, <span class="st">"bottom"</span>)) <span class="sc">+</span> </span>
+<span id="cb117-3"><a href="#cb117-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tm_compass</span>(<span class="at">position =</span> <span class="fu">c</span>(<span class="st">"left"</span>, <span class="st">"top"</span>))  <span class="co"># Use "top", "center", or "bottom"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="01.GettingStartedinRStudio_files/figure-html/unnamed-chunk-61-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>We can also create new variable to the dataset and then map it. The below code chunk first creates a new column, “<code>NoCentralHeating_rate</code>”, by dividing the number of households without access to central heating by the total number of households in each district; it then uses <code>tmap</code> to make a map of the proportion of households without central heating across districts in Merseyside:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb118"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb118-1"><a href="#cb118-1" aria-hidden="true" tabindex="-1"></a>merseyside<span class="sc">$</span>NoCentralHeating_rate <span class="ot">=</span> merseyside<span class="sc">$</span>No_central_heating <span class="sc">/</span> merseyside<span class="sc">$</span>Households <span class="sc">*</span> <span class="dv">100</span></span>
+<span id="cb118-2"><a href="#cb118-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb118-3"><a href="#cb118-3" aria-hidden="true" tabindex="-1"></a>map2 <span class="ot">=</span> <span class="fu">tm_shape</span>(merseyside) <span class="sc">+</span> </span>
+<span id="cb118-4"><a href="#cb118-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tm_polygons</span>(<span class="at">fill=</span><span class="st">"NoCentralHeating_rate"</span>,</span>
+<span id="cb118-5"><a href="#cb118-5" aria-hidden="true" tabindex="-1"></a>              <span class="at">fill.scale =</span> <span class="fu">tm_scale</span>(<span class="at">values =</span> <span class="st">"Reds"</span>, <span class="at">style =</span> <span class="st">"jenks"</span>), <span class="co">#use jenks classification rather than equal</span></span>
+<span id="cb118-6"><a href="#cb118-6" aria-hidden="true" tabindex="-1"></a>              <span class="at">fill.legend =</span> <span class="fu">tm_legend</span>(<span class="at">title =</span> <span class="st">"% No Central Heating"</span>)) <span class="sc">+</span></span>
+<span id="cb118-7"><a href="#cb118-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tm_text</span>(<span class="st">"LAD25NM"</span>,<span class="at">size=</span><span class="fl">0.8</span>) <span class="sc">+</span></span>
+<span id="cb118-8"><a href="#cb118-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tm_scalebar</span>(<span class="at">position =</span> <span class="fu">c</span>(<span class="st">"right"</span>, <span class="st">"bottom"</span>)) <span class="sc">+</span>  <span class="co"># Add a scale bar at the top-right corner</span></span>
+<span id="cb118-9"><a href="#cb118-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tm_compass</span>(<span class="at">position =</span> <span class="fu">c</span>(<span class="st">"left"</span>, <span class="st">"top"</span>))  <span class="co"># Add a compass rose at the top-right corner</span></span>
+<span id="cb118-10"><a href="#cb118-10" aria-hidden="true" tabindex="-1"></a>map2</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="01.GettingStartedinRStudio_files/figure-html/unnamed-chunk-62-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="merseyside-neighbourhoods" class="level3" data-number="1.3.2">
+<h3 data-number="1.3.2" class="anchored" data-anchor-id="merseyside-neighbourhoods"><span class="header-section-number">1.3.2</span> Merseyside neighbourhoods</h3>
+<p>Now let’s read in the neighbourhood-level datasets, which include a <code>.csv</code> file of local statistics and the corresponding geographical boundaries.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb119"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb119-1"><a href="#cb119-1" aria-hidden="true" tabindex="-1"></a>lsoa_df <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"merseyside_lsoa.csv"</span>)</span>
+<span id="cb119-2"><a href="#cb119-2" aria-hidden="true" tabindex="-1"></a>lsoa_sf <span class="ot">&lt;-</span> <span class="fu">st_read</span>(<span class="st">"LSOA_boundaries.gpkg"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Reading layer `merseyside_LSOA' from data source 
+  `C:\Users\ziye\Documents\GitHub\quant\labs\LSOA_boundaries.gpkg' 
+  using driver `GPKG'
+Simple feature collection with 923 features and 4 fields
+Geometry type: MULTIPOLYGON
+Dimension:     XY
+Bounding box:  xmin: -3.200368 ymin: 53.2963 xmax: -2.576743 ymax: 53.6982
+Geodetic CRS:  WGS 84</code></pre>
+</div>
+</div>
+<p>First, we take a look at the <code>.csv</code> dataset, which as been read into R as <code>lsoa_df</code>:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb121"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb121-1"><a href="#cb121-1" aria-hidden="true" tabindex="-1"></a><span class="fu">View</span>(lsoa_df)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>or check the structure of the dataset:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb122"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb122-1"><a href="#cb122-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(lsoa_df)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>'data.frame':   923 obs. of  11 variables:
+ $ LSOA21CD          : chr  "E01006416" "E01006418" "E01006434" "E01006435" ...
+ $ Population        : int  1520 1315 1519 1524 1150 1654 1450 1581 1421 1373 ...
+ $ Households        : int  678 567 652 663 490 695 592 622 809 618 ...
+ $ Working_population: int  588 547 660 581 546 766 558 570 524 481 ...
+ $ Students          : int  59 64 69 82 51 66 65 89 52 72 ...
+ $ Unemployed        : num  3.57 2.74 5.11 3.43 1.62 ...
+ $ Age_over_65       : num  14.8 17.5 11.7 19.9 26.3 ...
+ $ Disability        : num  27.1 30 23.4 29 20.5 ...
+ $ No_central_heating: int  16 14 16 7 3 8 9 9 12 9 ...
+ $ Overcrowding      : int  24 24 35 28 13 21 29 23 31 22 ...
+ $ Working_from_home : int  91 84 102 96 165 171 101 64 66 48 ...</code></pre>
+</div>
+</div>
+<p>So now, you know how many LSOAs in Merseyside? Yes, there are 923 LSOAs. As we introduced in the Week 1 lecture, LSOA means Super Output Area Lower Area and is commonly used in the Census statistics. Each LSOA represents 1,000 to 3,000 people or 400 to 1,200 households in England and Wales.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb124"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb124-1"><a href="#cb124-1" aria-hidden="true" tabindex="-1"></a><span class="fu">dim</span>(lsoa_df)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 923  11</code></pre>
+</div>
+</div>
+<p>Use the quick mapping function <code>qtm()</code> to quickly inspect the geographical boundary dataset <code>lsoa_sf</code> .</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb126"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb126-1"><a href="#cb126-1" aria-hidden="true" tabindex="-1"></a><span class="fu">qtm</span>(lsoa_sf)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="01.GettingStartedinRStudio_files/figure-html/unnamed-chunk-67-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>check how many LSOAs in the boundary dataset - there should also be 923.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb127"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb127-1"><a href="#cb127-1" aria-hidden="true" tabindex="-1"></a><span class="fu">nrow</span>(lsoa_sf)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 923</code></pre>
+</div>
+</div>
+<p>To familiarise yourself with the structures of both datasets, we can use the <code>names()</code> command</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb129"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb129-1"><a href="#cb129-1" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(lsoa_df)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code> [1] "LSOA21CD"           "Population"         "Households"        
+ [4] "Working_population" "Students"           "Unemployed"        
+ [7] "Age_over_65"        "Disability"         "No_central_heating"
+[10] "Overcrowding"       "Working_from_home" </code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb131"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb131-1"><a href="#cb131-1" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(lsoa_sf)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "LSOA21CD" "LSOA21NM" "LAD23CD"  "LAD23NM"  "geom"    </code></pre>
+</div>
+</div>
+<p>You may find that both dataset are recorded at the LSOA level, with <code>LSOA21CD</code> as the key column. As we did with the district-level dataset, we can use <code>left_join()</code> to join these two dataset by their sharing field - <code>LSOA21CD</code>:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb133"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb133-1"><a href="#cb133-1" aria-hidden="true" tabindex="-1"></a>lsoa <span class="ot">&lt;-</span> <span class="fu">left_join</span>(lsoa_sf,lsoa_df,<span class="at">by=</span><span class="st">"LSOA21CD"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Now let’s check the columns of new dataframe <code>lsoa</code>:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb134"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb134-1"><a href="#cb134-1" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(lsoa)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code> [1] "LSOA21CD"           "LSOA21NM"           "LAD23CD"           
+ [4] "LAD23NM"            "Population"         "Households"        
+ [7] "Working_population" "Students"           "Unemployed"        
+[10] "Age_over_65"        "Disability"         "No_central_heating"
+[13] "Overcrowding"       "Working_from_home"  "geom"              </code></pre>
+</div>
+</div>
+<p>Or open a new tab to view the newly created dataset <code>lsoa</code> by</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb136"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb136-1"><a href="#cb136-1" aria-hidden="true" tabindex="-1"></a><span class="fu">View</span>(lsoa)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>We can see that some columns contain counts, such as the number of residential population, number of households, number of working population, and number of students. Other columns are expressed as percentages, including unemployment, population aged 65 and over, disability, households without central heating, overcrowded households, and people working from home.</p>
+<section id="making-maps-across-lsoas-in-merseyside" class="level4" data-number="1.3.2.1">
+<h4 data-number="1.3.2.1" class="anchored" data-anchor-id="making-maps-across-lsoas-in-merseyside"><span class="header-section-number">1.3.2.1</span> Making maps across LSOAs in Merseyside</h4>
+<p>Using the <code>Unemployed</code> column, we can create a map of the unemployment rate across neighbourhoods in Merseyside. Instead of using the default equal-interval breaks, this time we will use a jenks classification with six categories.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb137"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb137-1"><a href="#cb137-1" aria-hidden="true" tabindex="-1"></a>map3 <span class="ot">=</span> <span class="fu">tm_shape</span>(lsoa) <span class="sc">+</span></span>
+<span id="cb137-2"><a href="#cb137-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tm_fill</span>(</span>
+<span id="cb137-3"><a href="#cb137-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">fill =</span> <span class="st">"Unemployed"</span>,</span>
+<span id="cb137-4"><a href="#cb137-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">fill.scale =</span> <span class="fu">tm_scale</span>(<span class="at">values =</span> <span class="st">"GnBu"</span>, </span>
+<span id="cb137-5"><a href="#cb137-5" aria-hidden="true" tabindex="-1"></a>                          <span class="at">style =</span> <span class="st">"jenks"</span>, </span>
+<span id="cb137-6"><a href="#cb137-6" aria-hidden="true" tabindex="-1"></a>                          <span class="at">n =</span> <span class="dv">6</span>), <span class="co">#use jenks classification of 6 categories</span></span>
+<span id="cb137-7"><a href="#cb137-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">fill.legend =</span> <span class="fu">tm_legend</span>(<span class="at">title =</span> <span class="st">"% Unemployed"</span>)</span>
+<span id="cb137-8"><a href="#cb137-8" aria-hidden="true" tabindex="-1"></a>    ) <span class="sc">+</span></span>
+<span id="cb137-9"><a href="#cb137-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tm_layout</span>(<span class="at">legend.position =</span> <span class="fu">c</span>(<span class="st">"right"</span>, <span class="st">"top"</span>))</span>
+<span id="cb137-10"><a href="#cb137-10" aria-hidden="true" tabindex="-1"></a>map3</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="01.GettingStartedinRStudio_files/figure-html/unnamed-chunk-73-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>The above code uses <code>tm_layout(legend.position = c("right", "top"))</code> to move the legend inside the map frame, positioning it at the right-top corner.</p>
+<div style="background-color: #FFFBCC; padding: 10px; border-radius: 5px; border: 1px solid #E1C948;">
+<p>Replace <code>tm_fill()</code> to <code>tm_polygons()</code> to see how the map changes?</p>
+<p><code>tm_polygons()</code> is a condense version of <code>tm_fill() + tm_border()</code>. Here if you want show all the LSOA borders, use <code>tm_polygons()</code> instead of <code>tm_fill()</code>.</p>
+</div>
+</section>
+<section id="overlapping-tmap-objects" class="level4" data-number="1.3.2.2">
+<h4 data-number="1.3.2.2" class="anchored" data-anchor-id="overlapping-tmap-objects"><span class="header-section-number">1.3.2.2</span> Overlapping tmap objects</h4>
+<p><code>tmap</code> also supports adding or overlaying other data, such as boundaries. Because these are additional spatial data layers, they needs to be added with <code>tm_shape()</code> followed by the usual function.</p>
+<p>Remember we use the code chunk to make the district boundaries of Merseyside? This time let’s change the aesthetic by using grey color as the border color and increase the line width, then we save it also as a <code>tmap</code> object called map_district:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb138"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb138-1"><a href="#cb138-1" aria-hidden="true" tabindex="-1"></a>map_district <span class="ot">=</span> <span class="fu">tm_shape</span>(merseyside) <span class="sc">+</span> </span>
+<span id="cb138-2"><a href="#cb138-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tm_borders</span>(<span class="at">col =</span> <span class="st">"grey50"</span>,<span class="at">lwd=</span><span class="fl">1.5</span>) <span class="sc">+</span> <span class="co">#border color as grey, line width as 1.5</span></span>
+<span id="cb138-3"><a href="#cb138-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tm_text</span>(<span class="st">"LAD25NM"</span>,<span class="at">size =</span> <span class="fl">0.8</span>)</span>
+<span id="cb138-4"><a href="#cb138-4" aria-hidden="true" tabindex="-1"></a>map_district</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="01.GettingStartedinRStudio_files/figure-html/unnamed-chunk-74-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>To display both <code>tmap</code> layers together, we can proceed as follows:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb139"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb139-1"><a href="#cb139-1" aria-hidden="true" tabindex="-1"></a>map3 <span class="sc">+</span> map_district</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="01.GettingStartedinRStudio_files/figure-html/unnamed-chunk-75-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Now, let’s move to making some more maps - this time showing the proportion of disability across neighbourhoods in Merseyside. Referring back to the columns in <code>lsoa</code>, this time we use the <code>Disability</code> variable. The code below applies a jenks classification and use a different color palette <code>Purples</code>. Also the map frame is removed by <code>frame = FALSE</code>.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb140"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb140-1"><a href="#cb140-1" aria-hidden="true" tabindex="-1"></a><span class="fu">tm_shape</span>(lsoa) <span class="sc">+</span> </span>
+<span id="cb140-2"><a href="#cb140-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tm_fill</span>(<span class="at">fill =</span> <span class="st">"Disability"</span>,</span>
+<span id="cb140-3"><a href="#cb140-3" aria-hidden="true" tabindex="-1"></a>          <span class="at">fill.scale =</span> <span class="fu">tm_scale</span>(<span class="at">values=</span><span class="st">"Purples"</span>, </span>
+<span id="cb140-4"><a href="#cb140-4" aria-hidden="true" tabindex="-1"></a>                                <span class="at">style =</span> <span class="st">"jenks"</span>,</span>
+<span id="cb140-5"><a href="#cb140-5" aria-hidden="true" tabindex="-1"></a>                                <span class="at">n=</span><span class="dv">5</span>),</span>
+<span id="cb140-6"><a href="#cb140-6" aria-hidden="true" tabindex="-1"></a>          <span class="at">fill.legend =</span> <span class="fu">tm_legend</span>(<span class="at">title =</span> <span class="st">"% Disability"</span>)</span>
+<span id="cb140-7"><a href="#cb140-7" aria-hidden="true" tabindex="-1"></a>          ) <span class="sc">+</span></span>
+<span id="cb140-8"><a href="#cb140-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tm_layout</span>(<span class="at">main.title =</span> <span class="st">"Merseyside"</span>,<span class="co">#add a main title</span></span>
+<span id="cb140-9"><a href="#cb140-9" aria-hidden="true" tabindex="-1"></a>            <span class="at">legend.position =</span> <span class="fu">c</span>(<span class="st">"right"</span>, <span class="st">"top"</span>),</span>
+<span id="cb140-10"><a href="#cb140-10" aria-hidden="true" tabindex="-1"></a>            <span class="at">frame =</span> <span class="cn">FALSE</span>)<span class="sc">+</span></span>
+<span id="cb140-11"><a href="#cb140-11" aria-hidden="true" tabindex="-1"></a>  map_district</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="01.GettingStartedinRStudio_files/figure-html/unnamed-chunk-76-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="create-new-variables-to-make-maps" class="level4" data-number="1.3.2.3">
+<h4 data-number="1.3.2.3" class="anchored" data-anchor-id="create-new-variables-to-make-maps"><span class="header-section-number">1.3.2.3</span> Create new variables to make maps</h4>
+<p>Similarly, we can make maps from new columns we made ourselves. For example, we can calculate the percentage of student by adding a new column to the dataframe:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb141"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb141-1"><a href="#cb141-1" aria-hidden="true" tabindex="-1"></a>lsoa<span class="sc">$</span>student.perc <span class="ot">=</span> lsoa<span class="sc">$</span>Students <span class="sc">/</span> lsoa<span class="sc">$</span>Population <span class="sc">*</span> <span class="dv">100</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>To make a map to visualisation the spatial distribution of student percentage. The code below uses <code>n=6</code> to increase the classification categories to 6 rather than default 5.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb142"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb142-1"><a href="#cb142-1" aria-hidden="true" tabindex="-1"></a><span class="fu">tm_shape</span>(lsoa) <span class="sc">+</span> </span>
+<span id="cb142-2"><a href="#cb142-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tm_fill</span>(<span class="at">fill =</span> <span class="st">"student.perc"</span>,</span>
+<span id="cb142-3"><a href="#cb142-3" aria-hidden="true" tabindex="-1"></a>          <span class="at">fill.scale =</span> <span class="fu">tm_scale</span>(<span class="at">values=</span><span class="st">"Blues"</span>,</span>
+<span id="cb142-4"><a href="#cb142-4" aria-hidden="true" tabindex="-1"></a>                                <span class="at">style =</span> <span class="st">"jenks"</span>,</span>
+<span id="cb142-5"><a href="#cb142-5" aria-hidden="true" tabindex="-1"></a>                                <span class="at">n=</span><span class="dv">6</span>),</span>
+<span id="cb142-6"><a href="#cb142-6" aria-hidden="true" tabindex="-1"></a>          <span class="at">fill.legend =</span> <span class="fu">tm_legend</span>(<span class="at">title =</span> <span class="st">"% of Student"</span>,</span>
+<span id="cb142-7"><a href="#cb142-7" aria-hidden="true" tabindex="-1"></a>                                  <span class="at">title.size =</span> <span class="fl">0.8</span>) <span class="co">#legend title change smaller font</span></span>
+<span id="cb142-8"><a href="#cb142-8" aria-hidden="true" tabindex="-1"></a>          ) <span class="sc">+</span></span>
+<span id="cb142-9"><a href="#cb142-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tm_layout</span>(<span class="at">main.title =</span> <span class="st">"Merseyside"</span>,</span>
+<span id="cb142-10"><a href="#cb142-10" aria-hidden="true" tabindex="-1"></a>            <span class="at">frame =</span> <span class="cn">FALSE</span>,</span>
+<span id="cb142-11"><a href="#cb142-11" aria-hidden="true" tabindex="-1"></a>            <span class="at">legend.position =</span> <span class="fu">c</span>(<span class="st">"right"</span>, <span class="st">"top"</span>))<span class="sc">+</span></span>
+<span id="cb142-12"><a href="#cb142-12" aria-hidden="true" tabindex="-1"></a>  map_district</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="01.GettingStartedinRStudio_files/figure-html/unnamed-chunk-78-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>To change the palette, RColorBrewer provides different palette choices:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb143"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb143-1"><a href="#cb143-1" aria-hidden="true" tabindex="-1"></a>RColorBrewer<span class="sc">::</span><span class="fu">display.brewer.all</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="01.GettingStartedinRStudio_files/figure-html/unnamed-chunk-79-1.png" class="img-fluid figure-img" style="width:80.0%"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="in-a-nutshell" class="level4" data-number="1.3.2.4">
+<h4 data-number="1.3.2.4" class="anchored" data-anchor-id="in-a-nutshell"><span class="header-section-number">1.3.2.4</span> In a nutshell</h4>
+<p>If we want to make a map to show the rate of no central heating households in all the neighbourhoods in Merseyside, we need to create a new variable <code>no.central.heating.perc</code> as the result of dividing households without central heating by total households in each LSOA. The code below combines all the cartographic elements together:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb144"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb144-1"><a href="#cb144-1" aria-hidden="true" tabindex="-1"></a>lsoa<span class="sc">$</span>no.central.heating.perc <span class="ot">=</span> lsoa<span class="sc">$</span>No_central_heating <span class="sc">/</span> lsoa<span class="sc">$</span>Households <span class="sc">*</span> <span class="dv">100</span></span>
+<span id="cb144-2"><a href="#cb144-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb144-3"><a href="#cb144-3" aria-hidden="true" tabindex="-1"></a><span class="fu">tm_shape</span>(lsoa) <span class="sc">+</span> </span>
+<span id="cb144-4"><a href="#cb144-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tm_fill</span>(<span class="at">fill =</span> <span class="st">"no.central.heating.perc"</span>,</span>
+<span id="cb144-5"><a href="#cb144-5" aria-hidden="true" tabindex="-1"></a>          <span class="at">fill.scale =</span> <span class="fu">tm_scale</span>(<span class="at">values=</span><span class="st">"YlOrRd"</span>,</span>
+<span id="cb144-6"><a href="#cb144-6" aria-hidden="true" tabindex="-1"></a>                                <span class="at">style =</span> <span class="st">"jenks"</span>,<span class="at">n=</span><span class="dv">6</span>),</span>
+<span id="cb144-7"><a href="#cb144-7" aria-hidden="true" tabindex="-1"></a>          <span class="at">fill.legend =</span> <span class="fu">tm_legend</span>(<span class="at">title =</span> <span class="st">"% of no central heating households"</span>, </span>
+<span id="cb144-8"><a href="#cb144-8" aria-hidden="true" tabindex="-1"></a>                                  <span class="at">title.size =</span> <span class="fl">0.8</span>)</span>
+<span id="cb144-9"><a href="#cb144-9" aria-hidden="true" tabindex="-1"></a>        ) <span class="sc">+</span></span>
+<span id="cb144-10"><a href="#cb144-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tm_layout</span>(<span class="at">main.title =</span> <span class="st">"Merseyside"</span>,</span>
+<span id="cb144-11"><a href="#cb144-11" aria-hidden="true" tabindex="-1"></a>            <span class="at">main.title.size=</span><span class="fl">1.2</span>,</span>
+<span id="cb144-12"><a href="#cb144-12" aria-hidden="true" tabindex="-1"></a>            <span class="at">frame =</span> <span class="cn">FALSE</span>) <span class="sc">+</span> </span>
+<span id="cb144-13"><a href="#cb144-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tm_compass</span>(<span class="at">position =</span> <span class="fu">c</span>(<span class="st">"right"</span>, <span class="st">"top"</span>)) <span class="sc">+</span></span>
+<span id="cb144-14"><a href="#cb144-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tm_scalebar</span>(<span class="at">position =</span> <span class="fu">c</span>(<span class="st">"right"</span>, <span class="st">"bottom"</span>)) <span class="sc">+</span></span>
+<span id="cb144-15"><a href="#cb144-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tm_shape</span>(merseyside) <span class="sc">+</span>               <span class="co"># Add another spatial layer (Merseyside boundary)</span></span>
+<span id="cb144-16"><a href="#cb144-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tm_borders</span>(<span class="at">col =</span> <span class="st">"black"</span>, <span class="at">lwd =</span> <span class="dv">1</span>) <span class="sc">+</span>  <span class="co"># Draw the boundaries with black lines of width 1</span></span>
+<span id="cb144-17"><a href="#cb144-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tm_text</span>(<span class="st">"LAD25NM"</span>,<span class="at">col =</span> <span class="st">"blue"</span>,<span class="at">size =</span> <span class="fl">0.8</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="01.GettingStartedinRStudio_files/figure-html/unnamed-chunk-80-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+</section>
+</section>
+<section id="summary" class="level2" data-number="1.4">
+<h2 data-number="1.4" class="anchored" data-anchor-id="summary"><span class="header-section-number">1.4</span> Summary</h2>
+<p>The aim of this session has been to familiarise you with the R environment if you have not used R before. If you have but not for a while, then hopefully this has acted as a refresher. Some key things to take away are:</p>
+<ul>
+<li><p>R is a learning curve, and like driving the more your practice the better you become.</p></li>
+<li><p>Your job is to try to <strong>understand</strong> what the code is doing and <strong>not</strong> to remember the code.</p></li>
+<li><p>To help with this, you should add your own comments to the script to help you understand what is going on when you return to them. Comments are prefaced by a hash (<code>#</code>) that is ignored by R.</p></li>
+<li><p>Always set your working directory to the sub-folder containing your R script.</p></li>
+<li><p>Always run your code from an R script… <strong>always</strong>!</p></li>
+</ul>
+<section id="references" class="level3" data-number="1.4.1">
+<h3 data-number="1.4.1" class="anchored" data-anchor-id="references"><span class="header-section-number">1.4.1</span> References</h3>
+<p>Brunsdon, Chris, and Lex Comber. 2018. <em>An Introduction to r for Spatial Analysis and Mapping (2e)</em>. Sage.</p>
+<p>Comber, Lex, and Chris Brunsdon. 2021. <em>Geographical Data Science and Spatial Data Analysis: An Introduction in r</em>. Sage.</p>
+<p>Harris, Richard. 2016. <em>Quantitative Geography: The Basics</em>. Sage.</p>
+<p>Other good on-line <em>get started in R</em> guides include:</p>
+<ul>
+<li><p>The Owen guide (only up to page 28) : <a href="https://cran.r-project.org/doc/contrib/Owen-TheRGuide.pdf" class="uri">https://cran.r-project.org/doc/contrib/Owen-TheRGuide.pdf</a></p></li>
+<li><p>An Introduction to R - <a href="https://cran.r-project.org/doc/contrib/Lam-IntroductionToR_LHL.pdf" class="uri">https://cran.r-project.org/doc/contrib/Lam-IntroductionToR_LHL.pdf</a></p></li>
+<li><p>R for beginners <a href="https://cran.r-project.org/doc/contrib/Paradis-rdebuts_en.pdf" class="uri">https://cran.r-project.org/doc/contrib/Paradis-rdebuts_en.pdf</a></p></li>
+</ul>
+</section>
+</section>
+<section id="formative-tasks" class="level2" data-number="1.5">
+<h2 data-number="1.5" class="anchored" data-anchor-id="formative-tasks"><span class="header-section-number">1.5</span> Formative Tasks</h2>
+<p><strong>Task 1</strong> From the district level dataset “merseyside.csv”, extract household information for the Liverool and Wirral districts. The variables to be included are “Households”, “No_central_heating” and “Overcrowding”.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb145"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb145-1"><a href="#cb145-1" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"merseyside.csv"</span>)  </span>
+<span id="cb145-2"><a href="#cb145-2" aria-hidden="true" tabindex="-1"></a>df[<span class="fu">c</span>(<span class="dv">2</span>,<span class="dv">5</span>),<span class="fu">c</span>(<span class="st">"District"</span>,<span class="st">"Households"</span>,<span class="st">"No_central_heating"</span>,<span class="st">"Overcrowding"</span>)]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>   District Households No_central_heating Overcrowding
+2 Liverpool     207491               4822         7352
+5    Wirral     143253               2125         2355</code></pre>
+</div>
+</div>
+<p><strong>Task 2</strong> Use the dataset “merseyside_lsoa.csv”, plot the <code>Disability</code> against <code>Age_over_65</code> from the data frame.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb147"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb147-1"><a href="#cb147-1" aria-hidden="true" tabindex="-1"></a>lsoa_df <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"merseyside_lsoa.csv"</span>) </span>
+<span id="cb147-2"><a href="#cb147-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(Disability<span class="sc">~</span>Age_over_65, <span class="at">data =</span> lsoa_df) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="01.GettingStartedinRStudio_files/figure-html/unnamed-chunk-82-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+<div class="sourceCode cell-code" id="cb148"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb148-1"><a href="#cb148-1" aria-hidden="true" tabindex="-1"></a><span class="co"># or </span></span>
+<span id="cb148-2"><a href="#cb148-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(lsoa_df<span class="sc">$</span>Disability, lsoa_df<span class="sc">$</span>Age_over_65)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="01.GettingStartedinRStudio_files/figure-html/unnamed-chunk-82-2.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p><strong>Task 3</strong> Use the district level dataset, how many households in total in Merseyside?</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb149"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb149-1"><a href="#cb149-1" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"merseyside.csv"</span>)</span>
+<span id="cb149-2"><a href="#cb149-2" aria-hidden="true" tabindex="-1"></a><span class="fu">sum</span>(df<span class="sc">$</span>Households)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 620903</code></pre>
+</div>
+</div>
+<p><strong>Task 4</strong> Use the district level dataset, what is the overall proportion of the ageing population (age over 65) in Merseyside?</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb151"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb151-1"><a href="#cb151-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sum</span>(df<span class="sc">$</span>Age_over_65)<span class="sc">/</span><span class="fu">sum</span>(df<span class="sc">$</span>Population)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0.1920626</code></pre>
+</div>
+</div>
+<p><strong>Task 5</strong> Use the LSOA level dataset, what is the average proportion of the ageing population (age over 65) across all the neighbourhoods of Merseyside?</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb153"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb153-1"><a href="#cb153-1" aria-hidden="true" tabindex="-1"></a>df<span class="sc">$</span>ageing_rate <span class="ot">=</span> df<span class="sc">$</span>Age_over_65 <span class="sc">/</span> df<span class="sc">$</span>Population <span class="sc">*</span> <span class="dv">100</span></span>
+<span id="cb153-2"><a href="#cb153-2" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(df<span class="sc">$</span>ageing_rate)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 19.59824</code></pre>
+</div>
+</div>
+<p><strong>Task 6</strong> Create a map showing the spatial distribution of the proportion of ageing population (age over 65) over LSOAs in Merseyside? (use Jenks classification of 7 categories).</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb155"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb155-1"><a href="#cb155-1" aria-hidden="true" tabindex="-1"></a>lsoa<span class="sc">$</span>ageing_rate <span class="ot">=</span> lsoa<span class="sc">$</span>Age_over_65 <span class="sc">/</span> lsoa<span class="sc">$</span>Population <span class="sc">*</span> <span class="dv">100</span></span>
+<span id="cb155-2"><a href="#cb155-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb155-3"><a href="#cb155-3" aria-hidden="true" tabindex="-1"></a><span class="fu">tm_shape</span>(lsoa) <span class="sc">+</span> </span>
+<span id="cb155-4"><a href="#cb155-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tm_fill</span>(<span class="at">fill =</span> <span class="st">"ageing_rate"</span>,</span>
+<span id="cb155-5"><a href="#cb155-5" aria-hidden="true" tabindex="-1"></a>          <span class="at">fill.scale =</span> <span class="fu">tm_scale</span>(<span class="at">values=</span><span class="st">"PuRd"</span>,<span class="at">style =</span> <span class="st">"jenks"</span>,<span class="at">n=</span><span class="dv">7</span>),</span>
+<span id="cb155-6"><a href="#cb155-6" aria-hidden="true" tabindex="-1"></a>          <span class="at">fill.legend =</span> <span class="fu">tm_legend</span>(<span class="at">title =</span> <span class="st">"% Age over 65"</span>, <span class="at">title.size =</span> <span class="fl">0.8</span>)</span>
+<span id="cb155-7"><a href="#cb155-7" aria-hidden="true" tabindex="-1"></a>        ) <span class="sc">+</span></span>
+<span id="cb155-8"><a href="#cb155-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tm_layout</span>(<span class="at">main.title =</span> <span class="st">"Merseyside"</span>,</span>
+<span id="cb155-9"><a href="#cb155-9" aria-hidden="true" tabindex="-1"></a>            <span class="at">main.title.size=</span><span class="fl">1.2</span>,</span>
+<span id="cb155-10"><a href="#cb155-10" aria-hidden="true" tabindex="-1"></a>            <span class="at">frame =</span> <span class="cn">FALSE</span>) <span class="sc">+</span> </span>
+<span id="cb155-11"><a href="#cb155-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tm_compass</span>(<span class="at">position =</span> <span class="fu">c</span>(<span class="st">"right"</span>, <span class="st">"top"</span>)) <span class="sc">+</span></span>
+<span id="cb155-12"><a href="#cb155-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tm_scalebar</span>(<span class="at">position =</span> <span class="fu">c</span>(<span class="st">"right"</span>, <span class="st">"bottom"</span>)) <span class="sc">+</span></span>
+<span id="cb155-13"><a href="#cb155-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tm_shape</span>(merseyside) <span class="sc">+</span>               <span class="co"># Add another spatial layer (Merseyside boundary)</span></span>
+<span id="cb155-14"><a href="#cb155-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tm_borders</span>(<span class="at">col =</span> <span class="st">"black"</span>, <span class="at">lwd =</span> <span class="dv">1</span>) <span class="sc">+</span>  <span class="co"># Draw the boundaries with black lines of width 1</span></span>
+<span id="cb155-15"><a href="#cb155-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tm_text</span>(<span class="st">"LAD25NM"</span>,<span class="at">col =</span> <span class="st">"blue"</span>,<span class="at">size =</span> <span class="fl">0.8</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="01.GettingStartedinRStudio_files/figure-html/unnamed-chunk-86-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const onCopySuccess = function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  }
+  const getTextToCopy = function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+    text: getTextToCopy
+  });
+  clipboard.on('success', onCopySuccess);
+  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+      text: getTextToCopy,
+      container: window.document.getElementById('quarto-embedded-source-code-modal')
+    });
+    clipboardModal.on('success', onCopySuccess);
+  }
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp("https:\/\/gdsl-ul\.github\.io\/quant");
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+      }
+    }
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+    const config = {
+      allowHTML: true,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start',
+    };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            div.style.left = 0;
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="../general/assessment.html" class="pagination-link" aria-label="Assessment">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Assessment</span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="../labs/02.ExploratoryDataAnalysis.html" class="pagination-link" aria-label="Lab: Exploratory Data Analysis - UK Election">
+        <span class="nav-page-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Lab: Exploratory Data Analysis - UK Election</span></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+<p>Human Geography through Merseyside - Quantitative Block: Seeing the world through numbers by Zi Ye and Ron Mahabir.</p>
+</div>   
+    <div class="nav-footer-center">
+      &nbsp;
+    <div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/GDSL-UL/quant/edit/main/labs/01.GettingStartedinRStudio.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li></ul></div></div>
+    <div class="nav-footer-right">
+<p>This book was built with <a href="https://quarto.org/">Quarto</a>.</p>
+</div>
+  </div>
+</footer>
+
+
+
+
+</body></html>

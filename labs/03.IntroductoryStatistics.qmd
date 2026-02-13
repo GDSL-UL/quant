@@ -795,8 +795,8 @@ Check in your folder and you shall find the map made by yourself.
 **Task 1** Use the `income_gross` variable from the UK Family Resource Survey, compare how increase sample size from 5000 to 20000 would affect the sample mean, standard error and CI of the `income_gross`. How to interpret the results?
 
 ```{r}
-#| eval: false
-#| include: false
+#| eval: true
+#| echo: true
 
 
 n1 = 5000
@@ -844,8 +844,8 @@ upper.bound.20k
 **Task 2** Use the `health` variable from the UK Family Resource Survey, what is the sample mean proportion of **Very Good** health in the whole sample? The standard error and CI? How to interpret the results?
 
 ```{r}
-#| eval: false
-#| include: false
+#| eval: true
+#| echo: true
 
 
 n = nrow(df)
@@ -862,8 +862,8 @@ upper.bound
 **Task 3** Use the `health` variable from the World Value Survey, compare your the sample mean proportion of **Very good** health with your findings in Task 2.
 
 ```{r}
-#| eval: false
-#| include: false
+#| eval: true
+#| echo: true
 
 
 n = nrow(dat)
@@ -880,8 +880,8 @@ upper.bound
 **Task 4** Use the `trust_strangers` variable from the World Value Survey, compare between different regions (variable use `sub_region_name`). Which region more likely to trust strangers completely?
 
 ```{r}
-#| eval: false
-#| include: false
+#| eval: true
+#| echo: true
 
 
 tab = table(dat$sub_region_name, dat$trust_strangers)
@@ -896,13 +896,13 @@ result[which.max(result$`Trust completely`),]
 **Task 5** Use the `immigrant_impact` variable from the World Value Survey, create a new dataframe to include the sample mean proportion of in each country/place (variable needed: `english_short_name`) who holds **Very bad** attitude of immigrant impact. Identify the five countries/places with the lowest mean proportion in the sample.
 
 ```{r}
-#| eval: false
-#| include: false
+#| eval: true
+#| echo: true
 
 
 df_immigrant <- dat %>% 
   group_by(english_short_name) %>% 
-  summarise(p_hat = mean(immigrant_impact == "Very bad", na.rm = TRUE)) 
+  summarise(p_hat = mean(immigrant_impact == "Very bad", na.rm = TRUE)) # NA value removed
 
 df_immigrant
 

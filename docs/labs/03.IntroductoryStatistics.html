@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="author" content="Zi Ye">
-<meta name="dcterms.date" content="2026-02-12">
+<meta name="dcterms.date" content="2026-02-13">
 
 <title>3&nbsp; Lab: Introductory Statistics - Happiness around the world – Human Geography through Merseyside - Quantitative Block: Seeing the world through numbers</title>
 <style>
@@ -237,7 +237,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">February 12, 2026</p>
+      <p class="date">February 13, 2026</p>
     </div>
   </div>
   
@@ -361,12 +361,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co"># sample mean value</span></span>
 <span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(sample_10<span class="sc">$</span>hh_income_net)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 34663.2</code></pre>
+<pre><code>[1] 36233.6</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="co"># sample standard deviation</span></span>
 <span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="fu">sd</span>(sample_10<span class="sc">$</span>hh_income_net)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 16597.94</code></pre>
+<pre><code>[1] 20167.92</code></pre>
 </div>
 </div>
 <p>You will get a different values for these to the ones your friends get (and the ones created below), because you will have each extracted a different&nbsp;<strong>sample</strong>&nbsp;from the population - this is&nbsp;<strong>random</strong>&nbsp;sampling!</p>
@@ -377,12 +377,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="co"># sample SE</span></span>
 <span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a><span class="fu">sd</span>(sample_10<span class="sc">$</span>hh_income_net)<span class="sc">/</span><span class="fu">sqrt</span>(<span class="fu">length</span>(sample_10<span class="sc">$</span>hh_income_net))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 5248.728</code></pre>
+<pre><code>[1] 6377.658</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="co"># or</span></span>
 <span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a><span class="fu">sd</span>(sample_10<span class="sc">$</span>hh_income_net)<span class="sc">/</span><span class="fu">sqrt</span>(<span class="fu">nrow</span>(sample_10))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 5248.728</code></pre>
+<pre><code>[1] 6377.658</code></pre>
 </div>
 </div>
 <div style="background-color: #FFFBCC; padding: 10px; border-radius: 5px; border: 1px solid #E1C948;">
@@ -1042,10 +1042,230 @@ Geodetic CRS:  WGS 84</code></pre>
 <section id="formative-tasks" class="level2" data-number="3.7">
 <h2 data-number="3.7" class="anchored" data-anchor-id="formative-tasks"><span class="header-section-number">3.7</span> Formative Tasks</h2>
 <p><strong>Task 1</strong> Use the <code>income_gross</code> variable from the UK Family Resource Survey, compare how increase sample size from 5000 to 20000 would affect the sample mean, standard error and CI of the <code>income_gross</code>. How to interpret the results?</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb108"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb108-1"><a href="#cb108-1" aria-hidden="true" tabindex="-1"></a>n1 <span class="ot">=</span> <span class="dv">5000</span></span>
+<span id="cb108-2"><a href="#cb108-2" aria-hidden="true" tabindex="-1"></a>n2 <span class="ot">=</span> <span class="dv">20000</span></span>
+<span id="cb108-3"><a href="#cb108-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb108-4"><a href="#cb108-4" aria-hidden="true" tabindex="-1"></a><span class="co"># sample by size</span></span>
+<span id="cb108-5"><a href="#cb108-5" aria-hidden="true" tabindex="-1"></a>sample_5k <span class="ot">=</span> <span class="fu">slice_sample</span>(df, <span class="at">n=</span>n1)</span>
+<span id="cb108-6"><a href="#cb108-6" aria-hidden="true" tabindex="-1"></a>sample_20k <span class="ot">=</span> <span class="fu">slice_sample</span>(df, <span class="at">n=</span>n2)</span>
+<span id="cb108-7"><a href="#cb108-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb108-8"><a href="#cb108-8" aria-hidden="true" tabindex="-1"></a><span class="co">#mean</span></span>
+<span id="cb108-9"><a href="#cb108-9" aria-hidden="true" tabindex="-1"></a>m<span class="fl">.5</span>k <span class="ot">=</span> <span class="fu">mean</span>(sample_5k<span class="sc">$</span>income_gross)</span>
+<span id="cb108-10"><a href="#cb108-10" aria-hidden="true" tabindex="-1"></a>m<span class="fl">.20</span>k <span class="ot">=</span> <span class="fu">mean</span>(sample_20k<span class="sc">$</span>income_gross)</span>
+<span id="cb108-11"><a href="#cb108-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb108-12"><a href="#cb108-12" aria-hidden="true" tabindex="-1"></a>m<span class="fl">.5</span>k</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 22224.9</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb110"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb110-1"><a href="#cb110-1" aria-hidden="true" tabindex="-1"></a>m<span class="fl">.20</span>k</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 22076.63</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb112"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb112-1"><a href="#cb112-1" aria-hidden="true" tabindex="-1"></a><span class="co">#standard deviation</span></span>
+<span id="cb112-2"><a href="#cb112-2" aria-hidden="true" tabindex="-1"></a>std<span class="fl">.5</span>k <span class="ot">=</span> <span class="fu">sd</span>(sample_5k<span class="sc">$</span>income_gross)</span>
+<span id="cb112-3"><a href="#cb112-3" aria-hidden="true" tabindex="-1"></a>std<span class="fl">.20</span>k <span class="ot">=</span> <span class="fu">sd</span>(sample_20k<span class="sc">$</span>income_gross)</span>
+<span id="cb112-4"><a href="#cb112-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb112-5"><a href="#cb112-5" aria-hidden="true" tabindex="-1"></a><span class="co">#standard error</span></span>
+<span id="cb112-6"><a href="#cb112-6" aria-hidden="true" tabindex="-1"></a>se<span class="fl">.5</span>k <span class="ot">=</span> std<span class="fl">.5</span>k<span class="sc">/</span><span class="fu">sqrt</span>(n1)</span>
+<span id="cb112-7"><a href="#cb112-7" aria-hidden="true" tabindex="-1"></a>se<span class="fl">.20</span>k <span class="ot">=</span> std<span class="fl">.20</span>k<span class="sc">/</span><span class="fu">sqrt</span>(n2)</span>
+<span id="cb112-8"><a href="#cb112-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb112-9"><a href="#cb112-9" aria-hidden="true" tabindex="-1"></a>se<span class="fl">.5</span>k</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 434.672</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb114"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb114-1"><a href="#cb114-1" aria-hidden="true" tabindex="-1"></a>se<span class="fl">.20</span>k</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 174.1159</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb116"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb116-1"><a href="#cb116-1" aria-hidden="true" tabindex="-1"></a><span class="co">#CI</span></span>
+<span id="cb116-2"><a href="#cb116-2" aria-hidden="true" tabindex="-1"></a>error<span class="fl">.5</span>k <span class="ot">&lt;-</span> <span class="fu">qnorm</span>(<span class="fl">0.975</span>)<span class="sc">*</span>se<span class="fl">.5</span>k</span>
+<span id="cb116-3"><a href="#cb116-3" aria-hidden="true" tabindex="-1"></a>error<span class="fl">.20</span>k <span class="ot">&lt;-</span> <span class="fu">qnorm</span>(<span class="fl">0.975</span>)<span class="sc">*</span>se<span class="fl">.20</span>k</span>
+<span id="cb116-4"><a href="#cb116-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb116-5"><a href="#cb116-5" aria-hidden="true" tabindex="-1"></a>lower.bound<span class="fl">.5</span>k <span class="ot">&lt;-</span> m<span class="fl">.5</span>k<span class="sc">-</span>error<span class="fl">.5</span>k</span>
+<span id="cb116-6"><a href="#cb116-6" aria-hidden="true" tabindex="-1"></a>upper.bound<span class="fl">.5</span>k <span class="ot">&lt;-</span> m<span class="fl">.5</span>k<span class="sc">+</span>error<span class="fl">.5</span>k</span>
+<span id="cb116-7"><a href="#cb116-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb116-8"><a href="#cb116-8" aria-hidden="true" tabindex="-1"></a>lower.bound<span class="fl">.20</span>k <span class="ot">&lt;-</span> m<span class="fl">.20</span>k<span class="sc">-</span>error<span class="fl">.20</span>k</span>
+<span id="cb116-9"><a href="#cb116-9" aria-hidden="true" tabindex="-1"></a>upper.bound<span class="fl">.20</span>k <span class="ot">&lt;-</span> m<span class="fl">.20</span>k<span class="sc">+</span>error<span class="fl">.20</span>k</span>
+<span id="cb116-10"><a href="#cb116-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb116-11"><a href="#cb116-11" aria-hidden="true" tabindex="-1"></a>lower.bound<span class="fl">.5</span>k</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 21372.96</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb118"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb118-1"><a href="#cb118-1" aria-hidden="true" tabindex="-1"></a>upper.bound<span class="fl">.5</span>k</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 23076.85</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb120"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb120-1"><a href="#cb120-1" aria-hidden="true" tabindex="-1"></a>lower.bound<span class="fl">.20</span>k</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 21735.37</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb122"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb122-1"><a href="#cb122-1" aria-hidden="true" tabindex="-1"></a>upper.bound<span class="fl">.20</span>k</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 22417.89</code></pre>
+</div>
+</div>
 <p><strong>Task 2</strong> Use the <code>health</code> variable from the UK Family Resource Survey, what is the sample mean proportion of <strong>Very Good</strong> health in the whole sample? The standard error and CI? How to interpret the results?</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb124"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb124-1"><a href="#cb124-1" aria-hidden="true" tabindex="-1"></a>n <span class="ot">=</span> <span class="fu">nrow</span>(df)</span>
+<span id="cb124-2"><a href="#cb124-2" aria-hidden="true" tabindex="-1"></a>p_hat <span class="ot">=</span> <span class="fu">mean</span>(df<span class="sc">$</span>health <span class="sc">==</span> <span class="st">"Very Good"</span>)</span>
+<span id="cb124-3"><a href="#cb124-3" aria-hidden="true" tabindex="-1"></a>p_hat</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0.2820358</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb126"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb126-1"><a href="#cb126-1" aria-hidden="true" tabindex="-1"></a>SE_p <span class="ot">&lt;-</span> <span class="fu">sqrt</span>(p_hat <span class="sc">*</span> (<span class="dv">1</span> <span class="sc">-</span> p_hat) <span class="sc">/</span> n)</span>
+<span id="cb126-2"><a href="#cb126-2" aria-hidden="true" tabindex="-1"></a>error_p <span class="ot">&lt;-</span> <span class="fu">qnorm</span>(<span class="fl">0.975</span>) <span class="sc">*</span> SE_p</span>
+<span id="cb126-3"><a href="#cb126-3" aria-hidden="true" tabindex="-1"></a>lower.bound <span class="ot">&lt;-</span> p_hat <span class="sc">-</span> error_p</span>
+<span id="cb126-4"><a href="#cb126-4" aria-hidden="true" tabindex="-1"></a>upper.bound <span class="ot">&lt;-</span> p_hat <span class="sc">+</span> error_p</span>
+<span id="cb126-5"><a href="#cb126-5" aria-hidden="true" tabindex="-1"></a>lower.bound</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0.2766205</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb128"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb128-1"><a href="#cb128-1" aria-hidden="true" tabindex="-1"></a>upper.bound</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0.2874511</code></pre>
+</div>
+</div>
 <p><strong>Task 3</strong> Use the <code>health</code> variable from the World Value Survey, compare your the sample mean proportion of <strong>Very good</strong> health with your findings in Task 2.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb130"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb130-1"><a href="#cb130-1" aria-hidden="true" tabindex="-1"></a>n <span class="ot">=</span> <span class="fu">nrow</span>(dat)</span>
+<span id="cb130-2"><a href="#cb130-2" aria-hidden="true" tabindex="-1"></a>p_hat <span class="ot">=</span> <span class="fu">mean</span>(dat<span class="sc">$</span>health <span class="sc">==</span> <span class="st">"Very good"</span>)</span>
+<span id="cb130-3"><a href="#cb130-3" aria-hidden="true" tabindex="-1"></a>p_hat</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0.2204315</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb132"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb132-1"><a href="#cb132-1" aria-hidden="true" tabindex="-1"></a>SE_p <span class="ot">&lt;-</span> <span class="fu">sqrt</span>(p_hat <span class="sc">*</span> (<span class="dv">1</span> <span class="sc">-</span> p_hat) <span class="sc">/</span> n)</span>
+<span id="cb132-2"><a href="#cb132-2" aria-hidden="true" tabindex="-1"></a>error_p <span class="ot">&lt;-</span> <span class="fu">qnorm</span>(<span class="fl">0.975</span>) <span class="sc">*</span> SE_p</span>
+<span id="cb132-3"><a href="#cb132-3" aria-hidden="true" tabindex="-1"></a>lower.bound <span class="ot">&lt;-</span> p_hat <span class="sc">-</span> error_p</span>
+<span id="cb132-4"><a href="#cb132-4" aria-hidden="true" tabindex="-1"></a>upper.bound <span class="ot">&lt;-</span> p_hat <span class="sc">+</span> error_p</span>
+<span id="cb132-5"><a href="#cb132-5" aria-hidden="true" tabindex="-1"></a>lower.bound</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0.2183544</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb134"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb134-1"><a href="#cb134-1" aria-hidden="true" tabindex="-1"></a>upper.bound</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0.2225086</code></pre>
+</div>
+</div>
 <p><strong>Task 4</strong> Use the <code>trust_strangers</code> variable from the World Value Survey, compare between different regions (variable use <code>sub_region_name</code>). Which region more likely to trust strangers completely?</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb136"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb136-1"><a href="#cb136-1" aria-hidden="true" tabindex="-1"></a>tab <span class="ot">=</span> <span class="fu">table</span>(dat<span class="sc">$</span>sub_region_name, dat<span class="sc">$</span>trust_strangers)</span>
+<span id="cb136-2"><a href="#cb136-2" aria-hidden="true" tabindex="-1"></a><span class="fu">round</span>(<span class="fu">prop.table</span>(tab, <span class="at">margin =</span> <span class="dv">1</span>) <span class="sc">*</span> <span class="dv">100</span>, <span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>                                 
+                                  Do not trust at all Do not trust much
+  Australia and New Zealand                       8.2              36.5
+  Central Asia                                   41.5              41.5
+  Eastern Asia                                   19.0              60.6
+  Eastern Europe                                 24.0              48.6
+  Latin America and the Caribbean                48.1              35.3
+  Northern Africa                                31.2              43.1
+  Northern America                               11.6              42.2
+  Northern Europe                                 8.7              32.7
+  South-eastern Asia                             29.3              49.2
+  Southern Asia                                  38.3              32.4
+  Southern Europe                                27.6              46.1
+  Sub-Saharan Africa                             33.9              34.7
+  Western Asia                                   33.8              45.4
+  Western Europe                                 10.8              38.1
+                                 
+                                  Trust completely Trust somewhat
+  Australia and New Zealand                    1.2           54.1
+  Central Asia                                 2.4           14.6
+  Eastern Asia                                 1.8           18.7
+  Eastern Europe                               2.5           24.9
+  Latin America and the Caribbean              1.9           14.7
+  Northern Africa                              2.3           23.4
+  Northern America                             2.0           44.2
+  Northern Europe                              5.2           53.5
+  South-eastern Asia                           3.0           18.5
+  Southern Asia                                5.5           23.7
+  Southern Europe                              2.1           24.2
+  Sub-Saharan Africa                           4.8           26.6
+  Western Asia                                 2.3           18.4
+  Western Europe                               3.1           48.0</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb138"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb138-1"><a href="#cb138-1" aria-hidden="true" tabindex="-1"></a>result <span class="ot">=</span> <span class="fu">round</span>(<span class="fu">prop.table</span>(tab, <span class="at">margin =</span> <span class="dv">1</span>) <span class="sc">*</span> <span class="dv">100</span>, <span class="dv">1</span>) <span class="sc">%&gt;%</span> <span class="fu">as.data.frame.matrix</span>()</span>
+<span id="cb138-2"><a href="#cb138-2" aria-hidden="true" tabindex="-1"></a>result</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>                                Do not trust at all Do not trust much
+Australia and New Zealand                       8.2              36.5
+Central Asia                                   41.5              41.5
+Eastern Asia                                   19.0              60.6
+Eastern Europe                                 24.0              48.6
+Latin America and the Caribbean                48.1              35.3
+Northern Africa                                31.2              43.1
+Northern America                               11.6              42.2
+Northern Europe                                 8.7              32.7
+South-eastern Asia                             29.3              49.2
+Southern Asia                                  38.3              32.4
+Southern Europe                                27.6              46.1
+Sub-Saharan Africa                             33.9              34.7
+Western Asia                                   33.8              45.4
+Western Europe                                 10.8              38.1
+                                Trust completely Trust somewhat
+Australia and New Zealand                    1.2           54.1
+Central Asia                                 2.4           14.6
+Eastern Asia                                 1.8           18.7
+Eastern Europe                               2.5           24.9
+Latin America and the Caribbean              1.9           14.7
+Northern Africa                              2.3           23.4
+Northern America                             2.0           44.2
+Northern Europe                              5.2           53.5
+South-eastern Asia                           3.0           18.5
+Southern Asia                                5.5           23.7
+Southern Europe                              2.1           24.2
+Sub-Saharan Africa                           4.8           26.6
+Western Asia                                 2.3           18.4
+Western Europe                               3.1           48.0</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb140"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb140-1"><a href="#cb140-1" aria-hidden="true" tabindex="-1"></a><span class="fu">which.max</span>(result<span class="sc">$</span><span class="st">`</span><span class="at">Trust completely</span><span class="st">`</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 10</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb142"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb142-1"><a href="#cb142-1" aria-hidden="true" tabindex="-1"></a>result[<span class="fu">which.max</span>(result<span class="sc">$</span><span class="st">`</span><span class="at">Trust completely</span><span class="st">`</span>),]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>              Do not trust at all Do not trust much Trust completely
+Southern Asia                38.3              32.4              5.5
+              Trust somewhat
+Southern Asia           23.7</code></pre>
+</div>
+</div>
 <p><strong>Task 5</strong> Use the <code>immigrant_impact</code> variable from the World Value Survey, create a new dataframe to include the sample mean proportion of in each country/place (variable needed: <code>english_short_name</code>) who holds <strong>Very bad</strong> attitude of immigrant impact. Identify the five countries/places with the lowest mean proportion in the sample.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb144"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb144-1"><a href="#cb144-1" aria-hidden="true" tabindex="-1"></a>df_immigrant <span class="ot">&lt;-</span> dat <span class="sc">%&gt;%</span> </span>
+<span id="cb144-2"><a href="#cb144-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(english_short_name) <span class="sc">%&gt;%</span> </span>
+<span id="cb144-3"><a href="#cb144-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">p_hat =</span> <span class="fu">mean</span>(immigrant_impact <span class="sc">==</span> <span class="st">"Very bad"</span>, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)) <span class="co"># NA value removed</span></span>
+<span id="cb144-4"><a href="#cb144-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb144-5"><a href="#cb144-5" aria-hidden="true" tabindex="-1"></a>df_immigrant</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 91 × 2
+   english_short_name   p_hat
+   &lt;fct&gt;                &lt;dbl&gt;
+ 1 Albania            0.0320 
+ 2 Andorra            0.00402
+ 3 Argentina          0.0567 
+ 4 Armenia            0.0397 
+ 5 Australia          0.145  
+ 6 Austria            0.103  
+ 7 Azerbaijan         0.0643 
+ 8 Bangladesh         0.0387 
+ 9 Belarus            0.0293 
+10 Bolivia            0.0724 
+# ℹ 81 more rows</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb146"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb146-1"><a href="#cb146-1" aria-hidden="true" tabindex="-1"></a>df_immigrant <span class="sc">%&gt;%</span> <span class="fu">arrange</span>(p_hat) <span class="sc">%&gt;%</span> <span class="fu">head</span>(<span class="dv">5</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 5 × 2
+  english_short_name   p_hat
+  &lt;fct&gt;                &lt;dbl&gt;
+1 Andorra            0.00402
+2 South Korea        0.00884
+3 Macao              0.00888
+4 China              0.0108 
+5 Peru               0.0110 </code></pre>
+</div>
+</div>
 
 
 </section>

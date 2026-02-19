@@ -1,10 +1,10 @@
 ---
-title: "Lab: Health"
+title: "Lab: Correlation, data reliability and the issue of scale - Health"
 author: "Ron Mahabir"
 date: "`r Sys.Date()`"
 ---
 
-# **Overview**
+## **Overview**
 
 “No society can legitimately call itself civilised if a sick person is denied medical aid because of lack of means.”\
 (Aneurin Bevan, 1952, *In Place of Fear*, London: Heinemann.)
@@ -24,7 +24,7 @@ In particular, you will:
 -   Calculate appropriate measures of correlation for different types of variables
 -   Consider Modifiable Areal Unit Problem (MAUP)
 
-# Prepare your working environment
+## Prepare your working environment
 
 -   For this Week 4 session, create a sub-folder called Week4 in your ENVS162 folder on your M-Drive. This is exactly the step we did in Weeks 1, 2, and 3.
 
@@ -49,7 +49,7 @@ In particular, you will:
 
 This command and also the brush icon can both clear RStudio’s memory, removing any data objects that you have previously created.
 
-# Load libraries
+## Load libraries
 
 Exactly as what we have done for the previous weeks, before starting any analysis in R, we first need to load the essential libraries as all the functions/commands are packed in these libraries. For this week, we will still rely on `tidyverse`, `tmap` and `sf`.
 
@@ -61,13 +61,13 @@ library(sf)
 library(tmap)
 ```
 
-# **The Geography of Health (area-level)**
+## **The Geography of Health (area-level)**
 
-## Viewing the district level boundaries
+### Viewing the district level boundaries
 
 The *districts* dataset is an area-level dataset, in which each row represents one district. Let's view what this data looks like.
 
-### Load the district boundaries data
+#### Load the district boundaries data
 
 ```{r}
 #| message: false
@@ -77,7 +77,7 @@ The *districts* dataset is an area-level dataset, in which each row represents o
 district_map <- st_read("LAD December 2021 EW BUC.geojson")
 ```
 
-### Display on a map
+#### Display on a map
 
 ```{r}
 qtm(district_map)
@@ -85,7 +85,7 @@ qtm(district_map)
 
 These are just the boundaries of the districts across England.
 
-### View socioeconomic data at the district level
+#### View socioeconomic data at the district level
 
 This data is contained in the Census_2021_Districts.csv file. Let's load this file and view it's contents.
 
@@ -121,7 +121,8 @@ str(districts)
 View(districts)
 ```
 
-## QUESTION
+::: {style="background-color: #FFFBCC; padding: 10px; border-radius: 5px; border: 1px solid #E1C948;"}
+**QUESTION 1**
 
 ------------------------------------------------------------------------
 
@@ -130,10 +131,11 @@ How many rows does the districts data have?
 How many columns does the districts data have?
 
 ------------------------------------------------------------------------
+:::
 
 The *districts* dataset has a lot of data but it would be useful to visualise this data on a map.
 
-In order to map any of the variables contained in the *districts* dataset, we need to join them to the *district_map* dataset using the `full_join( )` command. We can link the two datasets using the variable they share in common, *LAD21CD*, which is the unique identifier given by the Office for National Statistics to each district captured in the 2021 Census.
+In order to map any of the variables contained in the *districts* dataset, we need to join them to the *district_map* dataset using the `left_join( )` command. We can link the two datasets using the variable they share in common, *LAD21CD*, which is the unique identifier given by the Office for National Statistics to each district captured in the 2021 Census.
 
 ```{r}
 census_map <- left_join(district_map, districts, by = "LAD21CD")
@@ -141,7 +143,8 @@ census_map <- left_join(district_map, districts, by = "LAD21CD")
 
 Note that the dataset containing the map boundaries (*district_map*) MUST be listed *before* the dataset it is being joined to (*districts*), otherwise the `left_join( )` command will throw an error.
 
-## QUESTION
+::: {style="background-color: #FFFBCC; padding: 10px; border-radius: 5px; border: 1px solid #E1C948;"}
+**QUESTION 2**
 
 ------------------------------------------------------------------------
 
@@ -152,12 +155,13 @@ Write a line of code that tells you the number of columns in the census_map data
 ```
 
 ------------------------------------------------------------------------
+:::
 
-## **The spatial distribution Poor Health**
+### **The spatial distribution Poor Health**
 
 One of the variables contained in the *district* dataset is *Poor_Health*, which records the % of persons in each district who self-reported their health as being either ‘poor’ or ‘very poor’.
 
-### Examining skewness in the data
+#### Examining skewness in the data
 
 Let's now examine the distribution of this data. Recall from week 2 lab that one way to do this is using a boxplot.
 
@@ -169,15 +173,17 @@ boxplot(census_map$Poor_Health,
         col = "gold")
 ```
 
-## QUESTION
+::: {style="background-color: #FFFBCC; padding: 10px; border-radius: 5px; border: 1px solid #E1C948;"}
+**QUESTION 3**
 
 ------------------------------------------------------------------------
 
 Return to the week 2 lab. Using the information provided, determine whether *Poor_Health* is skewed or not.
 
 ------------------------------------------------------------------------
+:::
 
-#### Map the spatial distribution of *Poor_Health*.
+#### Map the spatial distribution of *Poor_Health*
 
 Use the `tm_scale_continuous()` option to make sure that areas with the highest rates of poor health have the darkest shading.
 
@@ -203,7 +209,7 @@ census_map %>%
 
 ```
 
-#### Map the spatial distribution of Age_65_plus.
+#### Map the spatial distribution of Age_65_plus
 
 ```{r}
 #| message: false
@@ -218,15 +224,17 @@ Age_65_plus_map <-
 Age_65_plus_map
 ```
 
-## QUESTION
+::: {style="background-color: #FFFBCC; padding: 10px; border-radius: 5px; border: 1px solid #E1C948;"}
+**QUESTION 3**
 
 ------------------------------------------------------------------------
 
 What pattern(s) do you observe comparing the spatial distribution of both variables?
 
 ------------------------------------------------------------------------
+:::
 
-## **Visualise associations with a scatter plot**
+### **Visualise associations with a scatter plot**
 
 As we’ve seen in previous weeks, another way of visualising the association between two continuous variables is through a scatter plot:
 
@@ -240,11 +248,11 @@ census_map %>%
 
 This graph reinforces the impression that older areas tend to have more people in poor health. However, the question still remains, how strong is the association/relationship between these two variables? Remember, as discussed in class, if this was a 'perfect' relationship between both variables that those dots would form a straight line. This is not the case but there still seems to be a relationship there. Discuss with your colleague next to you how strong this relationship and see if you agree.
 
-# **Measuring the correlation of *continuous* variables**
+## **Measuring the correlation of *continuous* variables**
 
 As covered in this week’s lecture, we can quantify the amount of association between two continuous variables by calculating their correlation. The correct measure of correlation to use (Pearsons or Spearmans) depends on the distribution of the two variables being correlated.
 
-## **Check if both variables are symmetrical**
+### **Check if both variables are symmetrical**
 
 If both variables are continuous and symmetrically distributed, then the correct measure of correlation to use is Pearson’s product moment correlation coefficient. Alternatively, if one or both of the variables are skewed, the correct measure to use is Spearman’s Rank correlation coefficient.
 
@@ -288,7 +296,7 @@ mean((x - mean(x))^3) / sd(x)^3
 
 From the above we can see that although neither variable is perfectly symmetrically distributed (skew = 0), they are both approximately symmetrical (skew in the range -0.5 to +0.5).
 
-## **Calculate appropriate measure of correlation**
+### **Calculate appropriate measure of correlation**
 
 Both *Poor_Health* and *Age_65_plus* are approximately symmetrically distributed. Therefore the appropriate measure of correlation to use is Pearson’s product moment correlation coefficient. Let's calculate this correlation coefficient now between these two variables.
 
@@ -318,7 +326,8 @@ If one or both variables had been skewed, then we would have needed to calculate
 | −0.7 to −0.9    | Strong   | Negative  | Strong decreasing relationship      |
 | −1.0            | Perfect  | Negative  | Variables decrease together exactly |
 
-### QUESTION
+::: {style="background-color: #FFFBCC; padding: 10px; border-radius: 5px; border: 1px solid #E1C948;"}
+**QUESTION 4**
 
 ------------------------------------------------------------------------
 
@@ -339,10 +348,11 @@ Which statements are correct?
 -   a robust estimator of median association
 
 3.  The correlation between Age_65_plus and Poor_Health is +0.46. Does this mean ageing causes poor health? Explain.
+:::
 
 ------------------------------------------------------------------------
 
-## **Visualising the association between categorical variables**
+### **Visualising the association between categorical variables**
 
 To work with categorical variables we will be using the SAR dataset. However, before you can use this data, you must pass the SAR Data Access test on canvas located in Week 4. this should take no more than a minute or so. After passing the test, you should be able to download the file *England and Wales SAR.csv* from the Week 4 folder on CANVAS and save it to the same folder as your Week4.R script on your M drive.
 
@@ -386,7 +396,7 @@ SAR %>%
 
 ```
 
-# **Measuring the correlation of categorical variables**
+## **Measuring the correlation of categorical variables**
 
 Bar graphs can give us some clues, but to be sure we need to quantify the amount of association each pair of categorical variables by calculating their correlations.
 
@@ -422,7 +432,8 @@ cat("Cramér's V =", cramerv, "\n")
 
 Remember that unlike Pearson's product moment coefficient and Spearman's rank, which have values in the range of -1 to +1, Cramer's V have values between 0 and 1, with 0 representing no association and 1 being a very strong association.
 
-### QUESTION
+::: {style="background-color: #FFFBCC; padding: 10px; border-radius: 5px; border: 1px solid #E1C948;"}
+**QUESTION 5**
 
 ------------------------------------------------------------------------
 
@@ -437,8 +448,9 @@ Which of the following correctly describes the strength of the above association
 -   Strong
 
 ------------------------------------------------------------------------
+:::
 
-# **Area-level data analysis traps - MAUP**
+## **Area-level data analysis traps - MAUP**
 
 Recall that the **Modifiable Areal Unit Problem (MAUP) is** a source of statistical bias in spatial analysis whereby results (e.g., correlations, regression coefficients, summary statistics) change when the spatial units of aggregation are modified, either by altering their **scale (size)** or their **zoning (boundary configuration)**.
 
@@ -506,23 +518,25 @@ In summary, the results above show that the correlation of *Poor_Health* with *A
 
 The correlation is strongest at county level, and decreases with the size of the spatial unit from county to ward. This suggests that at smaller scales, such as wards, there is some process that weakens the relationship between age and health. This process is likely to be some kind of social sorting (e.g. spatial segregation of the rich and poor) which results in some wards containing an unusually high share of healthy or unhealthy elderly. In contrast, there is less social sorting between counties, as each tends to contain a wide variety of persons. The weaker correlation at regional level is probably due in part to how few regions there are, and in part to the stark health and economic divide between regions in the South East of England and the rest of the country.
 
-### QUESTION
+::: {style="background-color: #FFFBCC; padding: 10px; border-radius: 5px; border: 1px solid #E1C948;"}
+**QUESTION 6**
 
 ------------------------------------------------------------------------
 
 Can you think of any other factors that may help explain the differences in correlation values with scale?
 
 ------------------------------------------------------------------------
+:::
 
-# Formative tasks
+## Formative tasks
 
 **Task 1**
 
-Visualise the association between *Poor_Health* and *Density* in the **Wards** data for Liverpool
+Visualise the association between `Poor_Health` and `Density` in the **Wards** data for Liverpool
 
 **Task 2**
 
-Compute the right correlation measure to association between *Poor_Health* and *Density* in Liverpool. Interpret and discuss what the results mean.
+Compute the right correlation measure to association between `Poor_Health` and `Density` in Liverpool. Interpret and discuss what the results mean.
 
 **Task 3**
 
@@ -530,7 +544,7 @@ Using the above correlation metric, determine whether MAUP is an issues using al
 
 **Task 4**
 
-Compute the skewness between *Poor_Health* for Districts for all the data and for Liverpool only. Discuss what could be leading these results
+Compute the skewness between `Poor_Health` for Districts for all the data and for Liverpool only. Discuss what could be leading these results
 
 **Task 5**
 

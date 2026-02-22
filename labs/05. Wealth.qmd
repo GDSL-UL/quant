@@ -1,0 +1,572 @@
+---
+title: "Lab: Can we trust our results?"
+author: "Ron Mahabir"
+date: "`r Sys.Date()`"
+---
+
+# **Overview**
+
+This week focuses on wealth, which strongly affects people’s life chances. Wealth can influence life expectancy, education, job opportunities, and mental health. In Britain, social mobility is low, meaning a person’s future is closely linked to their family background, education, and where they live. Reducing inequality and improving access to education and opportunities benefits both individuals and the wider economy.
+
+The practical will explore the following questions:
+
+-   What does it mean to be ‘rich’?
+-   Who is rich?
+-   How reliable are the results?
+
+To answer these questions, data from the Annual Population Survey (2021) will be analysed. The practical also introduces the basic steps used in quantitative research:
+
+-   Understanding the dataset
+-   Identifying key outcome and explanatory variables
+-   Exploring relationships between variables (correlation)
+-   Understanding confidence in the relationship between variables
+
+These skills are essential for future research projects, including fieldwork and dissertations that use quantitative data.
+
+## Prepare your working environment
+
+-   For this Week 5 session, create a sub-folder called Week5 in your ENVS162 folder on your M-Drive. This is exactly the step we did in Weeks 1, 2, 3, and 4.
+
+-   Download this week's practical datasets from Canvas Week 5:
+
+    -   APS_2021.csv
+    -   UK_regions_map.geojson
+
+-   Check whether there are any previous left dataframes in your RStudio in the upper-right side Environment pane. You can always use the to clear all the dataframes in your environment and make it all clean. For the same aim, you can click the icon ![](images/clipboard-2907453316.png){width="31" height="22"}, or you can run the below code:
+
+    ```{r}
+    rm( list = ls( )  )
+    ```
+
+This command and also the brush icon can both clear RStudio’s memory, removing any data objects that you have previously created.
+
+## Load libraries
+
+Exactly as what we have done for the previous weeks, before starting any analysis in R, we first need to load the essential libraries as all the functions/commands are packed in these libraries. For this week, we will still rely on `tidyverse`, `tmap` and `sf`.
+
+```{r}
+#| message: false
+#| warning: false
+library(tidyverse)
+library(sf)
+library(tmap)
+library(dplyr)
+library ("ineq")
+```
+
+## **Open the APS dataset**
+
+This will open the APS_2021 data file
+
+```{r}
+APS <- read.csv("APS_2021.csv",stringsAsFactors = TRUE)
+```
+
+This will result in the *APS* dataset being added to your Environment pane in RStudio as *APS*. This dataset contains data on all adult respondents (persons aged 16+) to the 2021 Annual Population Survey.
+
+## **Dataset familiarisation**
+
+Use `nrow( )`, `ncol( )`, `names( )` and `View( )` commands to give yourself an insight into the contents of the Annual Population Survey.
+
+```{r}
+nrow(APS)
+ncol( APS)
+names( APS)
+View(APS )
+```
+
+To supplement these insights, make sure you also read through the information below.
+
+Key points to note are that:
+
+-   Each row is a person
+-   Instead of a nested geography (e.g. which county and region a district is in) there is a nested household hierarchy (which household, extended family and family a person is living in).
+
+The variables contained in the *APS* cover the following broad topics:
+
+-   **Household, Family and Person identifiers**: *idref*, *Household_ID*, *Extended_Family_ID*, *Family_ID*, *Hhold_Head*, *Family_Head*
+-   **Geographic information**: *Region*, *District*, *Merseyside* (yes/no)
+-   **Basic demographic information**: *Age*, *Age_Group*, *Sex*, *Marital_Status*
+-   **Cultural attributes**: *Ethnicity*, *Nationality*, *Religion*, *Educ_Age*, *Highest_Qual*
+-   **Health**: *Disabled*, *Health*
+-   **Migration**: *Address_Duration*, *Arrival_Year*, *Birth_Country*
+-   **Household attributes**: *Family_Size*, *Family_Toddlers*, *Family_Type* (type of partnership and children), *Furnishings*, *Hholds_at_Address*, *Hhold_Size* (Persons), *Hhold_Type* (number of families; number and type of children), *Tenure*, *Youngest_Child*
+-   **Work-related information**: *Commute_Method*, *Commute_Time*, *Industry*, *Job_Years*, *NS_SEC*, *Private_Sector*, *SOC_Major*, *SOC_Sub_Major*, *SOC_Minor*, *Under_employed*, *Unemp_Duration*, *Work_Home*, *Work_Hours*, *Work_Status*, *Work_Temporary*
+-   **Welfare benefits received**: *Benefit_Carers* to *Benefit_UC* (Universal Credit)
+-   **Income**: *Equiv_Net_Pay*, *Gross_Pay*, *Net_Pay*
+
+Many of the variables in the *APS* dataset are similar to variables we have met in previous datasets. Of the ones we haven’t met before, many are reasonably self-explanatory (e.g. *Hhold_Size*, *Address_Duration* etc.). Others are a little more obscure, most notable ‘*Hhold_Type*’, ‘*Family_Type*’, ‘*NS_SEC*’ and ‘*SOC_Major*’.
+
+*Hhold_Type* and *Family_Type* record the composition of the people in each household and family captured in the APS. (A household may contain more than one family.)
+
+Let's see the type of information that *Hhold_Type* contains.
+
+```{r}
+APS %>%
+  count(Hhold_Type)
+```
+
+We can also sort the results using the following functions as previously discussed in lab 2:
+
+-   `arrange(n)` → sorts in ascending order (smallest to largest)
+-   `arrange(desc(n))` → sorts in descending order
+
+Let's show the results in descending order
+
+```{r}
+APS %>%
+  count(Hhold_Type) %>%
+  arrange(desc(n))
+```
+
+::: {style="background-color: #FFFBCC; padding: 10px; border-radius: 5px; border: 1px solid #E1C948;"}
+**QUESTION 1**
+
+------------------------------------------------------------------------
+
+Based on the above output, which is the most frequent household type?
+
+------------------------------------------------------------------------
+:::
+
+::: {style="background-color: #FFFBCC; padding: 10px; border-radius: 5px; border: 1px solid #E1C948;"}
+**QUESTION 2**
+
+------------------------------------------------------------------------
+
+Write code below to determine the largest household size in the data. HINT: this information can be found in the *Hhold_Size* variable
+
+```{r}
+# REPLACE THIS WITH YOUR CODE
+```
+
+------------------------------------------------------------------------
+:::
+
+# **Understanding the outcome**
+
+Having familiarised ourselves with our dataset, the next steps in any data analysis are to identify and explore the ‘outcome’ variable(s) of interest.
+
+## **5.1 Identifying the outcome(s) of interest**
+
+The purpose of this practical is to explore the geography of wealth.
+
+Ideally we would do this using a variable which captured the full extent of each respondent’s wealth, which rests upon not only their total income (from earned income, state welfare payments, plus interest earned on savings etc.), but also their total financial assets (i.e. total value of all possessions and financial assets owned, ranging from homes and cars to stocks and shares).
+
+However, the Annual Population Survey does not capture all of this information, restricting itself to a focus on income, rather than on financial assets. In addition, to protect respondent confidentiality the version of the APS available for classroom use records only earned income. Receipt of various state welfare payments is flagged (e.g. *Benefit_Carers*, *Benefit_Child* etc), but without reporting the amount received.
+
+This means that our ‘geography of wealth’ will of necessity become a ‘geography of pay’.
+
+In the APS there are three variables which capture aspects of pay.
+
+-   *Gross_Pay*, which records Gross annual pay from a person’s main employer (£)
+-   *Net_Pay*, which records annual pay from a person’s main employer (£) after deduction of all taxes
+-   *Equiv_Net_Pay*, which records the mean Net Pay of all members in a household
+
+These three variables will form the focus of our study of the ‘geography of wealth’. However, an alternative approach would be to use the *Tenure* variable, which flags whether or not someone owns their own home; or to use one or more of the *Benefit_X* variables that flag which survey respondents are sufficiently poor that they qualify for state welfare support of one kind or another.
+
+To gain familiarity with a chosen outcome variable we need to understand its distribution, graphically (Section 5.2) and statistically (Section 5.3).
+
+## **Visualise the distribution**
+
+The variable *Net_Pay* does not place people into income bands. Instead it is a precise measure of income received. Hence *Net_Pay* is a continuous variable.
+
+As seen in previous weeks, to visualise the distribution of a continuous variable we need to use a histogram:
+
+```{r}
+APS %>%
+  ggplot( ) +
+  geom_histogram( aes( x = Net_Pay ), bins = 30 )
+```
+
+The warning message received means that ggplot dropped 150,997 rows because the Net_Pay variable used for the bins had values that were `NA`. NA values mean “Not Available”. They represent missing data. We can check the number of NA values using the following code.
+
+```{r}
+sum(is.na(APS$Net_Pay))
+```
+
+As can be seen, this is the same number reported in the warning message before. While handling NA values is important, they are not the focus of this lab and therefore will be ignored.
+
+Getting back to the histogram...
+
+A point to notice from a histogram of the distribution of *Net_Pay* is the ‘spike’ in observations at the top of the distribution, which seems to suggest that lots of people have an annual net pay in the mid £40k range.
+
+The reason for this apparent spike is that in the classroom version of the APS the Office for National Statistics have ‘top-coded’ the recorded values of Net (and Gross) pay in order to protect respondent confidentiality. In other words all values about a certain threshold have been capped at a maximum value.
+
+For *Net_Pay* this maximum value is:
+
+```{r}
+max( APS$Net_Pay, na.rm = TRUE )
+```
+
+NOTE: If there were no NA values in the variables there would be no need to include *na.rm = TRUE* in the code.
+
+As a result, if someone in the APS has a *Net_Pay* of 40,976, this does NOT mean that they earn £40,976 a year. Instead, it means that they ear £40,976 *OR MORE* per year (i.e. £40,976+). This equate to a salary of £788+ per week, or £3415 per month.
+
+Rerun the above code without removing the NA values
+
+```{r}
+max( APS$Net_Pay)
+```
+
+::: {style="background-color: #FFFBCC; padding: 10px; border-radius: 5px; border: 1px solid #E1C948;"}
+**QUESTION 3**
+
+------------------------------------------------------------------------
+
+The above code will give the incorrect results if we do not remove the NA values, ensuring that NA values are removed.
+
+```{r}
+# REPLACE THIS WITH YOUR CODE
+```
+
+------------------------------------------------------------------------
+:::
+
+## I**ncome inequality**
+
+Income is the United Kingdom is clearly not shared equally between all of its citizens. Some earn far more than others, even after taking into account the fact that higher earners pay more tax.
+
+Whilst there are many countries in the world with higher levels of income inequality, by European standards income equality in the UK is unusually high:
+
+> “All other European Union countries enjoy greater income equality \[than the UK\]. Because of this their citizens are freer to live where they wish, to mix equally, to go to school with each other rather than segregate their children \[into private fee-paying schools\], as the majority of parents in the top 10 per cent of income distribution in Britain feel compelled to do.” Danny Dorling (2018) [Peak Inequality](https://www.dannydorling.org/wp-content/files/dannydorling_publication_id6678.pdf) New Statesman, 4th July.
+
+We can visualise this inequality using a Lorenz Curve.
+
+```{r}
+plot( Lc( APS$Net_Pay ) )
+```
+
+In the graph above the horizontal axis measures the cumulative percentage of APS respondents, whilst the vertical axis measures the cumulative % of all Net Pay. The straight diagonal line is known as the ‘Line of equality’. This is what the distribution of income (*Net_Pay*) in the UK would look like if it was equally shared across all APS respondents. The thicker black line below this, known as the Lorenz Curve, reflects the way income is actually shared. For example, reading off the Lorenz Curve, 40% of APS respondents (represented by 0.4 on the x-axis) have access to only 20% of the total income available (the value on the on the y-axis). In contrast, if the the income were equally shared, then 40% of the population would have access to 40% of the income (reading off the line of equality).
+
+The larger the area between the line of equality and the Lorenz Curve, the less equally shared the income is. And the size of this area can be summarised in one number by the Gini coefficient, which takes a value between 0 (maximum equality) and 1 (p maximum inequality).
+
+```{r}
+Gini( APS$Net_Pay, na.rm = TRUE )
+```
+
+Note that this Gini coefficient under-states the true level of inequality in the UK, because the incomes of the top 9.87% of earners have been top-coded with a value of £40,976 per annum. This makes it look like the top-earners collectively have a smaller share of total pay than they actually do. It also makes it look like all persons at the top end of the income distribution earn the same amount, which is also not true.
+
+Because the APS only covers the UK, we can’t directly compare the income inequality observed in the UK with the income inequality observed in other European countries. However, we can use the APS to explore the extent to which income inequality varies, if at all, between the constituent regions of the UK. Here is an example for the "North West'
+
+```{r}
+APS %>%
+  filter(Region == "North West", !is.na(Net_Pay)) %>%
+  pull(Net_Pay) %>%
+  Lc() %>%
+  plot()
+
+```
+
+```{r}
+
+APS %>%
+  filter(Region == "North West", !is.na(Net_Pay)) %>%
+  pull(Net_Pay) %>%
+  Gini()
+```
+
+Let's find out when it's 0.5 on the x-axis whats the y value.
+
+```{r}
+APS %>%
+  filter(Region == "North West", !is.na(Net_Pay)) %>%
+  pull(Net_Pay) %>%
+  Lc() %>%
+  (\(lc) approx(lc$p, lc$L, xout = 0.5)$y)()
+```
+
+::: {style="background-color: #FFFBCC; padding: 10px; border-radius: 5px; border: 1px solid #E1C948;"}
+**QUESTION 4**
+
+------------------------------------------------------------------------
+
+The computed gini values for all respondents in all regions is 0.28 whereas for the Northwest region it is 0.27. Interpret these results.
+
+------------------------------------------------------------------------
+:::
+
+Let's now compare the gini value for each regions.
+
+```{r}
+gini_by_region <- APS %>%
+  filter(!is.na(Net_Pay)) %>%
+  group_by(Region) %>%
+  summarise(
+    n = n(),
+    Gini = Gini(Net_Pay),
+    .groups = "drop"
+  ) %>%
+  arrange(desc(Gini))
+
+print(gini_by_region)
+```
+
+The results show that each region has inequalities in Net_Pay but they are on the moderate side. Interestingly, the values are very similar with no evidence of extreme disparities.
+
+## **How much does it take to be ‘Rich’?**
+
+Having familiarised ourselves with the outcome variables available we can now answer our first research question: How much does it take to be rich? Or, more specifically, how much does a paid employee have earn per annum to be regarded ‘rich’ relative to other paid employees?
+
+There is no one answer to this question, which is in many ways very subjective:
+
+> “Some people would define rich as having more money than you”need” to live, but definition of “needs” vary dramatically.”…“In his book Richistan, Wall Street Journal reporter Robert Frank concluded that ‘people’s definition of rich is subjective and is usually twice their current net worth’”. (BBC (2011) [The rich: what exactly does the terminology mean?](https://www.bbc.co.uk/news/magazine-15822595), BBC News website, 24th November.
+
+However, one common trope when writing about the rich is to refer to the ‘top 1%’:
+
+> “\[In the United States\], 1% of the people take nearly a quarter of the nation’s income … In terms of wealth rather than income, the top 1% control 40% … \[as a result\] the top 1% have the best houses, the best educations, the best doctors, and the best lifestyles, but there is one thing that money doesn’t seem to have bought: an understanding that their fate is bound up with how the other 99% live. Throughout history, this is something that the top 1% eventually do learn. Too late.” Joseph Stiglitz (2011) [Of the 1%, by the 1%, for the 1%](https://www.vanityfair.com/news/2011/05/top-one-percent-201105), *Vanity Fair*, May 2011.
+
+Unfortunately, one knock on consequence of the top-coding used for the pay variables in the APS means that we can’t identify how much money you have to earn to fall into the top 1% of the income distribution. This means that we will necessary have to adopt a lower threshold definition of what it means to be ‘rich’. We can use is ‘in the top 10% of the income distribution’.
+
+### **Top 10% of Net Pay**
+
+This can be operationalised as follows:
+
+a.  Find the income of person at 90th percentile of the income distribution using the `quantile()`function, and asking for the value of the 90th percentile using the `prob = 0.9` option:
+
+```{r}
+APS %>%
+  select( Net_Pay ) %>%
+  quantile( prob = 0.9, na.rm = TRUE )
+```
+
+```{r}
+max(APS$Net_Pay, na.rm = TRUE)
+```
+
+This tells us that 90% of APS respondents have net pay of £40,820 or less. The remaining 10% therefore have net incomes of £40,821 or higher (with the highest person(s) having a net salary of £40,976).
+
+::: {style="background-color: #FFFBCC; padding: 10px; border-radius: 5px; border: 1px solid #E1C948;"}
+**QUESTION 5**
+
+------------------------------------------------------------------------
+
+Write code to determine what the minimum person being paid? What could be responsible for this value.
+
+```{r}
+# REPLACE THIS WITH YOUR CODE
+```
+
+------------------------------------------------------------------------
+:::
+
+## **The Geography of Pay**
+
+Being geographers, one key task in the familiarisation process remains, which is to check whether or not there is a geography to our outcome. The approach we need to adopt depends on whether we want to explore the geography of the continuous or categorical version of our outcome variable.
+
+### **Spatially aggregating a continuous variable**
+
+Before we can map geographical variations in pay, we first need to:
+
+-   identify what geography, if any, exists in the APS
+-   read in a suitable set of digital boundaries for this geography
+-   create an area-level dataset containing a summary measure of *Net_Pay* for each area
+-   join the resulting area-level dataset to the set of digital boundaries
+
+The first task is relatively straightforward. There are only two geographic identifiers available in the APS: *Region* and *Merseyside*. Since the *Merseyside* variable simply distinguishes between those who do and do not live in Merseyside, a better exploration of the geography of *Net_Pay* will be provided using *Region,*which divides the UK into 12 distinct regions.
+
+The second task is also relatively straightforward. Simply download the file *UK Regions.geojson* from the Week 5 folder on CANVAS, save it to the same folder as your Week 5 folder, then read it in using the `read_sf( )` command, saving the boundaries that are read in to a dataset called *UK_regions_map*:
+
+```{r}
+UK_regions_map <- read_sf( "UK Regions.geojson" )
+```
+
+calculate the median value for each region simply involves adding the `.by = Region` option:
+
+```{r}
+region_medians <-
+  APS %>%
+  summarise( Median_Net_Pay = median( Net_Pay, na.rm = TRUE ),
+             .by = Region )
+region_medians
+```
+
+We can then join the *UK_regions_map* and *region_medians* datasets together and then show the results on a map.
+
+Perform the join between both datasets
+
+```{r}
+join_map <- left_join(UK_regions_map, region_medians, by = "Region")
+```
+
+Show results on a map.
+
+```{r}
+#| message: false
+#| warning: false
+Regions_medians_map <- 
+  tm_shape(join_map) +
+  tm_polygons(
+    fill = "Median_Net_Pay",
+    fill.scale = tm_scale_continuous(values = "Blues")
+  )
+
+Regions_medians_map
+```
+
+::: {style="background-color: #FFFBCC; padding: 10px; border-radius: 5px; border: 1px solid #E1C948;"}
+**QUESTION 6**
+
+------------------------------------------------------------------------
+
+Is there an obvious geography to the distribution of pay levels across the UK? To what extent would you say there is a North-South divide, or a South East vs.the Rest divide, or even a London vs the rest divide?
+
+------------------------------------------------------------------------
+:::
+
+## What factors influence being rich?
+
+To answer this question. we will compute the correlation between Net_Pay and every other variable.
+
+```{r}
+correlations_with_net_pay <-
+APS %>%
+  select(where(is.numeric)) %>%
+  select(-idref, -Household_ID, -Extended_Family_ID, -Family_ID) %>%
+  drop_na() %>%
+  cor(method = "spearman", use = "complete.obs") %>%
+  as.data.frame() %>%
+  (\(x) data.frame(
+    Variable = rownames(x),
+    Net_Pay = x[, "Net_Pay"],
+    row.names = NULL
+  ))() %>%
+  arrange(desc(abs(Net_Pay)))
+
+View(correlations_with_net_pay)
+```
+
+::: {style="background-color: #FFFBCC; padding: 10px; border-radius: 5px; border: 1px solid #E1C948;"}
+**QUESTION 7**
+
+------------------------------------------------------------------------
+
+Based on the above values, which variable has the most influence on Net_Pay? Does this make sense? State why.
+
+------------------------------------------------------------------------
+:::
+
+## **Statistical significance of correlations**
+
+So far we have been treating all of our analysis results as wholly reliable. But, as explained in this week’s lecture, any result based on the analysis of survey data is subject to the uncertainty inherent in the process taking a random sample from a wider population. The sample taken *might* be representative of the population it was drawn from. But then again, it might not. As a result, the correlation we find between two variables in the APS *might* reflect the presence of a relationship between these two variables in the wider population the sample was drawn from. Or it might simply be an artefact of the random sampling process, suggesting a relationship which does not actually exist in the wider population.
+
+To check whether a relationship is significant we can examine their p value and significance value.
+
+```{r}
+correlations_with_net_pay_pvalue <-
+APS %>%
+  select(where(is.numeric)) %>%
+  select(-idref, -Household_ID, -Extended_Family_ID, -Family_ID) %>%
+  pivot_longer(-Net_Pay, names_to = "Variable", values_to = "x") %>%
+  group_by(Variable) %>%
+  summarise(
+    rho = cor(x, Net_Pay, method = "spearman", use = "pairwise.complete.obs"),
+    p_value = cor.test(
+      x, Net_Pay,
+      method = "spearman",
+      exact = FALSE
+    )$p.value,
+    sig = p_value <= 0.05,
+    .groups = "drop"
+  ) %>%
+  filter(Variable != "Net_Pay") %>%
+  arrange(desc(abs(rho))) %>%
+  mutate(
+    rho = round(rho, 2),
+    p_value = round(p_value, 4)
+  )
+
+View(correlations_with_net_pay_pvalue)
+```
+
+**NOTE: rho or ρ in the outputted table is referring to the spearman correlation value.**
+
+In the results returned, two additional columns are provided: p_value and sig. The p_value represents the probability of observing a correlation as strong as the one found in the APS data if, in reality, there were no relationship between the two variables in the population from which the survey was drawn.
+
+A p_value of 0.05 indicates a 5% probability of observing such a correlation purely by chance, assuming no true relationship exists in the population. By convention in social science, a p_value of 0.05 or less is considered statistically significant, meaning the observed relationship is unlikely to have arisen due to chance alone.
+
+The sig column indicates whether each correlation is statistically significant at the 5% level. A value of TRUE means the correlation is statistically significant (p ≤ 0.05), while FALSE indicates that it is not statistically significant. In these results, Gross_Pay, Equiv_Net_Pay, Work_Hours, Job_Years, Commute_Time, Family_Toddlers, Weight_APS, Youngest_Child, and Family_Size show statistically significant correlations with Net_Pay. In contrast, Hhold_Size, Hholds_at_Address, Age, and Arrival_Year are not statistically significant, indicating no reliable relationship with Net_Pay in the wider population.
+
+It is important to note that a p_value of 0.0000 does not mean zero probability. Rather, it means the true p_value is extremely small and has been rounded to four decimal places, indicating very strong statistical evidence of a relationship.
+
+However, statistical significance does not imply practical importance. For example, although Family_Toddlers (ρ = 0.05), Weight_APS (ρ = 0.04), and Youngest_Child (ρ = −0.04) are statistically significant, their correlations are extremely weak. This suggests that these variables have negligible practical influence on Net_Pay, despite being statistically significant due to the large sample size.
+
+Interpretation should focus primarily on the size and direction of correlations, rather than statistical significance alone.
+
+Applying this to the results:
+
+-   There is a very strong positive relationship between Net_Pay and Gross_Pay (ρ = 0.95), which is expected since net pay is directly derived from gross pay.
+
+-   There is a moderately strong positive relationship between Net_Pay and Equiv_Net_Pay (ρ = 0.57) and Work_Hours (ρ = 0.50), indicating that individuals who work more hours and have higher adjusted household income tend to earn higher net pay.
+
+-   There is a weak positive relationship between Net_Pay and Job_Years (ρ = 0.15) and Commute_Time (ρ = 0.10), suggesting modest associations with job experience and commuting.
+
+-   All other variables show very weak or negligible relationships, and several—such as Hhold_Size, Hholds_at_Address, Age, and Arrival_Year—are not statistically significant, indicating no meaningful or reliable relationship with Net_Pay.
+
+Overall, the key determinants of Net_Pay are Gross_Pay, Equiv_Net_Pay, and Work_Hours, while most other demographic and household variables have little or no meaningful influence.
+
+## **Confidence intervals**
+
+Statistical significance is a fairly blunt way of attempting to gauge the uncertainty associated with a given correlation. All it tells us that how unlikely the result is, assuming that there is no correlation between the variables concerned in the wider population. It says nothing about the range within which the population correlation is likely to fall. To find this out, we need to calculate each correlation’s confidence interval.
+
+```{r}
+correlations_with_net_pay_pvalue_ci <-
+APS %>%
+  select(where(is.numeric)) %>%
+  select(-idref, -Household_ID, -Extended_Family_ID, -Family_ID) %>%
+  pivot_longer(-Net_Pay, names_to = "Variable", values_to = "x") %>%
+  group_by(Variable) %>%
+  summarise(
+    n = sum(is.finite(x) & is.finite(Net_Pay)),
+    rho = cor(x, Net_Pay, method = "spearman", use = "pairwise.complete.obs"),
+    p_value = cor.test(
+      x, Net_Pay,
+      method = "spearman",
+      exact = FALSE
+    )$p.value,
+    conf_low = tanh(atanh(rho) - qnorm(0.975) / sqrt(n - 3)),
+    conf_high = tanh(atanh(rho) + qnorm(0.975) / sqrt(n - 3)),
+    sig = p_value <= 0.05,
+    .groups = "drop"
+  ) %>%
+  filter(Variable != "Net_Pay") %>%
+  arrange(desc(abs(rho))) %>%
+  mutate(
+    rho = round(rho, 2),
+    p_value = round(p_value, 4),
+    conf_low = round(conf_low, 2),
+    conf_high = round(conf_high, 2)
+  )
+
+View(correlations_with_net_pay_pvalue_ci)
+```
+
+In the resulting output, two additional columns are provided: conf_low and conf_high, which represent the lower and upper bounds of the 95% confidence interval for each correlation. For example, the 95% confidence interval for the correlation between Net_Pay and Work_Hours is 0.49 to 0.50. This means that if repeated random samples of the same size were drawn from the population, the correlation would be expected to fall within this range in 95% of cases. In other words, there is 95% confidence that the true population correlation between Net_Pay and Work_Hours lies between 0.49 and 0.50.
+
+Confidence intervals also help assess the reliability and direction of relationships. When a confidence interval includes the value 0, it indicates uncertainty about whether the true correlation in the population is positive or negative. For example, the correlations between Net_Pay and Hhold_Size (−0.01 to 0.00), Hholds_at_Address (0.00 to 0.01), Age (−0.01 to 0.01), and Arrival_Year (−0.02 to 0.02) all include zero. This indicates that there is no reliable evidence of a meaningful relationship between these variables and Net_Pay in the wider population.
+
+By contrast, when the confidence interval does not include 0, the direction of the relationship can be interpreted with confidence. For example, Gross_Pay has a confidence interval of 0.95 to 0.95, confirming a very strong positive relationship with Net_Pay. Similarly, Equiv_Net_Pay (0.56 to 0.57) and Work_Hours (0.49 to 0.50) show clear positive relationships. Even variables with weaker correlations, such as Job_Years (0.14 to 0.16) and Commute_Time (0.10 to 0.11), have confidence intervals entirely above zero, indicating reliably positive relationships, although the strength of these relationships is modest.
+
+Overall, the narrow confidence intervals observed—particularly for variables such as Gross_Pay, Equiv_Net_Pay, and Work_Hours—reflect the large APS sample size and indicate that the estimated correlations are precise and reliable.
+
+## Formative tasks
+
+**Task 1**
+
+Extract the data for Merseyside and create a histogram for the variable Net_Pay. HINT: Values of 'Merseyside' in the variable *Merseyside* indicate this location.Task 2
+
+**Task 2**
+
+Derive the Lorenz curve and and it's associated gini value. Discuss these results.
+
+**Task 3**
+
+Compute the correlation for Net_Pay for Merseyside with the other numeric values in the dataset. What is the most influential factor influencing Net_Pay in Merseyside?
+
+**Task 4**
+
+Compute associated p values and significant values and discuss the results.
+
+**Task 5**
+
+Further compute the confidence intervals and discuss the results.\

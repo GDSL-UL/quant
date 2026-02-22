@@ -28,7 +28,7 @@ book:
     - labs/02.ExploratoryDataAnalysis.qmd
     - labs/03.IntroductoryStatistics.qmd
     - labs/04.Health.qmd
-    #- labs/05.**.qmd
+    - labs/05.Wealth.qmd
 
  
 bibliography: references.bib

@@ -128,7 +128,11 @@ View(districts)
 
 How many rows does the districts data have?
 
+Solution: 331
+
 How many columns does the districts data have?
+
+Solution: 56
 
 ------------------------------------------------------------------------
 :::
@@ -150,8 +154,10 @@ Note that the dataset containing the map boundaries (*district_map*) MUST be lis
 
 Write a line of code that tells you the number of columns in the census_map dataset.
 
+Solution
+
 ```{r}
-# REPLACE THIS LINE WITH YOUR CODE THEN RUN/EXECUTE THIS BLOCK
+dim(census_map)
 ```
 
 ------------------------------------------------------------------------
@@ -179,6 +185,10 @@ boxplot(census_map$Poor_Health,
 ------------------------------------------------------------------------
 
 Return to the week 2 lab. Using the information provided, determine whether *Poor_Health* is skewed or not.
+
+Solution:
+
+Poor_Health is slightly skewed which is evident given that the median line is towards the centre of the plot and the distribution of values before an after this line seems almost identical.
 
 ------------------------------------------------------------------------
 :::
@@ -230,6 +240,10 @@ Age_65_plus_map
 ------------------------------------------------------------------------
 
 What pattern(s) do you observe comparing the spatial distribution of both variables?
+
+Solution
+
+There is a bit more healthy and younger people in southern places like London and the surroundings compared to more northern areas; this pattern reinforces the idea of the north-south divide.
 
 ------------------------------------------------------------------------
 :::
@@ -333,14 +347,14 @@ If one or both variables had been skewed, then we would have needed to calculate
 
 Which statements are correct?
 
-1.  Pearson's correlation is \_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_.
+1.  Pearson's correlation is [a linear correlation]{.underline}.
 
 -   a rank-based correlation
 -   [a linear correlation]{.correct}
 -   a measure of spatial autocorrelation
 -   a robust estimator of median association
 
-2.  Spearman's correlation is \_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_.
+2.  Spearman's correlation is [a rank-based correlation]{.underline}.
 
 -   a rank-based correlation
 -   [a linear correlation]{.correct}
@@ -348,6 +362,10 @@ Which statements are correct?
 -   a robust estimator of median association
 
 3.  The correlation between Age_65_plus and Poor_Health is +0.46. Does this mean ageing causes poor health? Explain.
+
+Solution
+
+No, correlation does not imply causation. Additional studies would need to be done to confirm this is the case.
 :::
 
 ------------------------------------------------------------------------
@@ -447,6 +465,10 @@ Which of the following correctly describes the strength of the above association
 
 -   Strong
 
+Solution
+
+Weak
+
 ------------------------------------------------------------------------
 :::
 
@@ -525,6 +547,10 @@ The correlation is strongest at county level, and decreases with the size of the
 
 Can you think of any other factors that may help explain the differences in correlation values with scale?
 
+Solution
+
+More variation in local factors related to health such as deprivation, access to adequate health care, types of jobs etc. at more local levels.
+
 ------------------------------------------------------------------------
 :::
 
@@ -532,26 +558,143 @@ Can you think of any other factors that may help explain the differences in corr
 
 **Task 1**
 
-Visualise the association between `Poor_Health` and `Density` in the **Wards** data for Liverpool
+Visualise the association between `Poor_Health` and `Density` in the **District** data for Liverpool
+
+Solution
+
+Step 1: Extract the liverpool data
+
+```{r}
+liverpool <- 
+  wards %>%
+  filter( District == "Liverpool" )
+```
+
+Step 2: Draw scatter plot
+
+```{r}
+liverpool %>%
+  ggplot( ) +
+    geom_point( aes( x = Density, y = Poor_Health ), colour = "blue" ) +
+    labs( x = " Population Density",
+          y = "% in Poor Health" ) +
+    theme_classic( )
+```
 
 **Task 2**
 
 Compute the right correlation measure to association between `Poor_Health` and `Density` in Liverpool. Interpret and discuss what the results mean.
 
+Solution
+
+Remember that for numerical values, we need to first check the skewness of each variables.
+
+Step 1: Compute skewness
+
+Poor_Health
+
+```{r}
+x <- liverpool$Poor_Health
+x <- x[!is.na(x)]
+
+mean((x - mean(x))^3) / sd(x)^3
+```
+
+Density
+
+```{r}
+x <- liverpool$Density
+x <- x[!is.na(x)]
+
+mean((x - mean(x))^3) / sd(x)^3
+```
+
+The *Poor_Health* is skewed so Spearman's Rank should be used
+
+Step 3: Compute Spearman's Rank
+
+```{r}
+cor(liverpool$Poor_Health,
+    liverpool$Density,
+    method = "spearman",
+    use = "complete.obs")
+```
+
+The Spearman’s rank correlation coefficient indicates a weak association between population density and levels of poor health in Liverpool wards. This suggests that changes in density are only weakly related to changes in poor health, and density alone is not a strong predictor of health outcomes.
+
 **Task 3**
 
 Using the above correlation metric, determine whether MAUP is an issues using all records the data for Wards, Counties, Districts, and Regions for the same variables.
+
+Solution
+
+```{r}
+cor(regions$Poor_Health,
+    regions$Density,
+    method = "spearman",
+    use = "complete.obs")
+
+cor(districts$Poor_Health,
+    districts$Density,
+    method = "spearman",
+    use = "complete.obs")
+
+cor(counties$Poor_Health,
+    counties$Density,
+    method = "spearman",
+    use = "complete.obs")
+
+cor(wards$Poor_Health,
+    wards$Density,
+    method = "spearman",
+    use = "complete.obs")
+```
+
+The Spearman correlations differ across wards, districts, counties and regions, demonstrating that the strength (and possibly direction) of the association between population density and poor health depends on the spatial scale of analysis. This variation indicates the presence of the scale effect of the Modifiable Areal Unit Problem (MAUP), whereby statistical relationships are sensitive to the level of spatial aggregation.
 
 **Task 4**
 
 Compute the skewness between `Poor_Health` for Districts for all the data and for Liverpool only. Discuss what could be leading these results
 
+Solution
+
+All districts
+
+```{r}
+x <- districts$Poor_Health
+x <- x[!is.na(x)]
+
+mean((x - mean(x))^3) / sd(x)^3
+```
+
+Liverpool
+
+```{r}
+x <- liverpool$Poor_Health
+x <- x[!is.na(x)]
+
+mean((x - mean(x))^3) / sd(x)^3
+```
+
+The skewness for all districts is 0.128, which is close to zero, indicating that the distribution of poor health across England and Wales is approximately symmetrical. This suggests that most districts have similar levels of poor health, with only a few districts having higher values. In contrast, Liverpool has a skewness of −0.413, indicating a moderate negative skew. This means that most areas in Liverpool have relatively high levels of poor health, with a few areas having lower levels. This reflects internal inequalities within Liverpool. These results demonstrate how health patterns vary depending on spatial scale.
+
 **Task 5**
 
-Calculate the interquartile range (IQR) of `Poor_Health` at the Region, District, and Ward level,s and discuss the results as they relate to MAUP.
+Calculate the interquartile range (IQR) of `Poor_Health` at the Region, District, and Ward levels and discuss the results as they relate to MAUP.
 
 Remember:
 
 -   IQR measures the spread of the middle 50% of values.
 -   Larger IQR → greater inequality or heterogeneity.
 -   Smaller IQR → greater smoothing through aggregation
+-   
+
+Solution
+
+```{r}
+IQR(districts$Poor_Health, na.rm = TRUE) 
+IQR(regions$Poor_Health, na.rm = TRUE) 
+IQR(wards$Poor_Health, na.rm = TRUE)  
+```
+
+The interquartile range increases as spatial units become smaller, from 2.19 at regional level to 6.02 at ward level. This demonstrates that aggregation reduces observed variability in poor health. Larger spatial units smooth internal differences, while smaller units reveal greater socio-spatial inequality. This provides clear evidence of the scale effect of the Modifiable Areal Unit Problem (MAUP), whereby statistical properties of data depend on the level of spatial aggregation.

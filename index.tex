@@ -4027,7 +4027,7 @@ from the population at random using the~\texttt{sample}~function.
 \end{Shaded}
 
 \begin{verbatim}
-[1] 34897.2
+[1] 24278.8
 \end{verbatim}
 
 \begin{Shaded}
@@ -4038,7 +4038,7 @@ from the population at random using the~\texttt{sample}~function.
 \end{Shaded}
 
 \begin{verbatim}
-[1] 22595.61
+[1] 19351.9
 \end{verbatim}
 
 You will get a different values for these to the ones your friends get
@@ -4061,7 +4061,7 @@ In R we run the code below:
 \end{Shaded}
 
 \begin{verbatim}
-[1] 7145.36
+[1] 6119.607
 \end{verbatim}
 
 \begin{Shaded}
@@ -4072,7 +4072,7 @@ In R we run the code below:
 \end{Shaded}
 
 \begin{verbatim}
-[1] 7145.36
+[1] 6119.607
 \end{verbatim}
 
 Question 2. Compare population mean, sample mean and SE mean from your
@@ -7576,261 +7576,259 @@ Net\_Pay and every other variable.
 Based on the above values, which variable has the most influence on
 Net\_Pay? Does this make sense? State why.
 
-\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\linewidth - 0\tabcolsep) * \real{0.0556}}@{}}
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+:::
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+title: Mock questions \\
+\end{longtable}
 
-\section{Statistical significance of
-correlations}\label{statistical-significance-of-correlations}
+```````
 
-So far we have been treating all of our analysis results as wholly
-reliable. But, as explained in this week's lecture, any result based on
-the analysis of survey data is subject to the uncertainty inherent in
-the process taking a random sample from a wider population. The sample
-taken~\emph{might}~be representative of the population it was drawn
-from. But then again, it might not. As a result, the correlation we find
-between two variables in the APS~\emph{might}~reflect the presence of a
-relationship between these two variables in the wider population the
-sample was drawn from. Or it might simply be an artefact of the random
-sampling process, suggesting a relationship which does not actually
-exist in the wider population.
+\bookmarksetup{startatroot}
 
-To check whether a relationship is significant we can examine their p
-value and significance value. In the code below there is no need to
-understand what's happening in PART 2, just as long as you enter the
-correct information on PART 1.
+\chapter{Mock Test}\label{mock-test}
 
-\begin{Shaded}
-\begin{Highlighting}[]
-\CommentTok{\# PART 1: }
-\CommentTok{\# The variable that you want as your main achor}
-\NormalTok{variable\_of\_interest }\OtherTok{=} \StringTok{"Net\_Pay"}
+\phantomsection\label{Preface}
+\textbf{Before starting it's good to get some of the preliminary steps
+taken care of first. In this case, we first download the data, and then
+clear the workspace to get rid of older variables that may be in our
+environment area since last working with RStudio. Finally, we import the
+libraries that we will be using.}
 
-\CommentTok{\# This is the correlation method that will be used}
-\NormalTok{correlation\_method }\OtherTok{=} \StringTok{"spearman"}  \CommentTok{\# or use "pearson" to compute the Pearson correlation coefficient.}
+\section{Data download}\label{data-download}
 
-\CommentTok{\# The data table}
-\NormalTok{data }\OtherTok{=}\NormalTok{ APS}
-
-\CommentTok{\#{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}}
-
-\CommentTok{\# PART 2 {-} Compute correlation and p{-}value {-} NO NEED TO EDIT CODE HERE}
-\CommentTok{\# This other part of the code takes the variable of interest and correlation method and does the computation.}
-\NormalTok{correlations\_with\_pvalue }\OtherTok{\textless{}{-}}
-\NormalTok{data }\SpecialCharTok{\%\textgreater{}\%}
-  \FunctionTok{select}\NormalTok{(}\FunctionTok{where}\NormalTok{(is.numeric)) }\SpecialCharTok{\%\textgreater{}\%}
-  \FunctionTok{pivot\_longer}\NormalTok{(}\SpecialCharTok{{-}}\NormalTok{Net\_Pay, }\AttributeTok{names\_to =} \StringTok{"Variable"}\NormalTok{, }\AttributeTok{values\_to =} \StringTok{"x"}\NormalTok{) }\SpecialCharTok{\%\textgreater{}\%}
-  \FunctionTok{group\_by}\NormalTok{(Variable) }\SpecialCharTok{\%\textgreater{}\%}
-  \FunctionTok{summarise}\NormalTok{(}
-    \AttributeTok{rho =} \FunctionTok{cor}\NormalTok{(x, Net\_Pay, }\AttributeTok{method =}\NormalTok{ correlation\_method, }\AttributeTok{use =} \StringTok{"pairwise.complete.obs"}\NormalTok{),}
-    \AttributeTok{p\_value =} \FunctionTok{cor.test}\NormalTok{(}
-\NormalTok{      x, Net\_Pay,}
-      \AttributeTok{method =}\NormalTok{ correlation\_method,}
-      \AttributeTok{exact =} \ConstantTok{FALSE}
-\NormalTok{    )}\SpecialCharTok{$}\NormalTok{p.value,}
-    \AttributeTok{sig =}\NormalTok{ p\_value }\SpecialCharTok{\textless{}=} \FloatTok{0.05}\NormalTok{,}
-    \AttributeTok{.groups =} \StringTok{"drop"}
-\NormalTok{  ) }\SpecialCharTok{\%\textgreater{}\%}
-  \FunctionTok{filter}\NormalTok{(Variable }\SpecialCharTok{!=}\NormalTok{ variable\_of\_interest) }\SpecialCharTok{\%\textgreater{}\%}
-  \FunctionTok{arrange}\NormalTok{(}\FunctionTok{desc}\NormalTok{(}\FunctionTok{abs}\NormalTok{(rho))) }\SpecialCharTok{\%\textgreater{}\%}
-  \FunctionTok{mutate}\NormalTok{(}
-    \AttributeTok{rho =} \FunctionTok{round}\NormalTok{(rho, }\DecValTok{2}\NormalTok{),}
-    \AttributeTok{p\_value =} \FunctionTok{round}\NormalTok{(p\_value, }\DecValTok{4}\NormalTok{)}
-\NormalTok{  )}
-
-\FunctionTok{View}\NormalTok{(correlations\_with\_pvalue)}
-\end{Highlighting}
-\end{Shaded}
-
-\textbf{NOTE: rho or ρ in the outputted table is referring to the
-spearman correlation value.}
-
-In the results returned, two additional columns are provided: p\_value
-and sig. The p\_value represents the probability of observing a
-correlation as strong as the one found in the APS data if, in reality,
-there were no relationship between the two variables in the population
-from which the survey was drawn.
-
-A p\_value of 0.05 indicates a 5\% probability of observing such a
-correlation purely by chance, assuming no true relationship exists in
-the population. By convention in social science, a p\_value of 0.05 or
-less is considered statistically significant, meaning the observed
-relationship is unlikely to have arisen due to chance alone.
-
-The sig column indicates whether each correlation is statistically
-significant at the 5\% level. A value of TRUE means the correlation is
-statistically significant (p ≤ 0.05), while FALSE indicates that it is
-not statistically significant. In these results, Gross\_Pay,
-Equiv\_Net\_Pay, Work\_Hours, Job\_Years, Commute\_Time,
-Family\_Toddlers, Weight\_APS, Youngest\_Child, and Family\_Size show
-statistically significant correlations with Net\_Pay. In contrast,
-Hhold\_Size, Hholds\_at\_Address, Age, and Arrival\_Year are not
-statistically significant, indicating no reliable relationship with
-Net\_Pay in the wider population.
-
-It is important to note that a p\_value of 0.0000 does not mean zero
-probability. Rather, it means the true p\_value is extremely small and
-has been rounded to four decimal places, indicating very strong
-statistical evidence of a relationship.
-
-However, statistical significance does not imply practical importance.
-For example, although Family\_Toddlers (ρ = 0.05), Weight\_APS (ρ =
-0.04), and Youngest\_Child (ρ = −0.04) are statistically significant,
-their correlations are extremely weak. This suggests that these
-variables have negligible practical influence on Net\_Pay, despite being
-statistically significant due to the large sample size.
-
-Interpretation should focus primarily on the size and direction of
-correlations, rather than statistical significance alone.
-
-Applying this to the results:
+Some of the datasets on Canvas have been updated, so please re-download
+the data.
 
 \begin{itemize}
 \item
-  There is a very strong positive relationship between Net\_Pay and
-  Gross\_Pay (ρ = 0.95), which is expected since net pay is directly
-  derived from gross pay.
+  \emph{world\_value\_survey} - Located in Week 3
 \item
-  There is a moderately strong positive relationship between Net\_Pay
-  and Equiv\_Net\_Pay (ρ = 0.57) and Work\_Hours (ρ = 0.50), indicating
-  that individuals who work more hours and have higher adjusted
-  household income tend to earn higher net pay.
+  \emph{LAD December 2021 EW BUC.geojson} - Located in Week 4
 \item
-  There is a weak positive relationship between Net\_Pay and Job\_Years
-  (ρ = 0.15) and Commute\_Time (ρ = 0.10), suggesting modest
-  associations with job experience and commuting.
+  \emph{Census\_2021\_Wards.csv} - Located in Week 4
 \item
-  All other variables show very weak or negligible relationships, and
-  several---such as Hhold\_Size, Hholds\_at\_Address, Age, and
-  Arrival\_Year---are not statistically significant, indicating no
-  meaningful or reliable relationship with Net\_Pay.
+  \emph{Census\_2021\_Districts.csv} - Located in Week 4
 \end{itemize}
 
-Overall, the key determinants of Net\_Pay are Gross\_Pay,
-Equiv\_Net\_Pay, and Work\_Hours, while most other demographic and
-household variables have little or no meaningful influence.
+\section{Clear the workspace}\label{clear-the-workspace}
 
-\section{Confidence intervals}\label{confidence-intervals-1}
-
-Statistical significance is a fairly blunt way of attempting to gauge
-the uncertainty associated with a given correlation. All it tells us
-that how unlikely the result is, assuming that there is no correlation
-between the variables concerned in the wider population. It says nothing
-about the range within which the population correlation is likely to
-fall. To find this out, we need to calculate each correlation's
-confidence interval.
+This is important because you could be using an older dataset that is
+incorrect if you don't do this.
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\CommentTok{\# PART 1: Input your variable of interest and correlation method}
-\CommentTok{\# The variable that you want as your main achor}
-\NormalTok{variable\_of\_interest }\OtherTok{=} \StringTok{"Net\_Pay"}
-
-\CommentTok{\# This is the correlation method that will be used}
-\NormalTok{correlation\_method }\OtherTok{=} \StringTok{"spearman"}  \CommentTok{\# or use "pearson" to compute the Pearson correlation coefficient.}
-
-\CommentTok{\# The data table}
-\NormalTok{data }\OtherTok{=}\NormalTok{ APS}
-
-\CommentTok{\#{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}}
-
-\CommentTok{\# PART 2: Compute the correlation coefficients and associated p{-}values {-} NO NEED TO EDIT CODE HERE}
-\CommentTok{\# This other part of the code takes the variable of interest and correlation method and does the computation.}
-\CommentTok{\# Ensure anchor exists and is numeric}
-
-\NormalTok{anchor }\OtherTok{\textless{}{-}}\NormalTok{ data[[variable\_of\_interest]]}
-
-\NormalTok{correlations\_with\_pvalue\_ci }\OtherTok{\textless{}{-}}
-\NormalTok{  data }\SpecialCharTok{\%\textgreater{}\%}
-  \FunctionTok{select}\NormalTok{(}\FunctionTok{where}\NormalTok{(is.numeric)) }\SpecialCharTok{\%\textgreater{}\%}
-  \FunctionTok{pivot\_longer}\NormalTok{(}
-    \AttributeTok{cols =} \SpecialCharTok{{-}}\FunctionTok{all\_of}\NormalTok{(variable\_of\_interest),}
-    \AttributeTok{names\_to =} \StringTok{"Variable"}\NormalTok{,}
-    \AttributeTok{values\_to =} \StringTok{"x"}
-\NormalTok{  ) }\SpecialCharTok{\%\textgreater{}\%}
-  \FunctionTok{summarise}\NormalTok{(}
-    \AttributeTok{n =} \FunctionTok{sum}\NormalTok{(}\FunctionTok{is.finite}\NormalTok{(x) }\SpecialCharTok{\&} \FunctionTok{is.finite}\NormalTok{(anchor)),}
-    \AttributeTok{r =} \FunctionTok{suppressWarnings}\NormalTok{(}\FunctionTok{cor}\NormalTok{(x, anchor, }\AttributeTok{method =}\NormalTok{ correlation\_method, }\AttributeTok{use =} \StringTok{"pairwise.complete.obs"}\NormalTok{)),}
-    \AttributeTok{p\_value =} \FunctionTok{suppressWarnings}\NormalTok{(}\FunctionTok{cor.test}\NormalTok{(x, anchor, }\AttributeTok{method =}\NormalTok{ correlation\_method, }\AttributeTok{exact =} \ConstantTok{FALSE}\NormalTok{)}\SpecialCharTok{$}\NormalTok{p.value),}
-    \CommentTok{\# Fisher z CI (exact for Pearson; common approximation otherwise)}
-    \AttributeTok{conf\_low  =} \FunctionTok{tanh}\NormalTok{(}\FunctionTok{atanh}\NormalTok{(r) }\SpecialCharTok{{-}} \FunctionTok{qnorm}\NormalTok{(}\FloatTok{0.975}\NormalTok{) }\SpecialCharTok{/} \FunctionTok{sqrt}\NormalTok{(n }\SpecialCharTok{{-}} \DecValTok{3}\NormalTok{)),}
-    \AttributeTok{conf\_high =} \FunctionTok{tanh}\NormalTok{(}\FunctionTok{atanh}\NormalTok{(r) }\SpecialCharTok{+} \FunctionTok{qnorm}\NormalTok{(}\FloatTok{0.975}\NormalTok{) }\SpecialCharTok{/} \FunctionTok{sqrt}\NormalTok{(n }\SpecialCharTok{{-}} \DecValTok{3}\NormalTok{)),}
-    \AttributeTok{.by =}\NormalTok{ Variable}
-\NormalTok{  ) }\SpecialCharTok{\%\textgreater{}\%}
-  \FunctionTok{filter}\NormalTok{(Variable }\SpecialCharTok{!=}\NormalTok{ variable\_of\_interest) }\SpecialCharTok{\%\textgreater{}\%}
-  \FunctionTok{mutate}\NormalTok{(}
-    \AttributeTok{sig =}\NormalTok{ p\_value }\SpecialCharTok{\textless{}=} \FloatTok{0.05}\NormalTok{,}
-    \AttributeTok{r =} \FunctionTok{round}\NormalTok{(r, }\DecValTok{2}\NormalTok{),}
-    \AttributeTok{p\_value =} \FunctionTok{round}\NormalTok{(p\_value, }\DecValTok{4}\NormalTok{),}
-    \AttributeTok{conf\_low =} \FunctionTok{round}\NormalTok{(conf\_low, }\DecValTok{2}\NormalTok{),}
-    \AttributeTok{conf\_high =} \FunctionTok{round}\NormalTok{(conf\_high, }\DecValTok{2}\NormalTok{)}
-\NormalTok{  ) }\SpecialCharTok{\%\textgreater{}\%}
-  \FunctionTok{arrange}\NormalTok{(}\FunctionTok{desc}\NormalTok{(}\FunctionTok{abs}\NormalTok{(r)))}
-
-\FunctionTok{View}\NormalTok{(correlations\_with\_pvalue\_ci)}
+\FunctionTok{rm}\NormalTok{(}\AttributeTok{list =} \FunctionTok{ls}\NormalTok{())}
 \end{Highlighting}
 \end{Shaded}
 
-In the resulting output, two additional columns are provided: conf\_low
-and conf\_high, which represent the lower and upper bounds of the 95\%
-confidence interval for each correlation. For example, the 95\%
-confidence interval for the correlation between Net\_Pay and Work\_Hours
-is 0.49 to 0.50. This means that if repeated random samples of the same
-size were drawn from the population, the correlation would be expected
-to fall within this range in 95\% of cases. In other words, there is
-95\% confidence that the true population correlation between Net\_Pay
-and Work\_Hours lies between 0.49 and 0.50.
+\section{Load libraries}\label{load-libraries-2}
 
-Confidence intervals also help assess the reliability and direction of
-relationships. When a confidence interval includes the value 0, it
-indicates uncertainty about whether the true correlation in the
-population is positive or negative. For example, the correlations
-between Net\_Pay and Hhold\_Size (−0.01 to 0.00), Hholds\_at\_Address
-(0.00 to 0.01), Age (−0.01 to 0.01), and Arrival\_Year (−0.02 to 0.02)
-all include zero. This indicates that there is no reliable evidence of a
-meaningful relationship between these variables and Net\_Pay in the
-wider population.
+These are the libraries that will use be using for the mock test. The
+specific libraries to be loaded will depend on the specific task to be
+completed. However, these are the most common ones.
 
-By contrast, when the confidence interval does not include 0, the
-direction of the relationship can be interpreted with confidence. For
-example, Gross\_Pay has a confidence interval of 0.95 to 0.95,
-confirming a very strong positive relationship with Net\_Pay. Similarly,
-Equiv\_Net\_Pay (0.56 to 0.57) and Work\_Hours (0.49 to 0.50) show clear
-positive relationships. Even variables with weaker correlations, such as
-Job\_Years (0.14 to 0.16) and Commute\_Time (0.10 to 0.11), have
-confidence intervals entirely above zero, indicating reliably positive
-relationships, although the strength of these relationships is modest.
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{library}\NormalTok{(tidyverse)}
+\FunctionTok{library}\NormalTok{(sf)}
+\FunctionTok{library}\NormalTok{(tmap)}
+\FunctionTok{library}\NormalTok{(ineq)}
+\end{Highlighting}
+\end{Shaded}
 
-Overall, the narrow confidence intervals observed---particularly for
-variables such as Gross\_Pay, Equiv\_Net\_Pay, and Work\_Hours---reflect
-the large APS sample size and indicate that the estimated correlations
-are precise and reliable.
+\phantomsection\label{Questions}
+\textbf{This mock exam consists of a series of 25 questions. Many of
+these questions are from the labs, so be sure to go through these before
+the final exam. Your final exam will have 20 questions and will be
+multiple choice. Unless told otherwise in the exam, you will be expected
+to write code (i.e., copy and paste from labs and modify accordingly) to
+derive results, which you will then use to determine to correct answer
+from a set of multiple choice options. You are not expected to write
+code from scratch.}
 
-\section{Formative tasks}\label{formative-tasks-4}
+\section{Question 1}\label{question-1}
 
-\textbf{Task 1}
+Write code to load the \emph{world\_value\_survey.csv} dataset into
+RStudio. How many \textbf{rows} and \textbf{columns} does this dataset
+have?~
 
-Extract the data for Merseyside and create a histogram for the variable
-Net\_Pay. HINT: Values of `Merseyside' in the variable \emph{Merseyside}
-indicate this location.Task 2
+\section{Question 2}\label{question-2}
 
-\textbf{Task 2}
+Write code to load the \emph{Census\_2021\_Wards.csv} dataset into
+RStudio. Calculate the total \textbf{sum} of the variable \emph{Worker}
+across all wards in the dataset.~
 
-Derive the Lorenz curve and and it's associated gini value. Discuss
-these results.
+\section{Question 3}\label{question-3}
 
-\textbf{Task 3}
+Find the \textbf{min} value of variable \emph{Density} in the Wards
+dataset \textbf{without code.}
 
-Compute the correlation for Net\_Pay for Merseyside with the other
-numeric values in the dataset. What is the most influential factor
-influencing Net\_Pay in Merseyside?
+\section{Question 4}\label{question-4}
 
-\textbf{Task 4}
+Write code to identify the ward with the \textbf{min} value for the for
+the variable \emph{Mean\_Age} using the Census\_2021\_Wards dataset.
 
-Compute associated p values and significant values and discuss the
-results.
+\section{Question 5}\label{question-5}
 
-\textbf{Task 5}
+Write code to compute the \textbf{overall proportion} of workers who
+work from home (variable: Work\_from\_Home) to the total works
+(variable: Worker) in the \emph{Census\_2021\_Wards} dataset.
 
-Further compute the confidence intervals and discuss the results.\\
+\section{Question 6}\label{question-6}
+
+Write code to generate a statistical summary of the variable
+\emph{Social\_Rented} using the \emph{Census\_2021\_Wards.csv} dataset.
+From the output, identify and report the \textbf{mean} value of
+\emph{Social\_Rented}.~
+
+\section{Question 7}\label{question-7}
+
+Write code to produce a frequency table of the variable \emph{religion}
+using the \emph{world\_value\_survey} dataset. How many correspondents
+have a religion type of ``Muslim''? What is the proportion of that to
+the whole survey sample?
+
+\section{Question 8}\label{question-8}
+
+Write code to create boxplots of variable \emph{Extractive\_Job},
+\emph{Productive\_Job}, \emph{Professional}, \emph{Routine\_Job} using
+the \emph{Census\_2021\_Wards} dataset.~ Based on your plotst, which
+variable shows the most \textbf{positively skewed} distribution?
+(Recall: a positively skewed boxplot has a longer upper whisker and the
+median positioned closer to the lower quartile.) How to interpret the
+result?
+
+\section{Question 9}\label{question-9}
+
+Write code to compute mean and standard deviation of variables
+\emph{Disabled} and \emph{Poor\_Health} in the
+\emph{Census\_2021\_Wards.cs}v dataset in R. Compare and interpret the
+results for both variables
+
+\section{Question 10}\label{question-10}
+
+Write code to compare the life satisfaction (variable:
+life\_satisfaction) between different marital status (variable:
+marital\_status) using the \emph{world\_value\_survey.csv} dataset using
+boxplots. Interpret the findings?
+
+\section{Question 11}\label{question-11}
+
+The age in the real world is always a normal distribution. We assume
+that the age in the World Value Survey is also normal distribution.
+Write code to calculate the \textbf{mean} and \textbf{standard
+deviation} of age using the \emph{world\_value\_survey.csv} dataset.
+Based on your output, use the 68-95-97.5 rule to interpret the result.
+
+\section{Question 12}\label{question-12}
+
+Write code to compute the \textbf{standard error} \textbf{of the mean}
+\textbf{proportion} for work status as \emph{Housewife}. (variable:
+work\_status, category: Housewife) across all observations in the World
+Value Survey dataset (\emph{world\_value\_survey.csv}). What is the
+approximate result?
+
+\section{Question 13}\label{question-13}
+
+Write code to compute the mean value and 95\% confidence interval of the
+life\_satisfaction variable in the World Value Survey
+(\emph{world\_value\_survey.csv}).
+
+\section{Question 14}\label{question-14}
+
+Write code to produce a cross-tabulation of settlement type (variable:
+settlement\_type) by how they feel related to the world (variable:
+relate\_to\_world) using the \emph{world\_value\_survey.csv} dataset.
+According to your table,~
+
+Based on your results, which type of settlement has the highest mean
+proportion of feeling very close to the world?
+
+\section{Question 15}\label{question-15}
+
+What is the Standard Error of samples? With the increase of sample, how
+will Standard Error change?
+
+\section{Question 16}\label{question-16}
+
+You are required to write code to combine two datasets, \emph{LAD
+December 2021 EW BUC.geojson} and \emph{Wards\_2021\_Districts.csv},
+using a \textbf{left join}. Both datasets contain a common variable
+called \emph{LAD21CD,} which is the unique code assigned by the Office
+for National Statistics (ONS) to each local authority district in the
+2021 Census. This variable should be used to match the two datasets
+correctly. After joining the datasets, use the combined data to create a
+map showing the percentage of self-employed people at the district level
+across the UK.
+
+\section{Question 17}\label{question-17}
+
+Write code to create a scatterplot showing the relationship between the
+variables \emph{Density} and \emph{Born\_in\_UK} using the
+\emph{Census\_2021\_Districts.csv} dataset. Make sure that
+\emph{Density} is shown on the x-axis and Born\_in\_UK is shown on the
+y-axis.
+
+\section{Question 18}\label{question-18}
+
+Write code to calculate the appropriate correlation coefficient between
+the variables \emph{Mean\_Age} and \emph{Poor\_Health} using the
+Census\_2021\_Wards.csv dataset. Please also interpret what the
+resulting value mean.
+
+\section{Question 19}\label{question-19}
+
+Write code to create a barplot showing the relationship between the
+variables \emph{marital\_status} and \emph{happiness} using the
+\emph{world\_value\_survey.csv} dataset. What pattern(s) can be
+observed?
+
+\section{Question 20}\label{question-20}
+
+When trying to understand the skewness of a variable, why is it
+important to use both visualisations and skewness metrics?
+
+\section{Question 21}\label{question-21}
+
+Write code to calculate the Gini coefficient between the variables
+\emph{Poor\_Health} using the Census\_2021\_Wards.csv dataset. Be sure
+to not include an NA values. Please also interpret what the resulting
+value mean.
+
+\section{Question 22}\label{question-22}
+
+Compute the Spearman's rank correlation coefficient between the numeric
+variable \emph{Self\_Employed} (equivalent net pay) and the other
+numeric variables in the Census\_2021\_Wards.csv dataset, along with
+their associated p-values. Based on your results, interpret what do they
+mean in the context of the association between \emph{Self\_Employed} and
+\emph{Married} and its p-value?
+
+\section{Question 23}\label{question-23}
+
+Write code to plot the Lorenz curve for the variable \emph{Density}
+using the \emph{Census\_2021\_Wards.csv} dataset. Please interpret what
+the resulting value mean.
+
+\section{Question 24}\label{question-24}
+
+Write code to compute the skewness for the variable \emph{Density} using
+the \emph{Census\_2021\_Wards.csv} dataset. Please interpret what the
+resulting value mean.
+
+\section{Question 25}\label{question-25}
+
+In addition to the p-value, we can also calculate the confidence
+intervals for the correlation between two variables. Why are confidence
+intervals useful in this case?
 
 
 

@@ -129,6 +129,10 @@ Based on the above output, which is the most frequent household type?
 ------------------------------------------------------------------------
 :::
 
+Solution
+
+1 family, no children with 108,471 households.
+
 ::: {style="background-color: #FFFBCC; padding: 10px; border-radius: 5px; border: 1px solid #E1C948;"}
 **QUESTION 2**
 
@@ -136,12 +140,18 @@ Based on the above output, which is the most frequent household type?
 
 Write code below to determine the largest household size in the data. HINT: this information can be found in the *Hhold_Size* variable
 
+Solution
+
 ```{r}
-# REPLACE THIS WITH YOUR CODE
+APS %>%
+  count(Hhold_Size) %>%
+  arrange(desc(n))
 ```
 
 ------------------------------------------------------------------------
 :::
+
+Household with 2 persons account for 86,065 households in the data.
 
 ## Understanding the outcome
 
@@ -214,10 +224,10 @@ max( APS$Net_Pay)
 
 ------------------------------------------------------------------------
 
-The above code will give the incorrect results if we do not remove the NA values, ensuring that NA values are removed.
+The above code will give the incorrect results if we do not remove the NA values, ensuring that NA values are removed. Find the mean value for Net_Pay and be sure to remove NA values. Write code to show this.
 
 ```{r}
-# REPLACE THIS WITH YOUR CODE
+mean( APS$Net_Pay,  na.rm = TRUE)
 ```
 
 ------------------------------------------------------------------------
@@ -286,6 +296,16 @@ The computed gini values for all respondents in all regions is 0.28 whereas for 
 ------------------------------------------------------------------------
 :::
 
+Solution
+
+<div>
+
+Solution:
+
+The North West’s Gini coefficient (0.27) is slightly lower than the overall value (0.28). This means income in the North West is distributed slightly more evenly than across the UK as a whole. In practical terms, there is marginally less disparity between lower-income and higher-income individuals in the North West compared with the national picture.
+
+</div>
+
 Let's now compare the gini value for each regions.
 
 ```{r}
@@ -344,8 +364,10 @@ This tells us that 90% of APS respondents have net pay of £40,820 or less. The 
 Write code to determine what the minimum person being paid? What could be responsible for this value.
 
 ```{r}
-# REPLACE THIS WITH YOUR CODE
+min(APS$Net_Pay, na.rm = TRUE)
 ```
+
+This could be people working very few hours such as students or be due to temporary or irregular employment.
 
 ------------------------------------------------------------------------
 :::
@@ -404,15 +426,23 @@ Regions_medians_map <-
 Regions_medians_map
 ```
 
-::: {style="background-color: #FFFBCC; padding: 10px; border-radius: 5px; border: 1px solid #E1C948;"}
+:::: {style="background-color: #FFFBCC; padding: 10px; border-radius: 5px; border: 1px solid #E1C948;"}
 **QUESTION 6**
 
 ------------------------------------------------------------------------
 
 Is there an obvious geography to the distribution of pay levels across the UK? To what extent would you say there is a North-South divide, or a South East vs.the Rest divide, or even a London vs the rest divide?
 
+<div>
+
+Solution
+
+The most important geographical divide is London vs the rest of the UK, followed by a broader South East vs other regions pattern. While there is also evidence of a North–South divide, it is less sharp and appears to be driven largely by proximity to London rather than latitude alone. This reflects the strong spatial concentration of high-value economic activity in London and surrounding regions, which contributes to higher wages and reinforces regional inequalities in income across the UK.
+
+</div>
+
 ------------------------------------------------------------------------
-:::
+::::
 
 ## What factors influence being rich?
 
@@ -448,15 +478,25 @@ data %>%
 View(correlations)
 ```
 
-::: {style="background-color: #FFFBCC; padding: 10px; border-radius: 5px; border: 1px solid #E1C948;"}
+:::: {style="background-color: #FFFBCC; padding: 10px; border-radius: 5px; border: 1px solid #E1C948;"}
 **QUESTION 7**
 
 ------------------------------------------------------------------------
 
 Based on the above values, which variable has the most influence on Net_Pay? Does this make sense? State why.
 
+<div>
+
+Solution
+
+Gross_Pay
+
+Gross pay represents total earnings before deductions, while net pay represents take-home income after deductions. Since deductions are generally a proportion of gross income, net pay increases strongly as gross pay increases.
+
+</div>
+
 ------------------------------------------------------------------------
-:::
+::::
 
 ## Statistical significance of correlations
 
@@ -595,20 +635,195 @@ Overall, the narrow confidence intervals observed—particularly for variables s
 
 **Task 1**
 
-Extract the data for Merseyside and create a histogram for the variable Net_Pay. HINT: Values of 'Merseyside' in the variable *Merseyside* indicate this location.Task 2
+Extract the data for Merseyside and create a histogram for the variable Net_Pay. HINT: Values of 'Merseyside' in the variable *Merseyside* indicate this location.
+
+Solution
+
+Step 1: Extract the Merseyside data
+
+```{r}
+merseyside_data <- APS %>%
+  filter(Merseyside == "Merseyside")
+```
+
+Step 2: Create histogram
+
+```{r}
+ggplot(merseyside_data, aes(x = Net_Pay)) +
+  geom_histogram(binwidth = 1000, colour = "black", fill = "steelblue") +
+  labs(
+    title = "Distribution of Net_Pay in Merseyside",
+    x = "Net Pay",
+    y = "Frequency"
+  ) +
+  theme_minimal()
+```
 
 **Task 2**
 
 Derive the Lorenz curve and and it's associated gini value. Discuss these results.
 
+Solution
+
+Plot Lorenz curve
+
+```{r}
+APS %>%
+  filter(Merseyside == "Merseyside", !is.na(Net_Pay)) %>%
+  pull(Net_Pay) %>%
+  Lc() %>%
+  plot()
+```
+
+Calculate Gini value
+
+```{r}
+APS %>%
+  filter(Merseyside == "Merseyside", !is.na(Net_Pay)) %>%
+  pull(Net_Pay) %>%
+  Gini()
+```
+
+The Lorenz curve and Gini coefficient together indicate that net pay in Merseyside is unevenly distributed, with some individuals earning substantially more than others. However, the level of inequality is not extreme and reflects a moderate degree of income disparity.
+
 **Task 3**
 
-Compute the correlation for Net_Pay for Merseyside with the other numeric values in the dataset. What is the most influential factor influencing Net_Pay in Merseyside?
+Compute the Spearman's correlation for Net_Pay for Merseyside with the other numeric values in the datasets. What is the most influential factor influencing Net_Pay in Merseyside?
+
+Solution
+
+```{r}
+# PART 1: Input your variable of interest and correlation method
+# The variable that you want as your main achor
+variable_of_interest = "Net_Pay"
+# The data table
+data = APS
+# This is the correlation method that will be used
+correlation_method = "spearman"  # or use "pearson" to compute the Pearson correlation coefficient.
+
+# This is the correlation method that will be used
+correlation_method = "spearman"  # or use "pearson" to compute the Pearson correlation coefficient.
+
+#------------------------------------------------------------------------------
+# PART 2; Compute correlations - NO NEED TO EDIT THE CODE IN THIS PART
+correlations <-
+data %>%
+  filter(Merseyside == "Merseyside", !is.na(Net_Pay)) %>%
+  select(where(is.numeric)) %>%
+  drop_na() %>%
+  cor(method = "spearman", use = "complete.obs") %>%
+  as.data.frame() %>%
+  (\(x) data.frame(
+    Variable = rownames(x),
+    variable_of_interest = x[, "Net_Pay"],
+    row.names = NULL
+  ))() %>%
+  arrange(desc(abs(variable_of_interest)))
+
+View(correlations)
+```
+
+Gross pay
 
 **Task 4**
 
 Compute associated p values and significant values and discuss the results.
 
+```{r}
+# PART 1: 
+# The variable that you want as your main achor
+variable_of_interest = "Net_Pay"
+
+# This is the correlation method that will be used
+correlation_method = "spearman"  # or use "pearson" to compute the Pearson correlation coefficient.
+
+# The data table
+data = APS
+
+#-----------------------------------------------------------------------------------
+
+# PART 2 - Compute correlation and p-value - NO NEED TO EDIT CODE HERE
+# This other part of the code takes the variable of interest and correlation method and does the computation.
+correlations_with_pvalue <-
+data %>%
+  filter(Merseyside == "Merseyside", !is.na(Net_Pay)) %>%
+  select(where(is.numeric)) %>%
+  pivot_longer(-Net_Pay, names_to = "Variable", values_to = "x") %>%
+  group_by(Variable) %>%
+  summarise(
+    rho = cor(x, Net_Pay, method = correlation_method, use = "pairwise.complete.obs"),
+    p_value = cor.test(
+      x, Net_Pay,
+      method = correlation_method,
+      exact = FALSE
+    )$p.value,
+    sig = p_value <= 0.05,
+    .groups = "drop"
+  ) %>%
+  filter(Variable != variable_of_interest) %>%
+  arrange(desc(abs(rho))) %>%
+  mutate(
+    rho = round(rho, 2),
+    p_value = round(p_value, 4)
+  )
+
+View(correlations_with_pvalue)
+```
+
 **Task 5**
 
 Further compute the confidence intervals and discuss the results.\
+
+Solution
+
+```{r}
+# PART 1: Input your variable of interest and correlation method
+# The variable that you want as your main achor
+variable_of_interest = "Net_Pay"
+
+# This is the correlation method that will be used
+correlation_method = "spearman"  # or use "pearson" to compute the Pearson correlation coefficient.
+
+# The data table
+data = APS
+
+#---------------------------------------------------------------------------------------------------------
+
+# PART 2: Compute the correlation coefficients and associated p-values - NO NEED TO EDIT CODE HERE
+# This other part of the code takes the variable of interest and correlation method and does the computation.
+# Ensure anchor exists and is numeric
+
+anchor <- data[[variable_of_interest]]
+
+correlations_with_pvalue_ci <-
+  data %>%
+  select(where(is.numeric)) %>%
+  pivot_longer(
+    cols = -all_of(variable_of_interest),
+    names_to = "Variable",
+    values_to = "x"
+  ) %>%
+  summarise(
+    n = sum(is.finite(x) & is.finite(anchor)),
+    r = suppressWarnings(cor(x, anchor, method = correlation_method, use = "pairwise.complete.obs")),
+    p_value = suppressWarnings(cor.test(x, anchor, method = correlation_method, exact = FALSE)$p.value),
+    # Fisher z CI (exact for Pearson; common approximation otherwise)
+    conf_low  = tanh(atanh(r) - qnorm(0.975) / sqrt(n - 3)),
+    conf_high = tanh(atanh(r) + qnorm(0.975) / sqrt(n - 3)),
+    .by = Variable
+  ) %>%
+  filter(Variable != variable_of_interest) %>%
+  mutate(
+    sig = p_value <= 0.05,
+    r = round(r, 2),
+    p_value = round(p_value, 4),
+    conf_low = round(conf_low, 2),
+    conf_high = round(conf_high, 2)
+  ) %>%
+  arrange(desc(abs(r)))
+
+View(correlations_with_pvalue_ci)
+
+```
+
+Overall, the confidence intervals confirm that Gross_Pay, Equiv_Net_Pay, and Work_Hours are the strongest and most reliable predictors of Net_Pay, with precise and clearly positive relationships. Other variables either show very weak relationships or confidence intervals that include zero, indicating little or no meaningful influence on Net_Pay.

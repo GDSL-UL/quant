@@ -29,7 +29,9 @@ book:
     - labs/03.IntroductoryStatistics.qmd
     - labs/04.Health.qmd
     - labs/05.Wealth.qmd
-    - labs/Mock exam (without solutions).qmd
+    - labs/Mock Exam_ A_No_Solutions.qmd
+    - labs/Mock exam_B_Solutions.qmd
+    
 
  
 bibliography: references.bib

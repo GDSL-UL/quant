@@ -1,0 +1,148 @@
+---
+title: "Mock questions"
+---
+
+# Mock Test
+
+::: {#Preface}
+**Before starting it's good to get some of the preliminary steps taken care of first. In this case, we first download the data, and then clear the workspace to get rid of older variables that may be in our environment area since last working with RStudio. Finally, we import the libraries that we will be using.**
+:::
+
+## Data download
+
+Some of the datasets on Canvas have been updated, so please re-download the data.
+
+-   *world_value_survey* - Located in Week 3
+
+-   *LAD December 2021 EW BUC.geojson* - Located in Week 4
+
+-   *Census_2021_Wards.csv* - Located in Week 4
+
+-   *Census_2021_Districts.csv* - Located in Week 4
+
+## Clear the workspace
+
+This is important because you could be using an older dataset that is incorrect if you don't do this.
+
+```{r}
+rm(list = ls())
+```
+
+## Load libraries
+
+These are the libraries that will use be using for the mock test. The specific libraries to be loaded will depend on the specific task to be completed. However, these are the most common ones.
+
+```{r}
+#| message: false
+#| warning: false
+library(tidyverse)
+library(sf)
+library(tmap)
+library(ineq)
+```
+
+::: {#Questions}
+**This mock exam consists of a series of 25 questions. Many of these questions are from the labs, so be sure to go through these before the final exam. Your final exam will have 20 questions and will be multiple choice. Unless told otherwise in the exam, you will be expected to write code (i.e., copy and paste from labs and modify accordingly) to derive results, which you will then use to determine to correct answer from a set of multiple choice options. You are not expected to write code from scratch.**
+:::
+
+## Question 1
+
+Write code to load the *world_value_survey.csv* dataset into RStudio. How many **rows** and **columns** does this dataset have? 
+
+## Question 2
+
+Write code to load the *Census_2021_Wards.csv* dataset into RStudio. Calculate the total **sum** of the variable *Worker* across all wards in the dataset. 
+
+## Question 3
+
+Find the **min** value of variable *Density* in the Wards dataset **without code.**
+
+## Question 4
+
+Write code to identify the ward with the **min** value for the for the variable *Mean_Age* using the Census_2021_Wards dataset.
+
+## Question 5
+
+Write code to compute the **overall proportion** of workers who work from home (variable: Work_from_Home) to the total works (variable: Worker) in the *Census_2021_Wards* dataset.
+
+## Question 6
+
+Write code to generate a statistical summary of the variable *Social_Rented* using the *Census_2021_Wards.csv* dataset. From the output, identify and report the **mean** value of *Social_Rented*. 
+
+## Question 7
+
+Write code to produce a frequency table of the variable *religion* using the *world_value_survey* dataset. How many correspondents have a religion type of "Muslim"? What is the proportion of that to the whole survey sample?
+
+## Question 8
+
+Write code to create boxplots of variable *Extractive_Job*, *Productive_Job*, *Professional*, *Routine_Job* using the *Census_2021_Wards* dataset.  Based on your plotst, which variable shows the most **positively skewed** distribution? (Recall: a positively skewed boxplot has a longer upper whisker and the median positioned closer to the lower quartile.) How to interpret the result?
+
+## Question 9
+
+Write code to compute mean and standard deviation of variables *Disabled* and *Poor_Health* in the *Census_2021_Wards.cs*v dataset in R. Compare and interpret the results for both variables
+
+## Question 10
+
+Write code to compare the life satisfaction (variable: life_satisfaction) between different marital status (variable: marital_status) using the *world_value_survey.csv* dataset using boxplots. Interpret the findings?
+
+## Question 11
+
+The age in the real world is always a normal distribution. We assume that the age in the World Value Survey is also normal distribution. Write code to calculate the **mean** and **standard deviation** of age using the *world_value_survey.csv* dataset. Based on your output, use the 68-95-97.5 rule to interpret the result.
+
+## Question 12
+
+Write code to compute the **standard error** **of the mean** **proportion** for work status as *Housewife*. (variable: work_status, category: Housewife) across all observations in the World Value Survey dataset (*world_value_survey.csv*). What is the approximate result?
+
+## Question 13
+
+Write code to compute the mean value and 95% confidence interval of the life_satisfaction variable in the World Value Survey (*world_value_survey.csv*).
+
+## Question 14
+
+Write code to produce a cross-tabulation of settlement type (variable: settlement_type) by how they feel related to the world (variable: relate_to_world) using the *world_value_survey.csv* dataset. According to your table, 
+
+Based on your results, which type of settlement has the highest mean proportion of feeling very close to the world?
+
+## Question 15
+
+What is the Standard Error of samples? With the increase of sample, how will Standard Error change?
+
+## Question 16
+
+You are required to write code to combine two datasets, *LAD December 2021 EW BUC.geojson* and *Wards_2021_Districts.csv*, using a **left join**. Both datasets contain a common variable called *LAD21CD,* which is the unique code assigned by the Office for National Statistics (ONS) to each local authority district in the 2021 Census. This variable should be used to match the two datasets correctly. After joining the datasets, use the combined data to create a map showing the percentage of self-employed people at the district level across the UK.
+
+## Question 17
+
+Write code to create a scatterplot showing the relationship between the variables *Density* and *Born_in_UK* using the *Census_2021_Districts.csv* dataset. Make sure that *Density* is shown on the x-axis and Born_in_UK is shown on the y-axis.
+
+## Question 18
+
+Write code to calculate the appropriate correlation coefficient between the variables *Mean_Age* and *Poor_Health* using the Census_2021_Wards.csv dataset. Please also interpret what the resulting value mean.
+
+## Question 19
+
+Write code to create a barplot showing the relationship between the variables *marital_status* and *happiness* using the *world_value_survey.csv* dataset. What pattern(s) can be observed?
+
+## Question 20
+
+When trying to understand the skewness of a variable, why is it important to use both visualisations and skewness metrics?
+
+## Question 21
+
+Write code to calculate the Gini coefficient between the variables *Poor_Health* using the Census_2021_Wards.csv dataset. Be sure to not include an NA values. Please also interpret what the resulting value mean.
+
+## Question 22
+
+Compute the Spearman’s rank correlation coefficient between the numeric variable *Self_Employed* (equivalent net pay) and the other numeric variables in the Census_2021_Wards.csv dataset, along with their associated p-values. Based on your results, interpret what do they mean in the context of the association between *Self_Employed* and *Married* and its p-value?
+
+## Question 23
+
+Write code to plot the Lorenz curve for the variable *Density* using the *Census_2021_Wards.csv* dataset. Please interpret what the resulting value mean.
+
+## Question 24
+
+Write code to compute the skewness for the variable *Density* using the *Census_2021_Wards.csv* dataset. Please interpret what the resulting value mean.
+
+## Question 25
+
+In addition to the p-value, we can also calculate the confidence intervals for the correlation between two variables. Why are confidence intervals useful in this case?

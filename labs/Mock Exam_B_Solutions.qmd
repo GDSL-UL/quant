@@ -374,7 +374,7 @@ As the **sample size increases**, the standard error decreases. This is because 
 
 ## Question 16
 
-You are required to write code to combine two datasets, *LAD December 2021 EW BUC.geojson* and *Wards_2021_Districts.csv*, using a **left join**. Both datasets contain a common variable called *LAD21CD,* which is the unique code assigned by the Office for National Statistics (ONS) to each local authority district in the 2021 Census. This variable should be used to match the two datasets correctly. After joining the datasets, use the combined data to create a map showing the percentage of self-employed people at the district level across the UK.
+You are required to write code to combine two datasets, *LAD December 2021 EW BUC.geojson* and *Census_2021_Districts.csv*, using a **left join**. Both datasets contain a common variable called *LAD21CD,* which is the unique code assigned by the Office for National Statistics (ONS) to each local authority district in the 2021 Census. This variable should be used to match the two datasets correctly. After joining the datasets, use the combined data to create a map showing the percentage of self-employed people at the district level across the UK.
 
 Solution
 
@@ -500,7 +500,7 @@ Visualisations provide qualitative insight into the distribution’s shape, stru
 
 ## Question 21
 
-Write code to calculate the Gini coefficient between the variables *Poor_Health* using the Census_2021_Wards.csv dataset. Be sure to not include an NA values. Please also interpret what the resulting value mean.
+Write code to calculate the Gini coefficient for the variable *Poor_Health* using the Census_2021_Wards.csv dataset. Be sure to not include an NA values. Please also interpret what the resulting value mean.
 
 ```{r}
 # Load the data

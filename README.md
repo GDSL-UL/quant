@@ -2,4 +2,4 @@ This is the webpage of the module ENVS162 Human Geography through Merseyside - Q
 
 ## Work in RStudio online (no installation)
 
-[![Open in GitHub Codespaces](https://github.com/codespaces/badge.svg)](https://codespaces.new/GDSL-UL/stats?quickstart=1)
+[![Open in GitHub Codespaces](https://github.com/codespaces/badge.svg)](https://codespaces.new/GDSL-UL/quant?quickstart=1)
